@@ -1,0 +1,12 @@
+[
+  {
+    "definition": [
+      "Exact term definition or interpretive description."
+    ],
+    "scope": "Conditions under which the policy is enforceable.",
+    "policy_description": "Exact description of the policy.",
+    "reference": [
+      "Original source where the elements were extracted."
+    ]
+  }
+]

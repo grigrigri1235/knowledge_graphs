@@ -1,0 +1,16 @@
+{
+  "rules": [
+    {
+      "predicates": [
+        [
+          "predicate_name",
+          "Predicate definition.",
+          [
+            "keywords"
+          ]
+        ]
+      ],
+      "logic": "logic_expression_involving_predicates"
+    }
+  ]
+}

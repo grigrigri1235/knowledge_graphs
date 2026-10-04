@@ -1,0 +1,15 @@
+[
+  {
+    "predicates": [
+      [
+        "predicate_name",
+        "Description of the predicate.",
+        [
+          "kw1",
+          "kw2"
+        ]
+      ]
+    ],
+    "logic": "LTL rule using predicate names."
+  }
+]
