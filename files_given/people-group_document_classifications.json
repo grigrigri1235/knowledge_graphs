@@ -1,0 +1,538 @@
+[
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/anti-harassment.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.82,
+    "reason": "Formal organizational policy on harassment with mandatory requirements, reporting procedures, disciplinary actions, and country-specific implementations."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/talent-assessment.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Talent Assessment page describes step-by-step process, timelines, eligibility, calibration, and communication requirements, with enforceable actions and responsibilities."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/talent-development-program.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Primarily an informational hub describing the Talent Development Program and listing links to related resources; not outlining mandatory policies or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/promotion-document-style-guide.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.72,
+    "reason": "This document provides recommendations and best practices for constructing promotion case documents; it is advisory in nature and not a mandatory policy or procedure."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/acceptable-use-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.87,
+    "reason": "Contains mandatory acceptable use rules, security requirements, prohibited activities, BYOD rules, and consequences for violations; not merely informational or guidance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/team-member-relations.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page describes explicit processes and responsibilities for raising workplace concerns, responding to issues, and escalation through Team Member Relations, including steps and potential disciplinary action, indicating enforceable operational rules rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/guidance-on-feedback.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "This document provides recommendations and best practices for giving/receiving feedback; no explicit mandatory rules or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/engagement.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.6,
+    "reason": "The document describes operational processes for running engagement surveys, confidentiality, participation, and action planning, including steps and responsibilities. It also contains some enforceable constraints (e.g., visibility of confidential results thresholds) and recommended practices for how teams should implement actions."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/orientation-identity.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.6,
+    "reason": "Primarily glossary and FAQ about gender/sexual orientation terms; includes policy-like statements (e.g., anti-discrimination guarantees), but not a formal policy document."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/organizational-change-management.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Describes organizational Change Management framework and guidance; presents recommended phases and practices rather than mandatory rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/incident-response.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Outlines incident response workflow, notification/approvals, time-off guidance, and managerial actions; constitutes an operational procedure with enforceable steps and resources."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/celebrations.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "The page describes operational processes (redeeming swag, issuing e-cards, gift workflows) and enforceable constraints (e.g., swag not exchangeable) rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/directly-responsible-individuals.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes organizational ownership (DRI) and decision-making authority, including mandatory consult requirements and governance frameworks (RACI/DACI). Contains enforceable language about roles and approvals, indicating it is a governing policy rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/employment-solutions.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Contains mandatory rules and constraints (e.g., approvals required from Director of Tax & Director of Legal, hiring through GitLab entities/PEOs, country-specific hiring restrictions, governance of country conversions, and WBSO process) that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/visas.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Contains explicit mandatory rules and prohibitions (e.g., GitLab does not sponsor visas) and defined procedures for visa/work authorization, including eligibility criteria and actions for People Operations; actionable organizational policy rather than purely informational."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/quarterly-talent-review.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Describes an operational process with defined steps, deadlines, roles, and deliverables (Quarterly Talent Review) that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/relocation.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes the operational relocation process with explicit steps, approvals, roles, and mandatory requirements (e.g., 183-day primary location rule, approval processes). Although it contains policy-like statements, its primary content is a workflow for handling relocations."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/givelab-volunteer-initiatives.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Descriptive overview of GiveLab volunteering initiatives; no mandatory rules, procedures, or enforceable requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-group-program-management.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Describes program management overview, competencies, collaboration, and resources with non-mandatory guidance; no enforceable rules or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/pronouns.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.68,
+    "reason": "Primarily informative guidance on pronoun usage and inclusive language with recommended practices; no mandatory requirements or procedural steps."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/competencies.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Descriptive page about GitLab competencies with guidance and references to assessments; does not contain mandatory policies, procedures, or enforceable requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/promotions-transfers.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Promotions and Transfers page outlines formal, step-by-step operational processes, approvals, and timelines for internal mobility, promotions, and related changes, indicating enforceable procedural rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/360-feedback.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes an actionable 360 feedback process with defined roles, eligibility, timing, steps, and expectations. Includes procedural requirements (who should do what, deadlines, and how feedback is collected and acted upon), not merely high-level guidance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/_index.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "The document serves as a hub with numerous links to other policies, procedures, and resources related to the People Group; itprimarily functions as a reference index rather than containing enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/contracts-probation-periods.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "Primarily outlines step-by-step procedures for contracts management, background screenings, probation periods, and related policy areas; contains enforceable requirements (approvals, deadlines, signatures)."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/internship-for-learning.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes a structured process for an internship program, including time allocation, manager approvals, initiation steps, prerequisites, and ownership, which constitute actionable organizational workflow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/hone.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.66,
+    "reason": "Describes access rights, eligibility, and mandatory guidelines (e.g., Hone accounts are individual and tied to GitLab email; security/confidentiality requirements) that employees must follow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/self-paced-learning.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Contains mandatory access rules for training licenses (e.g., O'Reilly restricted to Engineering; MasterClass licensing for all; request/process via Lumos) and related procedural details."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Describes an operational learning-development request process with evaluation steps and a workflow (e.g., open issue in lxp-contributions, evaluate impact, capacity, and delivery dates), which constitutes actionable procedures that could be followed or violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/_index.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Primarily an informational hub with descriptions and a large set of links to internal handbooks, groups, and resources; not containing enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/offboarding/offboarding_standards.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This document prescribes an operational offboarding workflow with steps, roles, responsibilities, deadlines, and actionable tasks, making it a procedural document with enforceable requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/offboarding/faq.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.66,
+    "reason": "Offboarding FAQ includes mandatory steps, deadlines, and prohibitions (e.g., laptop wipe must be performed by IT Ops; access deprovisioning timing)."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/offboarding/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document specifies step-by-step offboarding processes, roles (People Operations, TMR, PBP, IT, Payroll), approvals, SLAs, and mandatory actions (deprovisioning, notices, communications). These are operational procedures that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/employment-branding/people-communications.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains explicit steps, ownership, approvals, and runbooks for internal communications processes, including timelines and sign-off requirements; structured as an operational workflow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/employment-branding/content-library.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "This document is a curated collection of links and references (articles, videos, press kits, and outreach resources) about life at GitLab. It does not contain mandatory rules, procedures, or requirements, but serves as informational resources and guidance for internal outreach."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/employment-branding/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Contains actionable workflow for external talent brand partnerships (e.g., open an issue with a specific template, 8-week lead time, evaluation criteria, and defined success metrics). These are operational steps and constraints that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-business-partners/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Purely descriptive content about the team with a navigation notice; no mandatory rules, policies, or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-compliance/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Descriptive overview of the Global People Compliance team and its role; no enforceable rules, explicit procedures, or required actions are stated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-operations/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Defines how to engage with HelpLab, SLA expectations, and tiered handling (operational workflow with time-bound requirements) that could be followed/violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/time-off-and-absence/leave-types.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page defines mandatory leave types, eligibility, durations, approvals, and initiation procedures, representing enforceable organizational rules and constraints."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/time-off-and-absence/time-off-types.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains explicit step-by-step request processes (e.g., how to enter PTO in Workday, notification, coverage planning) and enforceable rules around eligibility and pay, indicating it documents operational procedures for time-off management."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/time-off-and-absence/time-away-philosophy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Contains enforceable rules (e.g., all team members and managers must log time away in Workday; advance notice requirements; job abandonment warning) and defined manager responsibilities for absence management, indicating organizational policy with accompanying procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/time-off-and-absence/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Describes GitLab's time off and leave policy, including terminology and references to tracking and approval processes, indicating enforceable rules beyond purely descriptive content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/general-onboarding/mr-buddies.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Contains step-by-step procedure to become a Merge Request Buddy and perform related actions; not a policy but a process with actionable steps."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/general-onboarding/tanewki-tips.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "The document is an onboarding guide with procedural steps, mandatory actions (e.g., tasks marked with red 🔴), and policy-like statements about equipment and access. It functions as guidance with enforceable elements and could inform policy/regulatory checks."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/general-onboarding/onboarding-buddies.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page outlines operational steps, responsibilities, and approvals for onboarding buddies, including scheduling, progress checks, linkage to resources, and manager permissions, which constitute actionable, enforceable procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/general-onboarding/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Describes onboarding workflow with tasks, ownership, deadlines, and enforcement mechanisms (e.g., onboarding issues opened prior to start, 30-day main section, 60-day auto-close)."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/career-development/igp-guide.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "The document provides non-mandatory guidance and resources for creating an Individual Growth Plan (IGP). It includes suggested practices and links, with no binding policies or required steps that could be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/career-development/_index.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Primarily provides guidance, resources, and best practices for career development and mobility. While it includes suggested steps (e.g., launching and submitting the Individual Growth Plan) and recommended cadences, it does not constitute a formal policy or mandatory procedure with enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/learning-initiatives/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.72,
+    "reason": "Descriptive overview of learning initiatives; no mandatory rules, procedures, or enforceable requirements are present."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/growth-and-development/tax.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.64,
+    "reason": "Descriptive tax guidance across multiple countries; not an internal policy, procedure, or standard. While it discusses tax treatment, it does not impose mandatory rules for employees or systems."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/growth-and-development/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document provides a step-by-step operational workflow for submitting Growth & Development Fund requests, approvals, payments, reimbursements, and related constraints, including eligibility and tier-based approvals."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/team-workshops/_index.md",
+    "document_type": "TRAINING",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Describes training program offerings and planning process; not mandatory rules; primarily informational/training content with a non-mandatory process to initiate planning."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/level-up/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Primarily an informational guide about LevelUp; includes mandatory compliance training language making some rules enforceable."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/elevate-programs/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.72,
+    "reason": "Overview of Elevate training program options; no mandatory rules, procedures, or enforceable requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/mentor/_index.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": true,
+    "confidence": 0.58,
+    "reason": "Provides mentorship guidelines, roles, and process steps (how to participate and how to organize programs) that describe acceptable behavior and workflows, but the language is guidance rather than strict policy."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/manager-development/_index.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.58,
+    "reason": "Primarily onboarding guidance, best practices, and training resources for new managers; contains some procedural steps but is non-mandatory guidance rather than a formal policy, standard, or procedure."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/elevate-programs/elevate-applied/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.6,
+    "reason": "Program description with benefits and content; no enforceable rules or mandatory procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/elevate-programs/elevate-prep/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains mandatory participation rules and completion requirements for the ElevatePrep program (e.g., must complete all four live sessions, engage with cameras, manager approval, nomination process). These are enforceable organizational constraints and eligibility criteria that employees could violate if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/elevate-programs/elevateplus/_index.md",
+    "document_type": "TRAINING",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page describes Elevate+ as mandatory for all people leaders, with requirements such as attending all live sessions, making up missed sessions, asynchronous work, and earning a certification, which impose enforceable obligations and operational constraints."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/learning-and-development/elevate-programs/elevate/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document states mandatory participation in a leadership development program (Elevate) for all people leaders, with explicit requirements (attendance, make-up sessions, completion) and consequences for non-compliance, indicating formal organizational rules and procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/data-governance.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "The document states mandatory governance rules for data handling, access, retention, consent and approvals (e.g., access restricted, approval required, data minimization), indicating it defines enforceable organizational requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/data-guide.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Primarily descriptive/reference content: data dictionaries, model descriptions, and example queries; no mandatory rules, approvals, or procedures to be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/people-tableau.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "The document includes an explicit procedure for requesting Tableau access and describes access restrictions for sensitive dashboards, including a rule about license inactivity. It also provides an operational workflow related to permissions and roles."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/office-hours.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Describes a collaborative office hours program with non-mandatory guidance, participation steps, and resources; not a formal policy or mandatory procedure."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/survey-support.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.74,
+    "reason": "Describes operational workflow for People Analytics surveys, including participant eligibility, review of questions, launch planning, confidentiality, and access request procedures, with explicit roles and required steps."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/people-group/people-ops-tech-analytics/people-analytics/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains core governance principles and enforceable data access rules (authorized use, access verification, stakeholder approval, data minimization) that employees must follow."
+  }
+]

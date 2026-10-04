@@ -1,0 +1,906 @@
+[
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/opensource-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Open Source Program Agreement contains mandatory terms, eligibility requirements, and prohibitions/permissions governing use of GitLab software and participation in the program."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/dsa.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Describes an operational reporting workflow (DSA EU illegal content report form) with required fields and a submission action, constituting an enforceable procedure rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ai-functionality-terms.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "This document establishes mandatory terms, restrictions, liability allocations, and obligations governing the use of GitLab AI Functionality, indicating enforceable contractual rules rather than informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/patent-program.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document outlines mandatory rules, constraints, and responsibilities related to GitLab's Patent Program, including eligibility to participate, required invention disclosure processes, prohibitions on sharing disclosure forms, and the company's rights to file or retain patents. It also includes procedural steps, but the content primarily establishes policy and compliance requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/conference-sweepstakes-rules-french.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains official, enforceable rules for a promotional sweepstakes including participation limits, eligibility, liability, prize details, and sponsor rights."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ip-public-materials-guidelines.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.64,
+    "reason": "The document prescribes mandatory rules for using creative assets and third-party content, including Brand approvals, tool restrictions, attribution requirements, and prohibitions, which constitute organizational requirements rather than purely informational guidance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/anti-corruption-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Anti-Corruption Policy with mandatory prohibitions, compliance requirements, due diligence, reporting, and certification; contains enforceable rules and governance that could be violated by employees or partners."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/product.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains actionable steps and mandatory processes (CLA handling, OSS approvals, legal reviews) that employees must follow; constitutes a procedural/policy document with enforceable constraints."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/external-materials-compliance-tips.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "The page provides a compliance checklist and references mandatory frameworks (SAFE Framework, IP Guidelines) with review steps and required approvals, representing organizational requirements for external materials rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/professional-services-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Professional Services Terms establish mandatory obligations (fees, payment methods, termination, change orders, warranties, IP rights) and governance of the service provision, making it a policy-like contractual document suitable for policy guidance and risk management."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/eu-data-act-terms.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "The term describes a concrete transition workflow with mandatory steps (notice period, Transition Period, extensions, data export, termination, and fee implications), indicating enforceable operational procedures rather than general guidance or informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/promotional-game-standard-rules.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains mandatory promotional rules including eligibility, entry mechanics, liability limitations, governing law, and privacy/usage terms. These are enforceable constraints suitable for policy-level RAG."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/vendor-dpa.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Vendor Data Processing Addendum is a formal contractual document with enforceable data handling obligations and prohibitions that employees/software must follow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/eudataact.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Provides an informational overview of EU Data Act requirements and GitLab's approach for customers; describes compliance measures and timelines without prescribing internal mandatory policies or procedures for employees."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/employment-law.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Describes an operational workflow for engaging with the Legal Employment team, including steps to collaborate (open issues, templates, labeling, assignees) and escalation paths, which establish procedural constraints and responsibilities."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/procurement-guide-collaborating-with-gitlab-legal.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Describes procurement workflow, legal review steps, signing authority, NDA processes, and required terms/conditions, which constitute operational procedures that can be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/marketing-collaboration.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "The page prescribes explicit operational steps, required approvals, deadlines, and mandatory template use for promotional games and publicity releases, which are enforceable procedures rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/anti-retaliation-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.92,
+    "reason": "This document establishes mandatory prohibitions against retaliation, specifies reporting procedures, roles, and disciplinary actions, constituting an organizational policy."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/data-processing-agreement.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.68,
+    "reason": "Page mainly links to a Data Processing Addendum and Standard Contractual Clauses; it serves as a resource index/reference rather than containing policy or enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/acceptable-use-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "The document declares prohibitions and mandatory rules for using GitLab services (e.g., must not do X, must abide by conduct), constituting a formal organizational policy suitable for policy-level risk assessment and enforcement."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ai-functionality-terms-v4.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document sets binding terms, restrictions, liability, and usage obligations for AI Functionality, including indemnification, scope of use, and prohibited activities, which are enforceable rules governing interaction with GitLab's AI features."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/nda.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes a step-by-step NDA workflow, with mandatory roles and actions (signature authority, use of Ironclad/Zip) and explicit procedural steps across customer and vendor/third-party NDAs."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/publiccompanyresources.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.68,
+    "reason": "Primarily a hub of links to policies, guidelines, and corporate resources; does not itself state enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/api-terms.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.84,
+    "reason": "API Terms of Use constitutes a binding contract with enforceable obligations (e.g., access limits, restrictions on use, termination rights), not merely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/competitor-discussion-guidelines.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Document prescribes prohibitions and do/don't rules for discussing competitor features and sharing screenshots in public forums, indicating enforceable organizational rules rather than informal guidance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/record-retention-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Formal organizational policy detailing mandatory records retention, destruction, and litigation-hold procedures with designated responsibilities."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This is a contractual testing use agreement with enforceable terms (license scope, risk/disclaimer, data processing, liability, termination) that governs how customers may use Testing Features."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/trademarks-at-gitlab.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains step-by-step operational processes for trademark usage, third-party authorization, and infringement handling, with mandated actions and approvals."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/dmca.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Provides step-by-step operational processes for DMCA takedown notices, counter-notices, responses, and EU reporting, including required information and timeframes, representing enforceable procedural rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/anti-fraud-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Formal policy with mandatory compliance, defined responsibilities, reporting procedures, non-retaliation, investigations, and disciplinary consequences."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/philanthropy-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Policy with mandatory governance, approvals, and constraints for philanthropy (e.g., ESG Team oversight, Chief Legal Officer approvals, Board approvals, embargoed countries, delegation rules) that employees or systems could violate if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement-v5.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains contractual terms, licensing, usage restrictions, warranties, liability limitations, and termination rights that govern how the Testing Feature may be used; enforceable rules and responsibilities reflect organizational policy context."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/reseller-flow-through.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This is a formal agreement outlining enforceable obligations, prohibitions, and rights between parties (Authorized Partner, Fulfillment Reseller, and GitLab), including confidentiality, IP, compliance, and governing law."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "This document is a binding contractual agreement detailing licenses, usage constraints, warranties, liability limitations, and termination terms for Testing Features, containing enforceable rules and obligations."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ai-functionality-terms-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.74,
+    "reason": "This is a legal terms document establishing mandatory restrictions, obligations, and rights related to the use of AI Functionality (e.g., restrictions, data processing, liability, indemnification) that could be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/publicity-waiver-release.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document states mandatory release requirements and templates, plus step-by-step procedures for obtaining and tracking waivers, indicating enforceable organizational rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement-v4.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "The document is a formal legal agreement with mandatory terms, restrictions, and liabilities for use of Testing Features."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/whistleblowing.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page establishes mandatory responsibilities to report violations, outlines reporting channels, and references policy application across jurisdictions, indicating enforceable organizational rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ai-functionality-terms-v2.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains enforceable contractual obligations and restrictions for use of AI Functionality (e.g., Acceptable Use, output handling, restrictions on training/derivation, indemnification, liability, and termination). These are mandatory rules that could be violated by users, so classify as POLICY and keep for policy RAG."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/education-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This Education Program Agreement is a formal contract with enforceable terms (acceptance, restrictions on use, confidentiality, data protection, termination)."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/gitlab-code-of-business-conduct-and-ethics.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.66,
+    "reason": "Overview page with a link to the actual Code of Business Conduct and Ethics; the page itself does not impose rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/process-for-a-conference-sweepstakes.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document outlines a structured workflow with steps, eligibility checks, approvals, and responsibilities for conducting a conference sweepstakes, including mandatory rules and administration tasks."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/corporate-communications.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Formal organizational policy with mandatory rules about who can speak for the company, disclosure of material non-public information, and required procedures for communications with investors and press."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/customer-negotiations.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Contains explicit operational steps and mandatory processes (e.g., how to open Legal Cases, sign agreements, escalation, CLM, and roles) that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement-v3.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This document is a formal agreement imposing mandatory terms on the use of testing features, including licensing, data handling, warranties, liability limits, and termination. It represents enforceable organizational rules and restrictions."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/dora.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.68,
+    "reason": "Informational mapping document describing DORA requirements and GitLab's alignment with them, with references to policies, agreements, and supporting materials. Primarily serves as a collection of resources rather than an enforceable policy, procedure, or standard."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/gitlab-related-party-transactions-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "Policy outlining related party transactions with mandatory approval processes, thresholds, and roles; contains enforceable rules and procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/testing-agreement-v2.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Contains enforceable terms, licensing, restrictions, liability limits, data processing, and termination provisions governing use of Testing Features; not purely informational."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/conference-sweepstakes-rules.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Contains official, mandatory rules for a sweepstakes (entry, eligibility, drawing, prize, liability, notices) that could be violated; thus represents organizational policy governing conduct."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/agile-planning-terms-v1.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "The document defines enforceable licensing terms, usage restrictions, compliance requirements, data-usage controls, and verification mechanisms for Agile Planning Software, which are operational standards/requirements rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ai-functionality-terms-v3.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "Legal terms with enforceable restrictions, obligations, and liability provisions governing use of AI Functionality."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/trade-compliance.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "Contains mandatory export controls, prohibitions, and authorization requirements (e.g., embargoed countries, restricted entities, end uses) applicable to GitLab software, with responsibilities assigned to users and enforcement implications."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/technology-partner-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.82,
+    "reason": "This is a formal partner agreement containing enforceable terms, restrictions, and obligations governing use of GitLab resources, branding, data handling, warranties, and termination."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/conference-sweepstakes-rules-german-version.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.82,
+    "reason": "German official sweepstakes rules contain mandatory participation requirements, eligibility restrictions, disqualification criteria, prize terms, consent, privacy, and governing law—enforceable constraints suitable for policy-based retrieval."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/reseller-agreement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document is a Master Partner Agreement with Exhibits detailing mandatory obligations, restrictions, confidentiality, liability limits, termination, and other enforceable terms governing partner relationships."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/agile-planning-terms.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "Contains defined usage restrictions, upgrade obligations, data-collection requirements, and other obligations that govern use of Agile Planning Software; enforceable as contractual requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/risk-management-dispute-resolution.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains mandatory prohibitions and actions (e.g., team members must involve RMDR, cannot bind the company to settlements without signoff) and describes privilege and legal-hold processes that are enforceable within the organization."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/materials-legal-review-process.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "This document details an operational workflow for legal review, including mandatory review criteria, two-track processes (Track 1 and Track 2), step-by-step instructions, templates, approvals, and timelines. These are enforceable procedural requirements governing how materials must be reviewed and approved."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/technology-partner-agreement-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "A formal, binding partner agreement with mandatory terms, responsibilities, restrictions, and rights between GitLab and a Partner."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/partner-code-of-ethics.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Contains mandatory requirements and prohibitions for Partners (e.g., prohibitions on forced labor, anti-bribery, due diligence, privacy/security controls) indicating an organizational policy with enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/modern-slavery-act-transparency-statement.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "The page points to a Modern Slavery Act transparency statement, which is typically informational and public-facing rather than a internal policy or procedure with enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/_index.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Primarily a collection of links to policies, procedures, and resources; includes enforceable rules such as the Authorization Matrix and NDA process, but overall serves as a resource index."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/process-for-ux-research-prize-draws/index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Operational process with eligibility rules, administrative responsibilities, and mandatory steps for running a prize draw (including allowed prize values, participant eligibility, data handling, and approvals)."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/subscription-agreement/index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document is a subscription agreement containing mandatory terms, restrictions, and obligations (e.g., restrictions in Section 5, payment, termination, warranties, indemnification) that could be violated and thus is applicable for policy-based retrieval."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/transparency-reports.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "Primarily descriptive transparency reports about law enforcement and moderation practices; references to guidelines but not a mandatory internal policy or enforceable procedural steps."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/dpia.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "Describes mandatory DPIA requirements, risk criteria, roles, and DPIA workflow, establishing organizational governance and enforceable procedures for data protection assessments."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/customer-product-usage-information.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document contains mandatory rules and constraints about data collection, processing, opt-out options, and data handling across multiple services, indicating enforceable organizational policies."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/product-usage-events-faq.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.6,
+    "reason": "FAQ about event data collection with opt-out options, retention limits, encryption, and log access; contains enforceable constraints and data handling policies rather than internal procedural guidance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/employee-privacy-policy.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "The document is a formal privacy policy with mandatory rules and processes governing data collection, processing, rights, and transfers, and specifies contact points for compliance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/law-enforcement-guidelines.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.7,
+    "reason": "The document provides explicit operational steps, requirements, and timelines for handling law enforcement data requests, including identifiers, formats, and notification rules, which constitute enforceable procedural constraints."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/gdpr.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document states rights under privacy laws and operational constraints (identity verification, authorization for deletion, consequences of deletion), constituting enforceable rules and procedures for handling personal data requests."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/privacy/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The page describes formal privacy-related processes (Privacy Review Process, Vendor Privacy Review, Internal Privacy Review) and mandatory training for Team Members, which contain actionable steps, approvals, and obligations."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ethics-compliance-program/compliance-training.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "The document specifies mandatory compliance training requirements (course enrollment, deadlines, and refreshers), role-based course assignments, and platform access, constituting organizational rules that employees/software must follow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ethics-compliance-program/ai-ethics-principles.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "This document presents AI ethics principles and guidance. It contains some actionable constraints (e.g., refuse to deploy biased AI features, monitor security, adhere to standards) but language is primarily prescriptive guidance rather than a formal policy or procedure."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ethics-compliance-program/learning-content-accessibility-guidelines.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Outlines WCAG-based accessibility requirements and guidelines that team members must follow when creating learning content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ethics-compliance-program/fraud-governance-framework.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "The document defines operational fraud governance processes, escalation paths, incident response, and RACI ownership, with enforceable duties and workflows; not just descriptive content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/ethics-compliance-program/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Contains mandatory elements (training within 30 days, annual SOX recertification, reporting channels, governance responsibilities) and a framework of Compliance Standards and related policies, indicating enforceable organizational rules and procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v6.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "This is a formal contract (Legacy GitLab Subscription Agreement) containing mandatory terms, restrictions, and obligations (scope, payment, confidentiality, IP, warranties, indemnification, liability, etc.), not merely informational. It presents enforceable rules that could be violated by users or customers."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/privacy-statement-v2.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "This is a privacy policy detailing data collection, use, sharing, retention, and user rights. It includes enforceable language (may share, opt-out, rights to access/delete, notices of changes) and functions as an organizational policy that could be violated or required to be followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-psa-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.85,
+    "reason": "The document is a formal contract with mandatory obligations (SOWs, payment, confidentiality, termination, warranties, liability) that impose prohibitions and required actions, making it suitable for policy-based retrieval and enforcement."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v2.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "The document is a legal subscription agreement containing mandatory terms, restrictions, and procedures governing use, payment, confidentiality, data protection, and termination. It encodes organizational rules that could be violated if terms are not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v3.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "A legal subscription agreement containing mandatory terms, restrictions, obligations, and remedies (e.g., payment, confidentiality, IP, warranty, indemnification, and termination) that could be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v7.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Contains binding terms and obligations (scope, fees, payment, restrictions, termination, confidentiality, IP rights, warranties, indemnities, security, data protection) that could be violated and thus are enforceable policy-like rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-ospa-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.74,
+    "reason": "The document is an Open Source Program Agreement that imposes mandatory terms, rights, restrictions, and obligations for using GitLab Software and participating in the Open Source Program, including usage restrictions, termination, confidentiality, and security requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v4.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Legally binding subscription agreement with enforceable terms (restrictions, payment, confidentiality, termination, IP, data protection, etc.) that govern use of GitLab software."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-psa-v3.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "Formal contractual terms governing professional services, including scope, fees, payment, termination, IP, and warranties; contains mandatory obligations and consequences for non-compliance."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-subscription-agreement-v5.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "A formal subscription agreement containing mandatory terms, restrictions, responsibilities, warranties, indemnification, and payment rules; enforceable constraints that could be violated."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-psa-v2.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Legal contract (Professional Services Agreement) with mandatory terms across sections (payment, confidentiality, data protection, security, termination) that create enforceable obligations and constraints for both GitLab and Customer; not merely informational."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/privacy-statement.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "The privacy statement describes mandatory-like data processing rules (what data is collected, how it is used, retention, sharing, and user rights) and responsibilities, not just informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/legacy-reseller-agreement-v1.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Legacy Reseller Agreement and Exhibits establish mandatory obligations, restrictions, and procedures governing partner relationships (confidentiality, IP, liability, compliance, promotions, etc.), making it a policy-like document with enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.55,
+    "reason": "Minimal content: only a title and no enforceable rules, procedures, or guidelines. Likely informational/reference material."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legacy/data-processing-addendum-and-standard-contractual-clauses.md",
+    "document_type": "STANDARD_OR_REQUIREMENTS",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "DPA/SCAs contain mandatory data protection obligations, security requirements, audits, sub-processor controls, and cross-border transfer terms, representing enforceable standards rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/policies/gifts-contributions.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Policy text establishes mandatory rules and prohibitions for gifts, entertainment, government official interactions, promotional activities, reporting, and charitable contributions, with explicit conditions, thresholds, and disciplinary consequences."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/policies/website-terms-of-use.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "The Terms of Use contains enforceable obligations and prohibitions (e.g., 'you agree to', 'restricted license', 'not to use the Website in harmful ways', 'DMCA and privacy'), representing a formal organizational policy governing user behavior."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/policies/product-third-party-trademarks-guidelines.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.78,
+    "reason": "Provides a formal, step-by-step operational process for approving and using third-party trademarks in GitLab, including mandatory checks, approvals, and explicit Do/Don't guidelines that could be violated if not followed."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/policies/_index.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.6,
+    "reason": "Page contains only a title ('Policies') with no actionable rules or procedures; appears to be an index or collection page for policies rather than a policy, procedure, or standard."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/commercial/index.md",
+    "document_type": "RESOURCE_INDEX",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.62,
+    "reason": "An informational landing page that aggregates links to commercial/legal resources and processes; no explicit mandatory requirements or procedures are described within the text itself."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/safe-framework/index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.68,
+    "reason": "The SAFE Framework defines mandatory constraints on sharing sensitive and financial information, requires legal review, and provides escalation steps and responsibilities, indicating enforceable organizational rules and procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/esg/fy23-esg-report.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.65,
+    "reason": "Contains explicit reporting procedures for ethics and anti-fraud concerns, including required actions, reporting channels (EthicsPoint, Lighthouse Services), and potential disciplinary consequences, indicating enforceable organizational rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/esg/esg-training.md",
+    "document_type": "TRAINING",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": false,
+    "confidence": 0.66,
+    "reason": "Sustainability Training content with guidance and procedural steps; not a strict internal policy, but includes actionable steps (RFP process) and regulatory compliance context."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/esg/_index.md",
+    "document_type": "POLICY",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.66,
+    "reason": "The document contains multiple enforceable rules and procedures related to sustainability programs, GiveLab volunteer activities, volunteer time off, expense reimbursements, and philanthropy/Membership processes, indicating mandatory policies rather than purely informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/vendor-contract-filing-process/index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.75,
+    "reason": "Provides a step-by-step operational process for contract management and storage (ownership by Procurement, filing in Zip under vendor accounts, tagging team members, accessing legacy ContractWorks). It imposes actionable steps and responsibilities, not just informational content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/public-policy/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.6,
+    "reason": "Describes the Public Policy function, roles, collaboration, and contact channels; primarily informational and guidance with no enforceable rules."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/legalops/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.72,
+    "reason": "Describes operational workflow with explicit steps, approvals, and deadlines for expenditures and accruals."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/joelfluss.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "The document is a personal README with biographical information and descriptions of role and preferences. It does not contain enforceable rules, procedures, or mandatory guidelines."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/emilyplotkin.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.66,
+    "reason": "Descriptive team member profile with personal preferences and contact guidance; no mandatory rules or procedures to follow."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/rashmichachra.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.72,
+    "reason": "Primarily descriptive personal/biographical content with no enforceable rules, policies, or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/miguelsilva.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.6,
+    "reason": "Primarily a descriptive bio page about a contract manager; contains limited procedural instruction (how to reach legal via a Legal Request in SFDC) but no enforceable organizational policy, mandatory procedures, or standards."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/stacycline.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.75,
+    "reason": "A personal bio and work style description; no mandatory rules, policies, procedures, or organizational requirements."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/readmetemplate.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "Personal README with sections describing a person (role, communication, strengths, flaws, facts). No mandatory rules, policies, or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/readmes/_index.md",
+    "document_type": "INFORMATIONAL",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.75,
+    "reason": "Content is introductory and descriptive about the Legal Team READMEs; it does not contain enforceable rules, policies, or procedures."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/esg/team-member-sustainability-guide/_index.md",
+    "document_type": "GUIDANCE",
+    "contains_enforceable_rules": false,
+    "keep_for_policy_rag": false,
+    "confidence": 0.65,
+    "reason": "The document provides recommendations and best practices for sustainability at home; no mandatory rules or procedures; informational/guidance content."
+  },
+  {
+    "path": "/Users/orenrachmil/PythonProjects/gitlab policy/handbook/content/handbook/legal/esg/earth-month/_index.md",
+    "document_type": "PROCEDURE",
+    "contains_enforceable_rules": true,
+    "keep_for_policy_rag": true,
+    "confidence": 0.62,
+    "reason": "The document provides step-by-step participation and volunteering workflows (Getting Started, weekly challenges, sign-up, PTO considerations) and includes enforceable constraints (e.g., international travel not permitted, expense limits) tied to the Earth Month program; it's primarily a procedural/program guide rather than a formal policy."
+  }
+]
