@@ -20,8 +20,8 @@ The schema adherence is perfect, and the logical quality is very high.
    - *Example of excellent extraction:* `ALWAYS (((is_original_record AND under_retention_schedule AND retention_period_expired) AND NOT litigation_hold_active) IMPLIES destroy_original_record)`. This brilliantly captures multiple conditions and the overriding litigation hold exception.
 
 3. **Minor Flaws:**
-   - Some predicates describe procedural facts rather than verifiable agent states. For instance, `team_member_consults_procedures IMPLIES retention_and_destruction_defined`. This is tautological and doesn't explicitly restrict a system behavior.
-   - A few rules have redundant predicates due to splitting logic over multiple objects (e.g., separating the litigation hold rule from the destruction rule in some cases).
+   - Some predicates describe procedural facts rather than verifiable agent states. For instance, `team_member_consults_procedures IMPLIES retention_and_destruction_defined`. This is tautological and doesn't explicitly restrict a system behavior. **What it should have done:** Ignore purely descriptive facts entirely and only extract constraints that dictate strict system actions.
+   - A few rules have redundant predicates due to splitting logic over multiple objects (e.g., separating the litigation hold rule from the destruction rule in some cases). **What it should have done:** Combine related conditions into a single LTL expression (e.g., merging the litigation hold condition with the standard destruction condition) to prevent redundant rule firing.
 
 ## 3. Recommended Prompt Adjustments
 - Encourage the model to focus strictly on prescriptive constraints ("MUST do X" or "MUST NOT do Y") rather than descriptive facts.
@@ -32,4 +32,4 @@ The schema adherence is perfect, and the logical quality is very high.
 - **Observations:** 
   - Predicates like `hard_copy_printed` or `destroy_original_record` are concrete actions/states, which perfectly fit the atomicity definition.
   - Predicates like `team_member_consults_procedures` or `retention_and_destruction_defined` are abstract/procedural and fail the strict atomicity test since a system agent cannot easily verify if a human consulted a procedure.
-- **Action:** The prompt needs stronger constraints to force predicates to represent digital, API-verifiable events rather than human intentions or manual procedural steps.
+- **Action:** The prompt needs stronger constraints to force predicates to represent digital, API-verifiable events rather than human intentions or manual procedural steps. **What it should have done:** Map physical/human actions to digital equivalents (e.g., "digital copy exported" instead of "hard copy printed") or discard them if they cannot be verified by a system.

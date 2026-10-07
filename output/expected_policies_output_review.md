@@ -14,10 +14,10 @@
 While the schema perfectly matches `policy_extraction_format.json`, there are two notable issues regarding the prompt's extraction guidelines:
 
 1. **Granularity & Grouping:** The prompt instructs the model to "Avoid grouping multiple policies into one block" and "Do not combine unrelated statements into one policy block."
-   - *Failure Point (Policy 9):* The model combined four separate sub-policies (8.1 Mergers and acquisitions, 8.2 Consolidations, 8.3 Team Member Moves, 8.4 Contractual obligations) into a single massive `policy_description` block.
-   - *Failure Point (Policy 10):* The model extracted the entire "Team Member Personnel File Retention Policy" section as a single block instead of breaking down the specific retention periods, access rights, and disposal actions into distinct policies.
+   - *Failure Point (Policy 9):* The model combined four separate sub-policies (8.1 Mergers and acquisitions, 8.2 Consolidations, 8.3 Team Member Moves, 8.4 Contractual obligations) into a single massive `policy_description` block. **What it should have done:** Create four distinct JSON policy objects, one for each sub-section.
+   - *Failure Point (Policy 10):* The model extracted the entire "Team Member Personnel File Retention Policy" section as a single block instead of breaking down the specific retention periods, access rights, and disposal actions into distinct policies. **What it should have done:** Extract each specific retention timeline and access rule into its own separate JSON object.
 
-2. **Actionability:** The instruction "Each policy must focus on explicitly restricting or guiding behaviors" was mostly followed, but due to the grouping issues mentioned above, some extracted blocks are too broad and read like full manual sections rather than atomic rules.
+2. **Actionability:** The instruction "Each policy must focus on explicitly restricting or guiding behaviors" was mostly followed, but due to the grouping issues mentioned above, some extracted blocks are too broad and read like full manual sections rather than atomic rules. **What it should have done:** Break the manual sections down into single, testable rules (e.g., "Must delete after 3 years") instead of copying whole paragraphs of text.
 
 ## 3. Recommended Prompt Adjustments
 To fix the grouping issues, the prompt should be adjusted in the next iteration:

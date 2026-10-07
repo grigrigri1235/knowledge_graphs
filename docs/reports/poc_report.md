@@ -17,9 +17,9 @@
 - **API Integration:** We successfully bypassed the local GPU constraint for the POC by leveraging an available Azure OpenAI endpoint.
 
 ### Flaws & Qualitative Analysis
-- **Over-Grouping:** The model frequently grouped multiple unrelated subsections (e.g., Mergers, Consolidations, Team Member Moves) into single large policy blocks.
-- **Tautological Rules:** The model occasionally extracted descriptive facts as rules, e.g., `ALWAYS (team_member_consults_procedures IMPLIES retention_and_destruction_defined)`.
-- **Atomicity Drift:** Instead of extracting strict agent-verifiable actions, some predicates were human-procedural (e.g., "team member consults procedure" or "hard copy printed"). 
+- **Grouping Too Much Together:** The model often put unrelated rules into one big block instead of splitting them. For example, it combined "8.1 Mergers", "8.2 Consolidations", and "8.3 Team Member Moves" into a single policy block (Policy 9). It also grouped the entire "Personnel File Retention" section into one policy (Policy 10). *What it should have done: It should have created a separate JSON object for each of those sub-sections.*
+- **Obvious or Useless Rules:** The model sometimes turned simple descriptions into rules. For example, it created `ALWAYS (team_member_consults_procedures IMPLIES retention_and_destruction_defined)`, which is just a fact, not a strict system rule to enforce. *What it should have done: It should have ignored this descriptive sentence entirely and only extracted rules that tell a system what it must or must not do.*
+- **Human Actions instead of System Actions (Atomicity Drift):** We need rules a software agent can actually check. But the model used human actions for some rules, like "team member consults procedure" or "hard copy printed". A software agent cannot easily check if a human read a manual or printed a paper copy. *What it should have done: It should have mapped these concepts to system events (like checking if a digital "consultation_logged" flag exists or an "export_requested" API call happens), or skipped them if they cannot be verified digitally.* 
 
 ## 2. Prompt Adjustments Needed
 - **Enforce Granularity:** Add a strict negative constraint to the Policy Extraction prompt forbidding the combination of independent list items or headers into single blocks. Add a few-shot example showing a bad grouping vs a good split.
