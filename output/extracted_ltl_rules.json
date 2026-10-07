@@ -1,0 +1,483 @@
+[
+  {
+    "predicates": [
+      [
+        "is_original_record",
+        "The information asset is the official original version of a record.",
+        [
+          "record",
+          "original",
+          "official"
+        ]
+      ],
+      [
+        "under_retention_schedule",
+        "The record is governed by the GitLab Records Retention Schedule.",
+        [
+          "retention",
+          "schedule",
+          "governance"
+        ]
+      ],
+      [
+        "retention_period_expired",
+        "The retention period for the record type has expired.",
+        [
+          "retention",
+          "expiration",
+          "period"
+        ]
+      ],
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold",
+          "legal",
+          "hold"
+        ]
+      ],
+      [
+        "destroy_original_record",
+        "The original record is destroyed in accordance with policy.",
+        [
+          "destruction",
+          "original",
+          "record"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (((is_original_record AND under_retention_schedule AND retention_period_expired) AND NOT litigation_hold_active) IMPLIES destroy_original_record)"
+  },
+  {
+    "predicates": [
+      [
+        "is_copy_of_record",
+        "The information asset is a copy of an official record.",
+        [
+          "record",
+          "copy"
+        ]
+      ],
+      [
+        "under_retention_schedule",
+        "The record is governed by the GitLab Records Retention Schedule.",
+        [
+          "retention",
+          "schedule"
+        ]
+      ],
+      [
+        "retention_period_expired",
+        "The retention period for the record type has expired.",
+        [
+          "retention",
+          "expiration"
+        ]
+      ],
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold"
+        ]
+      ],
+      [
+        "destroy_copy_of_record",
+        "A copy of the record is destroyed.",
+        [
+          "destruction",
+          "copy",
+          "record"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (((is_copy_of_record AND under_retention_schedule AND retention_period_expired) AND NOT litigation_hold_active) IMPLIES destroy_copy_of_record)"
+  },
+  {
+    "predicates": [
+      [
+        "is_non_record",
+        "Materials that do not qualify as records under the retention policy.",
+        [
+          "non_record",
+          "not_a_record"
+        ]
+      ],
+      [
+        "non_record_needed",
+        "Non-record material is still needed for business purposes.",
+        [
+          "non_record",
+          "business"
+        ]
+      ],
+      [
+        "destroy_non_record",
+        "Non-record material is destroyed.",
+        [
+          "destruction",
+          "non_record"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((is_non_record AND NOT non_record_needed) IMPLIES destroy_non_record)"
+  },
+  {
+    "predicates": [
+      [
+        "record_is_electronic",
+        "The record is stored in an electronic format (electronic recordkeeping).",
+        [
+          "electronic",
+          "record",
+          "storage"
+        ]
+      ],
+      [
+        "stored_in_official_server",
+        "The electronic record is stored on GitLab's official server/in filing system.",
+        [
+          "storage",
+          "server",
+          "official"
+        ]
+      ],
+      [
+        "storage_integrity_preserved",
+        "The storage system preserves the integrity of the records (no tampering).",
+        [
+          "integrity",
+          "security",
+          "storage"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((record_is_electronic AND stored_in_official_server) IMPLIES storage_integrity_preserved)"
+  },
+  {
+    "predicates": [
+      [
+        "hard_copy_printed",
+        "A hard copy of confidential data has been created/printed.",
+        [
+          "hard_copy",
+          "print"
+        ]
+      ],
+      [
+        "hard_copy_disposed_securely",
+        "Hard copy has been shredded or disposed securely.",
+        [
+          "hard_copy",
+          "disposal",
+          "secure"
+        ]
+      ],
+      [
+        "hard_copy_stored_securely_short_term",
+        "Hard copies are stored securely only for short-term use.",
+        [
+          "hard_copy",
+          "storage",
+          "short_term"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (hard_copy_printed IMPLIES (hard_copy_disposed_securely OR hard_copy_stored_securely_short_term))"
+  },
+  {
+    "predicates": [
+      [
+        "record_classified_as_email_or_slack",
+        "Emails or Slack messages that are records under retention guidelines.",
+        [
+          "email",
+          "slack",
+          "record"
+        ]
+      ],
+      [
+        "retention_required",
+        "A record is designated to be retained under retention guidelines.",
+        [
+          "retention",
+          "required"
+        ]
+      ],
+      [
+        "must_be_retained",
+        "The record must be retained according to policy.",
+        [
+          "retention",
+          "must"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((record_classified_as_email_or_slack AND retention_required) IMPLIES must_be_retained)"
+  },
+  {
+    "predicates": [
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold"
+        ]
+      ],
+      [
+        "destruction_permitted",
+        "Destruction is permitted under policy when not under a hold.",
+        [
+          "destruction",
+          "permitted"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (litigation_hold_active IMPLIES NOT destruction_permitted)"
+  },
+  {
+    "predicates": [
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold"
+        ]
+      ],
+      [
+        "destruction_non_record_during_hold",
+        "Destruction of non-record materials identified in the Litigation Hold is suspended.",
+        [
+          "destruction",
+          "non_record",
+          "hold"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (litigation_hold_active IMPLIES NOT destruction_non_record_during_hold)"
+  },
+  {
+    "predicates": [
+      [
+        "new_record_owner_assigned",
+        "A new owner has been designated for a record.",
+        [
+          "ownership",
+          "assignment"
+        ]
+      ],
+      [
+        "record_owner_updated",
+        "The record's owner has been updated/changed.",
+        [
+          "ownership",
+          "update"
+        ]
+      ],
+      [
+        "notify_legal_department",
+        "Legal Department has been notified of ownership change or actions.",
+        [
+          "legal",
+          "notification"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (new_record_owner_assigned IMPLIES record_owner_updated)"
+  },
+  {
+    "predicates": [
+      [
+        "new_record_owner_assigned",
+        "A new owner has been designated for a record.",
+        [
+          "ownership",
+          "assignment"
+        ]
+      ],
+      [
+        "notify_legal_department",
+        "Legal Department has been notified of ownership change or actions.",
+        [
+          "legal",
+          "notification"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (new_record_owner_assigned IMPLIES notify_legal_department)"
+  },
+  {
+    "predicates": [
+      [
+        "merger_or_acquisition_event",
+        "A mergers/acquisitions/disposition event triggers record handling changes.",
+        [
+          "merger",
+          "acquisition",
+          "consolidation"
+        ]
+      ],
+      [
+        "screen_and_manage_records",
+        "Records are screened and managed during mergers/acquisitions.",
+        [
+          "screening",
+          "records",
+          "management"
+        ]
+      ],
+      [
+        "transfer_records_to_new_owners",
+        "Records are transferred to the new Record Owner after changes.",
+        [
+          "transfer",
+          "ownership"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (merger_or_acquisition_event IMPLIES screen_and_manage_records)"
+  },
+  {
+    "predicates": [
+      [
+        "team_member_moves",
+        "A team member move (reassignment or termination) occurs affecting records.",
+        [
+          "team_member_move",
+          "transition"
+        ]
+      ],
+      [
+        "inventory_of_records_performed",
+        "An inventory of records in possession has been performed.",
+        [
+          "inventory",
+          "records"
+        ]
+      ],
+      [
+        "disposal_of_non_record_materials",
+        "Non-record materials are disposed of when no longer needed.",
+        [
+          "disposal",
+          "non_record"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (team_member_moves IMPLIES inventory_of_records_performed)"
+  },
+  {
+    "predicates": [
+      [
+        "team_member_moves",
+        "A team member move (reassignment or termination) occurs affecting records.",
+        [
+          "team_member_move"
+        ]
+      ],
+      [
+        "disposal_of_non_record_materials",
+        "Non-record materials are disposed of when no longer needed.",
+        [
+          "disposal",
+          "non_record"
+        ]
+      ],
+      [
+        "inventory_of_records_performed",
+        "An inventory of records in possession has been performed.",
+        [
+          "inventory",
+          "records"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (team_member_moves IMPLIES disposal_of_non_record_materials)"
+  },
+  {
+    "predicates": [
+      [
+        "personnel_file_present",
+        "A personnel file exists for a team member.",
+        [
+          "personnel",
+          "HR"
+        ]
+      ],
+      [
+        "retention_period_expired",
+        "The retention period for personnel files has expired.",
+        [
+          "retention",
+          "expiration"
+        ]
+      ],
+      [
+        "destruction_personnel_file",
+        "A personnel file is destroyed.",
+        [
+          "destruction",
+          "personnel"
+        ]
+      ],
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((personnel_file_present AND retention_period_expired) AND NOT litigation_hold_active IMPLIES destruction_personnel_file)"
+  },
+  {
+    "predicates": [
+      [
+        "litigation_hold_active",
+        "A Litigation Hold is in effect and may suspend normal retention/destruction.",
+        [
+          "litigation_hold"
+        ]
+      ],
+      [
+        "destruction_personnel_file",
+        "A personnel file is destroyed.",
+        [
+          "destruction",
+          "personnel"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (litigation_hold_active IMPLIES NOT destruction_personnel_file)"
+  },
+  {
+    "predicates": [
+      [
+        "team_member_moves",
+        "A team member move (reassignment or termination) occurs affecting records.",
+        [
+          "team_member_move"
+        ]
+      ],
+      [
+        "team_member_consults_procedures",
+        "Team members consult Data Classification and Handling Procedures.",
+        [
+          "consult",
+          "procedure"
+        ]
+      ],
+      [
+        "retention_and_destruction_defined",
+        "Retention and destruction procedures are defined.",
+        [
+          "retention",
+          "destruction",
+          "procedures"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (team_member_consults_procedures IMPLIES retention_and_destruction_defined)"
+  }
+]

@@ -36,10 +36,11 @@ To replicate the ShieldAgent paper's Action-based Safety Policy Model (ASPM), we
   - **Schema:** Both output to `docs/file_formats/rule_optimization_format.json`
   - **Role:** Optimizes and merges predicates to ensure they are atomic, unambiguous, and non-redundant.
 
-## 4. Why We Need GPUs (Experiment Justification)
-The original paper relies on closed APIs (like GPT-4o). However, for our POC, we are pivoting to open-source Large Language Models (like Llama-3.1-70B or Qwen-2.5-72B) deployed locally because:
-- **Cost & Limits:** Evaluating hundreds of rules iteratively via an API is prohibitively expensive and slow for real-time agent guardrailing.
-- **Privacy:** Sending internal corporate policies to an external third-party API compromises data security.
-- **Visual Guardrails:** We must fine-tune a small vision-language model (InternVL2-2B) locally to run rapid visual checks on agent actions.
+## 4. Model Architecture & Experiment Setup (POC)
+The **Proof of Concept (POC)** is a small-scale, end-to-end test of the ShieldAgent extraction pipeline. It aims to verify that we can programmatically convert raw Markdown handbook text into structured JSON policies, and then into Linear Temporal Logic (LTL) rules, exactly as described in the original paper. 
 
-**Hardware Request:** We need a compute node with at least **4x A100 (80GB)** or **8x A100 (40GB)** GPUs to load a 70B parameter model (~140GB VRAM) for offline extraction and to fine-tune the 2B guardrail.
+## 5. POC Learnings & Next Steps
+- **Model Usage:** During the initial POC, we successfully used the Azure OpenAI `gpt-5-nano` model (via Managed Identity). The model proved highly capable of adhering to complex nested JSON schemas.
+- **Prompt Adjustments:** The zero-shot extraction prompts need few-shot examples to enforce "Atomicity". Currently, the model extracts procedural facts (e.g., human reading a document) rather than discrete, agent-verifiable states. It also tends to group multiple subsections into single policy blocks.
+- **Missing Pipeline Components:** The POC proved the Markdown -> Policy JSON -> LTL JSON pipeline works. The immediate next step is to implement the Verifiability Refinement (VR) and Redundancy Pruning (RP) phases which are critical to fix the atomicity drift observed in the raw LTL output.
+**FULL REPORT:** docs/reports/poc_report.md
