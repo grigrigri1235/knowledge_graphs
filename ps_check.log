@@ -1,8 +1,0 @@
-root         728  0.0  0.6  32448 13428 ?        Ss   Oct05   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
-root         742  0.0  1.0  39488 21080 ?        Ss   Oct05   0:00 /usr/bin/python3 -u /usr/sbin/waagent -daemon
-root         855  0.0  0.6 110024 12872 ?        Ssl  Oct05   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
-root        1240  0.1  1.8 427580 36312 ?        Sl   Oct05   3:46 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers
-root        1397  0.0  1.3 126332 25692 ?        Sl   Oct05   0:05 /usr/bin/python3 /var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-1.45.0/agent.py -metrics
-root        1400  0.0  1.1 114428 22572 ?        Sl   Oct05   0:00 /usr/bin/python3 /var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-1.45.0/agent.py -syslogconfig
-root        1687  0.0  1.1 114428 22504 ?        Sl   Oct05   0:00 /usr/bin/python3 /var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-1.45.0/agent.py -transformconfig
-azureus+  124244  0.0  0.1   7088  2228 pts/1    S+   17:51   0:00 grep --color=auto python

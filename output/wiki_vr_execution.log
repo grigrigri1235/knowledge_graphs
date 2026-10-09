@@ -1,0 +1,7 @@
+Loading raw LTL rules from: output/wiki_extracted_ltl_rules.json
+Loading VR prompt template: docs/file_formats/vr_prompt.md
+Initializing Azure OpenAI client for model: gpt-5-nano
+Calling LLM for Verifiability Refinement (VR)...
+Parsing model output into JSON...
+Saving refined rules to: output/wiki_vr_refined_rules.json
+Successfully refined into 30 verifiable rules.

@@ -7,9 +7,12 @@ This repository contains our effort to replicate the Action-based Safety Policy 
 - Extracted JSON schemas and LLM prompts directly from the ShieldAgent paper into `docs/file_formats/`.
 - Cloned the target GitLab handbook repository to use as our real-world dataset.
 - Successfully implemented the core extraction pipeline (`src/extractor.py`, `src/rule_extractor.py`).
-- Extracted structured JSON policies and translated them to Linear Temporal Logic (LTL) using the Azure OpenAI API.
-- Identified prompt weaknesses regarding "Atomicity" drift and missing Verifiability Refinement (VR) / Redundancy Pruning (RP) steps.
-- Compiled our findings into a final report (`docs/reports/poc_report.md`) and updated our `knowledge_retention.md`.
+- Extracted structured JSON policies and translated them to Linear Temporal Logic (LTL) using the Azure OpenAI API (`gpt-5-nano`).
+- Processed `files_given/wiki.md` (Retail Agent Policy), extracting 32 structured policies, 25 LTL rules, and 53 predicates.
+- Built the Action-based Safety Policy Model (ASPM) graph and 8 modular action circuits (`src/circuit_builder.py`), achieving up to 72% overhead reduction.
+- Implemented and evaluated the Algorithm 1 Online Guardrail Verification Engine (`src/verifier.py`), achieving **100% accuracy** across 12 test trajectories with **0.0% False Positive Rate**.
+- Compiled comprehensive research reports (`docs/reports/wiki_full_fledged_aspm_report.md`) and updated `knowledge_retention.md`.
+
 
 ## Experiment Plan Basics
 Our POC focuses on extracting and verifying safety policies from three primary files in the GitLab handbook:

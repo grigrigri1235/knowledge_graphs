@@ -1,0 +1,703 @@
+[
+  {
+    "predicates": [
+      [
+        "conversation_started",
+        "The conversation has begun.",
+        [
+          "conversation",
+          "start"
+        ]
+      ],
+      [
+        "locate_user_id_email",
+        "Authenticate by locating the user id via email.",
+        [
+          "authenticate",
+          "email"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)"
+  },
+  {
+    "predicates": [
+      [
+        "conversation_started",
+        "The conversation has begun.",
+        [
+          "conversation",
+          "start"
+        ]
+      ],
+      [
+        "locate_user_id_name_zip",
+        "Authenticate by locating the user id via name and zip code.",
+        [
+          "authenticate",
+          "name_zip"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)"
+  },
+  {
+    "predicates": [
+      [
+        "provide_order_info",
+        "Provide information about orders.",
+        [
+          "information",
+          "order"
+        ]
+      ],
+      [
+        "provide_product_info",
+        "Provide information about products.",
+        [
+          "information",
+          "product"
+        ]
+      ],
+      [
+        "provide_profile_info",
+        "Provide information about user profile.",
+        [
+          "information",
+          "profile"
+        ]
+      ],
+      [
+        "authenticated",
+        "User identity has been authenticated in the current conversation.",
+        [
+          "authentication",
+          "identity"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)"
+  },
+  {
+    "predicates": [
+      [
+        "provide_order_info",
+        "Provide information about orders.",
+        [
+          "information",
+          "order"
+        ]
+      ],
+      [
+        "provide_product_info",
+        "Provide information about products.",
+        [
+          "information",
+          "product"
+        ]
+      ],
+      [
+        "provide_profile_info",
+        "Provide information about user profile.",
+        [
+          "information",
+          "profile"
+        ]
+      ],
+      [
+        "authenticated",
+        "User identity has been authenticated in the current conversation.",
+        [
+          "authentication",
+          "identity"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))"
+  },
+  {
+    "predicates": [
+      [
+        "multi_user_request_detected",
+        "A request from a different user is detected.",
+        [
+          "policy",
+          "multi_user"
+        ]
+      ],
+      [
+        "deny_other_user_requests",
+        "Deny requests from other users.",
+        [
+          "policy",
+          "deny"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)"
+  },
+  {
+    "predicates": [
+      [
+        "cancel_request",
+        "Cancellation is requested.",
+        [
+          "action",
+          "cancel"
+        ]
+      ],
+      [
+        "modify_request",
+        "Modification is requested.",
+        [
+          "action",
+          "modify"
+        ]
+      ],
+      [
+        "return_request",
+        "Return is requested.",
+        [
+          "action",
+          "return"
+        ]
+      ],
+      [
+        "exchange_request",
+        "Exchange is requested.",
+        [
+          "action",
+          "exchange"
+        ]
+      ],
+      [
+        "action_details_listed",
+        "Action details have been listed for confirmation.",
+        [
+          "details",
+          "confirmation"
+        ]
+      ],
+      [
+        "user_confirmed_yes",
+        "User has confirmed with yes to proceed.",
+        [
+          "confirmation",
+          "yes"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))"
+  },
+  {
+    "predicates": [
+      [
+        "action_details_listed",
+        "Action details have been listed for confirmation.",
+        [
+          "details",
+          "confirmation"
+        ]
+      ],
+      [
+        "user_confirmed_yes",
+        "User has confirmed with yes to proceed.",
+        [
+          "confirmation",
+          "yes"
+        ]
+      ],
+      [
+        "db_action_executed",
+        "Database-updating action has been executed.",
+        [
+          "database",
+          "action",
+          "executed"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((action_details_listed AND user_confirmed_yes) IMPLIES NEXT db_action_executed)"
+  },
+  {
+    "predicates": [
+      [
+        "time_in_est",
+        "All times in the database are EST.",
+        [
+          "time",
+          "EST"
+        ]
+      ],
+      [
+        "db_time_in_est",
+        "Timestamp in DB is EST.",
+        [
+          "time",
+          "EST"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS time_in_est"
+  },
+  {
+    "predicates": [
+      [
+        "tool_call_active",
+        "A tool call is currently active.",
+        [
+          "tool",
+          "call"
+        ]
+      ],
+      [
+        "user_response_sent",
+        "A response has been sent to the user.",
+        [
+          "response",
+          "user"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)"
+  },
+  {
+    "predicates": [
+      [
+        "unhandled_request",
+        "Request cannot be handled within the current scope.",
+        [
+          "policy",
+          "unhandled"
+        ]
+      ],
+      [
+        "transfer_to_human",
+        "Transfer the user to a human agent.",
+        [
+          "handoff",
+          "human"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)"
+  },
+  {
+    "predicates": [
+      [
+        "user_profile_created",
+        "A user profile has been created.",
+        [
+          "profile",
+          "creation"
+        ]
+      ],
+      [
+        "profile_email_present",
+        "Profile includes an email.",
+        [
+          "profile",
+          "email"
+        ]
+      ],
+      [
+        "profile_default_address_present",
+        "Profile includes a default address.",
+        [
+          "profile",
+          "address"
+        ]
+      ],
+      [
+        "profile_user_id_present",
+        "Profile includes a user id.",
+        [
+          "profile",
+          "user_id"
+        ]
+      ],
+      [
+        "profile_payment_methods_present",
+        "Profile includes payment methods.",
+        [
+          "profile",
+          "payments"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))"
+  },
+  {
+    "predicates": [
+      [
+        "action_on_order",
+        "An action is attempted on an order.",
+        [
+          "order",
+          "action"
+        ]
+      ],
+      [
+        "order_status_pending",
+        "Order status is pending.",
+        [
+          "order",
+          "status",
+          "pending"
+        ]
+      ],
+      [
+        "order_status_delivered",
+        "Order status is delivered.",
+        [
+          "order",
+          "status",
+          "delivered"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (action_on_order IMPLIES (order_status_pending OR order_status_delivered))"
+  },
+  {
+    "predicates": [
+      [
+        "cancel_order_requested",
+        "Cancellation requested for an order.",
+        [
+          "order",
+          "cancel",
+          "request"
+        ]
+      ],
+      [
+        "order_status_pending",
+        "Order status is pending.",
+        [
+          "order",
+          "status",
+          "pending"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (cancel_order_requested -> order_status_pending)"
+  },
+  {
+    "predicates": [
+      [
+        "order_id_confirmed",
+        "Order id has been confirmed by user.",
+        [
+          "order",
+          "id",
+          "confirmed"
+        ]
+      ],
+      [
+        "cancel_reason_valid",
+        "Cancellation reason is valid (no longer needed or ordered by mistake).",
+        [
+          "order",
+          "cancel",
+          "reason"
+        ]
+      ],
+      [
+        "order_status_cancelled",
+        "Order status becomes cancelled.",
+        [
+          "order",
+          "status",
+          "cancelled"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)"
+  },
+  {
+    "predicates": [
+      [
+        "order_status_cancelled",
+        "Order status is cancelled.",
+        [
+          "order",
+          "status",
+          "cancelled"
+        ]
+      ],
+      [
+        "refund_to_original_payment_method",
+        "Refund goes to the original payment method.",
+        [
+          "refund",
+          "original"
+        ]
+      ],
+      [
+        "refund_to_gift_card",
+        "Refund goes to a gift card.",
+        [
+          "refund",
+          "gift_card"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))"
+  },
+  {
+    "predicates": [
+      [
+        "modify_order_requested",
+        "Modification of an order is requested.",
+        [
+          "order",
+          "modify"
+        ]
+      ],
+      [
+        "order_status_pending",
+        "Order status is pending.",
+        [
+          "order",
+          "status",
+          "pending"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (modify_order_requested -> order_status_pending)"
+  },
+  {
+    "predicates": [
+      [
+        "modify_pending_order",
+        "Modification for a pending order is being performed.",
+        [
+          "order",
+          "modify",
+          "pending"
+        ]
+      ],
+      [
+        "modify_shipping_address",
+        "Shipping address modification is requested.",
+        [
+          "modify",
+          "address"
+        ]
+      ],
+      [
+        "modify_payment_method",
+        "Payment method modification is requested.",
+        [
+          "modify",
+          "payment"
+        ]
+      ],
+      [
+        "modify_item_options",
+        "Product item options modification is requested.",
+        [
+          "modify",
+          "options"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (modify_pending_order -> (modify_shipping_address OR modify_payment_method OR modify_item_options))"
+  },
+  {
+    "predicates": [
+      [
+        "pending_order_payment_modification_requested",
+        "A payment method modification for a pending order is requested.",
+        [
+          "modify",
+          "payment",
+          "pending"
+        ]
+      ],
+      [
+        "single_new_payment_method",
+        "A single new payment method different from the original is selected.",
+        [
+          "modify",
+          "payment",
+          "single"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)"
+  },
+  {
+    "predicates": [
+      [
+        "modify_payment_to_gift_card",
+        "Payment method modification targets a gift card.",
+        [
+          "modify",
+          "payment",
+          "gift_card"
+        ]
+      ],
+      [
+        "gift_card_balance_sufficient",
+        "Gift card balance is sufficient for the required amount.",
+        [
+          "gift_card",
+          "balance",
+          "sufficient"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)"
+  },
+  {
+    "predicates": [
+      [
+        "return_order_requested",
+        "Return is requested for a delivered order.",
+        [
+          "order",
+          "return",
+          "delivered"
+        ]
+      ],
+      [
+        "order_status_delivered",
+        "Order status is delivered.",
+        [
+          "order",
+          "status",
+          "delivered"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (return_order_requested -> order_status_delivered)"
+  },
+  {
+    "predicates": [
+      [
+        "order_id_confirmed",
+        "Order id has been confirmed by user.",
+        [
+          "order",
+          "id",
+          "confirmed"
+        ]
+      ],
+      [
+        "items_to_return_confirmed",
+        "Items to return have been confirmed by user.",
+        [
+          "return",
+          "items"
+        ]
+      ],
+      [
+        "email_sent",
+        "A return-related email has been sent to the user.",
+        [
+          "email",
+          "return"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)"
+  },
+  {
+    "predicates": [
+      [
+        "order_status_return_requested",
+        "Return has been requested for an order.",
+        [
+          "order",
+          "return",
+          "requested"
+        ]
+      ],
+      [
+        "refund_to_original_payment_method",
+        "Refund goes to the original payment method.",
+        [
+          "refund",
+          "original"
+        ]
+      ],
+      [
+        "refund_to_gift_card",
+        "Refund goes to a gift card.",
+        [
+          "refund",
+          "gift_card"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))"
+  },
+  {
+    "predicates": [
+      [
+        "exchange_order_requested",
+        "Exchange is requested for a delivered order.",
+        [
+          "order",
+          "exchange",
+          "delivered"
+        ]
+      ],
+      [
+        "order_status_delivered",
+        "Order status is delivered.",
+        [
+          "order",
+          "status",
+          "delivered"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (exchange_order_requested -> order_status_delivered)"
+  },
+  {
+    "predicates": [
+      [
+        "items_for_exchange_confirmed",
+        "Items approved for exchange are confirmed.",
+        [
+          "exchange",
+          "items",
+          "confirmed"
+        ]
+      ],
+      [
+        "exchange_completed",
+        "Exchange has been completed.",
+        [
+          "exchange",
+          "completed"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (items_for_exchange_confirmed -> EVENTUALLY exchange_completed)"
+  },
+  {
+    "predicates": [
+      [
+        "exchange_payment_to_gift_card",
+        "Payment difference for exchange is refunded to a gift card.",
+        [
+          "exchange",
+          "payment",
+          "gift_card"
+        ]
+      ],
+      [
+        "gift_card_balance_sufficient",
+        "Gift card balance is sufficient for the exchange difference.",
+        [
+          "gift_card",
+          "balance",
+          "sufficient"
+        ]
+      ]
+    ],
+    "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)"
+  }
+]

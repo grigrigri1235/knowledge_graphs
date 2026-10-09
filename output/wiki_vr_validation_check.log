@@ -1,0 +1,16 @@
+Total refined rules: 30
+Total unique predicates after VR: 52
+Rules with IMPLIES: 17, Rules with ->: 13
+Time rules retained: 0
+
+--- Sample Refined Rules ---
+[00] ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)
+[01] ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)
+[02] ALWAYS (provide_order_info IMPLIES authenticated)
+[03] ALWAYS (provide_product_info IMPLIES authenticated)
+[04] ALWAYS (provide_profile_info IMPLIES authenticated)
+[05] ALWAYS (authenticated IMPLIES EVENTUALLY provide_order_info)
+[06] ALWAYS (authenticated IMPLIES EVENTUALLY provide_product_info)
+[07] ALWAYS (authenticated IMPLIES EVENTUALLY provide_profile_info)
+[08] ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)
+[09] ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))

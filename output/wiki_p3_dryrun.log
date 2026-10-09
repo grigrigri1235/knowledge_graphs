@@ -1,0 +1,3 @@
+Loading policies from: output/wiki_extracted_policies.json
+Loading prompt template: docs/file_formats/rule_extraction_prompt.md
+Dry-run mode: Skipping API call. Saving assembled prompt to output/wiki_ltl_prompt_preview.txt

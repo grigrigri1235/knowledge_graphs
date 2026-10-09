@@ -1,7 +1,0 @@
-Loading policies from: output/extracted_policies.json
-Loading prompt template: docs/file_formats/rule_extraction_prompt.md
-Initializing Azure OpenAI client for model: gpt-5-nano
-Calling LLM for LTL rule extraction...
-Parsing model output into JSON...
-Saving extracted LTL rules to: output/extracted_ltl_rules.json
-Successfully extracted 16 LTL rules.

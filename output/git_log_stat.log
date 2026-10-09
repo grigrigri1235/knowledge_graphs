@@ -1,0 +1,116 @@
+commit 2701747e3efc63cb666dcb38138343cb2c4bd4fe
+Author: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Date:   Wed Oct 7 20:03:49 2026 +0000
+
+    Add explicit solutions to flaws in reports and reviews
+
+ docs/reports/poc_report.md                 | 6 +++---
+ output/expected_ltl_rules_output_review.md | 6 +++---
+ output/expected_policies_output_review.md  | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+
+commit c823c4c7579eb2f1103521bc2fe9a30e9c0c065d
+Author: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Date:   Wed Oct 7 19:52:10 2026 +0000
+
+    Update codebase structure overview
+
+ codebase_structure.md | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+
+commit c74149fd551cca0c4771df7ad75c98af2a714b88
+Author: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Date:   Wed Oct 7 19:47:58 2026 +0000
+
+    Complete POC for policy and LTL extraction
+
+ README.md                                          |  19 +-
+ conda_create.log                                   | 191 ++++++++
+ conda_env_list.log                                 |   9 +
+ conda_list.log                                     |  62 +++
+ .../document_processing_experiment_plan.md         |  17 +
+ docs/planning/starting_exp/p1.md                   |   6 +
+ docs/planning/starting_exp/p2.md                   |   8 +
+ docs/planning/starting_exp/p3.md                   |   8 +
+ docs/planning/starting_exp/p4.md                   |   7 +
+ docs/planning/starting_exp/p5.md                   |   7 +
+ docs/planning/starting_exp/p5_5_LTL_review.md      |   8 +
+ docs/planning/starting_exp/p6.md                   |   4 +
+ docs/planning/starting_exp/p7.md                   |  14 +
+ docs/reports/poc_report.md                         |  33 ++
+ dry_run.log                                        |   4 +
+ environment.yml                                    |   9 +
+ extraction.log                                     |   7 +
+ git_rm.log                                         |   4 -
+ git_add_fixed.log => git_upload.log                |   0
+ knowledge_retention.md                             |  15 +-
+ ltl_extraction.log                                 |   7 +
+ model_call_example/example.py                      |  24 +
+ model_call_example/requirements.txt                |   2 +
+ output/expected_ltl_rules_output_review.md         |  35 ++
+ output/expected_policies_output_review.md          |  25 ++
+ output/extracted_ltl_rules.json                    | 483 +++++++++++++++++++++
+ output/extracted_policies.json                     | 117 +++++
+ output/prompt_preview.txt                          | 198 +++++++++
+ ping_test.log                                      |   3 +
+ ps_check.log                                       |   8 +
+ src/__pycache__/extractor.cpython-310.pyc          | Bin 0 -> 6001 bytes
+ src/extractor.py                                   | 184 ++++++++
+ src/rule_extractor.py                              | 102 +++++
+ test_extractor_import.log                          |   1 +
+ test_extractor_units.log                           |  25 ++
+ test_unit_result.log                               |   1 +
+ tests/test_extractor.py                            |  23 +
+ 37 files changed, 1653 insertions(+), 17 deletions(-)
+
+commit f90377ef177c0bafd5296c3528a50928b0eab70c
+Author: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Date:   Sun Oct 4 21:35:16 2026 +0000
+
+    Fix handbook embedding and upload updates
+
+ README.md                                          |   21 +
+ codebase_structure.md                              |   16 +-
+ docs/file_formats/policy_extraction_prompt.md      |   35 +
+ docs/file_formats/prompts_overview.md              |   23 +
+ docs/file_formats/rp_prompt.md                     |   37 +
+ docs/file_formats/rule_extraction_prompt.md        |   47 +
+ docs/file_formats/vr_prompt.md                     |   42 +
+ docs/planning/experimentation_plan.md              |   43 +
+ docs/planning/git_submodule_fix_plan.md            |   10 +
+ docs/planning/git_update_plan.md                   |    9 +
+ files_given/legal_document_classifications.json    |  906 ++++++
+ .../people-group_document_classifications.json     |  538 ++++
+ .../people-policies_document_classification.json   |   26 +
+ files_given/security_document_classifications.json | 3394 ++++++++++++++++++++
+ git_add.log => git_add_fixed.log                   |    0
+ git_init.log                                       |   11 -
+ git_rm.log                                         |    4 +
+ handbook                                           |    1 +
+ handbook_files_to_focus.md                         |    8 +
+ knowledge_retention.md                             |   45 +
+ 20 files changed, 5200 insertions(+), 16 deletions(-)
+
+commit 37d945b2e57eca617f61fa94ed24194b394c1842
+Author: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Date:   Sun Oct 4 20:54:19 2026 +0000
+
+    Initial commit
+
+ ShieldAgent_paper.pdf                           | 22554 ++++++++++++++++++++++
+ codebase_structure.md                           |    17 +
+ docs/file_formats/policy_extraction_format.json |    12 +
+ docs/file_formats/rule_extraction_format.json   |    15 +
+ docs/file_formats/rule_optimization_format.json |    16 +
+ docs/file_formats/schemas_overview.md           |    36 +
+ docs/paper/ShieldAgent_paper.md                 |  1213 ++
+ docs/planning/environment_setup_options.md      |    38 +
+ docs/planning/github_upload_plan.md             |    11 +
+ docs/planning/gpu_check_plan.md                 |    12 +
+ docs/planning/json_formats_extraction_plan.md   |    12 +
+ docs/planning/miniconda_setup_plan.md           |    14 +
+ docs/planning/schema_explanation_plan.md        |     9 +
+ docs/planning/shieldagent_paper_digest_plan.md  |    13 +
+ git_add.log                                     |     0
+ git_init.log                                    |    11 +
+ 16 files changed, 23983 insertions(+)

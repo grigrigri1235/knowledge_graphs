@@ -1,0 +1,6 @@
+/home/azureuser/miniconda3/bin/python
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import openai, azure.identity; print('Imports successful')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'openai'

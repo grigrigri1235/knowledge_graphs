@@ -1,0 +1,16 @@
+Policies extracted: 32
+Raw LTL rules: 25
+Raw predicates: 53
+VR refined rules: 30
+VR predicates: 52
+Circuits count: 8
+Circuit cancel_order: 7 rules (72.0% reduction), 4 states
+Circuit modify_order: 23 rules (8.0% reduction), 23 states
+Circuit return_order: 22 rules (12.0% reduction), 23 states
+Circuit exchange_order: 23 rules (8.0% reduction), 25 states
+Circuit authenticate_user: 15 rules (40.0% reduction), 19 states
+Circuit provide_information: 15 rules (40.0% reduction), 19 states
+Circuit send_response: 15 rules (40.0% reduction), 19 states
+Circuit transfer_to_human: 15 rules (40.0% reduction), 19 states
+Benchmark Accuracy: None% (None/None)
+FPR: None% | FNR: None%

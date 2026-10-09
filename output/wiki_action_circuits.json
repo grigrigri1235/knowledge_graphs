@@ -1,0 +1,1496 @@
+{
+  "graph_name": "Action-Based Safety Policy Model (Baseline ASPM)",
+  "input_source": "output/wiki_extracted_ltl_rules.json",
+  "total_rules": 25,
+  "total_state_predicates": 27,
+  "total_action_predicates": 26,
+  "number_of_circuits": 8,
+  "circuits": [
+    {
+      "action_id": "cancel_order",
+      "description": "Cancel an active or pending order",
+      "target_predicates": [
+        "cancel_order_requested",
+        "cancel_request"
+      ],
+      "circuit_statistics": {
+        "rule_count": 7,
+        "total_rule_count": 25,
+        "reduction_rate": 72.0,
+        "state_predicate_count": 4
+      },
+      "state_predicates": [
+        "action_details_listed",
+        "order_status_delivered",
+        "order_status_pending",
+        "user_confirmed_yes"
+      ],
+      "rules": [
+        {
+          "rule_id": 5,
+          "logic": "ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))",
+          "predicates": [
+            "cancel_request",
+            "modify_request",
+            "return_request",
+            "exchange_request",
+            "action_details_listed",
+            "user_confirmed_yes"
+          ]
+        },
+        {
+          "rule_id": 6,
+          "logic": "ALWAYS ((action_details_listed AND user_confirmed_yes) IMPLIES NEXT db_action_executed)",
+          "predicates": [
+            "action_details_listed",
+            "user_confirmed_yes",
+            "db_action_executed"
+          ]
+        },
+        {
+          "rule_id": 11,
+          "logic": "ALWAYS (action_on_order IMPLIES (order_status_pending OR order_status_delivered))",
+          "predicates": [
+            "action_on_order",
+            "order_status_pending",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 12,
+          "logic": "ALWAYS (cancel_order_requested -> order_status_pending)",
+          "predicates": [
+            "cancel_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 15,
+          "logic": "ALWAYS (modify_order_requested -> order_status_pending)",
+          "predicates": [
+            "modify_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 19,
+          "logic": "ALWAYS (return_order_requested -> order_status_delivered)",
+          "predicates": [
+            "return_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 22,
+          "logic": "ALWAYS (exchange_order_requested -> order_status_delivered)",
+          "predicates": [
+            "exchange_order_requested",
+            "order_status_delivered"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "modify_order",
+      "description": "Modify shipping address, payment method, or item options of an order",
+      "target_predicates": [
+        "modify_item_options",
+        "modify_order_requested",
+        "modify_payment_method",
+        "modify_payment_to_gift_card",
+        "modify_pending_order",
+        "modify_request",
+        "modify_shipping_address",
+        "pending_order_payment_modification_requested"
+      ],
+      "circuit_statistics": {
+        "rule_count": 23,
+        "total_rule_count": 25,
+        "reduction_rate": 8.0,
+        "state_predicate_count": 23
+      },
+      "state_predicates": [
+        "action_details_listed",
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_delivered",
+        "order_status_pending",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_confirmed_yes",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 5,
+          "logic": "ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))",
+          "predicates": [
+            "cancel_request",
+            "modify_request",
+            "return_request",
+            "exchange_request",
+            "action_details_listed",
+            "user_confirmed_yes"
+          ]
+        },
+        {
+          "rule_id": 6,
+          "logic": "ALWAYS ((action_details_listed AND user_confirmed_yes) IMPLIES NEXT db_action_executed)",
+          "predicates": [
+            "action_details_listed",
+            "user_confirmed_yes",
+            "db_action_executed"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 11,
+          "logic": "ALWAYS (action_on_order IMPLIES (order_status_pending OR order_status_delivered))",
+          "predicates": [
+            "action_on_order",
+            "order_status_pending",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 12,
+          "logic": "ALWAYS (cancel_order_requested -> order_status_pending)",
+          "predicates": [
+            "cancel_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 15,
+          "logic": "ALWAYS (modify_order_requested -> order_status_pending)",
+          "predicates": [
+            "modify_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 16,
+          "logic": "ALWAYS (modify_pending_order -> (modify_shipping_address OR modify_payment_method OR modify_item_options))",
+          "predicates": [
+            "modify_pending_order",
+            "modify_shipping_address",
+            "modify_payment_method",
+            "modify_item_options"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 19,
+          "logic": "ALWAYS (return_order_requested -> order_status_delivered)",
+          "predicates": [
+            "return_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 22,
+          "logic": "ALWAYS (exchange_order_requested -> order_status_delivered)",
+          "predicates": [
+            "exchange_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "return_order",
+      "description": "Initiate and process a return for a delivered order",
+      "target_predicates": [
+        "email_sent",
+        "return_order_requested",
+        "return_request"
+      ],
+      "circuit_statistics": {
+        "rule_count": 22,
+        "total_rule_count": 25,
+        "reduction_rate": 12.0,
+        "state_predicate_count": 23
+      },
+      "state_predicates": [
+        "action_details_listed",
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_delivered",
+        "order_status_pending",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_confirmed_yes",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 5,
+          "logic": "ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))",
+          "predicates": [
+            "cancel_request",
+            "modify_request",
+            "return_request",
+            "exchange_request",
+            "action_details_listed",
+            "user_confirmed_yes"
+          ]
+        },
+        {
+          "rule_id": 6,
+          "logic": "ALWAYS ((action_details_listed AND user_confirmed_yes) IMPLIES NEXT db_action_executed)",
+          "predicates": [
+            "action_details_listed",
+            "user_confirmed_yes",
+            "db_action_executed"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 11,
+          "logic": "ALWAYS (action_on_order IMPLIES (order_status_pending OR order_status_delivered))",
+          "predicates": [
+            "action_on_order",
+            "order_status_pending",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 12,
+          "logic": "ALWAYS (cancel_order_requested -> order_status_pending)",
+          "predicates": [
+            "cancel_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 15,
+          "logic": "ALWAYS (modify_order_requested -> order_status_pending)",
+          "predicates": [
+            "modify_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 19,
+          "logic": "ALWAYS (return_order_requested -> order_status_delivered)",
+          "predicates": [
+            "return_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 22,
+          "logic": "ALWAYS (exchange_order_requested -> order_status_delivered)",
+          "predicates": [
+            "exchange_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "exchange_order",
+      "description": "Process an exchange of items for a delivered order",
+      "target_predicates": [
+        "exchange_order_requested",
+        "exchange_payment_to_gift_card",
+        "exchange_request"
+      ],
+      "circuit_statistics": {
+        "rule_count": 23,
+        "total_rule_count": 25,
+        "reduction_rate": 8.0,
+        "state_predicate_count": 25
+      },
+      "state_predicates": [
+        "action_details_listed",
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "exchange_completed",
+        "gift_card_balance_sufficient",
+        "items_for_exchange_confirmed",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_delivered",
+        "order_status_pending",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_confirmed_yes",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 5,
+          "logic": "ALWAYS ((cancel_request OR modify_request OR return_request OR exchange_request) IMPLIES EVENTUALLY (action_details_listed AND user_confirmed_yes))",
+          "predicates": [
+            "cancel_request",
+            "modify_request",
+            "return_request",
+            "exchange_request",
+            "action_details_listed",
+            "user_confirmed_yes"
+          ]
+        },
+        {
+          "rule_id": 6,
+          "logic": "ALWAYS ((action_details_listed AND user_confirmed_yes) IMPLIES NEXT db_action_executed)",
+          "predicates": [
+            "action_details_listed",
+            "user_confirmed_yes",
+            "db_action_executed"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 11,
+          "logic": "ALWAYS (action_on_order IMPLIES (order_status_pending OR order_status_delivered))",
+          "predicates": [
+            "action_on_order",
+            "order_status_pending",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 12,
+          "logic": "ALWAYS (cancel_order_requested -> order_status_pending)",
+          "predicates": [
+            "cancel_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 15,
+          "logic": "ALWAYS (modify_order_requested -> order_status_pending)",
+          "predicates": [
+            "modify_order_requested",
+            "order_status_pending"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 19,
+          "logic": "ALWAYS (return_order_requested -> order_status_delivered)",
+          "predicates": [
+            "return_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 22,
+          "logic": "ALWAYS (exchange_order_requested -> order_status_delivered)",
+          "predicates": [
+            "exchange_order_requested",
+            "order_status_delivered"
+          ]
+        },
+        {
+          "rule_id": 23,
+          "logic": "ALWAYS (items_for_exchange_confirmed -> EVENTUALLY exchange_completed)",
+          "predicates": [
+            "items_for_exchange_confirmed",
+            "exchange_completed"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "authenticate_user",
+      "description": "Locate user identity via email or name and zip code",
+      "target_predicates": [
+        "deny_other_user_requests",
+        "locate_user_id_email",
+        "locate_user_id_name_zip"
+      ],
+      "circuit_statistics": {
+        "rule_count": 15,
+        "total_rule_count": 25,
+        "reduction_rate": 40.0,
+        "state_predicate_count": 19
+      },
+      "state_predicates": [
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "provide_information",
+      "description": "Disclose order, product, or profile information to the user",
+      "target_predicates": [
+        "provide_order_info",
+        "provide_product_info",
+        "provide_profile_info"
+      ],
+      "circuit_statistics": {
+        "rule_count": 15,
+        "total_rule_count": 25,
+        "reduction_rate": 40.0,
+        "state_predicate_count": 19
+      },
+      "state_predicates": [
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "send_response",
+      "description": "Send conversational text response to user without active tool conflict",
+      "target_predicates": [
+        "user_response_sent"
+      ],
+      "circuit_statistics": {
+        "rule_count": 15,
+        "total_rule_count": 25,
+        "reduction_rate": 40.0,
+        "state_predicate_count": 19
+      },
+      "state_predicates": [
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    },
+    {
+      "action_id": "transfer_to_human",
+      "description": "Transfer unhandled user request or complex escalation to a human agent",
+      "target_predicates": [
+        "transfer_to_human"
+      ],
+      "circuit_statistics": {
+        "rule_count": 15,
+        "total_rule_count": 25,
+        "reduction_rate": 40.0,
+        "state_predicate_count": 19
+      },
+      "state_predicates": [
+        "authenticated",
+        "cancel_reason_valid",
+        "conversation_started",
+        "gift_card_balance_sufficient",
+        "items_to_return_confirmed",
+        "multi_user_request_detected",
+        "order_id_confirmed",
+        "order_status_cancelled",
+        "order_status_return_requested",
+        "profile_default_address_present",
+        "profile_email_present",
+        "profile_payment_methods_present",
+        "profile_user_id_present",
+        "refund_to_gift_card",
+        "refund_to_original_payment_method",
+        "single_new_payment_method",
+        "tool_call_active",
+        "unhandled_request",
+        "user_profile_created"
+      ],
+      "rules": [
+        {
+          "rule_id": 0,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_email)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_email"
+          ]
+        },
+        {
+          "rule_id": 1,
+          "logic": "ALWAYS (conversation_started IMPLIES EVENTUALLY locate_user_id_name_zip)",
+          "predicates": [
+            "conversation_started",
+            "locate_user_id_name_zip"
+          ]
+        },
+        {
+          "rule_id": 2,
+          "logic": "ALWAYS ((provide_order_info OR provide_product_info OR provide_profile_info) IMPLIES authenticated)",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 3,
+          "logic": "ALWAYS (authenticated IMPLIES EVENTUALLY (provide_order_info OR provide_product_info OR provide_profile_info))",
+          "predicates": [
+            "provide_order_info",
+            "provide_product_info",
+            "provide_profile_info",
+            "authenticated"
+          ]
+        },
+        {
+          "rule_id": 4,
+          "logic": "ALWAYS (multi_user_request_detected IMPLIES deny_other_user_requests)",
+          "predicates": [
+            "multi_user_request_detected",
+            "deny_other_user_requests"
+          ]
+        },
+        {
+          "rule_id": 8,
+          "logic": "ALWAYS (tool_call_active IMPLIES NEXT NOT tool_call_active) AND ALWAYS (tool_call_active IMPLIES NOT user_response_sent) AND ALWAYS (user_response_sent IMPLIES NOT tool_call_active)",
+          "predicates": [
+            "tool_call_active",
+            "user_response_sent"
+          ]
+        },
+        {
+          "rule_id": 9,
+          "logic": "ALWAYS (unhandled_request IMPLIES EVENTUALLY transfer_to_human)",
+          "predicates": [
+            "unhandled_request",
+            "transfer_to_human"
+          ]
+        },
+        {
+          "rule_id": 10,
+          "logic": "ALWAYS (user_profile_created IMPLIES (profile_email_present AND profile_default_address_present AND profile_user_id_present AND profile_payment_methods_present))",
+          "predicates": [
+            "user_profile_created",
+            "profile_email_present",
+            "profile_default_address_present",
+            "profile_user_id_present",
+            "profile_payment_methods_present"
+          ]
+        },
+        {
+          "rule_id": 13,
+          "logic": "ALWAYS ((order_id_confirmed AND cancel_reason_valid) -> EVENTUALLY order_status_cancelled)",
+          "predicates": [
+            "order_id_confirmed",
+            "cancel_reason_valid",
+            "order_status_cancelled"
+          ]
+        },
+        {
+          "rule_id": 14,
+          "logic": "ALWAYS (order_status_cancelled -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_cancelled",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 17,
+          "logic": "ALWAYS (pending_order_payment_modification_requested -> single_new_payment_method)",
+          "predicates": [
+            "pending_order_payment_modification_requested",
+            "single_new_payment_method"
+          ]
+        },
+        {
+          "rule_id": 18,
+          "logic": "ALWAYS (modify_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "modify_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        },
+        {
+          "rule_id": 20,
+          "logic": "ALWAYS ((order_id_confirmed AND items_to_return_confirmed) -> EVENTUALLY email_sent)",
+          "predicates": [
+            "order_id_confirmed",
+            "items_to_return_confirmed",
+            "email_sent"
+          ]
+        },
+        {
+          "rule_id": 21,
+          "logic": "ALWAYS (order_status_return_requested -> (refund_to_original_payment_method OR refund_to_gift_card))",
+          "predicates": [
+            "order_status_return_requested",
+            "refund_to_original_payment_method",
+            "refund_to_gift_card"
+          ]
+        },
+        {
+          "rule_id": 24,
+          "logic": "ALWAYS (exchange_payment_to_gift_card -> gift_card_balance_sufficient)",
+          "predicates": [
+            "exchange_payment_to_gift_card",
+            "gift_card_balance_sufficient"
+          ]
+        }
+      ]
+    }
+  ]
+}

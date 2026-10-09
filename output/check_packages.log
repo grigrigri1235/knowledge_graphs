@@ -1,0 +1,5 @@
+numpy: NOT available (No module named 'numpy')
+scipy: NOT available (No module named 'scipy')
+sklearn: NOT available (No module named 'sklearn')
+openai: available
+azure.identity: available

@@ -1,0 +1,57 @@
+Total raw rules: 25
+Total unique predicates: 55
+- action_details_listed: Action details have been listed for confirmation.
+- action_on_order: An action is attempted on an order.
+- authenticated: User identity has been authenticated in the current conversation.
+- cancel_order_requested: Cancellation requested for an order.
+- cancel_reason_valid: Cancellation reason is valid (no longer needed or ordered by mistake).
+- cancel_request: Cancellation is requested.
+- conversation_started: The conversation has begun.
+- db_action_executed: Database-updating action has been executed.
+- db_time_in_est: Timestamp in DB is EST.
+- deny_other_user_requests: Deny requests from other users.
+- email_sent: A return-related email has been sent to the user.
+- exchange_completed: Exchange has been completed.
+- exchange_order_requested: Exchange is requested for a delivered order.
+- exchange_payment_to_gift_card: Payment difference for exchange is refunded to a gift card.
+- exchange_request: Exchange is requested.
+- gift_card_balance_sufficient: Gift card balance is sufficient for the exchange difference.
+- gift_card_balance_sufficient: Gift card balance is sufficient for the required amount.
+- items_for_exchange_confirmed: Items approved for exchange are confirmed.
+- items_to_return_confirmed: Items to return have been confirmed by user.
+- locate_user_id_email: Authenticate by locating the user id via email.
+- locate_user_id_name_zip: Authenticate by locating the user id via name and zip code.
+- modify_item_options: Product item options modification is requested.
+- modify_order_requested: Modification of an order is requested.
+- modify_payment_method: Payment method modification is requested.
+- modify_payment_to_gift_card: Payment method modification targets a gift card.
+- modify_pending_order: Modification for a pending order is being performed.
+- modify_request: Modification is requested.
+- modify_shipping_address: Shipping address modification is requested.
+- multi_user_request_detected: A request from a different user is detected.
+- order_id_confirmed: Order id has been confirmed by user.
+- order_status_cancelled: Order status becomes cancelled.
+- order_status_cancelled: Order status is cancelled.
+- order_status_delivered: Order status is delivered.
+- order_status_pending: Order status is pending.
+- order_status_return_requested: Return has been requested for an order.
+- pending_order_payment_modification_requested: A payment method modification for a pending order is requested.
+- profile_default_address_present: Profile includes a default address.
+- profile_email_present: Profile includes an email.
+- profile_payment_methods_present: Profile includes payment methods.
+- profile_user_id_present: Profile includes a user id.
+- provide_order_info: Provide information about orders.
+- provide_product_info: Provide information about products.
+- provide_profile_info: Provide information about user profile.
+- refund_to_gift_card: Refund goes to a gift card.
+- refund_to_original_payment_method: Refund goes to the original payment method.
+- return_order_requested: Return is requested for a delivered order.
+- return_request: Return is requested.
+- single_new_payment_method: A single new payment method different from the original is selected.
+- time_in_est: All times in the database are EST.
+- tool_call_active: A tool call is currently active.
+- transfer_to_human: Transfer the user to a human agent.
+- unhandled_request: Request cannot be handled within the current scope.
+- user_confirmed_yes: User has confirmed with yes to proceed.
+- user_profile_created: A user profile has been created.
+- user_response_sent: A response has been sent to the user.
