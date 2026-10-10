@@ -1,2 +1,0 @@
-expr1 parts: ('cancel_order_requested', 'order_status_pending')
-expr2 parts: ('(cancel_request OR modify_request)', '(action_details_listed AND user_confirmed_yes)')

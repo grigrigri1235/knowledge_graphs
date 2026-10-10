@@ -1,9 +1,0 @@
-
-# conda environments:
-#
-# * -> active
-# + -> frozen
-base                 *   /home/azureuser/miniconda3
-graph_project_env        /home/azureuser/miniconda3/envs/graph_project_env
-shieldagent-poc          /home/azureuser/miniconda3/envs/shieldagent-poc
-

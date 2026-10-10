@@ -1,7 +1,0 @@
-Initializing Azure OpenAI client for model: gpt-5-nano
-Loading document: files_given/wiki.md
-Loading prompt template: docs/file_formats/policy_extraction_prompt.md
-Calling LLM for policy extraction...
-Parsing model output into JSON...
-Saving extracted policies to: output/wiki_extracted_policies.json
-Successfully extracted 32 policies.

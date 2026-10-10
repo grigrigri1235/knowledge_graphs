@@ -1,0 +1,17 @@
+[main 82f20e5] Clarify schemas overview with simple language and examples
+ Committer: Ubuntu <azureuser@vm-tiit-trust02.w1yqnimvelhu1klene1ibjghsh.ax.internal.cloudapp.net>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 48 insertions(+), 20 deletions(-)
+To https://github.com/grigrigri1235/knowledge_graphs.git
+   5fe2987..82f20e5  main -> main

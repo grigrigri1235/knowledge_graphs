@@ -1,5 +1,0 @@
-numpy: available
-scipy: NOT available (No module named 'scipy')
-sklearn: NOT available (No module named 'sklearn')
-openai: NOT available (No module named 'openai')
-azure.identity: NOT available (No module named 'azure')

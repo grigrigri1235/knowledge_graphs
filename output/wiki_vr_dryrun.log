@@ -1,3 +1,0 @@
-Loading raw LTL rules from: output/wiki_extracted_ltl_rules.json
-Loading VR prompt template: docs/file_formats/vr_prompt.md
-Dry-run mode: Skipping API call. Saving assembled prompt to output/wiki_vr_prompt_preview.txt

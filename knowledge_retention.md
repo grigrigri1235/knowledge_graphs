@@ -91,10 +91,9 @@ The graph connects nodes in four ways:
 ---
 
 ## 7. What We Learned from the Retail Policy (`wiki.md`)
-- **Code worked smoothly:** The same scripts (`src/extractor.py` and `src/rule_extractor.py`) processed `files_given/wiki.md` without any code changes.
-- **Better granularity:** The retail policy broke down cleanly into 32 separate policy items, with no paragraph grouping issues.
-- **Easy for software to check:** The model extracted 25 logic rules and 53 predicates. These predicates describe digital actions and states (like `user_confirmed_yes`, `order_status_pending`, `tool_call_active`), which are easy for an agent to check directly.
-- **Consistent symbols:** The model sometimes used `->` instead of `IMPLIES`. We should ensure logic symbols stay consistent.
+- **Code worked smoothly:** The same scripts (`src/extractor.py` and `src/rule_extractor.py`) processed `files_given/wiki.md` without code crashes.
+- **Surface granularity vs. True atomicity:** The model generated 32 items, which looked much better than the earlier handbook POC. However, deeper manual inspection revealed that individual bullet points still lumped multiple distinct rules together.
+- **Easy for software to check:** The model extracted 25 logic rules and 53 predicates. Most predicates describe digital actions and states (like `user_confirmed_yes`, `order_status_pending`, `tool_call_active`), making them much easier to verify than human actions.
 - **Full Report:** `docs/reports/wiki_processing_report.md`
 
 ---
@@ -118,7 +117,49 @@ Before the agent is allowed to execute an action (like calling a database tool o
    - If $\epsilon_s < 0.0$, the action is **Blocked** and the agent receives explanation feedback on what rule it broke.
 
 ### 3. Test Results (100% Accuracy)
-We tested the guardrail on **12 realistic customer service scenarios**:
+We tested the guardrail on **12 realistic customer service scenarios** (`src/test_trajectories.py`):
 - **All 6 safe customer requests** (e.g., normal cancellations on pending orders, address updates) were correctly approved (**0% false alarms**).
 - **All 6 attack and violation scenarios** (e.g., trying to cancel a delivered order, leaking customer data without authentication, running actions without user confirmation) were immediately blocked (**0% breaches**).
 - **Full Report & Verification Guide:** `docs/reports/wiki_full_fledged_aspm_report.md`
+
+---
+
+## 9. Critical Lessons from Manual Audits (Systematic Extractor Bugs)
+
+A deep manual audit of the extraction JSON (`docs/reports/criticism.md`) exposed 4 major systematic bugs that automated schema checks completely missed:
+
+### 1. The Scoping Systematic Bug (Detailed Breakdown)
+The extractor handled the `scope` field very poorly in four distinct ways:
+- **`null` vs. `always` collapse:** Global safety rules that must be obeyed at all times (e.g. *"Do not hallucinate / make up info"*, *"At most one tool call at a time"*) were given `scope: null` instead of `always` (or `all conversations`). The model failed to identify global invariants.
+- **Ignoring In-Sentence Triggers:** When a sentence explicitly defined the trigger condition, the extractor still set `scope: null`. For example:
+  - *"Transfer to human agent if and only if the request cannot be handled..."* $\rightarrow$ Model set `scope: null` despite the clear `if and only if` condition.
+  - *"Be sure items are collected before making the tool call"* $\rightarrow$ Model set `scope: null` despite the clear `before making tool call` condition.
+- **Lazy Header Copying:** When it did populate scope, it lazily copied the Markdown section heading (e.g., `"Modification of a pending order"` or `"Cancellation of a pending order"`) instead of the exact operational trigger (e.g., `"before modifying an order"` or `"after user confirmation of cancellation"`).
+- **Trigger Smearing:** Because the trigger condition was missed or made vague in `scope`, the conditional phrase was left stuck inside `policy_description` (e.g., *"Before taking consequential actions... you have to list action details..."*), preventing clean separation between the rule's precondition and its action.
+
+### 2. Inline Definition Blindness
+- The model set `"definition": null` whenever definitions appeared inside normal sentences or parentheses:
+  - Consequential actions were defined as `(cancel, modify, return, exchange)`.
+  - Explicit user confirmation was defined as `(yes)`.
+  - Cancellation reasons were defined as `('no longer needed' or 'ordered by mistake')`.
+  - Profile fields and payment methods were explicitly enumerated.
+- The extractor only recognized definitions if they were formatted like dictionary glossaries with colons (`Term: Definition`).
+
+### 3. Confusing Static Data Models & Non-Policies for Rules
+- The extractor treated passive database schemas and store catalogs as safety policies:
+  - User profile attributes (email, default address, user ID).
+  - Store inventory facts (50 types of products, color/size options) including illustrative examples (*"for example 't shirt'..."*).
+  - Database timestamp conventions (24h EST).
+- It also extracted vague non-rules that cannot be formally verified (*"Generally, you can only take action on pending or delivered orders"*). Policies cannot contain fuzzy words like "Generally".
+
+### 4. Over-Grouping within Single Sentences
+- The model packed multiple independent behavioral rules into single JSON objects:
+  - Lumping database status update (`order status changed to 'cancelled'`) together with the financial refund process (`refunded via original payment method in 5 to 7 days`).
+  - Lumping tool call limits (`at most one tool call at a time`) with messaging exclusivity (`do not respond to user when calling a tool`).
+- Each of these has different triggers and enforces different actions; they must be separated into atomic policies.
+
+---
+
+### Key Takeaway for Future Pipelines
+- **Syntactic validity $\ne$ semantic accuracy:** 0 schema errors does not mean the extraction is correct.
+- **Prompts need targeted guidance:** Prompts must explicitly instruct models to identify inline definitions in parentheses, separate compound rules, distinguish `always` from `null`, and ignore non-behavioral data models.
