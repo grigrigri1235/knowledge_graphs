@@ -1,0 +1,175 @@
+{
+ "theta_init": "uniform 1.0 (Stage A)",
+ "circuits": {
+  "add_insurance": {
+   "24": 1.0,
+   "31": 1.0
+  },
+  "ask_destination": {
+   "14": 1.0
+  },
+  "ask_origin": {
+   "8": 1.0,
+   "13": 1.0,
+   "14": 1.0,
+   "15": 1.0,
+   "16": 1.0,
+   "32": 1.0
+  },
+  "ask_travel_insurance": {
+   "8": 1.0,
+   "15": 1.0,
+   "16": 1.0,
+   "32": 1.0
+  },
+  "ask_trip_type": {
+   "13": 1.0
+  },
+  "asks_question_about_payment_or_refund": {
+   "10": 1.0
+  },
+  "booking_blocked": {
+   "38": 1.0,
+   "39": 1.0,
+   "40": 1.0,
+   "41": 1.0,
+   "42": 1.0
+  },
+  "cancel_entire_trip": {
+   "23": 1.0
+  },
+  "certificate_amount_equals_100usd_per_passenger": {
+   "18": 1.0,
+   "19": 1.0
+  },
+  "certificate_total_amount_50_times_passengers": {
+   "18": 1.0,
+   "19": 1.0
+  },
+  "collect_passenger_details": {
+   "33": 1.0,
+   "35": 1.0,
+   "36": 1.0
+  },
+  "complete_booking": {
+   "33": 1.0,
+   "35": 1.0,
+   "36": 1.0
+  },
+  "credit_card_payment_made": {
+   "24": 1.0,
+   "31": 1.0
+  },
+  "deny_request": {
+   "5": 1.0
+  },
+  "entitlement_silver_basic_economy_1": {
+   "45": 1.0,
+   "46": 1.0,
+   "47": 1.0,
+   "48": 1.0,
+   "49": 1.0,
+   "50": 1.0,
+   "51": 1.0,
+   "52": 1.0,
+   "53": 1.0,
+   "56": 1.0,
+   "58": 1.0
+  },
+  "full_refund_granted_for_booking": {
+   "45": 1.0,
+   "46": 1.0,
+   "47": 1.0,
+   "48": 1.0,
+   "49": 1.0,
+   "50": 1.0,
+   "51": 1.0,
+   "52": 1.0,
+   "53": 1.0,
+   "56": 1.0,
+   "58": 1.0
+  },
+  "gesture_certificate_offered": {
+   "18": 1.0,
+   "19": 1.0,
+   "45": 1.0,
+   "46": 1.0,
+   "47": 1.0,
+   "48": 1.0,
+   "49": 1.0,
+   "50": 1.0,
+   "51": 1.0,
+   "52": 1.0,
+   "53": 1.0,
+   "56": 1.0,
+   "58": 1.0
+  },
+  "initiate_tool_call": {
+   "3": 1.0,
+   "4": 1.0
+  },
+  "modify_flight_api_call_made": {
+   "43": 1.0
+  },
+  "offer_travel_insurance_at_price_30_usd_per_passenger": {
+   "8": 1.0,
+   "15": 1.0,
+   "16": 1.0,
+   "32": 1.0
+  },
+  "payment_for_reservation_completed_successfully": {
+   "17": 1.0,
+   "25": 1.0,
+   "26": 1.0
+  },
+  "payment_for_reservation_started": {
+   "17": 1.0,
+   "25": 1.0,
+   "26": 1.0
+  },
+  "payment_method_provided_for_changed_flight": {
+   "17": 1.0,
+   "26": 1.0
+  },
+  "provide_information": {
+   "1": 1.0
+  },
+  "provide_subjective_recommendation": {
+   "2": 1.0
+  },
+  "refund_denied": {
+   "20": 1.0
+  },
+  "refund_initiated": {
+   "20": 1.0,
+   "21": 1.0
+  },
+  "remove_checked_bag": {
+   "30": 1.0
+  },
+  "respond_to_user": {
+   "3": 1.0
+  },
+  "transfer_to_human": {
+   "27": 1.0,
+   "28": 1.0
+  },
+  "travel_certificate_applied_to_current_reservation_payment": {
+   "20": 1.0,
+   "54": 1.0,
+   "55": 1.0
+  },
+  "update_booking_action": {
+   "9": 1.0,
+   "44": 1.0
+  },
+  "update_price_based_on_current_price": {
+   "9": 1.0,
+   "44": 1.0
+  },
+  "uses_payment_method": {
+   "6": 1.0,
+   "29": 1.0
+  }
+ }
+}

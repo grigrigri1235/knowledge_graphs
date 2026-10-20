@@ -1,0 +1,997 @@
+{
+ "run": "output/auto_aspm/airline/dev_it0",
+ "labels": {
+  "AIR-GEN-01a": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R1"
+   ],
+   "reason": "The automatic rule S0-C03-R1 requires the agent to list action details before taking any actions that update the booking database, enumerating all relevant booking actions (booking, modifying flights, editing baggage, upgrading cabin class, updating passenger information) and performing the listing to the user. This exactly matches the reference clause (subject: agent; action: list details; timing: before updates; scope: booking-related updates). No contradictions or missing elements detected."
+  },
+  "AIR-GEN-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R1",
+    "S0-C03-R2",
+    "S0-C03-R2"
+   ],
+   "reason": "The automatic rules S0-C03-R1 (list action details before updates) and S0-C03-R2 (obtain explicit 'yes' to proceed before updates) together implement the reference clause: require listing details prior to booking-database updates and require explicit confirmation to proceed, matching the modality (must) and sequencing described in the reference rule."
+  },
+  "AIR-GEN-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S0-C04-R1"
+   ],
+   "reason": "S0-C04-R1 reproduces the reference clause in substance (must not provide information/knowledge/procedures not provided by user or available tools) but adds an extra constraint not present in the reference: 'or give subjective recommendations or comments'. This invented content narrows the rule beyond the reference, making the match not exact. No other automatic rules align with the clause."
+  },
+  "AIR-GEN-02b": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R1",
+    "S3-C10-R9"
+   ],
+   "reason": "S0-C04-R1 directly states that the agent must not provide subjective recommendations or comments, which exactly matches the reference clause (must not + subject to subjective recommendations or comments). S3-C10-R9 is a generic 'must not assist with this' that could also apply but is not necessary for the full capture; the primary alignment is with S0-C04-R1."
+  },
+  "AIR-GEN-03a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R1",
+    "S0-C07-R2",
+    "S0-C06-R1",
+    "S4-C05-R2",
+    "S4-C07-R8"
+   ],
+   "reason": "The clause is captured by S0-C05-R1, which enforces only one tool call at a time (i.e., at most one per turn). The other automatic rules do not contradict this clause; they add ancillary constraints (e.g., not responding simultaneously with a tool call, pre-checks before API calls) but do not negate the core requirement."
+  },
+  "AIR-GEN-03b": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R1",
+    "S0-C07-R2"
+   ],
+   "reason": "Automatic rules S0-C06-R1 and S0-C07-R2 forbid responding to the user during or simultaneously with a tool call, which exactly matches the reference clause: 'if you make a tool call, you should not respond to the user simultaneously.'"
+  },
+  "AIR-GEN-03c": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "MERGE",
+    "SUBJ",
+    "COND",
+    "MODAL",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S0-C07-R2",
+    "S0-C06-R1",
+    "S0-C05-R1"
+   ],
+   "reason": "The clause is captured by automatic rules that enforce the same mutual exclusion: S0-C07-R2 (do not respond simultaneously with a tool call) and S0-C06-R1 (do not respond during any tool call). Together they fully cover the reference clause, representing a MERGE of two rules rather than a single rule."
+  },
+  "AIR-GEN-04": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "partial",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C08-R1"
+   ],
+   "reason": "S0-C08-R1 exactly captures the clause: the agent must deny (refuse to carry out) user requests that are against this policy, matching the reference rule and the clause's obligation of the agent."
+  },
+  "AIR-GEN-05a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C09-R1"
+   ],
+   "reason": "Rule S0-C09-R1 exactly captures the reference clause: the agent must transfer to a human agent if and only if the request cannot be handled within the scope of the agent's actions, matching the obligatory transfer condition and its biconditional nature."
+  },
+  "AIR-GEN-05b": {
+   "status": "partial",
+   "votes": [
+    "covered",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S0-C09-R1"
+   ],
+   "reason": "The automatic rule S0-C09-R1 captures the core idea: transfer to a human agent when the request cannot be handled within the scope. However, it uses 'must' instead of the clause's 'should' and treats the condition as 'if and only if' (iff) rather than a simple conditional (if/when). These modality and strength differences make the match partial rather than exact."
+  },
+  "AIR-DOM-04c": {
+   "status": "missing",
+   "votes": [
+    "missing",
+    "missing",
+    "missing"
+   ],
+   "issues": [],
+   "auto_rules": [],
+   "reason": "No automatic rule captures the clause. The reference rule constrains booking based on the flight status being 'available', not on 'delayed' or 'on time' with 'has not taken off'. None of the automatic rules express the prohibition described in the reference clause."
+  },
+  "AIR-DOM-04e": {
+   "status": "missing",
+   "votes": [
+    "missing",
+    "missing",
+    "missing"
+   ],
+   "issues": [
+    "DROP"
+   ],
+   "auto_rules": [],
+   "reason": "No automatic rule captures the clause. The reference clause requires that a flight with status 'flying' (taken off but not landed) cannot be booked. The automatic rules provided do not encode this status-based booking restriction (they address actions like cancellation, cabin changes, or user confirmation, not booking restrictions based on flight status)."
+  },
+  "AIR-BOOK-01a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C10-R6",
+    "S3-C05-R1"
+   ],
+   "reason": "No automatic rule matches the clause exactly. The reference clause requires the agent must first obtain only the user id. The closest automatic rules require also obtaining the reservation id (or involve API calls), expanding the scope beyond the clause. This yields partial alignment: the core idea (obtain user id first) is present, but the extra content (reservation id, API) changes the scope and modality context."
+  },
+  "AIR-BOOK-01b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S2-C01-R2"
+   ],
+   "reason": "The clause is captured by S2-C01-R2 (agent must ask for trip type, origin, and destination). However, S2-C01-R2 adds a precondition that the user id must have been obtained, which is not present in the reference clause. This introduces an extra condition (COND) not in the reference, making it a partial match rather than a perfect (covered) one."
+  },
+  "AIR-BOOK-02a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C02-R1",
+    "S2-C03-R2"
+   ],
+   "reason": "The clause requires that a reservation has at most five passengers. S2-C02-R1 states the agent must not allow more than five passengers in a reservation (equivalent) and S2-C03-R2 requires the agent to ensure the reservation contains at most five passengers. Both are obligations of the agent and constrain the same entities and numbers; they together fully cover the clause without introducing additional scope, exceptions, or altered modality."
+  },
+  "AIR-BOOK-02b": {
+   "status": "missing",
+   "votes": [
+    "missing",
+    "missing",
+    "missing"
+   ],
+   "issues": [
+    "DROP"
+   ],
+   "auto_rules": [],
+   "reason": "No automatic rule captures collecting the passenger data (first name, last name, date of birth) before booking. The available automatic rules concern baggage, insurance, and cancellation, none of which address data collection for passengers."
+  },
+  "AIR-BOOK-02c": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C03-R1",
+    "S3-C08-R1",
+    "S3-C08-R2",
+    "S3-C06-R2"
+   ],
+   "reason": "The reference clause requires the agent to ensure all passengers are on the same flights in the same cabin. S2-C03-R1 directly encodes this obligation. Additional rules S3-C08-R1, S3-C08-R2, and S3-C06-R2 reinforce cabin consistency across all flights in the reservation and prevent per-segment cabin changes, which align with the clause."
+  },
+  "AIR-BOOK-03a": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C06-R1",
+    ""
+   ],
+   "reason": "S2-C06-R1 directly enforces the same constraint as the reference clause: the agent must not apply a travel certificate to the reservation unless the reservation uses at most one travel certificate. This matches the obligation and the numeric limit."
+  },
+  "AIR-BOOK-03b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C04-R2"
+   ],
+   "reason": "The rule exactly encodes 'at most one credit card' as 'must not use more than one credit card for a reservation', matching modality, scope ('per reservation'), and action (payment for a reservation)."
+  },
+  "AIR-BOOK-03c": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "SUBJ",
+    "MODAL",
+    "SCOPE",
+    "NUM"
+   ],
+   "auto_rules": [
+    "S2-C04-R3",
+    "S2-C06-R3"
+   ],
+   "reason": "The clause 'and at most three gift cards' is fully captured by S2-C04-R3 ('The agent must not use more than three gift cards for a reservation'). S2-C06-R3 also supports the same limit by allowing gift card use only if at most three are used, reinforcing the constraint. Both rules target the agent's gift-card usage per reservation and enforce the \u22643 limit."
+  },
+  "AIR-BOOK-03e": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C04-R4"
+   ],
+   "reason": "S2-C04-R4 directly captures the clause by prohibiting using any payment method not already in the user profile, which aligns with 'Only payment methods already in the user's profile may be used' in the booking context. (Note: S2-C04-R2 adds an extra constraint on the number of credit cards, which is not stated in the reference clause and is not counted as a matched rule for this evaluation.)"
+  },
+  "AIR-BOOK-04a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C07-R1",
+    "S2-C07-R2",
+    "S2-C07-R3"
+   ],
+   "reason": "The automatic rules S2-C07-R1/R2/R3 implement the reference clause precisely: if the booking user is a regular member, then 0 free checked bags for each basic economy passenger, 1 free checked bag for each economy passenger, and 2 free checked bags for each business passenger. The modality ('must') and the subject ('the agent') align, as do the per-passenger counts. Additional rules about gold members (S2-C09-R1/R2) exist but do not contradict or modify the regular-member clause."
+  },
+  "AIR-BOOK-04b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C08-R1",
+    "S2-C08-R2",
+    "S2-C08-R3"
+   ],
+   "reason": "The silver-member condition triggers three rules that specify exactly 1, 2, and 3 free bags per passenger category (basic economy, economy, business), matching the reference clause's per-passenger allowances, modality (must), and subject/scope."
+  },
+  "AIR-BOOK-04c": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "partial",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C09-R1",
+    "S2-C09-R2",
+    "S2-C09-R3"
+   ],
+   "reason": "Automatic rules S2-C09-R1 to R3 specify the gold-member per-passenger free bag allowances (2 for basic, 3 for economy, 3 for business) and require the agent to provide these free bags when the booking user is a gold member, matching the reference clause. The subject, modality, numbers, and scope align with the clause."
+  },
+  "AIR-BOOK-04d": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C10-R1"
+   ],
+   "reason": "S2-C10-R1 requires the agent to ensure each extra baggage costs 50 dollars, which directly matches the reference clause 'Each extra baggage is 50 dollars.' The other automatic rules describe free baggage allowances and do not contradict or alter this pricing rule."
+  },
+  "AIR-BOOK-05a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "SCOPE",
+    "NUM",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S2-C11-R1"
+   ],
+   "reason": "The automatic rule S2-C11-R1 captures the core obligation to have the agent ask the user if they want to buy travel insurance, which aligns with the reference. However, it adds extra details not present in the reference (price, refund terms) and its timing (\u201cbefore booking\u201d) differs from the clause reading (\u201cWhen booking\u201d), introducing scope and environmental differences. This results in a partial capture of the reference clause."
+  },
+  "AIR-BOOK-05b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "missing"
+   ],
+   "issues": [
+    "COND",
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S2-C11-R1"
+   ],
+   "reason": "S2-C11-R1 mentions the price (30 dollars per passenger) but its required action is to ask the user to buy travel insurance rather than to charge it when the user buys. It also adds extraneous content about refunds not present in the reference clause. Therefore the automatic rule captures the price aspect but not the exact charging obligation, yielding a partial match."
+  },
+  "AIR-MOD-01a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "NUM",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C05-R1",
+    "S3-C10-R6"
+   ],
+   "reason": "Automatic rules require obtaining both the user id and the reservation id before modifying (or before API calls), which aligns with the reference rule but not with the clause reading that specifies only obtaining the user id. The extra reservation id constitutes an added condition (COND) and changes the number of required identifiers (NUM). The broader implications (e.g., linking the precondition to multiple actions) suggest a wider scope (SCOPE). Therefore, the extraction only partially captures the clause."
+  },
+  "AIR-MOD-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C10-R6"
+   ],
+   "reason": "The reference clause requires the agent to obtain both the user id and the reservation id. Automatic rules S3-C01-R1 and S3-C10-R6 state exactly that obligation (must first obtain the user id and the reservation id). S3-C05-R1 is not an exact match due to the added condition about before calling the API."
+  },
+  "AIR-MOD-02a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C02-R1",
+    "S3-C10-R5",
+    "S3-C05-R2"
+   ],
+   "reason": "The clause prohibition is captured by rules S3-C02-R1 and S3-C10-R5, which state that the agent must not modify basic economy flights. This matches the reference clause' modal ('must not') and action ('modify flights') with the same scope. S3-C05-R2 is an ancillary procedural constraint about API usage but does not contradict the clause; it remains non-essential to judging the primary prohibition. Therefore, the clause is covered."
+  },
+  "AIR-MOD-02b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "SUBJ",
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S3-C03-R1"
+   ],
+   "reason": "The automatic rule S3-C03-R1 captures the idea of modifying other reservations without changing origin, destination, or trip type, but it uses a stronger obligation for the agent (\u201cthe agent must modify\u201d) instead of the clause\u2019s permissive \u201ccan be modified.\u201d It also foregrounds specific modification actions (passengers, baggages, flights) and frames the subject as the agent, rather than the noun phrase \u201cOther reservations\u201d in the reference clause. This reflects a mismatch in modality and subject, with possible scope expansion to include more modification types."
+  },
+  "AIR-MOD-02d": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C04-R3",
+    "S3-C09-R3"
+   ],
+   "reason": "The reference clause requires that the agent ensures the change-flight rules apply before invoking the API. S3-C04-R3 explicitly requires the agent to make sure the rules for S3-C04 and S3-C05 apply before calling the API, and S3-C09-R3 states that the agent must ensure rules apply before calling the API. Together these automatically captured rules fully cover the clause (agent as subject, must modality, pre-API check)."
+  },
+  "AIR-MOD-03a": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C06-R1",
+    "S3-C06-R2",
+    "S3-C02-R1",
+    "S3-C10-R5",
+    "S3-C05-R2"
+   ],
+   "reason": "Directly matched: S3-C06-R1 captures 'can change cabin without changing the flights' for all reservations including basic economy. S3-C06-R2 is consistent, applying cabin-change across all flights in a multi-flight reservation. Additional rules S3-C02-R1, S3-C10-R5, S3-C05-R2 align with not modifying basic economy flights. Extra rules S3-C06-R3, S3-C06-R4, S3-C06-R5 introduce charges/payments beyond the reference clause (HALL). Overall the clause is covered though with extra constraints included."
+  },
+  "AIR-MOD-03b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S3-C06-R3"
+   ],
+   "reason": "Automatic rule S3-C06-R3 captures charging the fare difference when a cabin change is made, aligning with the reference clause. However, it does not include the explicit not-waiving constraint from the reference rule (must not waive it), so a part of the reference clause is missing."
+  },
+  "AIR-MOD-03c": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C06-R2",
+    "S3-C08-R1",
+    "S3-C08-R2"
+   ],
+   "reason": "Automatic rules S3-C08-R1 and S3-C08-R2 encode the clause that cabin class must be the same across all flights in the same reservation and that changing cabin for only one flight segment is prohibited. S3-C06-R2 reinforces applying cabin changes to all flights in the reservation. Together, they capture the reference clause fully without contradictions."
+  },
+  "AIR-MOD-03d": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C06-R2",
+    "S3-C08-R2"
+   ],
+   "reason": "The reference clause prohibits changing cabin for just one flight segment and requires the change to apply to all flights in the reservation. S3-C06-R2 states that changes must apply to all flights and explicitly says changing cabin for just one segment is not possible. S3-C08-R2 states that you must not change the cabin for just one flight segment, aligning with the clause."
+  },
+  "AIR-MOD-04a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C09-R2",
+    "S3-C10-R3",
+    "S3-C10-R4"
+   ],
+   "reason": "S3-C09-R2, S3-C10-R3, and S3-C10-R4 directly encode the clause 'The user can add but not remove checked bags' by having the agent enforce that the user can add and cannot remove checked bags. S3-C09-R4 introduces an insurance-related constraint not present in the reference clause, which is extraneous content (HALL) and not required for capturing the bag policy."
+  },
+  "AIR-MOD-04b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S3-C09-R4"
+   ],
+   "reason": "The automatic rule S3-C09-R4 states: The agent must ensure that the user cannot add travel insurance to a reservation after it has been booked. This directly captures the clause's prohibition (no insurance after booking) and is phrased as an agent obligation with the same modality and scope."
+  },
+  "AIR-MOD-05a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C10-R7",
+    "S3-C10-R8",
+    "S3-C11-R2"
+   ],
+   "reason": "The automatic rules capture both parts of the reference clause: S3-C10-R7 enforces that the user cannot modify the passenger count (cannot change the number), and S3-C10-R8 and S3-C11-R2 allow modifying passenger details/information (passenger details may change). The subject/modality align with the reference clause."
+  },
+  "AIR-MOD-05b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE",
+    "COND"
+   ],
+   "auto_rules": [
+    "S3-C12-R1",
+    "S3-C12-R2",
+    "S3-C10-R7",
+    "S3-C10-R9"
+   ],
+   "reason": "Automatic rules S3-C12-R1 and S3-C12-R2 explicitly express that the agent must not assist with the modification described (i.e., passenger-count changes) and align with the idea that even a human cannot assist with it. S3-C10-R7 also supports the passenger-count restriction by prohibiting modification of the number of passengers. However, there is no automatic rule that precisely codifies the exact escalation-to-a-human constraint for passenger-count changes, and at least one rule (e.g., S3-C11-R2) could imply allowing passenger modifications, which conflicts with the reference clause. This yields a partial capture rather than a full, exact match."
+  },
+  "AIR-MOD-06a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "NUM",
+    "DROP",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S3-C10-R10",
+    "S3-C13-R1",
+    "S3-C05-R3",
+    "S2-C04-R2",
+    "S2-C04-R4"
+   ],
+   "reason": "The automatic rules cover the core idea that a gift-card or credit-card payment method is required when flights are changed and that methods should be from the user\u2019s profile. However, they do not enforce the strict 'exactly one' payment method (the rules allow multiple methods in some cases, e.g., multiple gift cards) and they miss the explicit exception from the reference ('not a travel certificate'). They also don\u2019t fully pin down the one-method constraint as tightly as the reference clause. The agent-oriented rules are present but do not fully mirror the reference clause\u2019s exactness and exceptions."
+  },
+  "AIR-MOD-06b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C10-R11"
+   ],
+   "reason": "The closest match is S3-C10-R11: 'The agent must ask for the payment or refund method instead.' which corresponds to the reference clause's 'should ask ... instead.' However, the reference uses 'should' while the rule uses 'must' (modal mismatch). Also, the rule does not explicitly tie to 'flight change' context (scope is broader). Other automatic rules introduce content not present in the reference (e.g., S3-C06-R4 about cabin changes, S3-C13-R1 about gifting a card, S3-C05-R4 timing before API calls, S3-C05-R3 gating), which are thus Hallucinatory/invented content relative to the reference. Therefore, the clause is captured only partially."
+  },
+  "AIR-CAN-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S4-C07-R1"
+   ],
+   "reason": "S4-C07-R1 requires the agent to obtain the user id, the reservation id, and the reason for cancellation before proceeding with a cancellation, which matches the REFERENCE CLAUSE exactly in content, modality, and scope (including the enumerated reasons)."
+  },
+  "AIR-CAN-01b": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S4-C07-R1",
+    "S4-C06-R1",
+    "S4-C04-R1"
+   ],
+   "reason": "The reference clause requires the agent to obtain the user id, the reservation id, and the reason for cancellation before cancelling. Rules S4-C07-R1 and S4-C06-R1 require obtaining all three items before a cancellation, matching the clause content. S4-C04-R1 also requires the same three items but adds a scope constraint (business flight), which narrows applicability and constitutes a potential scope mismatch with the reference clause. S3-C01-R1 is not a full capture (it omits the reason)."
+  },
+  "AIR-CAN-01c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S4-C04-R1",
+    "S4-C06-R1",
+    "S4-C07-R1"
+   ],
+   "reason": "The automatic rules capture the core requirement (obtain the cancellation reason before cancelling) but add extra requirements not in the reference: they mandate obtaining the user id and reservation id as well, and sometimes specify context like 'before cancelling a business flight' or 'before proceeding with a cancellation'. This expands scope beyond the reference clause, making it only partially aligned."
+  },
+  "AIR-CAN-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S4-C07-R4"
+   ],
+   "reason": "The reference clause states that cancellation is allowed (can be cancelled) within 24 hours of booking or if the airline canceled the flight. The automatic rule S4-C07-R4 expresses this as an obligation for the agent (must cancel within 24h or if airline cancelled), which has a stronger modality than the reference (must vs can). This is a modal mismatch. S4-C07-R4 is the primary rule that aligns with the conditions, but the modality does not match the reference clause."
+  },
+  "AIR-CAN-02b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE",
+    "TOOLS",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S4-C07-R4",
+    "S4-C02-R1",
+    "S4-C02-R2",
+    "S4-C06-R2"
+   ],
+   "reason": "The automatic rules partially reflect the clause: they cover the 24-hour window and the airline-cancelled exception via S4-C07-R4, S4-C02-R1, and S4-C02-R2. However, they encode an obligation to cancel (must cancel) rather than the clause's permissive \"can be cancelled\". There is also a conflicting restriction for basic/economy (S4-C03-R1) that would block cancellation of certain reservations, contrary to the clause's universal permission. Other rules introduce extra constraints or procedural steps not present in the clause (e.g., S4-C06-R2, S4-C04-R1), resulting in a partial rather than full capture."
+  },
+  "AIR-CAN-02c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "DUP",
+    "MERGE",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S4-C03-R1",
+    "S4-C06-R3",
+    "S4-C07-R4",
+    "S4-C02-R2"
+   ],
+   "reason": "The automatic rules capture the travel-insurance path (S4-C03-R1) and enforce it via an API constraint (S4-C06-R3). They also cover the alternative grounds for cancellation (within 24 hours or airline cancelled) via S4-C07-R4 and S4-C02-R2, which are not explicit in the reference clause\u2019s travel-insurance-only path. However, the explicit insured condition in the reference (health or weather) is not named in the automatic rules (they use a generic 'condition is met'), so the exact condition detail is missing. Additionally, there are duplicated/overlapping rules (e.g., multiple airline-cancellation rules) and an extra API/tool constraint (S4-C06-R3) not present in the clause text."
+  },
+  "AIR-CAN-02d": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S4-C06-R4",
+    "S4-C07-R6"
+   ],
+   "reason": "The clause corresponds to no restrictions on cancellation (S4-C06-R4), which matches the intent of 'can always be cancelled'. However, the reference modality is 'can' (ability), whereas S4-C06-R4 expresses a prohibition on adding restrictions (an obligation form). S4-C07-R6 states an obligation to cancel business flights, which does not match the clause's ability-based wording. Therefore, partial alignment with a modality mismatch. "
+  },
+  "AIR-CAN-02e": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S4-C04-R6",
+    "S4-C05-R1",
+    "S4-C06-R5",
+    "S4-C07-R7"
+   ],
+   "reason": "Several automatic rules require applying/carrying out rules regardless of membership status, directly reflecting the reference clause that there are no membership-based exceptions."
+  },
+  "AIR-CAN-02f": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S4-C04-R5",
+    "S4-C05-R2",
+    "S4-C07-R8",
+    "S4-C06-R2",
+    "S4-C06-R1"
+   ],
+   "reason": "The clause requires the agent to ensure rules apply before calling the cancellation API. Automatic rules explicitly enforce that the agent must verify eligibility before invoking cancel_reservation (before calling the API), which directly matches the clause's intent."
+  },
+  "AIR-CAN-03a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S4-C06-R6",
+    "S4-C07-R2"
+   ],
+   "reason": "The reference clause requires cancelling only for unflown, whole-trip reservations. S4-C06-R6 states the agent can only cancel the whole trip that is not flown (no partial cancellations). S4-C07-R2 states to cancel the whole reservation only if none of its segments are flown. Together they fully capture the clause."
+  },
+  "AIR-CAN-03b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "COND",
+    "MODAL",
+    "DUP",
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S4-C04-R3",
+    "S4-C04-R4",
+    "S4-C07-R3"
+   ],
+   "reason": "The automatic rules collectively enforce the clause: if any flight segment has already flown, the agent must not cancel (S4-C04-R3) and must transfer the user to a human agent (S4-C04-R4 and S4-C07-R3). This matches the reference clause (transfer to human agent and no cancellation). The transfer condition appears in more than one rule, hence DUP and MERGE tagging."
+  },
+  "AIR-COMP-01a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "missing"
+   ],
+   "issues": [
+    "MODAL",
+    "COND",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S5-C01-R2"
+   ],
+   "reason": "S5-C01-R2 is the closest automatic rule to the reference clause (it requires eligibility and a cancellation complaint and amounts the certificate to 100 * passengers). However, it Strengthens the modality to 'must offer' and adds an extra condition that the user explicitly asks for compensation, whereas the reference clause uses a permissive 'can offer' and does not require an explicit compensation request. This makes the capture partial: the core conditions align, but the conditions about compensation and the obligation modality diverge."
+  },
+  "AIR-COMP-01b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C01-R2",
+    "S5-C02-R1"
+   ],
+   "reason": "Automatic rules include the required 'after confirming the facts' condition before offering a certificate, which matches the reference intent. However, they add additional gating (membership/travel-insurance/flight type) and distinguish between cancelled vs delayed flights, introducing extra conditions not present in the reference clause. They also imply tool-based fact verification (via get_reservation_details, etc.), which aligns with the idea of verification but expands beyond the exact phrasing of 'verified via tool lookups.'"
+  },
+  "AIR-COMP-01c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S5-C01-R2"
+   ],
+   "reason": "S5-C01-R2 captures the amount as $100 times the number of passengers for a cancelled-flight complaint, but it adds extra conditions not present in the reference (membership gating: silver/gold member or travel insurance or business class; and explicit request for compensation). These added constraints mean the automatic rule does not fully match the reference clause."
+  },
+  "AIR-COMP-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "COND",
+    "MODAL",
+    "HALL",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S5-C02-R1",
+    "S5-C02-R2",
+    "S5-C03-R1"
+   ],
+   "reason": "Core conditions align (silver/gold or travel insurance or business class; delayed flight complaint; desire to change/cancel) and the certificate amount rule is present. However, R1 adds a sequencing constraint that the change/cancellation must occur before offering, which is not stated in the reference clause (HALL). R2 and R3 impose a requirement that the user must explicitly ask for compensation (or only offer if compensation is requested), which contradicts the reference clause that allows offering when the user only complains and wants to change/cancel (MODAL/SCOPE). Overall, the automatic rules partially capture the clause but introduce extra constraints that diverge from the reference."
+  },
+  "AIR-COMP-02b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "COND",
+    "NUM",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S5-C02-R1"
+   ],
+   "reason": "S5-C02-R1 aligns with the core: the certificate is considered after confirming facts and changing or cancelling the reservation. However, it adds extra constraints not in the REFERENCE CLAUSE (a monetary amount, eligibility gating by membership/travel insurance/seat class, and uses 'allowed to offer' rather than 'must offer'), which weakens or narrows the intended obligation. Additionally, another automatic rule (S5-C02-R2) would contradict the clause by requiring a complaint/compensation trigger before offering a certificate, illustrating a conflict with the reference clause."
+  },
+  "AIR-COMP-02c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "COND",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S5-C02-R1"
+   ],
+   "reason": "Automatic rule S5-C02-R1 captures the core: the amount is 50\u00d7 the number of passengers for a delayed-flight certificate. However, it imposes additional gating conditions (membership/status/travel insurance/business) and requires the agent to be 'allowed to offer' the certificate contingent on these conditions and on changing/canceling the reservation, which weakens modality and expands scope beyond the reference rule (which requires the agent must set the amount for delayed flights without such gating)."
+  },
+  "AIR-COMP-03a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "MODAL",
+    "SUBJ",
+    "SCOPE",
+    "COND"
+   ],
+   "auto_rules": [
+    "S5-C03-R1",
+    "S5-C02-R2",
+    "S5-C01-R1"
+   ],
+   "reason": "S5-C03-R1 exactly mirrors the reference: the agent must not offer compensation unless the user complains and explicitly asks. S5-C02-R2 also matches the intent with a similar gating (must not offer unless the user complains and asks). S5-C01-R1 captures the clause but adds extra gating (membership/flight criteria) making it narrower than the reference. Other rules do not map to the clause (S5-C02-R1 covers a different scenario; S0-C09-R1 is unrelated). Therefore, the clause is overall covered by at least one full match, with some partial/narrower variants also present."
+  },
+  "AIR-COMP-03b": {
+   "status": "missing",
+   "votes": [
+    "missing",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "INV",
+    "HALL",
+    "SCOPE"
+   ],
+   "auto_rules": [],
+   "reason": "No automatic rule directly captures the reference clause. The reference requires: do not compensate when the user is a regular member, has no travel insurance, and flies basic economy (or economy). None of the automatic rules codify this exact conjunction. The closest rule (S5-C01-R1) deals with not offering a certificate, but uses different conditions (it requires membership silver/gold or having travel insurance or flying business, and adds extra gating like complaining about cancellations and asking for compensation) and even inverts the travel-insurance condition. This results in mismatched conditions (COND), inverted meaning regarding travel insurance (INV), and added/invented content (HALL), thus failing to cover the reference clause."
+  }
+ },
+ "usage": {
+  "e2_proxy": {
+   "calls": 183,
+   "cache_hits": 0,
+   "input_tokens": 140019,
+   "output_tokens": 595115,
+   "reasoning_tokens": 566080,
+   "api_seconds": 5212.707537651062,
+   "errors": 0
+  }
+ }
+}

@@ -1,0 +1,455 @@
+{
+ "run": "output/auto_aspm/retail/v1",
+ "labeller": "manual (Claude, careful reading; Step 1 rubric, same conventions as airline_v1_e2.json)",
+ "conventions": "Same as airline: over-included tools on an otherwise faithful rule -> covered with note 'TOOLS+'; a missing essential constrained tool -> partial (TOOLS); compound rules that keep all content -> covered (MERGE); an extra rule from the same clause that adds restrictive content -> partial (HALL/SCOPE), as AIR-MOD-03a. 'TOOLS+!' marks an over-attachment that makes the rule block policy-compliant calls (circular or contradicting another clause); it does not change the label (airline convention) but is counted separately in the report.",
+ "labels": {
+  "RET-GEN-01a": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S0-C02-R1"
+   ],
+   "note": "Content right (email or name+zip, at the beginning). modify_user_address (a DB write) has no authentication rule at all. TOOLS+! S0-C02-R1 is also attached to find_user_id_by_email/_name_zip, where 'user id already located' is false before the first lookup, so the rule blocks the authentication call itself."
+  },
+  "RET-GEN-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C02-R1"
+   ],
+   "note": "Requiring a lookup via email or name+zip implies a user-supplied id does not suffice. Same rule as 01a; the scope defects are counted there."
+  },
+  "RET-GEN-02": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R1",
+    "S0-C04-R2",
+    "S0-C04-R3"
+   ],
+   "note": "Info about orders/products/profile only after authentication. TOOLS+! S0-C04-R3 sits on the find_user_id tools (circular); on respond_to_user the logic drops the 'discloses information' condition, so any pre-authentication message is blocked (E3: auto stricter). 'user_authenticated' is described as a login token, which τ-bench does not have."
+  },
+  "RET-GEN-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R1",
+    "S0-C05-R2"
+   ],
+   "note": "S0-C05-R2 'action targets a user other than the requester' is the gold reading."
+  },
+  "RET-GEN-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R2"
+   ],
+   "note": ""
+  },
+  "RET-GEN-04a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R1",
+    "S0-C06-R2",
+    "S0-C06-R3",
+    "S0-C06-R4",
+    "S0-C06-R5",
+    "S0-C06-R6",
+    "S0-C01-R3"
+   ],
+   "note": "Split per tool. modify_user_address is covered only by S0-C01-R3, which comes from the scope sentence turned into an obligation ('must help users modify their address' -> list + confirm)."
+  },
+  "RET-GEN-04b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R1",
+    "S0-C06-R2",
+    "S0-C06-R4",
+    "S0-C06-R5",
+    "S0-C06-R6",
+    "S2-C05-R3",
+    "S5-C06-R6"
+   ],
+   "note": ""
+  },
+  "RET-GEN-05a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R1",
+    "S0-C07-R2",
+    "S0-C07-R3"
+   ],
+   "note": "Split per noun (information / knowledge / procedures)."
+  },
+  "RET-GEN-05b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R4"
+   ],
+   "note": ""
+  },
+  "RET-GEN-06a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C08-R1"
+   ],
+   "note": "'Second call while a first is in progress' = more than one call in the turn (same reading as AIR-GEN-03a)."
+  },
+  "RET-GEN-06b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C08-R2"
+   ],
+   "note": ""
+  },
+  "RET-GEN-06c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C09-R1"
+   ],
+   "note": ""
+  },
+  "RET-GEN-07a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C10-R2"
+   ],
+   "note": "Logic equals the gold, including the explicit-request permission."
+  },
+  "RET-GEN-07b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C10-R1"
+   ],
+   "note": "Labelled as AIR-GEN-05b (the iff kept, attached to the transfer tool). As in airline, the 'must transfer' direction is not enforceable at transfer_to_human_agents; gold uses a respond_to_user proxy. See open questions."
+  },
+  "RET-DOM-04b": {
+   "status": "missing",
+   "issues": [
+    "DROP"
+   ],
+   "auto_rules": [],
+   "note": "Classified as a fact by S1 (E1 miss); no rule on product ids vs item ids."
+  },
+  "RET-DOM-05b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C01-R1",
+    "S3-C02-R2",
+    "S6-C02-R1",
+    "S7-C02-R1"
+   ],
+   "note": "The clause itself was classified as a fact (E1 miss), but its content is entailed by the per-tool status rules of the section clauses, exactly as in gold (RET-R013/R014)."
+  },
+  "RET-DOM-06a": {
+   "status": "partial",
+   "issues": [
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S1-C12-R1",
+    "S5-C06-R2",
+    "S1-C12-R3",
+    "S1-C12-R4",
+    "S1-C13-R2"
+   ],
+   "note": "Exchange-once and modify-items-once are present. Extra rules extend 'once' to address and payment modification (S1-C12-R3/R4; gold explicitly chose the item-tools-only reading) and S1-C13-R2 counts item changes per interaction, not per order, and includes returns."
+  },
+  "RET-DOM-06b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S1-C13-R1"
+   ],
+   "note": "Description faithful; the predicate reduces 'all items collected' to 'item lists non-empty and aligned' (E3). TOOLS+ (returns)."
+  },
+  "RET-CAN-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C01-R1",
+    "S2-C05-R2"
+   ],
+   "note": ""
+  },
+  "RET-CAN-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C02-R1",
+    "S2-C05-R1"
+   ],
+   "note": ""
+  },
+  "RET-CAN-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C03-R1",
+    "S2-C05-R4",
+    "S2-C05-R5"
+   ],
+   "note": "Order-id confirmation (S2-C03-R1, S2-C05-R4) and reason confirmation (S2-C05-R5). The S2-C05-R4 predicate is vague ('may be before or after')."
+  },
+  "RET-CAN-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C04-R1"
+   ],
+   "note": ""
+  },
+  "RET-MOD-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C03-R1",
+    "S3-C04-R2",
+    "S3-C02-R2"
+   ],
+   "note": "TOOLS+! S3-C02-R2 ('modify only if pending') is also attached to return_delivered_order_items and exchange_delivered_order_items. There it contradicts the 'delivered' requirement, so the return/exchange circuits can never be satisfied. modify_pending_order_items gets the pending requirement only through this rule."
+  },
+  "RET-MOD-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C02-R1",
+    "S3-C03-R2",
+    "S3-C04-R1",
+    "S3-C05-R1",
+    "S3-C01-R2"
+   ],
+   "note": "TOOLS+! S3-C01-R2 is also attached to get_order_details, i.e. the status lookup requires a prior status lookup (circular; read tool)."
+  },
+  "RET-MOD-02": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R3",
+    "S3-C06-R1"
+   ],
+   "note": "TOOLS+! Attached to cancel_pending_order, where 'modifies only item options' / 'modifies another attribute' will likely be judged violated (cancellation changes the status), blocking cancellations."
+  },
+  "RET-MPAY-01": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S4-C01-R1",
+    "S4-C01-R2"
+   ],
+   "note": ""
+  },
+  "RET-MPAY-02": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S4-C02-R1"
+   ],
+   "note": "'balance' is not tied to the gift card in the predicate text."
+  },
+  "RET-MITEM-01a": {
+   "status": "partial",
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C06-R2",
+    "S5-C06-R3"
+   ],
+   "note": "Once-per-order present. S5-C06-R3 turns the effect 'will change the status to pending (items modifed)' into an obligation on six write tools (post-state consequent, block): every cancel/return/exchange/address/payment call fails it."
+  },
+  "RET-MITEM-01c": {
+   "status": "incorrect",
+   "issues": [
+    "COND",
+    "INV"
+   ],
+   "auto_rules": [
+    "S5-C02-R3",
+    "S5-C03-R1",
+    "S5-C03-R2"
+   ],
+   "note": "The trigger 'after items were modified' is dropped: S5-C02-R3 'action -> NOT order_modifiable' and S5-C03-R2 'cancel -> NOT order_cancellable' forbid modifying/cancelling any pending order (contradicts RET-CAN-01a/RET-MOD-01a). S5-C03-R1 invents a 'global modification freeze' predicate."
+  },
+  "RET-MITEM-01d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R4",
+    "S5-C04-R1",
+    "S5-C06-R6"
+   ],
+   "note": ""
+  },
+  "RET-MITEM-01e": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R5"
+   ],
+   "note": "On modify-items and exchange (as gold RET-R019)."
+  },
+  "RET-MITEM-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R6",
+    "S5-C06-R1",
+    "S5-C06-R7"
+   ],
+   "note": "Same product, different option, available."
+  },
+  "RET-MITEM-02b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C02-R7",
+    "S5-C06-R4",
+    "S5-C07-R1"
+   ],
+   "note": "S5-C07-R1 merges in 'no previous modify call'."
+  },
+  "RET-MITEM-03a": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S5-C02-R8",
+    "S5-C06-R8",
+    "S5-C08-R1"
+   ],
+   "note": "Content right, but all four price-difference payment rules are attached to cancel_pending_order and modify_pending_order_payment, not to modify_pending_order_items or exchange_delivered_order_items."
+  },
+  "RET-MITEM-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R9",
+    "S5-C06-R9"
+   ],
+   "note": "On modify_pending_order_items (+ payment, harmless)."
+  },
+  "RET-RTN-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S6-C02-R1",
+    "S6-C06-R1"
+   ],
+   "note": "But see RET-MOD-01a: S3-C02-R2 also requires 'pending' on returns."
+  },
+  "RET-RTN-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S6-C01-R2",
+    "S6-C02-R2"
+   ],
+   "note": ""
+  },
+  "RET-RTN-02": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S6-C03-R1",
+    "S6-C03-R2",
+    "S6-C03-R3",
+    "S6-C04-R2"
+   ],
+   "note": "Order id and item list confirmed on returns; the refund-method confirmation (S6-C03-R3, S6-C04-R2) is attached only to cancel_pending_order."
+  },
+  "RET-RTN-03": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S6-C04-R1"
+   ],
+   "note": "Refund destination rule attached only to cancel_pending_order, never checked at return."
+  },
+  "RET-EXC-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S7-C02-R1",
+    "S7-C03-R1"
+   ],
+   "note": "But see RET-MOD-01a (S3-C02-R2 contradiction)."
+  },
+  "RET-EXC-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S7-C02-R2",
+    "S6-C02-R2"
+   ],
+   "note": ""
+  },
+  "RET-EXC-01c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R5"
+   ],
+   "note": "S1 dropped this sentence (E1 miss: the 'Exchange delivered order' section failed validation after 3 attempts), but S3b attached the modify-items reminder S5-C02-R5 to exchange_delivered_order_items as well."
+  },
+  "RET-EXC-02a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S7-C03-R2",
+    "S5-C02-R6"
+   ],
+   "note": "S7-C03-R2 also bundles once-only, details-listed and confirmation."
+  },
+  "RET-EXC-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S7-C04-R1"
+   ],
+   "note": ""
+  },
+  "RET-EXC-03a": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S7-C05-R1"
+   ],
+   "note": "Attached to cancel_pending_order and modify_pending_order_payment, not to exchange."
+  },
+  "RET-EXC-03b": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S7-C06-R1"
+   ],
+   "note": "Attached to modify_pending_order_payment only; no gift-card price-difference rule on exchange."
+  }
+ }
+}

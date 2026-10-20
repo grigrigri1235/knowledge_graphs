@@ -1,0 +1,613 @@
+{
+ "run_id": "v1",
+ "domain": "retail",
+ "started": "2026-10-16T09:50:40",
+ "finished": "2026-10-16T10:56:48",
+ "input": [
+  "policy_docs/retail_wiki.txt",
+  "d539fd2a46a8b8dd2e934ff9ed92f43e9f6b56bc7a718db8d2803ba8ad8f6bf7"
+ ],
+ "params": {
+  "m_it": 10,
+  "budget_factor": 3.0,
+  "lineage_cap": 3,
+  "tau_rp": 0.8,
+  "rp_max_cluster": 12,
+  "theta": 0.8,
+  "k_max": 60,
+  "workers": 16,
+  "effort": "medium"
+ },
+ "embedding": {
+  "backend": "local",
+  "local": {
+   "model": "BAAI/bge-large-en-v1.5",
+   "revision": "d4aa6901d3a41ba39fb536a557fa166f842b0e09",
+   "dtype": "bfloat16"
+  },
+  "azure": {
+   "deployment": "text-embedding-3-large"
+  },
+  "cache_path": "output/repro/_embcache/embeddings.sqlite",
+  "note": "D1 (final, 2026-10-16): local BAAI/bge-large-en-v1.5 @ d4aa6901 in bfloat16 (adapted: reduced numeric precision; no Azure embedding deployment exists). fp32 was used for airline v1/v2. Switch backend to 'azure' once a deployment is added."
+ },
+ "prompt_template_sha256_16": {
+  "e1_policy_extraction": "acd8720405cdb09d",
+  "e2_ltl_extraction": "90d85865c50022b6",
+  "e3_verifiability_refinement": "251c7ecb73063acc",
+  "e4_redundancy_pruning": "63ea6acbb924dc3e",
+  "fewshot_rp": "add0948a2c029dff",
+  "fewshot_vr": "08593bdf401b9ea3",
+  "format_declare": "582b34f60b369832",
+  "format_repair": "ba034adc5372ac4a"
+ },
+ "stage_seconds": {
+  "e1_policies": 37.2,
+  "e2_rules": 190.5,
+  "alg2": 3738.9,
+  "e5_circuits": 0.9
+ },
+ "llm_usage_by_stage": {
+  "e1": {
+   "calls": 8,
+   "cache_hits": 0,
+   "input_tokens": 5300,
+   "output_tokens": 27310,
+   "reasoning_tokens": 23552,
+   "api_seconds": 173.45278310775757,
+   "errors": 0
+  },
+  "e2": {
+   "calls": 34,
+   "cache_hits": 0,
+   "input_tokens": 24207,
+   "output_tokens": 176241,
+   "reasoning_tokens": 159360,
+   "api_seconds": 1204.3809609413147,
+   "errors": 0
+  },
+  "e2_repair": {
+   "calls": 17,
+   "cache_hits": 0,
+   "input_tokens": 6273,
+   "output_tokens": 12793,
+   "reasoning_tokens": 11712,
+   "api_seconds": 77.69361186027527,
+   "errors": 0
+  },
+  "rp": {
+   "calls": 120,
+   "cache_hits": 36,
+   "input_tokens": 219006,
+   "output_tokens": 525187,
+   "reasoning_tokens": 454656,
+   "api_seconds": 4516.572724342346,
+   "errors": 3
+  },
+  "rp_repair": {
+   "calls": 8,
+   "cache_hits": 0,
+   "input_tokens": 2886,
+   "output_tokens": 2805,
+   "reasoning_tokens": 1984,
+   "api_seconds": 38.22875094413757,
+   "errors": 0
+  },
+  "vr": {
+   "calls": 351,
+   "cache_hits": 23,
+   "input_tokens": 629148,
+   "output_tokens": 1437710,
+   "reasoning_tokens": 1288384,
+   "api_seconds": 11693.198646306992,
+   "errors": 3
+  },
+  "vr_repair": {
+   "calls": 20,
+   "cache_hits": 0,
+   "input_tokens": 6957,
+   "output_tokens": 11090,
+   "reasoning_tokens": 9216,
+   "api_seconds": 107.15133285522461,
+   "errors": 0
+  }
+ },
+ "totals": {
+  "calls": 558,
+  "cache_hits": 59,
+  "input_tokens": 893777,
+  "output_tokens": 2193136,
+  "reasoning_tokens": 1948864
+ },
+ "counts": {
+  "sections": 8,
+  "policy_blocks": 34,
+  "rules_e2": 74,
+  "rules_e2_dropped": 9,
+  "rules_final": 43,
+  "predicates_final": 56,
+  "rules_with_temporal_operators": 26,
+  "physical_rules": 19,
+  "type_conflicts": 0
+ },
+ "validation": {
+  "validated": 728,
+  "repair_attempted": 45,
+  "repair_syntax": 26,
+  "repair_failed": 17,
+  "repair_ok": 28,
+  "repair_declare": 19
+ },
+ "alg2_iterations": [
+  {
+   "iteration": 0,
+   "phase": "initial",
+   "rules": 74,
+   "predicates": 114,
+   "action_predicates": 47,
+   "condition_predicates": 67,
+   "vagueness_mean": 0.8023,
+   "vagueness_min": 0.57,
+   "vagueness_max": 0.9322
+  },
+  {
+   "iteration": 1,
+   "phase": "after_VR",
+   "vr_calls": 228,
+   "refinements": 154,
+   "verifiable": 70,
+   "refinement_invalid": 4,
+   "lineage_capped": 103,
+   "budget_skipped": 0,
+   "budget_used": 154,
+   "budget": 222,
+   "rules": 177,
+   "predicates": 201,
+   "action_predicates": 75,
+   "condition_predicates": 126,
+   "vagueness_mean": 0.8453,
+   "vagueness_min": 0.7055,
+   "vagueness_max": 0.9574
+  },
+  {
+   "iteration": 1,
+   "phase": "after_RP",
+   "rp_clusters": 39,
+   "rp_calls": 38,
+   "merges": 33,
+   "conflicts_deferred": 29,
+   "rules": 77,
+   "predicates": 96,
+   "action_predicates": 37,
+   "condition_predicates": 59,
+   "vagueness_mean": 0.7696,
+   "vagueness_min": 0.6372,
+   "vagueness_max": 0.8873
+  },
+  {
+   "iteration": 2,
+   "phase": "after_VR",
+   "vr_calls": 123,
+   "refinements": 69,
+   "verifiable": 39,
+   "refinement_invalid": 2,
+   "lineage_capped": 18,
+   "budget_skipped": 13,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 98,
+   "predicates": 118,
+   "action_predicates": 44,
+   "condition_predicates": 74,
+   "vagueness_mean": 0.8323,
+   "vagueness_min": 0.6372,
+   "vagueness_max": 0.9703
+  },
+  {
+   "iteration": 2,
+   "phase": "after_RP",
+   "rp_clusters": 20,
+   "rp_calls": 19,
+   "merges": 14,
+   "conflicts_deferred": 7,
+   "rules": 62,
+   "predicates": 71,
+   "action_predicates": 22,
+   "condition_predicates": 49,
+   "vagueness_mean": 0.7442,
+   "vagueness_min": 0.543,
+   "vagueness_max": 0.8274
+  },
+  {
+   "iteration": 3,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 62,
+   "predicates": 71,
+   "action_predicates": 22,
+   "condition_predicates": 49,
+   "vagueness_mean": 0.7442,
+   "vagueness_min": 0.543,
+   "vagueness_max": 0.8274
+  },
+  {
+   "iteration": 3,
+   "phase": "after_RP",
+   "rp_clusters": 12,
+   "rp_calls": 12,
+   "merges": 6,
+   "conflicts_deferred": 7,
+   "rules": 55,
+   "predicates": 64,
+   "action_predicates": 18,
+   "condition_predicates": 46,
+   "vagueness_mean": 0.7173,
+   "vagueness_min": 0.542,
+   "vagueness_max": 0.8271
+  },
+  {
+   "iteration": 4,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 55,
+   "predicates": 64,
+   "action_predicates": 18,
+   "condition_predicates": 46,
+   "vagueness_mean": 0.7173,
+   "vagueness_min": 0.542,
+   "vagueness_max": 0.8271
+  },
+  {
+   "iteration": 4,
+   "phase": "after_RP",
+   "rp_clusters": 9,
+   "rp_calls": 9,
+   "merges": 1,
+   "conflicts_deferred": 6,
+   "rules": 53,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.712,
+   "vagueness_min": 0.542,
+   "vagueness_max": 0.8271
+  },
+  {
+   "iteration": 5,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 53,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.712,
+   "vagueness_min": 0.542,
+   "vagueness_max": 0.8271
+  },
+  {
+   "iteration": 5,
+   "phase": "after_RP",
+   "rp_clusters": 8,
+   "rp_calls": 8,
+   "merges": 2,
+   "conflicts_deferred": 5,
+   "rules": 52,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7083,
+   "vagueness_min": 0.5369,
+   "vagueness_max": 0.8211
+  },
+  {
+   "iteration": 6,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 52,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7083,
+   "vagueness_min": 0.5369,
+   "vagueness_max": 0.8211
+  },
+  {
+   "iteration": 6,
+   "phase": "after_RP",
+   "rp_clusters": 7,
+   "rp_calls": 7,
+   "merges": 1,
+   "conflicts_deferred": 3,
+   "rules": 50,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7052,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 7,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 50,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7052,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 7,
+   "phase": "after_RP",
+   "rp_clusters": 7,
+   "rp_calls": 7,
+   "merges": 1,
+   "conflicts_deferred": 3,
+   "rules": 48,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7023,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 8,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 48,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7023,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 8,
+   "phase": "after_RP",
+   "rp_clusters": 7,
+   "rp_calls": 7,
+   "merges": 1,
+   "conflicts_deferred": 3,
+   "rules": 47,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7013,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 9,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 47,
+   "predicates": 60,
+   "action_predicates": 17,
+   "condition_predicates": 43,
+   "vagueness_mean": 0.7013,
+   "vagueness_min": 0.5386,
+   "vagueness_max": 0.8228
+  },
+  {
+   "iteration": 9,
+   "phase": "after_RP",
+   "rp_clusters": 7,
+   "rp_calls": 7,
+   "merges": 1,
+   "conflicts_deferred": 2,
+   "rules": 43,
+   "predicates": 56,
+   "action_predicates": 15,
+   "condition_predicates": 41,
+   "vagueness_mean": 0.6882,
+   "vagueness_min": 0.5323,
+   "vagueness_max": 0.8038
+  },
+  {
+   "iteration": 10,
+   "phase": "after_VR",
+   "vr_calls": 0,
+   "refinements": 0,
+   "verifiable": 0,
+   "refinement_invalid": 0,
+   "lineage_capped": 0,
+   "budget_skipped": 0,
+   "budget_used": 223,
+   "budget": 222,
+   "rules": 43,
+   "predicates": 56,
+   "action_predicates": 15,
+   "condition_predicates": 41,
+   "vagueness_mean": 0.6882,
+   "vagueness_min": 0.5323,
+   "vagueness_max": 0.8038
+  },
+  {
+   "iteration": 10,
+   "phase": "after_RP",
+   "rp_clusters": 6,
+   "rp_calls": 6,
+   "merges": 0,
+   "conflicts_deferred": 2,
+   "rules": 43,
+   "predicates": 56,
+   "action_predicates": 15,
+   "condition_predicates": 41,
+   "vagueness_mean": 0.6882,
+   "vagueness_min": 0.5323,
+   "vagueness_max": 0.8038
+  }
+ ],
+ "e1_diagnostics": {
+  "blocks_with_verbatim_description": 30,
+  "blocks": 34
+ },
+ "circuits": {
+  "state_predicates": 41,
+  "action_predicates": 15,
+  "cooccurring_pairs": 25,
+  "theta": 0.8,
+  "k_eigengap": 23,
+  "edges": 33,
+  "clusters_before_merge": 23,
+  "clusters_after_merge": 22,
+  "rule_clusters": 24,
+  "rules_without_state_predicates": 2,
+  "distinct_circuits": 12,
+  "max_circuit_predicates": 5,
+  "collapse_flag": false
+ },
+ "circuit_sizes": {
+  "deliver_response": {
+   "rules": 1,
+   "predicates": 3,
+   "condition_predicates": 2,
+   "action_predicates": 1
+  },
+  "deny_request": {
+   "rules": 2,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "locate_user_id": {
+   "rules": 1,
+   "predicates": 2,
+   "condition_predicates": 1,
+   "action_predicates": 1
+  },
+  "modify_items_called_in_current_step": {
+   "rules": 2,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "modify_order": {
+   "rules": 2,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "new_order_placed": {
+   "rules": 1,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "payment_method_provided": {
+   "rules": 3,
+   "predicates": 5,
+   "condition_predicates": 4,
+   "action_predicates": 1
+  },
+  "provide_help": {
+   "rules": 2,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "provide_information": {
+   "rules": 1,
+   "predicates": 2,
+   "condition_predicates": 1,
+   "action_predicates": 1
+  },
+  "refund_initiated_immediately": {
+   "rules": 1,
+   "predicates": 2,
+   "condition_predicates": 1,
+   "action_predicates": 1
+  },
+  "remind_customer_to_confirm_items": {
+   "rules": 1,
+   "predicates": 3,
+   "condition_predicates": 2,
+   "action_predicates": 1
+  },
+  "respond_to_user": {
+   "rules": 3,
+   "predicates": 3,
+   "condition_predicates": 1,
+   "action_predicates": 2
+  },
+  "send_return_instructions_email": {
+   "rules": 1,
+   "predicates": 4,
+   "condition_predicates": 2,
+   "action_predicates": 2
+  },
+  "tool_call_in_session_initiated": {
+   "rules": 6,
+   "predicates": 5,
+   "condition_predicates": 3,
+   "action_predicates": 2
+  },
+  "transfer_to_human": {
+   "rules": 4,
+   "predicates": 3,
+   "condition_predicates": 2,
+   "action_predicates": 1
+  }
+ },
+ "load_check": {
+  "loader": {
+   "status": "success",
+   "action_count": 15,
+   "rule_count": 43
+  },
+  "tree_nodes_without_actions_entry": []
+ }
+}

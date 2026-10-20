@@ -1,0 +1,92 @@
+{
+ "profile": "luna-dev",
+ "env": "retail",
+ "run_id": "final_nob",
+ "flags": {
+  "a": true,
+  "b": false,
+  "label": "A+noB"
+ },
+ "model": "gpt-6-luna",
+ "effort": "high",
+ "input": {
+  "policy": [
+   "output/tgr/policy_input/retail_wiki.rulebuild.txt",
+   "be74a78de2e85b2a156ddf694ed71a91a308d496e138fa4d02913d46fc840b7c"
+  ],
+  "filter": {
+   "input": [
+    "policy_docs/retail_wiki.txt",
+    "d539fd2a46a8b8dd2e934ff9ed92f43e9f6b56bc7a718db8d2803ba8ad8f6bf7"
+   ],
+   "output": [
+    "output/tgr/policy_input/retail_wiki.rulebuild.txt",
+    "be74a78de2e85b2a156ddf694ed71a91a308d496e138fa4d02913d46fc840b7c"
+   ],
+   "drop_headings": [
+    "Domain Basic"
+   ],
+   "removed": [
+    {
+     "heading": "Domain basic",
+     "level": 2,
+     "start_line": 19,
+     "end_line": 32,
+     "text": "## Domain basic\n\n- All times in the database are EST and 24 hour based. For example \"02:30:00\" means 2:30 AM EST.\n\n- Each user has a profile of its email, default address, user id, and payment methods. Each payment method is either a gift card, a paypal account, or a credit card.\n\n- Our retail store has 50 types of products. For each type of product, there are variant items of different options. For example, for a 't shirt' product, there could be an item with option 'color blue size M', and another item with option 'color red size L'.\n\n- Each product has an unique product id, and each item has an unique item id. They have no relations and should not be confused.\n\n- Each order can be in status 'pending', 'processed', 'delivered', or 'cancelled'. Generally, you can only take action on pending or delivered orders.\n\n- Exchange or modify order tools can only be called once. Be sure that all items to be changed are collected into a list before making the tool call!!!\n\n"
+    }
+   ],
+   "chars": {
+    "input": 5718,
+    "output": 4740,
+    "removed": 978
+   }
+  },
+  "tools_sha256": "b654081928d57b0fe23504ec4d4f71ffe65819985045fb687754cdb6ec0f001e"
+ },
+ "prompt_hashes": {
+  "actions_free": "afa381adcb6c1f8b",
+  "actions_tools": "062f4d76f84e290c",
+  "dispositions": "94ae3489c99456bd",
+  "example_general": "cf9801403e312668",
+  "example_restriction": "ff23a600589c1fcf",
+  "form_general": "21d47105f2020558",
+  "form_restriction": "8b9c21ea09fd68b6",
+  "judge": "e91f321f78219c1a",
+  "no_dispositions": "ab626a5b8d6a53d8",
+  "predicates_grounded": "ea16ee627f4498d5",
+  "predicates_plain": "0de622b60074d664",
+  "repair": "f099786338a41f89",
+  "rules_system": "a9b6172907b30867",
+  "rules_user": "af2d72bb054d67a4",
+  "scope": "b8529de989bc23f5"
+ },
+ "usage": {
+  "n_llm_calls": 1,
+  "cache_hits": 0,
+  "input_tokens": 3906,
+  "output_tokens": 13736,
+  "reasoning_tokens": 9831,
+  "api_seconds": 137.3,
+  "cost_usd": 0.007259,
+  "calls_by_stage": {
+   "tgr_rules": 1
+  }
+ },
+ "wall_seconds": 137.4,
+ "counts": {
+  "sentences": 38,
+  "rules": 23,
+  "predicates": 27,
+  "actions_with_rules": 14,
+  "dispositions": {
+   "rule": 0,
+   "exception": 0,
+   "fact": 0,
+   "not_enforceable": 0
+  },
+  "repair_rounds": 0,
+  "invalid_dropped": 0,
+  "duplicates_dropped": 0
+ },
+ "finished": "2026-10-20T10:23:24"
+}

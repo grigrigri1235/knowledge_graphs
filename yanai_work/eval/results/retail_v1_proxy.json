@@ -1,0 +1,791 @@
+{
+ "run": "output/auto_aspm/retail/v1",
+ "labels": {
+  "RET-GEN-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C02-R1",
+    "S0-C04-R1",
+    "S0-C04-R2",
+    "S0-C04-R3"
+   ],
+   "reason": "The automatic rule S0-C02-R1 requires authentication at the beginning by locating the user id via email or via name + zip code, which directly matches the clause. The accompanying rules S0-C04-R1/R0-R3 reinforce that no information is disclosed before authentication, aligning with the clause\u2019s intent that authentication occur before any other tool use or information disclosure."
+  },
+  "RET-GEN-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C02-R1",
+    "S0-C04-R1",
+    "S0-C04-R2",
+    "S0-C04-R3"
+   ],
+   "reason": "The clause requires authentication even if a user-provided id exists. Automatic rules enforce authenticating at the start (locating the user id via email or name+zip) and prohibit disclosing profile/order/product information until authenticated. Together these rules fully capture the requirement that user-supplied id does not replace authentication."
+  },
+  "RET-GEN-02": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "COND",
+    "MODAL",
+    "SCOPE",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S0-C04-R1",
+    "S0-C04-R2",
+    "S0-C04-R3",
+    "S0-C02-R1"
+   ],
+   "reason": "The automatic rules enforce authentication before disclosing information about orders, products, or profile data, and require authentication at the beginning of the conversation. This directly captures the reference clause's 'only after authentication' condition and the scoped data types (order, product, profile) with the relevant tool constraints."
+  },
+  "RET-GEN-03a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R1",
+    "S0-C05-R2",
+    "S0-C04-R1",
+    "S0-C04-R3",
+    "S0-C04-R2",
+    "S0-C02-R1"
+   ],
+   "reason": "The automatic rules collectively enforce that the agent can only assist the authenticated user and not others (S0-C05-R1, S0-C05-R2), require authentication before providing information (S0-C04-R1, S0-C04-R3, S0-C04-R2), and ensure the conversation is tied to a single authenticated user from the start (S0-C02-R1). These align with allowing multiple requests from that same user while disallowing help to any other user, matching the reference clause that you can only help one user per conversation and handle multiple requests from that user."
+  },
+  "RET-GEN-03b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R2",
+    "S0-C05-R1"
+   ],
+   "reason": "The reference clause requires denying any requests for tasks related to any other user. S0-C05-R2 matches exactly: \"The agent must deny requests for tasks related to any other user.\" S0-C05-R1 also supports the constraint by prohibiting assistance to any other user (equivalent in effect to denying such requests), though phrased slightly differently. No contradictions found."
+  },
+  "RET-GEN-04a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S0-C06-R1",
+    "S0-C06-R2",
+    "S0-C06-R3",
+    "S0-C06-R4",
+    "S0-C06-R5",
+    "S0-C06-R6",
+    "S2-C05-R6"
+   ],
+   "reason": "The automatic rules require listing the action details to the user before any tool that updates the database is called, for all relevant update actions (cancel, modify, return, exchange). This directly matches the reference clause's requirement to list action details before consequential DB updates. The automatic rules also add an explicit user confirmation step, which strengthens but does not contradict the clause."
+  },
+  "RET-GEN-04b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "MODAL",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S0-C06-R1",
+    "S0-C06-R2",
+    "S0-C06-R3",
+    "S0-C06-R4",
+    "S0-C06-R5",
+    "S0-C06-R6",
+    "S5-C06-R6"
+   ],
+   "reason": "Automatic rules largely require obtaining explicit 'yes' before performing specific DB-updating actions and, in those rules, additionally require listing the action details before confirmation. This aligns with the core intent but adds extra conditions (listing details) not present in the reference, and one rule uses a yes/no option (weaker modality) rather than only 'yes'. Also the rules cover a subset of DB-updating actions rather than all possible DB updates implied by the generic clause, hence partial coverage."
+  },
+  "RET-GEN-05a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R1",
+    "S0-C07-R2",
+    "S0-C07-R3"
+   ],
+   "reason": "The clause 'The agent must not make up information/knowledge/procedures not provided from the user or the tools' is fully captured by three automatic rules: R1 (information), R2 (knowledge), and R3 (procedures). They preserve the same subject (the agent), modality (must not), and the same three categories of content. Other rules (e.g., R4, product/authentication constraints) are unrelated to this clause and do not affect coverage."
+  },
+  "RET-GEN-05b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R4"
+   ],
+   "reason": "Exact match: the clause prohibits giving subjective recommendations or comments; automatic rule S0-C07-R4 encodes this prohibition for the agent."
+  },
+  "RET-GEN-06a": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C08-R1"
+   ],
+   "reason": "S0-C08-R1 directly enforces that at most one tool call can be in progress, which corresponds to the clause's requirement of at most one tool call per agent turn. It uses the agent obligation framing and the same concurrency constraint as the reference rule."
+  },
+  "RET-GEN-06b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C08-R2"
+   ],
+   "reason": "S0-C08-R2 prohibits responding to the user while a tool call is in progress, which matches the reference clause: if you take a tool call, you should not respond to the user at the same time."
+  },
+  "RET-GEN-06c": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C09-R1"
+   ],
+   "reason": "The reference clause prohibits making a tool call in the same turn as responding to the user. S0-C09-R1 states exactly: 'The agent must not call any tool while responding to the user.' This fully captures the clause with identical modality and scope."
+  },
+  "RET-GEN-07a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "COND"
+   ],
+   "auto_rules": [
+    "S0-C10-R1",
+    "S0-C10-R2"
+   ],
+   "reason": "The automatic rules cover the core 'transfer if and only if cannot be handled' structure by stating: transfer when cannot handle (R1) and do not transfer when can handle (R2). However, there are two mismatches with the reference clause: (1) modality mismatch: the reference uses should (weaker) while the automatic rules use must (stronger); (2) missing the additional exception in the reference: 'or the user explicitly asks for a human agent.' No automatic rule accounts for a user-asked-for transfer scenario. Therefore the extraction partially captures the clause."
+  },
+  "RET-GEN-07b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C10-R1",
+    "S0-C10-R2"
+   ],
+   "reason": "The pair of automatic rules together enforce the biconditional from the reference clause: transfer to a human agent when the request cannot be handled within the scope (R1), and do not transfer when it can be handled (R2). This matches the obligation, scope, and modality of the reference rule."
+  },
+  "RET-DOM-04b": {
+   "status": "missing",
+   "votes": [
+    "missing",
+    "missing",
+    "missing"
+   ],
+   "issues": [],
+   "auto_rules": [],
+   "reason": "None of the automatic rules capture the clause about not confusing product ids with item ids or the associated constraints (e.g., item ids passed to order tools must be item ids, and get_product_details must be called with a product id). The available automatic rules pertain to order confirmation/authentication, not ID distinctions, so the clause is not represented."
+  },
+  "RET-DOM-05b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "SCOPE",
+    "DUP"
+   ],
+   "auto_rules": [
+    "S7-C02-R1",
+    "S6-C02-R1",
+    "S3-C04-R2",
+    "S3-C01-R3",
+    "S3-C06-R1"
+   ],
+   "reason": "The reference clause expresses a general condition that the agent may act only on pending or delivered orders. Automatic rules do constrain certain actions to specific statuses (e.g., modify payment only if pending; exchange/return only if delivered), but there is no single universal rule that enforces \u201conly on pending or delivered\u201d for all actions. The automatic rules partly cover the clause by tying actions to pending or delivered in particular contexts, but not as a comprehensive global constraint. Additionally, S3-C01-R3 and S3-C06-R1 are duplicate rules about pending-order constraints (DUP)."
+  },
+  "RET-DOM-06a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S1-C12-R1",
+    "S5-C06-R2",
+    "S1-C13-R2"
+   ],
+   "reason": "Two automatic rules independently enforce the at-most-once constraint for the two tools in the reference clause: exchange_delivered_order_items must not be called more than once (S1-C12-R1) and modify_pending_order_items must not be called more than once (S5-C06-R2). A related rule (S1-C13-R2) also reinforces that order-item change tool calls cannot be repeated. Taken together, they fully capture the clause where either tool may be used at most once per order."
+  },
+  "RET-DOM-06b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S1-C13-R1",
+    "S1-C13-R2"
+   ],
+   "reason": "Automatic rules require collecting all items to be changed into a list before a tool call that changes an order and to perform at most one such call. This directly matches the reference clause and its reading (collect all items into a single modify-items or exchange call)."
+  },
+  "RET-CAN-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "DUP"
+   ],
+   "auto_rules": [
+    "S2-C01-R1",
+    "S2-C05-R2"
+   ],
+   "reason": "At least one automatic rule exactly captures the clause: 'The agent must not cancel an order unless the order status is 'pending'' (i.e., 'cancel only if pending'). S2-C03-R1 adds an extra constraint (explicit user confirmation) not present in the reference, which is a added condition rather than a mismatch. There is also a duplicate rule (S2-C05-R2) that mirrors S2-C01-R1."
+  },
+  "RET-CAN-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S2-C02-R1",
+    "S2-C05-R1"
+   ],
+   "reason": "The clause requires the agent to check the order status before cancelling. S2-C02-R1 and S2-C05-R1 both require obtaining the status (via get_order_details) before performing the cancellation action, matching the clause's obligation and sequence."
+  },
+  "RET-CAN-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "SUBJ",
+    "COND",
+    "MERGE",
+    "DUP",
+    "SCOPE",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S2-C03-R1",
+    "S2-C05-R4",
+    "S2-C04-R1",
+    "S0-C06-R1",
+    "S2-C05-R5"
+   ],
+   "reason": "The reference clause requires the user to confirm both the order id and the cancellation reason. Automatic rules collectively enforce confirmation of the order id (S2-C03-R1, S2-C05-R4) and the reason (S2-C04-R1, S2-C05-R5), plus a general confirmation step (S0-C06-R1). However, no single rule captures both elements as one obligation. Additionally, there is a subject mismatch (agent must obtain confirmation from the user vs user confirming), extra constraints not in the reference (order status 'pending' in S2-C03-R1 and specific allowed reasons in S2-C04-R1/S2-C05-R5), and duplicates (S2-C05-R4 vs S2-C05-R5). This results in a partial alignment with a merged set of rules rather than an exact single-rule capture."
+  },
+  "RET-CAN-02b": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "incorrect"
+   ],
+   "issues": [
+    "COND",
+    "INV"
+   ],
+   "auto_rules": [
+    "S2-C04-R1",
+    "S2-C05-R5"
+   ],
+   "reason": "Automatic rules S2-C04-R1 and S2-C05-R5 enforce that the cancellation reason must be one of the two allowed values. However, S5-C03-R2 forbids cancellation (inverted relative to the reference), and S2-C01-R1 / S2-C05-R2 introduce an extra pending-status condition not present in the reference, narrowing scope."
+  },
+  "RET-MOD-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S3-C02-R2"
+   ],
+   "reason": "Direct semantic match: 'modify only if status is 'pending'' corresponds exactly to 'The agent must modify the order only if its status is 'pending'' with the same modality and condition. The rule may list additional related actions, but the core constraint on modification is captured without contradiction."
+  },
+  "RET-MOD-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S3-C01-R2",
+    "S3-C02-R1"
+   ],
+   "reason": "The clause requires checking the order status before performing modification actions. S3-C01-R2 states you must check the order\u2019s status before taking any modification action, and S3-C02-R1 similarly requires checking status before any modification action on the order (covering cancelling, exchanging, modifying, etc.). These rules align with the reference clause's intent to gate modifications behind a status check. The modality in the clause uses 'should' while the reference rule set uses 'must' for this directive, but the reference rules frame the authoritative obligation. The extra rules that add constraints (e.g., pending-status gating in S3-C02-R2) are not required to capture the clause and are not part of the matched set. The matched rules therefore cover the core requirement. "
+  },
+  "RET-MOD-02": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S3-C01-R3",
+    "S3-C06-R1",
+    "S3-C03-R1",
+    "S3-C03-R2",
+    "S3-C04-R1",
+    "S3-C04-R2",
+    "S3-C05-R1",
+    "S1-C12-R3"
+   ],
+   "reason": "The automatic rules collectively enforce that, for a pending order, only the shipping address, payment method, or product item options may be modified, and no other attributes may be changed. This matches the reference clause (same allowed actions and the pending-order scope) and uses the agent as the constrained subject with the same enumerated actions. There are additional, non-conflicting constraints in the automatic rules (e.g., frequency of changes) that do not contradict the clause but are not necessary to the core relation."
+  },
+  "RET-MPAY-01": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "SUBJ",
+    "MODAL",
+    "COND",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S4-C01-R1",
+    "S4-C01-R2",
+    "S3-C04-R1",
+    "S3-C04-R2",
+    "S1-C12-R4"
+   ],
+   "reason": "Core constraints of the reference clause are captured: enforce exactly one payment method (S4-C01-R1) and ensure it is different from the original (S4-C01-R2). Contextual checks for pending-order modification (S3-C04-R1 and S3-C04-R2) and the prohibition on modifying more than once (S1-C12-R4) align with the reference rule that modifies a pending order's payment to a single, different method. The clause\u2019s subject (user) vs the rules\u2019 subject (agent) represents a subject shift but remains functionally aligned to enforce the user-facing constraint. A gift-card specific rule (S2-C06-R1) introduces an extra constraint not present in the reference clause, which is not part of the core capture (marked as HALL)."
+  },
+  "RET-MPAY-02": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "DUP",
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S4-C02-R1",
+    "S5-C06-R9",
+    "S5-C02-R9",
+    "S5-C09-R1"
+   ],
+   "reason": "S4-C02-R1 directly expresses the obligation that the agent must not modify the payment method to gift card unless the balance covers the total amount, which matches the reference clause. The other rules touch on gift card balance but use different phrasing (e.g., 'price difference' or 'if the user provides a gift card'), which diverge from the exact reference clause. Additionally, S6-C04-R1 concerns refunds rather than modifying payment to a gift card and is extraneous to the clause."
+  },
+  "RET-MITEM-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "COND",
+    "SCOPE",
+    "MERGE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C06-R2"
+   ],
+   "reason": "The clause 'modify_pending_order_items at most once per order' is captured by automatic rules S5-C01-R1 and S5-C06-R2, which express the same constraint with equivalent wording (at most once). Additional automatic rules introduce extra constraints not present in the reference clause (e.g., S3-C02-R2 and S5-C06-R3 add status-based conditions; S5-C04-R2 adds cautious language; S1-C12-R3/S1-C12-R4 relate to other actions). The presence of multiple rules covering the same clause counts as MERGE. Some rules impose conditions not in the clause (COND) or introduce hallucinatory/unsupported content (HALL). Nonetheless, the essential constraint is fully captured by the matched rules. "
+  },
+  "RET-MITEM-01c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND",
+    "SCOPE",
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C02-R3",
+    "S5-C03-R1",
+    "S5-C03-R2"
+   ],
+   "reason": "The automatic rules capture the core prohibition of not modifying or canceling the order (S5-C02-R3, S5-C03-R1, S5-C03-R2) which aligns with the clause's modality. However, they do not explicitly encode the post-modification condition 'after items are modified' (COND), and they broaden the scope by listing additional restricted actions (e.g., exchange_delivered_order_items, return_delivered_order_items) beyond just modify/cancel (SCOPE). The clause is thus only partially captured, as a stricter condition and narrower scope would be needed for a full match (MERGE due to combining multiple rules to cover one clause)."
+  },
+  "RET-MITEM-01d": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R3",
+    "S5-C06-R6",
+    "S5-C04-R1"
+   ],
+   "reason": "The reference clause requires that the agent lists the action details and obtains explicit user confirmation before modifying items. S0-C06-R3 enforces listing details and explicit confirmation before modifying items in a pending order; S5-C06-R6 requires explicit yes/no confirmation before proceeding with the modification; S5-C04-R1 similarly requires explicit user confirmation before modifying any items. Together, these rules capture the clause\u2019s core obligation (confirm details and proceed only with explicit confirmation) and map to the agent's required action."
+  },
+  "RET-MITEM-01e": {
+   "status": "partial",
+   "votes": [
+    "covered",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S5-C02-R5"
+   ],
+   "reason": "S5-C02-R5 captures the reminder content (remind the customer to confirm they have provided all items to be modified) with correct modality and subject. However, it lacks the explicit timing condition from the reference rule ('Before modifying items of a pending order or exchanging items of a delivered order'), i.e., the reminder should occur prior to modifications/exchanges. Therefore the match is partial due to the missing conditional constraint."
+  },
+  "RET-MITEM-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S5-C02-R6",
+    "S5-C06-R1",
+    "S5-C06-R4",
+    "S5-C06-R7",
+    "S7-C04-R1"
+   ],
+   "reason": "Automatic rules capture the content of the clause (modify each item in a pending order to an available new item of the same product with a different option, and to not change product type; enforce per-item modification in pending orders and handle availability). However, the clause uses permissive language (can be modified) whereas the automatic rules express a mandatory obligation (must modify). This modality mismatch means the extraction is not a perfect (covered) match but a partial one. Some rules also extend to delivered-orders (S7-C04-R1) beyond the pending-order scope, which is extra content beyond the clause."
+  },
+  "RET-MITEM-02b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S5-C07-R1",
+    "S5-C02-R7",
+    "S5-C06-R4",
+    "S7-C04-R1"
+   ],
+   "reason": "Automatic rules explicitly prohibit changing the product type for any item (e.g., S5-C07-R1; S5-C02-R7; S5-C06-R4; S7-C04-R1). These rules fully capture the reference clause 'There cannot be any change of product types' and its example 'modify shirt to shoe.' Other related rules (e.g., S7-C03-R2) are compatible and do not contradict the clause."
+  },
+  "RET-MITEM-03a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "SUBJ",
+    "COND",
+    "DUP",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S5-C02-R8",
+    "S5-C06-R8",
+    "S5-C08-R1",
+    "S7-C05-R1"
+   ],
+   "reason": "Automatic rules capture the gist (agent must ensure/obtain a user-provided payment method) but the subject is the agent (not the user) which is a mismatch with the reference clause's user obligation. There are duplicates (S5-C02-R8 and S5-C06-R8) and an extra constraint (S4-C01-R2) requiring the payment method to differ from the original, which is not present in the reference clause. Additionally, the rules reference specific contexts (cancel_pending_order, modify_pending_order_payment) not stated in the clause."
+  },
+  "RET-MITEM-03b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S5-C02-R9",
+    "S5-C06-R9",
+    "S5-C09-R1",
+    "S7-C06-R1"
+   ],
+   "reason": "The four automatic rules require the agent to ensure that if the user provides a gift card, the gift card balance is enough to cover the price difference. They share the same conditional (if gift card provided) and the same obligation (balance \u2265 price difference) as the reference clause. The rules are effectively duplicates with minor wording differences (noting duplicates)."
+  },
+  "RET-RTN-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S6-C02-R1"
+   ],
+   "reason": "S6-C02-R1 directly encodes the clause: a return is not allowed unless the order status is 'delivered'. This matches the reference clause exactly in modality and condition."
+  },
+  "RET-RTN-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S6-C01-R2",
+    "S6-C02-R2"
+   ],
+   "reason": "The clause requires checking the order status before returning. S6-C01-R2 explicitly states checking status before attempting to return the order; S6-C02-R2 also requires checking status via order details before taking a return action, aligning with the reference clause."
+  },
+  "RET-RTN-02": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S6-C03-R1",
+    "S6-C03-R2",
+    "S6-C03-R3",
+    "S6-C04-R2",
+    "S0-C06-R5",
+    "S6-C06-R2"
+   ],
+   "reason": "The automatic rules require the agent to obtain the user\u2019s confirmation of the order id, the list of items to be returned, and a payment method to receive the refund, matching the reference clause. Additional rules enforce explicit confirmation and confirmation before initiating the return, which align with the intent of the reference rule."
+  },
+  "RET-RTN-03": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S6-C04-R1"
+   ],
+   "reason": "S6-C04-R1 exactly captures the reference clause: the agent must refund to either the original payment method or an existing gift card. Other automatic rules present (e.g., S6-C04-R2, S2-C06-R1/R2, S5-C06-R8, S5-C02-R8) add additional constraints but do not contradict the clause, and S6-C04-R1 alone fully covers the intended obligation."
+  },
+  "RET-EXC-01a": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S7-C02-R1"
+   ],
+   "reason": "Directly captures the clause: the agent must exchange an order only if its status is 'delivered' (must/exchange constrained by delivered status), matching the reference clause and modality."
+  },
+  "RET-EXC-01b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "partial"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S7-C02-R2"
+   ],
+   "reason": "S7-C02-R2 directly requires the agent to check the order status before taking the exchange action, which matches the clause 'Check the status before exchanging' and aligns with the reference rule about checking status before exchanging."
+  },
+  "RET-EXC-01c": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S5-C02-R5"
+   ],
+   "reason": "The automatic rule S5-C02-R5 captures the idea of reminding the customer to confirm all items, but it uses 'to be modified' instead of 'to be exchanged' (the clause refers to items to be exchanged). This creates a mismatch in scope/term. Other rules do not precisely map to the clause."
+  },
+  "RET-EXC-02a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "partial"
+   ],
+   "issues": [
+    "MODAL",
+    "SCOPE",
+    "COND",
+    "SUBJ"
+   ],
+   "auto_rules": [
+    "S7-C03-R1",
+    "S7-C03-R2",
+    "S7-C03-R3",
+    "S7-C04-R1"
+   ],
+   "reason": "The automatic rules cover the core clause elements: delivered order context (R1), replacement to an available new item of the same product with a different option (R2), and requirement that a replacement only occurs if an available item with a different option exists (R3). This matches most of the reference clause (same product, different option, availability, delivered order, per-item replacement). However, the reference clause uses permissive language (\u201ccan be exchanged\u201d), while the automatic rules express a mandatory obligation (\u201cmust exchange\u201d). This modality mismatch means the automation over-constrains the behavior relative to the reference clause. Additionally, some automatic rules introduce constraints not present in the reference (e.g., confirmation requirement in R4 and other ancillary constraints), which prevents a perfect one-to-one alignment. Overall, the automatic rules capture the clause content but with stronger obligations, yielding a partial match."
+  },
+  "RET-EXC-02b": {
+   "status": "covered",
+   "votes": [
+    "partial",
+    "covered",
+    "covered"
+   ],
+   "issues": [],
+   "auto_rules": [
+    "S7-C04-R1",
+    "S5-C07-R1"
+   ],
+   "reason": "Directly captures the clause: the agent must not change the product type of any item, matching the reference clause and its context (exchange/modification). Additional rules about options or pending orders do not contradict this clause."
+  },
+  "RET-EXC-03a": {
+   "status": "partial",
+   "votes": [
+    "partial",
+    "partial",
+    "covered"
+   ],
+   "issues": [
+    "SCOPE",
+    "HALL",
+    "DUP"
+   ],
+   "auto_rules": [
+    "S7-C05-R1",
+    "S7-C06-R1",
+    "S5-C08-R1",
+    "S5-C06-R8",
+    "S5-C02-R8",
+    "S4-C01-R2"
+   ],
+   "reason": "Automatic rules largely require the agent to work with a user-provided payment method to pay or refund the price difference (obtaining/ensuring the method). This captures the intended action of using a user-provided method. However, S4-C01-R2 adds a constraint not present in the reference clause (the method must be different from the original), which narrows the scope and constitutes extra content. There are also duplicate formulations (S5-C08-R1, S5-C02-R8) that reiterate similar obligations."
+  },
+  "RET-EXC-03b": {
+   "status": "covered",
+   "votes": [
+    "covered",
+    "covered",
+    "covered"
+   ],
+   "issues": [
+    "SUBJ",
+    "COND",
+    "MODAL",
+    "SCOPE",
+    "DUP",
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S7-C06-R1",
+    "S5-C06-R9",
+    "S5-C02-R9",
+    "S5-C09-R1"
+   ],
+   "reason": "Automatic rules explicitly require the agent to ensure the gift card balance is at least the price difference when a gift card is provided, matching the reference clause. There are multiple overlapping rules expressing the same obligation (duplicates), hence DUP and MERGE are noted. The subject is the agent (must), the condition is present (if user provides a gift card), and the constraint is the balance covering the price difference."
+  }
+ },
+ "usage": {
+  "e2_proxy": {
+   "calls": 138,
+   "cache_hits": 0,
+   "input_tokens": 109101,
+   "output_tokens": 458118,
+   "reasoning_tokens": 434048,
+   "api_seconds": 2074.73708820343,
+   "errors": 0
+  }
+ }
+}

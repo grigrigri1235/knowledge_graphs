@@ -1,0 +1,1151 @@
+[
+ {
+  "actions": [],
+  "predicates": [
+   {
+    "name": "email_identity_provided_by_user",
+    "description": "The pending email lookup argument matches an email the user provided as their identity.",
+    "source": [
+     "call_arguments",
+     "user_messages"
+    ]
+   },
+   {
+    "name": "name_and_zip_identity_provided_by_user",
+    "description": "The pending name-and-zip lookup arguments match the first name, last name, and zip code the user provided as their identity.",
+    "source": [
+     "call_arguments",
+     "user_messages"
+    ]
+   },
+   {
+    "name": "user_authenticated",
+    "description": "An earlier successful email or name-and-zip lookup output identified the user for this conversation.",
+    "source": [
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "user_specific_information_disclosed",
+    "description": "The pending response contains information about the user's profile, orders, or related products.",
+    "source": [
+     "agent_messages"
+    ]
+   },
+   {
+    "name": "request_is_for_another_user",
+    "description": "The user has requested a task or information concerning a person other than the user being helped in this conversation.",
+    "source": [
+     "user_messages"
+    ]
+   },
+   {
+    "name": "response_performs_task_for_another_user",
+    "description": "The pending response carries out the user's requested task or discloses information concerning a person other than the user being helped in this conversation.",
+    "source": [
+     "agent_messages",
+     "user_messages"
+    ]
+   },
+   {
+    "name": "request_cannot_be_handled_within_scope",
+    "description": "The user's request cannot be handled using the tasks permitted by the policy and the available tools, as reflected in the conversation and pending transfer summary.",
+    "source": [
+     "call_arguments",
+     "user_messages"
+    ]
+   },
+   {
+    "name": "consequential_action_details_listed",
+    "description": "An earlier agent message listed the material details of the pending database-changing action, including the order or user and the exact changes represented by its arguments.",
+    "source": [
+     "agent_messages",
+     "call_arguments"
+    ]
+   },
+   {
+    "name": "user_explicitly_confirmed_pending_action",
+    "description": "After the agent listed the material details of the pending database-changing action, the user explicitly said yes to those details.",
+    "source": [
+     "user_messages",
+     "agent_messages",
+     "call_arguments"
+    ]
+   },
+   {
+    "name": "order_status_checked_pending",
+    "description": "An earlier order-details tool output for the order id in the pending action reports status pending.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "order_status_checked_delivered",
+    "description": "An earlier order-details tool output for the order id in the pending action reports status delivered.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "cancellation_reason_is_allowed",
+    "description": "The pending cancellation argument is either no longer needed or ordered by mistake.",
+    "source": [
+     "call_arguments"
+    ]
+   },
+   {
+    "name": "user_confirmed_cancellation_order_and_reason",
+    "description": "The user confirmed the order id and cancellation reason represented by the pending cancellation arguments.",
+    "source": [
+     "call_arguments",
+     "user_messages"
+    ]
+   },
+   {
+    "name": "user_chose_pending_payment_method",
+    "description": "The user stated or agreed to exactly the single payment method represented by the pending payment-change argument.",
+    "source": [
+     "call_arguments",
+     "user_messages",
+     "agent_messages"
+    ]
+   },
+   {
+    "name": "payment_method_differs_from_original",
+    "description": "Earlier tool output establishes the original payment method for the pending order, and the pending payment-change argument identifies a different method.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "payment_method_is_gift_card",
+    "description": "The payment method id in the pending action identifies a gift card.",
+    "source": [
+     "call_arguments"
+    ]
+   },
+   {
+    "name": "gift_card_balance_covers_order_total",
+    "description": "Earlier tool output establishes that the gift card in the pending action has a balance at least equal to the order total.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "item_replacements_are_available_same_product_different_option",
+    "description": "Earlier tool outputs establish that each replacement item in the pending action is available, belongs to the same product as its paired original item, and has a different product option.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "user_chose_price_difference_payment_method",
+    "description": "The user stated or agreed to the payment method represented by the pending item-modification or exchange argument for the price difference.",
+    "source": [
+     "call_arguments",
+     "user_messages",
+     "agent_messages"
+    ]
+   },
+   {
+    "name": "gift_card_balance_covers_price_difference",
+    "description": "Earlier tool output establishes that the gift card in the pending action has a balance at least equal to the price difference.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "agent_reminded_user_to_include_all_items_for_modification",
+    "description": "An earlier agent message reminded the user to ensure that all desired items were included for modification.",
+    "source": [
+     "agent_messages"
+    ]
+   },
+   {
+    "name": "user_confirmed_return_order_items_and_method",
+    "description": "The user stated or agreed to the order id, complete list of items to return, and refund payment method represented by the pending return arguments.",
+    "source": [
+     "call_arguments",
+     "user_messages",
+     "agent_messages"
+    ]
+   },
+   {
+    "name": "return_refund_method_is_original_or_existing_gift_card",
+    "description": "Earlier tool output establishes that the refund method in the pending return action is either the order's original payment method or an existing gift card belonging to the user.",
+    "source": [
+     "call_arguments",
+     "tool_outputs"
+    ]
+   },
+   {
+    "name": "agent_reminded_user_to_include_all_items_for_exchange",
+    "description": "An earlier agent message reminded the user to ensure that all desired items were included for exchange.",
+    "source": [
+     "agent_messages"
+    ]
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "action": "find_user_id_by_email",
+    "condition": "email_identity_provided_by_user",
+    "description": "Use an email supplied by the user to locate their identity.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R2",
+    "action": "find_user_id_by_name_zip",
+    "condition": "name_and_zip_identity_provided_by_user",
+    "description": "Use the user's supplied name and zip code to locate their identity.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R3",
+    "action": "respond",
+    "condition": "(NOT user_specific_information_disclosed OR user_authenticated)",
+    "description": "Do not disclose the user's profile, order, or related-product information before authentication.",
+    "sentences": [
+     "S2",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "id": "R4",
+    "action": "get_user_details",
+    "condition": "user_authenticated",
+    "description": "Authenticate before retrieving user details.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R5",
+    "action": "get_order_details",
+    "condition": "user_authenticated",
+    "description": "Authenticate before retrieving order details.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R6",
+    "action": "get_product_details",
+    "condition": "user_authenticated",
+    "description": "Authenticate before retrieving related-product details.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R7",
+    "action": "list_all_product_types",
+    "condition": "user_authenticated",
+    "description": "Authenticate before retrieving product-type information for the user's request.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R8",
+    "action": "cancel_pending_order",
+    "condition": "user_authenticated",
+    "description": "Authenticate before cancelling an order.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R9",
+    "action": "modify_pending_order_address",
+    "condition": "user_authenticated",
+    "description": "Authenticate before changing an order address.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R10",
+    "action": "modify_pending_order_items",
+    "condition": "user_authenticated",
+    "description": "Authenticate before changing order items.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R11",
+    "action": "modify_pending_order_payment",
+    "condition": "user_authenticated",
+    "description": "Authenticate before changing an order payment method.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R12",
+    "action": "modify_user_address",
+    "condition": "user_authenticated",
+    "description": "Authenticate before changing the user's default address.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R13",
+    "action": "return_delivered_order_items",
+    "condition": "user_authenticated",
+    "description": "Authenticate before returning order items.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R14",
+    "action": "exchange_delivered_order_items",
+    "condition": "user_authenticated",
+    "description": "Authenticate before exchanging order items.",
+    "sentences": [
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "R15",
+    "action": "find_user_id_by_email",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not look up another user's identity.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R16",
+    "action": "find_user_id_by_name_zip",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not look up another user's identity.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R17",
+    "action": "get_user_details",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not retrieve another user's details.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R18",
+    "action": "get_order_details",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not retrieve order details for another user's task.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R19",
+    "action": "get_product_details",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not retrieve product details for another user's task.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R20",
+    "action": "list_all_product_types",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not retrieve product-type information for another user's task.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R21",
+    "action": "cancel_pending_order",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not cancel an order for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R22",
+    "action": "exchange_delivered_order_items",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not exchange items for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R23",
+    "action": "modify_pending_order_address",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not change an order address for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R24",
+    "action": "modify_pending_order_items",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not change order items for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R25",
+    "action": "modify_pending_order_payment",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not change an order's payment method for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R26",
+    "action": "modify_user_address",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not change another user's default address.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R27",
+    "action": "return_delivered_order_items",
+    "condition": "NOT request_is_for_another_user",
+    "description": "Do not return items for another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R28",
+    "action": "respond",
+    "condition": "NOT response_performs_task_for_another_user",
+    "description": "Do not carry out or disclose the result of a task concerning another user.",
+    "sentences": [
+     "S5"
+    ]
+   },
+   {
+    "id": "R29",
+    "action": "transfer_to_human_agents",
+    "condition": "request_cannot_be_handled_within_scope",
+    "description": "Transfer only when the request cannot be handled within the agent's scope.",
+    "sentences": [
+     "S10"
+    ]
+   },
+   {
+    "id": "R30",
+    "action": "cancel_pending_order",
+    "condition": "consequential_action_details_listed",
+    "description": "List the cancellation details before cancelling.",
+    "sentences": [
+     "S6",
+     "S12"
+    ]
+   },
+   {
+    "id": "R31",
+    "action": "cancel_pending_order",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed cancellation details.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R32",
+    "action": "exchange_delivered_order_items",
+    "condition": "consequential_action_details_listed",
+    "description": "List the exchange details before exchanging.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R33",
+    "action": "exchange_delivered_order_items",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed exchange details.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R34",
+    "action": "modify_pending_order_address",
+    "condition": "consequential_action_details_listed",
+    "description": "List the order-address changes before modifying the address.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R35",
+    "action": "modify_pending_order_address",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed address changes.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R36",
+    "action": "modify_pending_order_items",
+    "condition": "consequential_action_details_listed",
+    "description": "List all item-modification details before changing order items.",
+    "sentences": [
+     "S6",
+     "S21"
+    ]
+   },
+   {
+    "id": "R37",
+    "action": "modify_pending_order_items",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed item-modification details.",
+    "sentences": [
+     "S6",
+     "S21"
+    ]
+   },
+   {
+    "id": "R38",
+    "action": "modify_pending_order_payment",
+    "condition": "consequential_action_details_listed",
+    "description": "List the payment-method change before modifying it.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R39",
+    "action": "modify_pending_order_payment",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed payment-method change.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R40",
+    "action": "modify_user_address",
+    "condition": "consequential_action_details_listed",
+    "description": "List the default-address changes before modifying the address.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R41",
+    "action": "modify_user_address",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed default-address changes.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R42",
+    "action": "return_delivered_order_items",
+    "condition": "consequential_action_details_listed",
+    "description": "List the return details before returning items.",
+    "sentences": [
+     "S6",
+     "S28"
+    ]
+   },
+   {
+    "id": "R43",
+    "action": "return_delivered_order_items",
+    "condition": "user_explicitly_confirmed_pending_action",
+    "description": "Obtain an explicit yes to the listed return details.",
+    "sentences": [
+     "S6"
+    ]
+   },
+   {
+    "id": "R44",
+    "action": "cancel_pending_order",
+    "condition": "order_status_checked_pending",
+    "description": "Check that the order is pending before cancelling it.",
+    "sentences": [
+     "S11"
+    ]
+   },
+   {
+    "id": "R45",
+    "action": "cancel_pending_order",
+    "condition": "cancellation_reason_is_allowed",
+    "description": "Use one of the permitted cancellation reasons.",
+    "sentences": [
+     "S12"
+    ]
+   },
+   {
+    "id": "R46",
+    "action": "cancel_pending_order",
+    "condition": "user_confirmed_cancellation_order_and_reason",
+    "description": "Have the user confirm the cancellation order id and reason.",
+    "sentences": [
+     "S12"
+    ]
+   },
+   {
+    "id": "R47",
+    "action": "modify_pending_order_address",
+    "condition": "order_status_checked_pending",
+    "description": "Check that the order is pending before changing its address.",
+    "sentences": [
+     "S14"
+    ]
+   },
+   {
+    "id": "R48",
+    "action": "modify_pending_order_items",
+    "condition": "order_status_checked_pending",
+    "description": "Check that the order is pending before changing its items.",
+    "sentences": [
+     "S14"
+    ]
+   },
+   {
+    "id": "R49",
+    "action": "modify_pending_order_payment",
+    "condition": "order_status_checked_pending",
+    "description": "Check that the order is pending before changing its payment method.",
+    "sentences": [
+     "S14"
+    ]
+   },
+   {
+    "id": "R50",
+    "action": "modify_pending_order_payment",
+    "condition": "user_chose_pending_payment_method",
+    "description": "Use the single payment method chosen by the user.",
+    "sentences": [
+     "S16"
+    ]
+   },
+   {
+    "id": "R51",
+    "action": "modify_pending_order_payment",
+    "condition": "payment_method_differs_from_original",
+    "description": "The new payment method must differ from the original method.",
+    "sentences": [
+     "S16"
+    ]
+   },
+   {
+    "id": "R52",
+    "action": "modify_pending_order_payment",
+    "condition": "(NOT payment_method_is_gift_card OR gift_card_balance_covers_order_total)",
+    "description": "A gift-card payment method must have enough balance to cover the order total.",
+    "sentences": [
+     "S17"
+    ]
+   },
+   {
+    "id": "R53",
+    "action": "modify_pending_order_items",
+    "condition": "agent_reminded_user_to_include_all_items_for_modification",
+    "description": "Remind the user to include every item they want modified.",
+    "sentences": [
+     "S22"
+    ]
+   },
+   {
+    "id": "R54",
+    "action": "modify_pending_order_items",
+    "condition": "item_replacements_are_available_same_product_different_option",
+    "description": "Each replacement must be available, be the same product, and have a different product option.",
+    "sentences": [
+     "S23",
+     "S24"
+    ]
+   },
+   {
+    "id": "R55",
+    "action": "modify_pending_order_items",
+    "condition": "user_chose_price_difference_payment_method",
+    "description": "Use a payment method the user provided for the price difference.",
+    "sentences": [
+     "S25"
+    ]
+   },
+   {
+    "id": "R56",
+    "action": "modify_pending_order_items",
+    "condition": "(NOT payment_method_is_gift_card OR gift_card_balance_covers_price_difference)",
+    "description": "A gift card used for the price difference must have sufficient balance.",
+    "sentences": [
+     "S26"
+    ]
+   },
+   {
+    "id": "R57",
+    "action": "return_delivered_order_items",
+    "condition": "order_status_checked_delivered",
+    "description": "Check that the order is delivered before returning items.",
+    "sentences": [
+     "S27"
+    ]
+   },
+   {
+    "id": "R58",
+    "action": "return_delivered_order_items",
+    "condition": "user_confirmed_return_order_items_and_method",
+    "description": "Have the user establish the order id, items to return, and refund method.",
+    "sentences": [
+     "S28"
+    ]
+   },
+   {
+    "id": "R59",
+    "action": "return_delivered_order_items",
+    "condition": "return_refund_method_is_original_or_existing_gift_card",
+    "description": "Send the refund to the original payment method or an existing gift card.",
+    "sentences": [
+     "S29"
+    ]
+   },
+   {
+    "id": "R60",
+    "action": "exchange_delivered_order_items",
+    "condition": "order_status_checked_delivered",
+    "description": "Check that the order is delivered before exchanging items.",
+    "sentences": [
+     "S31"
+    ]
+   },
+   {
+    "id": "R61",
+    "action": "exchange_delivered_order_items",
+    "condition": "agent_reminded_user_to_include_all_items_for_exchange",
+    "description": "Remind the user to include every item they want exchanged.",
+    "sentences": [
+     "S32"
+    ]
+   },
+   {
+    "id": "R62",
+    "action": "exchange_delivered_order_items",
+    "condition": "item_replacements_are_available_same_product_different_option",
+    "description": "Each replacement must be available, be the same product, and have a different product option.",
+    "sentences": [
+     "S33",
+     "S34"
+    ]
+   },
+   {
+    "id": "R63",
+    "action": "exchange_delivered_order_items",
+    "condition": "user_chose_price_difference_payment_method",
+    "description": "Use a payment method the user provided for the price difference.",
+    "sentences": [
+     "S35"
+    ]
+   },
+   {
+    "id": "R64",
+    "action": "exchange_delivered_order_items",
+    "condition": "(NOT payment_method_is_gift_card OR gift_card_balance_covers_price_difference)",
+    "description": "A gift card used for the price difference must have sufficient balance.",
+    "sentences": [
+     "S36"
+    ]
+   }
+  ],
+  "dispositions": [
+   {
+    "sentence": "S1",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the agent's permitted service scope."
+   },
+   {
+    "sentence": "S2",
+    "disposition": "rule",
+    "rule_ids": [
+     "R1",
+     "R2",
+     "R3",
+     "R4",
+     "R5",
+     "R6",
+     "R7",
+     "R8",
+     "R9",
+     "R10",
+     "R11",
+     "R12",
+     "R13",
+     "R14"
+    ],
+    "reason": "Identity lookup and authentication preconditions gate customer-specific actions and disclosures."
+   },
+   {
+    "sentence": "S3",
+    "disposition": "rule",
+    "rule_ids": [
+     "R1",
+     "R2",
+     "R3",
+     "R4",
+     "R5",
+     "R6",
+     "R7",
+     "R8",
+     "R9",
+     "R10",
+     "R11",
+     "R12",
+     "R13",
+     "R14"
+    ],
+    "reason": "Providing a user id does not satisfy the required lookup and authentication preconditions."
+   },
+   {
+    "sentence": "S4",
+    "disposition": "rule",
+    "rule_ids": [
+     "R3"
+    ],
+    "reason": "The response rule blocks user-specific information before authentication."
+   },
+   {
+    "sentence": "S5",
+    "disposition": "rule",
+    "rule_ids": [
+     "R15",
+     "R16",
+     "R17",
+     "R18",
+     "R19",
+     "R20",
+     "R21",
+     "R22",
+     "R23",
+     "R24",
+     "R25",
+     "R26",
+     "R27",
+     "R28"
+    ],
+    "reason": "The rules block tool actions for another user's task and responses that perform or disclose such a task."
+   },
+   {
+    "sentence": "S6",
+    "disposition": "rule",
+    "rule_ids": [
+     "R30",
+     "R31",
+     "R32",
+     "R33",
+     "R34",
+     "R35",
+     "R36",
+     "R37",
+     "R38",
+     "R39",
+     "R40",
+     "R41",
+     "R42",
+     "R43"
+    ],
+    "reason": "Each consequential action requires listed details and an explicit yes."
+   },
+   {
+    "sentence": "S7",
+    "disposition": "not_enforceable",
+    "rule_ids": [],
+    "reason": "General truthfulness, grounding, and subjectivity of messages cannot be enforced as single-action restrictions."
+   },
+   {
+    "sentence": "S8",
+    "disposition": "not_enforceable",
+    "rule_ids": [],
+    "reason": "Whether multiple tool calls are combined in a turn is not checkable one action at a time."
+   },
+   {
+    "sentence": "S9",
+    "disposition": "not_enforceable",
+    "rule_ids": [],
+    "reason": "Whether a response and tool call are combined in a turn is not checkable one action at a time."
+   },
+   {
+    "sentence": "S10",
+    "disposition": "rule",
+    "rule_ids": [
+     "R29"
+    ],
+    "reason": "The transfer rule blocks transfer for requests that can be handled within scope."
+   },
+   {
+    "sentence": "S11",
+    "disposition": "rule",
+    "rule_ids": [
+     "R44"
+    ],
+    "reason": "Cancellation requires an earlier status check establishing that the order is pending."
+   },
+   {
+    "sentence": "S12",
+    "disposition": "rule",
+    "rule_ids": [
+     "R30",
+     "R45",
+     "R46"
+    ],
+    "reason": "Cancellation details must be listed, the reason must be permitted, and the user must confirm the order id and reason."
+   },
+   {
+    "sentence": "S13",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the result and refund timing after cancellation."
+   },
+   {
+    "sentence": "S14",
+    "disposition": "rule",
+    "rule_ids": [
+     "R47",
+     "R48",
+     "R49"
+    ],
+    "reason": "Each pending-order modification requires an earlier check establishing pending status."
+   },
+   {
+    "sentence": "S15",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "The available modification tools already limit actions to address, payment, or item changes."
+   },
+   {
+    "sentence": "S16",
+    "disposition": "rule",
+    "rule_ids": [
+     "R50",
+     "R51"
+    ],
+    "reason": "The user must choose one payment method and it must differ from the original."
+   },
+   {
+    "sentence": "S17",
+    "disposition": "rule",
+    "rule_ids": [
+     "R52"
+    ],
+    "reason": "A gift-card payment is allowed only when its balance covers the total."
+   },
+   {
+    "sentence": "S18",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the status after a successful payment-method change."
+   },
+   {
+    "sentence": "S19",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the refund timing after a successful payment-method change."
+   },
+   {
+    "sentence": "S20",
+    "disposition": "not_enforceable",
+    "rule_ids": [],
+    "reason": "The one-call limit cannot be decided from the permitted predicate sources, and the status change describes an outcome."
+   },
+   {
+    "sentence": "S21",
+    "disposition": "rule",
+    "rule_ids": [
+     "R36",
+     "R37"
+    ],
+    "reason": "The item-change details must be listed and explicitly confirmed before the action."
+   },
+   {
+    "sentence": "S22",
+    "disposition": "rule",
+    "rule_ids": [
+     "R53"
+    ],
+    "reason": "The agent must remind the user to include all items before item modification."
+   },
+   {
+    "sentence": "S23",
+    "disposition": "rule",
+    "rule_ids": [
+     "R54"
+    ],
+    "reason": "Item modifications require available replacements of the same product with a different option."
+   },
+   {
+    "sentence": "S24",
+    "disposition": "rule",
+    "rule_ids": [
+     "R54"
+    ],
+    "reason": "The item-mapping rule prevents changing product types."
+   },
+   {
+    "sentence": "S25",
+    "disposition": "rule",
+    "rule_ids": [
+     "R55"
+    ],
+    "reason": "The user must choose the payment method for the price difference."
+   },
+   {
+    "sentence": "S26",
+    "disposition": "rule",
+    "rule_ids": [
+     "R56"
+    ],
+    "reason": "A gift card used for the price difference must have sufficient balance."
+   },
+   {
+    "sentence": "S27",
+    "disposition": "rule",
+    "rule_ids": [
+     "R57"
+    ],
+    "reason": "A return requires an earlier status check establishing that the order is delivered."
+   },
+   {
+    "sentence": "S28",
+    "disposition": "rule",
+    "rule_ids": [
+     "R42",
+     "R58"
+    ],
+    "reason": "The return details must be listed and the user must establish the order, items, and refund method."
+   },
+   {
+    "sentence": "S29",
+    "disposition": "rule",
+    "rule_ids": [
+     "R59"
+    ],
+    "reason": "The refund method must be the original payment method or an existing gift card."
+   },
+   {
+    "sentence": "S30",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the result and follow-up email after a successful return request."
+   },
+   {
+    "sentence": "S31",
+    "disposition": "rule",
+    "rule_ids": [
+     "R60"
+    ],
+    "reason": "An exchange requires an earlier status check establishing that the order is delivered."
+   },
+   {
+    "sentence": "S32",
+    "disposition": "rule",
+    "rule_ids": [
+     "R61"
+    ],
+    "reason": "The agent must remind the user to include all items before exchange."
+   },
+   {
+    "sentence": "S33",
+    "disposition": "rule",
+    "rule_ids": [
+     "R62"
+    ],
+    "reason": "Exchanges require available replacements of the same product with a different option."
+   },
+   {
+    "sentence": "S34",
+    "disposition": "rule",
+    "rule_ids": [
+     "R62"
+    ],
+    "reason": "The item-mapping rule prevents changing product types."
+   },
+   {
+    "sentence": "S35",
+    "disposition": "rule",
+    "rule_ids": [
+     "R63"
+    ],
+    "reason": "The user must choose the payment method for the price difference."
+   },
+   {
+    "sentence": "S36",
+    "disposition": "rule",
+    "rule_ids": [
+     "R64"
+    ],
+    "reason": "A gift card used for the price difference must have sufficient balance."
+   },
+   {
+    "sentence": "S37",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes the result and follow-up email after a successful exchange request."
+   },
+   {
+    "sentence": "S38",
+    "disposition": "fact",
+    "rule_ids": [],
+    "reason": "It describes that an exchange does not require a new order."
+   }
+  ],
+  "background_sentences": [
+   "S1",
+   "S2",
+   "S5",
+   "S11",
+   "S14",
+   "S17",
+   "S23",
+   "S25",
+   "S27",
+   "S29",
+   "S33",
+   "S35",
+   "S36"
+  ]
+ }
+]

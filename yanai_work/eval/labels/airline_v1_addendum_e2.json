@@ -1,0 +1,597 @@
+{
+ "run": "output/auto_aspm/airline/v1_addendum",
+ "labeller": "manual (Claude); same rubric and conventions as airline_v1_e2.json",
+ "method": "Clauses whose v1-matched rules exist unchanged (description, tools, logic) in this run carry their v1 label (4 clauses). S2 re-ran without a seed, so the other 57 clauses had changed rules and were labelled manually.",
+ "labels": {
+  "AIR-GEN-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R2"
+   ],
+   "note": "[carried over from v1: matched rules unchanged]"
+  },
+  "AIR-GEN-04": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R1"
+   ],
+   "note": "[carried over from v1: matched rules unchanged]"
+  },
+  "AIR-BOOK-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C03-R1",
+    "S2-C03-R2",
+    "S2-C03-R3"
+   ],
+   "note": "[carried over from v1: matched rules unchanged] Split per field."
+  },
+  "AIR-CAN-02e": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S4-C05-R1"
+   ],
+   "note": "[carried over from v1: matched rules unchanged]"
+  },
+  "AIR-GEN-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R1",
+    "S3-C07-R2",
+    "S0-C02-R2",
+    "S0-C02-R6"
+   ],
+   "note": "S0-C03-R1 lists + confirms on all five DB writes incl. cancel (addendum note 3). The S0-C02-R* 'details listed' predicates degrade to call-argument completeness (E3)."
+  },
+  "AIR-GEN-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R1",
+    "S3-C07-R3",
+    "S0-C02-R6"
+   ],
+   "note": "Cancel now included (addendum note 3 reflected; v1 followed the literal parenthetical)."
+  },
+  "AIR-GEN-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R2"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-05a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C02-R12"
+   ],
+   "note": "Explicit-request disjunct present (as in v1); the addendum's exceptions (requests to deny, passenger-count changes) are NOT encoded."
+  },
+  "AIR-GEN-05b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S0-C02-R12"
+   ],
+   "note": "Same iff rule, as v1."
+  },
+  "AIR-DOM-04c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S1-C06-R1"
+   ],
+   "note": "Still literal (delayed/on time): addendum note 1 ('only if available', incl. flights added to an existing reservation) NOT reflected; nothing on update_reservation_flights."
+  },
+  "AIR-DOM-04e": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S1-C08-R1"
+   ],
+   "note": "As 04c."
+  },
+  "AIR-BOOK-01a": {
+   "status": "partial",
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S2-C01-R1",
+    "S2-C01-R2"
+   ],
+   "note": "S2-C01-R1 now reads 'locate the user id via email or name + zip before any other action' (addendum note 5, a RETAIL note): airline has no such lookup, so the block rule on every write/respond/search can never be satisfied. Ordering vs trip details kept in S2-C01-R2."
+  },
+  "AIR-BOOK-01b": {
+   "status": "partial",
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S2-C01-R2"
+   ],
+   "note": "Became 'ask for trip type, origin, destination ONLY AFTER the user id is located' (logic: action -> user_id_located). The obligation to ask for them is gone."
+  },
+  "AIR-BOOK-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C02-R1"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-02c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C04-R1",
+    "S2-C04-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R1"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R3"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03e": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C07-R1",
+    "S2-C07-R2",
+    "S2-C07-R3"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-04a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C08-R1",
+    "S2-C08-R2",
+    "S2-C08-R3"
+   ],
+   "note": "'only if regular': each amount is unique to the regular tier for its cabin, so the 'only if' happens to be consistent."
+  },
+  "AIR-BOOK-04b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C09-R1",
+    "S2-C09-R2",
+    "S2-C09-R3"
+   ],
+   "note": "Descriptions now say 'if silver' (v1: 'only if silver'; no addendum note concerns bags, so this is run variance). Logic flaw remains: S2-C09-R3 'silver -> total_baggages = 3 x business' has no business antecedent and uses total bags (E3)."
+  },
+  "AIR-BOOK-04c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C10-R1",
+    "S2-C10-R2",
+    "S2-C10-R3"
+   ],
+   "note": "'if gold' (run variance vs v1). S2-C10-R2/R3 logic still lacks a cabin antecedent, so the two rules conflict for any gold reservation (E3)."
+  },
+  "AIR-BOOK-04d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C11-R1"
+   ],
+   "note": "Now on book_reservation as well (v1: bags update only). Run variance."
+  },
+  "AIR-BOOK-05a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C12-R1"
+   ],
+   "note": "Attached to book_reservation and respond_to_user (v1: respond_to_user only). The logic only fires on respond_to_user."
+  },
+  "AIR-BOOK-05b": {
+   "status": "missing",
+   "issues": [
+    "DROP"
+   ],
+   "auto_rules": [],
+   "note": "Still classified as a fact (S1 is cached from v1)."
+  },
+  "AIR-MOD-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C08-R1",
+    "S3-C11-R3",
+    "S4-C01-R1"
+   ],
+   "note": "TOOLS+! S3-C13-R1 / S3-C01-R1 ('obtain user id AND reservation id') also sit on book_reservation, which has no reservation id: S3-C13-R1 (call_args, block) fails on every booking."
+  },
+  "AIR-MOD-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C08-R1",
+    "S3-C11-R3",
+    "S4-C01-R2"
+   ],
+   "note": "TOOLS+! as MOD-01a."
+  },
+  "AIR-MOD-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C02-R1"
+   ],
+   "note": "Predicate checks the NEW cabin argument ('basic') instead of the reservation's cabin (E3)."
+  },
+  "AIR-MOD-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C03-R1",
+    "S3-C03-R2",
+    "S3-C03-R3",
+    "S3-C08-R6"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-02d": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S3-C07-R1",
+    "S3-C03-R4",
+    "S3-C11-R4"
+   ],
+   "note": "Meta clause unresolved: 'make sure the rules apply' / 's3_c01..s3_c17_satisfied' (predicates name pipeline clause ids). v1 had resolved it into concrete checks."
+  },
+  "AIR-MOD-03a": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S3-C02-R1"
+   ],
+   "note": "No 'must allow' this time, but the cabin-change exception is not stated; S3-C02-R1's description forbids flight updates of basic-economy reservations without it."
+  },
+  "AIR-MOD-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C08-R4",
+    "S3-C09-R2"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C10-R1",
+    "S3-C08-R3"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-03d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C10-R2",
+    "S3-C08-R3"
+   ],
+   "note": "Description faithful; S3-C10-R2 logic misreads 'one segment' as 'a one-segment reservation' (E3)."
+  },
+  "AIR-MOD-04a": {
+   "status": "partial",
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S3-C11-R1",
+    "S3-C11-R2"
+   ],
+   "note": "S3-C11-R1 correct (nonfree only). S3-C11-R2 turns 'the user can add bags' into 'must update baggage when the user requests' with a post-state consequent (baggage_update_done, block)."
+  },
+  "AIR-MOD-04b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C12-R1"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-05a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C14-R1"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-05b": {
+   "status": "partial",
+   "issues": [
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C15-R1"
+   ],
+   "note": "Only the unresolved 'request described by S3-C15' rule, now on cancel_reservation. Addendum note 2's passenger-count exception to the transfer permission is not encoded."
+  },
+  "AIR-MOD-06a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C16-R1"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-06b": {
+   "status": "partial",
+   "issues": [
+    "SCOPE"
+   ],
+   "auto_rules": [
+    "S3-C08-R5"
+   ],
+   "note": "Narrowed to 'before processing cabin changes'; S3-C17-R1 ('… instead') is an unresolved duplicate on book/cancel."
+  },
+  "AIR-CAN-01a": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S4-C01-R1",
+    "S4-C04-R2",
+    "S4-C07-R1",
+    "S4-C08-R2"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-01b": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S4-C01-R2",
+    "S4-C04-R2",
+    "S4-C07-R1"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-01c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S4-C01-R3",
+    "S4-C04-R2"
+   ],
+   "note": "Reason enumeration kept."
+  },
+  "AIR-CAN-02a": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S4-C02-R1",
+    "S4-C07-R2",
+    "S4-C08-R3"
+   ],
+   "note": "'must not cancel unless within 24 h or airline cancelled' (S4-C02-R1, S4-C07-R2): the exceptions became the only allowed cases, forbidding insured (basic) economy and business cancellations. S4-C08-R3 adds business but not insurance."
+  },
+  "AIR-CAN-02b": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S4-C02-R1",
+    "S4-C07-R2",
+    "S4-C08-R3"
+   ],
+   "note": "As 02a."
+  },
+  "AIR-CAN-02c": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S4-C03-R1",
+    "S4-C07-R3"
+   ],
+   "note": "As v1: exceptions not integrated; 'the condition' grounded as 'within cancellation window and terms active', not health/weather."
+  },
+  "AIR-CAN-02d": {
+   "status": "partial",
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S4-C08-R3",
+    "S4-C04-R1",
+    "S4-C04-R4"
+   ],
+   "note": "S4-C08-R3 includes the business exception, but S4-C04-R1/R4 turn 'business can always be cancelled' into 'cancel only reservations with business segments' (logic: cancel -> business AND unused)."
+  },
+  "AIR-CAN-02f": {
+   "status": "partial",
+   "issues": [
+    "COND",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S4-C04-R6",
+    "S4-C07-R8",
+    "S4-C03-R2",
+    "S4-C08-R5"
+   ],
+   "note": "Meta-reference unresolved; S4-C07-R8/S4-C03-R2 invent cancellation windows, fees and pending charges."
+  },
+  "AIR-CAN-03a": {
+   "status": "partial",
+   "issues": [
+    "HALL"
+   ],
+   "auto_rules": [
+    "S4-C07-R5",
+    "S4-C07-R7",
+    "S4-C08-R4",
+    "S4-C09-R1",
+    "S4-C08-R1"
+   ],
+   "note": "Unflown-only rules correct, but S4-C08-R1 (same source clause) is the leaked retail authentication rule (email or name + zip, block on all writes)."
+  },
+  "AIR-CAN-03b": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S4-C07-R6",
+    "S4-C09-R2"
+   ],
+   "note": "As v1: not attached to transfer_to_human_agents or respond_to_user."
+  },
+  "AIR-COMP-01a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C03-R2"
+   ],
+   "note": "Operator scope now correct (the complaint applies to all eligibility disjuncts; v1 bound it only to business). On send_certificate S5-C01-R1 also forbids the delayed-flight certificate (cross-rule conflict, as in v1)."
+  },
+  "AIR-COMP-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C01-R4"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-01c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C01-R3",
+    "S5-C03-R2"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-02a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C02-R1",
+    "S5-C03-R3"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R2",
+    "S5-C03-R3"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-02c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R2",
+    "S5-C03-R3"
+   ],
+   "note": "Permission phrased as 'must offer' but logic only checks the amount."
+  },
+  "AIR-COMP-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C03-R1",
+    "S5-C02-R1"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C04-R1"
+   ],
+   "note": "Description keeps '(basic) economy'; predicate narrowed to Basic Economy (as v1)."
+  }
+ }
+}

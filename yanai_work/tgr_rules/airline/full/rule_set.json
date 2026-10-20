@@ -1,0 +1,1713 @@
+{
+ "flags": {
+  "a": true,
+  "b": true,
+  "label": "A+B"
+ },
+ "sentences": [
+  {
+   "id": "S1",
+   "text": "The current time is 2024-05-15 15:00:00 EST.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S2",
+   "text": "As an airline agent, you can help users book, modify, or cancel flight reservations.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S3",
+   "text": "Before taking any actions that update the booking database (booking, modifying flights, editing baggage, upgrading cabin class, or updating passenger information), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S4",
+   "text": "You should not provide any information, knowledge, or procedures not provided by the user or available tools, or give subjective recommendations or comments.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S5",
+   "text": "You should only make one tool call at a time, and if you make a tool call, you should not respond to the user simultaneously.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S6",
+   "text": "If you respond to the user, you should not make a tool call at the same time.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S7",
+   "text": "You should deny user requests that are against this policy.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S8",
+   "text": "You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions.",
+   "heading": "Airline Agent Policy"
+  },
+  {
+   "id": "S9",
+   "text": "The agent must first obtain the user id, then ask for the trip type, origin, destination.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S10",
+   "text": "Passengers: Each reservation can have at most five passengers.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S11",
+   "text": "The agent needs to collect the first name, last name, and date of birth for each passenger.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S12",
+   "text": "All passengers must fly the same flights in the same cabin.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S13",
+   "text": "Payment: each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S14",
+   "text": "The remaining amount of a travel certificate is not refundable.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S15",
+   "text": "All payment methods must already be in user profile for safety reasons.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S16",
+   "text": "Checked bag allowance: If the booking user is a regular member, 0 free checked bag for each basic economy passenger, 1 free checked bag for each economy passenger, and 2 free checked bags for each business passenger.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S17",
+   "text": "If the booking user is a silver member, 1 free checked bag for each basic economy passenger, 2 free checked bag for each economy passenger, and 3 free checked bags for each business passenger.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S18",
+   "text": "If the booking user is a gold member, 2 free checked bag for each basic economy passenger, 3 free checked bag for each economy passenger, and 3 free checked bags for each business passenger.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S19",
+   "text": "Each extra baggage is 50 dollars.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S20",
+   "text": "Travel insurance: the agent should ask if the user wants to buy the travel insurance, which is 30 dollars per passenger and enables full refund if the user needs to cancel the flight given health or weather reasons.",
+   "heading": "Book flight"
+  },
+  {
+   "id": "S21",
+   "text": "The agent must first obtain the user id and the reservation id.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S22",
+   "text": "Change flights: Basic economy flights cannot be modified.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S23",
+   "text": "Other reservations can be modified without changing the origin, destination, and trip type.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S24",
+   "text": "Some flight segments can be kept, but their prices will not be updated based on the current price.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S25",
+   "text": "The API does not check these for the agent, so the agent must make sure the rules apply before calling the API!",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S26",
+   "text": "Change cabin: all reservations, including basic economy, can change cabin without changing the flights.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S27",
+   "text": "Cabin changes require the user to pay for the difference between their current cabin and the new cabin class.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S28",
+   "text": "Cabin class must be the same across all the flights in the same reservation; changing cabin for just one flight segment is not possible.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S29",
+   "text": "Change baggage and insurance: The user can add but not remove checked bags.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S30",
+   "text": "The user cannot add insurance after initial booking.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S31",
+   "text": "Change passengers: The user can modify passengers but cannot modify the number of passengers.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S32",
+   "text": "This is something that even a human agent cannot assist with.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S33",
+   "text": "Payment: If the flights are changed, the user needs to provide one gift card or credit card for payment or refund method.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S34",
+   "text": "The agent should ask for the payment or refund method instead.",
+   "heading": "Modify flight"
+  },
+  {
+   "id": "S35",
+   "text": "The agent must first obtain the user id, the reservation id, and the reason for cancellation (change of plan, airline cancelled flight, or other reasons)",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S36",
+   "text": "All reservations can be cancelled within 24 hours of booking, or if the airline cancelled the flight.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S37",
+   "text": "Otherwise, basic economy or economy flights can be cancelled only if travel insurance is bought and the condition is met, and business flights can always be cancelled.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S38",
+   "text": "The rules are strict regardless of the membership status.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S39",
+   "text": "The API does not check these for the agent, so the agent must make sure the rules apply before calling the API!",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S40",
+   "text": "The agent can only cancel the whole trip that is not flown.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S41",
+   "text": "If any of the segments are already used, the agent cannot help and transfer is needed.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S42",
+   "text": "The refund will go to original payment methods in 5 to 7 business days.",
+   "heading": "Cancel flight"
+  },
+  {
+   "id": "S43",
+   "text": "If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture after confirming the facts, with the amount being $100 times the number of passengers.",
+   "heading": "Refund"
+  },
+  {
+   "id": "S44",
+   "text": "If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture after confirming the facts and changing or cancelling the reservation, with the amount being $50 times the number of passengers.",
+   "heading": "Refund"
+  },
+  {
+   "id": "S45",
+   "text": "Do not proactively offer these unless the user complains about the situation and explicitly asks for some compensation.",
+   "heading": "Refund"
+  },
+  {
+   "id": "S46",
+   "text": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+   "heading": "Refund"
+  }
+ ],
+ "policy_numbered": "# Airline Agent Policy\n\n[S1] The current time is 2024-05-15 15:00:00 EST.\n\n[S2] As an airline agent, you can help users book, modify, or cancel flight reservations.\n\n- [S3] Before taking any actions that update the booking database (booking, modifying flights, editing baggage, upgrading cabin class, or updating passenger information), you must list the action details and obtain explicit user confirmation (yes) to proceed.\n\n- [S4] You should not provide any information, knowledge, or procedures not provided by the user or available tools, or give subjective recommendations or comments.\n\n- [S5] You should only make one tool call at a time, and if you make a tool call, you should not respond to the user simultaneously. [S6] If you respond to the user, you should not make a tool call at the same time.\n\n- [S7] You should deny user requests that are against this policy.\n\n- [S8] You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions.\n\n## Book flight\n\n- [S9] The agent must first obtain the user id, then ask for the trip type, origin, destination.\n\n- [S10] Passengers: Each reservation can have at most five passengers. [S11] The agent needs to collect the first name, last name, and date of birth for each passenger. [S12] All passengers must fly the same flights in the same cabin.\n\n- [S13] Payment: each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards. [S14] The remaining amount of a travel certificate is not refundable. [S15] All payment methods must already be in user profile for safety reasons.\n\n- [S16] Checked bag allowance: If the booking user is a regular member, 0 free checked bag for each basic economy passenger, 1 free checked bag for each economy passenger, and 2 free checked bags for each business passenger. [S17] If the booking user is a silver member, 1 free checked bag for each basic economy passenger, 2 free checked bag for each economy passenger, and 3 free checked bags for each business passenger. [S18] If the booking user is a gold member, 2 free checked bag for each basic economy passenger, 3 free checked bag for each economy passenger, and 3 free checked bags for each business passenger. [S19] Each extra baggage is 50 dollars.\n\n- [S20] Travel insurance: the agent should ask if the user wants to buy the travel insurance, which is 30 dollars per passenger and enables full refund if the user needs to cancel the flight given health or weather reasons.\n\n## Modify flight\n\n- [S21] The agent must first obtain the user id and the reservation id.\n\n- [S22] Change flights: Basic economy flights cannot be modified. [S23] Other reservations can be modified without changing the origin, destination, and trip type. [S24] Some flight segments can be kept, but their prices will not be updated based on the current price. [S25] The API does not check these for the agent, so the agent must make sure the rules apply before calling the API!\n\n- [S26] Change cabin: all reservations, including basic economy, can change cabin without changing the flights. [S27] Cabin changes require the user to pay for the difference between their current cabin and the new cabin class. [S28] Cabin class must be the same across all the flights in the same reservation; changing cabin for just one flight segment is not possible.\n\n- [S29] Change baggage and insurance: The user can add but not remove checked bags. [S30] The user cannot add insurance after initial booking.\n\n- [S31] Change passengers: The user can modify passengers but cannot modify the number of passengers. [S32] This is something that even a human agent cannot assist with.\n\n- [S33] Payment: If the flights are changed, the user needs to provide one gift card or credit card for payment or refund method. [S34] The agent should ask for the payment or refund method instead.\n\n## Cancel flight\n\n- [S35] The agent must first obtain the user id, the reservation id, and the reason for cancellation (change of plan, airline cancelled flight, or other reasons)\n\n- [S36] All reservations can be cancelled within 24 hours of booking, or if the airline cancelled the flight. [S37] Otherwise, basic economy or economy flights can be cancelled only if travel insurance is bought and the condition is met, and business flights can always be cancelled. [S38] The rules are strict regardless of the membership status. [S39] The API does not check these for the agent, so the agent must make sure the rules apply before calling the API!\n\n- [S40] The agent can only cancel the whole trip that is not flown. [S41] If any of the segments are already used, the agent cannot help and transfer is needed.\n\n- [S42] The refund will go to original payment methods in 5 to 7 business days.\n\n## Refund\n\n- [S43] If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture after confirming the facts, with the amount being $100 times the number of passengers.\n\n- [S44] If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture after confirming the facts and changing or cancelling the reservation, with the amount being $50 times the number of passengers.\n\n- [S45] Do not proactively offer these unless the user complains about the situation and explicitly asks for some compensation. [S46] Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+ "rules": [
+  {
+   "id": "1",
+   "action": "book_reservation",
+   "condition": "booking_user_id_known",
+   "description": "The booking user's ID must be known before booking.",
+   "sentences": [
+    "S9"
+   ],
+   "logic": "book_reservation IMPLIES booking_user_id_known",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R1"
+  },
+  {
+   "id": "2",
+   "action": "book_reservation",
+   "condition": "booking_trip_details_known",
+   "description": "The trip type, origin, and destination must be known before booking.",
+   "sentences": [
+    "S9"
+   ],
+   "logic": "book_reservation IMPLIES booking_trip_details_known",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R2"
+  },
+  {
+   "id": "3",
+   "action": "book_reservation",
+   "condition": "reservation_has_at_most_five_passengers",
+   "description": "A reservation may contain no more than five passengers.",
+   "sentences": [
+    "S10"
+   ],
+   "logic": "book_reservation IMPLIES reservation_has_at_most_five_passengers",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R3"
+  },
+  {
+   "id": "4",
+   "action": "book_reservation",
+   "condition": "every_passenger_has_required_identity_details",
+   "description": "Each passenger must have the required identifying details.",
+   "sentences": [
+    "S11"
+   ],
+   "logic": "book_reservation IMPLIES every_passenger_has_required_identity_details",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R4"
+  },
+  {
+   "id": "5",
+   "action": "book_reservation",
+   "condition": "all_passengers_share_flights_and_cabin",
+   "description": "All passengers must share the same flights and cabin.",
+   "sentences": [
+    "S12"
+   ],
+   "logic": "book_reservation IMPLIES all_passengers_share_flights_and_cabin",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R5"
+  },
+  {
+   "id": "6",
+   "action": "book_reservation",
+   "condition": "booking_payment_method_limits_respected",
+   "description": "The payment-method limits for a reservation must be respected.",
+   "sentences": [
+    "S13"
+   ],
+   "logic": "book_reservation IMPLIES booking_payment_method_limits_respected",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R6"
+  },
+  {
+   "id": "7",
+   "action": "book_reservation",
+   "condition": "booking_payment_methods_are_in_user_profile",
+   "description": "All payment methods used for booking must already be in the user's profile.",
+   "sentences": [
+    "S15"
+   ],
+   "logic": "book_reservation IMPLIES booking_payment_methods_are_in_user_profile",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R7"
+  },
+  {
+   "id": "8",
+   "action": "book_reservation",
+   "condition": "baggage_counts_match_member_allowance",
+   "description": "Booking baggage counts must reflect the applicable membership allowance.",
+   "sentences": [
+    "S16",
+    "S17",
+    "S18"
+   ],
+   "logic": "book_reservation IMPLIES baggage_counts_match_member_allowance",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R8"
+  },
+  {
+   "id": "9",
+   "action": "book_reservation",
+   "condition": "travel_insurance_choice_was_requested",
+   "description": "The agent must ask whether the user wants travel insurance before booking.",
+   "sentences": [
+    "S20"
+   ],
+   "logic": "book_reservation IMPLIES travel_insurance_choice_was_requested",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R9"
+  },
+  {
+   "id": "10",
+   "action": "book_reservation",
+   "condition": "pending_booking_change_details_were_listed",
+   "description": "The booking details must be listed before the database update.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "book_reservation IMPLIES pending_booking_change_details_were_listed",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R10"
+  },
+  {
+   "id": "11",
+   "action": "book_reservation",
+   "condition": "user_explicitly_confirmed_pending_change_after_details",
+   "description": "The user must explicitly confirm the listed booking details with yes.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "book_reservation IMPLIES user_explicitly_confirmed_pending_change_after_details",
+   "actions": [
+    "book_reservation"
+   ],
+   "model_id": "R11"
+  },
+  {
+   "id": "12",
+   "action": "update_reservation_flights",
+   "condition": "user_id_known AND reservation_id_known",
+   "description": "The user ID and reservation ID must be known before modifying flights.",
+   "sentences": [
+    "S21"
+   ],
+   "logic": "update_reservation_flights IMPLIES user_id_known AND reservation_id_known",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R12"
+  },
+  {
+   "id": "13",
+   "action": "update_reservation_flights",
+   "condition": "pending_booking_change_details_were_listed",
+   "description": "The flight-update details must be listed before the database update.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_flights IMPLIES pending_booking_change_details_were_listed",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R13"
+  },
+  {
+   "id": "14",
+   "action": "update_reservation_flights",
+   "condition": "user_explicitly_confirmed_pending_change_after_details",
+   "description": "The user must explicitly confirm the listed flight-update details with yes.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_flights IMPLIES user_explicitly_confirmed_pending_change_after_details",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R14"
+  },
+  {
+   "id": "15",
+   "action": "update_reservation_baggages",
+   "condition": "user_id_known AND reservation_id_known",
+   "description": "The user ID and reservation ID must be known before modifying baggage.",
+   "sentences": [
+    "S21"
+   ],
+   "logic": "update_reservation_baggages IMPLIES user_id_known AND reservation_id_known",
+   "actions": [
+    "update_reservation_baggages"
+   ],
+   "model_id": "R15"
+  },
+  {
+   "id": "16",
+   "action": "update_reservation_baggages",
+   "condition": "pending_booking_change_details_were_listed",
+   "description": "The baggage-update details must be listed before the database update.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_baggages IMPLIES pending_booking_change_details_were_listed",
+   "actions": [
+    "update_reservation_baggages"
+   ],
+   "model_id": "R16"
+  },
+  {
+   "id": "17",
+   "action": "update_reservation_baggages",
+   "condition": "user_explicitly_confirmed_pending_change_after_details",
+   "description": "The user must explicitly confirm the listed baggage-update details with yes.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_baggages IMPLIES user_explicitly_confirmed_pending_change_after_details",
+   "actions": [
+    "update_reservation_baggages"
+   ],
+   "model_id": "R17"
+  },
+  {
+   "id": "18",
+   "action": "update_reservation_passengers",
+   "condition": "user_id_known AND reservation_id_known",
+   "description": "The user ID and reservation ID must be known before modifying passengers.",
+   "sentences": [
+    "S21"
+   ],
+   "logic": "update_reservation_passengers IMPLIES user_id_known AND reservation_id_known",
+   "actions": [
+    "update_reservation_passengers"
+   ],
+   "model_id": "R18"
+  },
+  {
+   "id": "19",
+   "action": "update_reservation_passengers",
+   "condition": "pending_booking_change_details_were_listed",
+   "description": "The passenger-update details must be listed before the database update.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_passengers IMPLIES pending_booking_change_details_were_listed",
+   "actions": [
+    "update_reservation_passengers"
+   ],
+   "model_id": "R19"
+  },
+  {
+   "id": "20",
+   "action": "update_reservation_passengers",
+   "condition": "user_explicitly_confirmed_pending_change_after_details",
+   "description": "The user must explicitly confirm the listed passenger-update details with yes.",
+   "sentences": [
+    "S3"
+   ],
+   "logic": "update_reservation_passengers IMPLIES user_explicitly_confirmed_pending_change_after_details",
+   "actions": [
+    "update_reservation_passengers"
+   ],
+   "model_id": "R20"
+  },
+  {
+   "id": "21",
+   "action": "update_reservation_flights",
+   "condition": "NOT reservation_is_basic_economy OR reservation_flight_itinerary_unchanged",
+   "description": "Basic economy flights may not be changed, but a cabin-only update that leaves the itinerary unchanged is permitted.",
+   "sentences": [
+    "S22",
+    "S26"
+   ],
+   "logic": "update_reservation_flights IMPLIES NOT reservation_is_basic_economy OR reservation_flight_itinerary_unchanged",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R21"
+  },
+  {
+   "id": "22",
+   "action": "update_reservation_flights",
+   "condition": "reservation_origin_destination_and_trip_type_unchanged",
+   "description": "A flight update must preserve the reservation's origin, destination, and trip type.",
+   "sentences": [
+    "S23",
+    "S25"
+   ],
+   "logic": "update_reservation_flights IMPLIES reservation_origin_destination_and_trip_type_unchanged",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R22"
+  },
+  {
+   "id": "23",
+   "action": "update_reservation_flights",
+   "condition": "all_updated_flight_segments_use_one_cabin",
+   "description": "All flights in the reservation must use the same cabin class.",
+   "sentences": [
+    "S28"
+   ],
+   "logic": "update_reservation_flights IMPLIES all_updated_flight_segments_use_one_cabin",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R23"
+  },
+  {
+   "id": "24",
+   "action": "update_reservation_baggages",
+   "condition": "reservation_baggage_is_not_reduced",
+   "description": "A baggage update may add bags but may not remove checked bags.",
+   "sentences": [
+    "S29"
+   ],
+   "logic": "update_reservation_baggages IMPLIES reservation_baggage_is_not_reduced",
+   "actions": [
+    "update_reservation_baggages"
+   ],
+   "model_id": "R24"
+  },
+  {
+   "id": "25",
+   "action": "update_reservation_baggages",
+   "condition": "baggage_counts_match_member_allowance",
+   "description": "Updated baggage counts must reflect the applicable membership allowance.",
+   "sentences": [
+    "S16",
+    "S17",
+    "S18"
+   ],
+   "logic": "update_reservation_baggages IMPLIES baggage_counts_match_member_allowance",
+   "actions": [
+    "update_reservation_baggages"
+   ],
+   "model_id": "R25"
+  },
+  {
+   "id": "26",
+   "action": "update_reservation_passengers",
+   "condition": "reservation_passenger_count_is_unchanged",
+   "description": "Passenger information may be changed only while keeping the passenger count unchanged.",
+   "sentences": [
+    "S31"
+   ],
+   "logic": "update_reservation_passengers IMPLIES reservation_passenger_count_is_unchanged",
+   "actions": [
+    "update_reservation_passengers"
+   ],
+   "model_id": "R26"
+  },
+  {
+   "id": "27",
+   "action": "update_reservation_flights",
+   "condition": "flight_change_payment_method_is_user_provided_credit_or_gift_card",
+   "description": "A flight change must use the one credit card or gift card provided by the user as a payment or refund method.",
+   "sentences": [
+    "S33"
+   ],
+   "logic": "update_reservation_flights IMPLIES flight_change_payment_method_is_user_provided_credit_or_gift_card",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R27"
+  },
+  {
+   "id": "28",
+   "action": "update_reservation_flights",
+   "condition": "agent_asked_for_payment_or_refund_method",
+   "description": "The agent must ask for the payment or refund method before updating flights.",
+   "sentences": [
+    "S34"
+   ],
+   "logic": "update_reservation_flights IMPLIES agent_asked_for_payment_or_refund_method",
+   "actions": [
+    "update_reservation_flights"
+   ],
+   "model_id": "R28"
+  },
+  {
+   "id": "29",
+   "action": "cancel_reservation",
+   "condition": "user_id_known AND reservation_id_known AND cancellation_reason_is_known_and_valid",
+   "description": "The user ID, reservation ID, and a valid cancellation reason must be known before cancellation.",
+   "sentences": [
+    "S35"
+   ],
+   "logic": "cancel_reservation IMPLIES user_id_known AND reservation_id_known AND cancellation_reason_is_known_and_valid",
+   "actions": [
+    "cancel_reservation"
+   ],
+   "model_id": "R29"
+  },
+  {
+   "id": "30",
+   "action": "cancel_reservation",
+   "condition": "reservation_was_booked_within_24_hours_of_policy_time OR airline_cancelled_the_reservation OR reservation_is_business_cabin OR (reservation_is_basic_or_economy_cabin AND reservation_has_travel_insurance AND cancellation_reason_is_health_or_weather)",
+   "description": "Cancellation is permitted within 24 hours of booking, for an airline-cancelled flight, for business cabin, or for basic economy/economy with insurance and a qualifying health or weather reason; membership status does not affect eligibility.",
+   "sentences": [
+    "S36",
+    "S37",
+    "S38",
+    "S39"
+   ],
+   "logic": "cancel_reservation IMPLIES reservation_was_booked_within_24_hours_of_policy_time OR airline_cancelled_the_reservation OR reservation_is_business_cabin OR reservation_is_basic_or_economy_cabin AND reservation_has_travel_insurance AND cancellation_reason_is_health_or_weather",
+   "actions": [
+    "cancel_reservation"
+   ],
+   "model_id": "R30"
+  },
+  {
+   "id": "31",
+   "action": "cancel_reservation",
+   "condition": "no_reservation_segments_have_been_flown_or_used",
+   "description": "Cancellation is permitted only for a whole trip with no segments already flown or used.",
+   "sentences": [
+    "S40"
+   ],
+   "logic": "cancel_reservation IMPLIES no_reservation_segments_have_been_flown_or_used",
+   "actions": [
+    "cancel_reservation"
+   ],
+   "model_id": "R31"
+  },
+  {
+   "id": "32",
+   "action": "transfer_to_human_agents",
+   "condition": "request_is_outside_available_agent_scope",
+   "description": "Transfer is permitted only when the request cannot be handled within the agent's available scope.",
+   "sentences": [
+    "S8"
+   ],
+   "logic": "transfer_to_human_agents IMPLIES request_is_outside_available_agent_scope",
+   "actions": [
+    "transfer_to_human_agents"
+   ],
+   "model_id": "R32"
+  },
+  {
+   "id": "33",
+   "action": "send_certificate",
+   "condition": "(user_complained_about_cancelled_reservation_flights AND compensation_eligibility_criterion_met AND disruption_facts_were_confirmed_with_user AND certificate_amount_is_100_dollars_per_passenger) OR (user_complained_about_delayed_reservation_flights AND user_wants_change_or_cancellation_due_to_delay AND compensation_eligibility_criterion_met AND disruption_facts_were_confirmed_with_user AND reservation_change_or_cancellation_succeeded_before_certificate AND certificate_amount_is_50_dollars_per_passenger)",
+   "description": "A certificate must fit one of the policy's cancelled-flight or delayed-flight gesture cases, including its eligibility, confirmation, completion, and amount requirements.",
+   "sentences": [
+    "S43",
+    "S44"
+   ],
+   "logic": "send_certificate IMPLIES user_complained_about_cancelled_reservation_flights AND compensation_eligibility_criterion_met AND disruption_facts_were_confirmed_with_user AND certificate_amount_is_100_dollars_per_passenger OR user_complained_about_delayed_reservation_flights AND user_wants_change_or_cancellation_due_to_delay AND compensation_eligibility_criterion_met AND disruption_facts_were_confirmed_with_user AND reservation_change_or_cancellation_succeeded_before_certificate AND certificate_amount_is_50_dollars_per_passenger",
+   "actions": [
+    "send_certificate"
+   ],
+   "model_id": "R33"
+  },
+  {
+   "id": "34",
+   "action": "send_certificate",
+   "condition": "user_explicitly_requested_compensation",
+   "description": "The user must explicitly ask for compensation before a certificate is sent as compensation.",
+   "sentences": [
+    "S45"
+   ],
+   "logic": "send_certificate IMPLIES user_explicitly_requested_compensation",
+   "actions": [
+    "send_certificate"
+   ],
+   "model_id": "R34"
+  },
+  {
+   "id": "35",
+   "action": "send_certificate",
+   "condition": "NOT user_is_regular_uninsured_and_flies_basic_or_economy",
+   "description": "No compensation certificate may be sent to a regular member with no insurance who flies basic economy or economy.",
+   "sentences": [
+    "S46"
+   ],
+   "logic": "send_certificate IMPLIES NOT user_is_regular_uninsured_and_flies_basic_or_economy",
+   "actions": [
+    "send_certificate"
+   ],
+   "model_id": "R35"
+  }
+ ],
+ "predicates": {
+  "booking_user_id_known": {
+   "name": "booking_user_id_known",
+   "description": "The booking user's ID has been stated by the user or returned by an earlier tool call.",
+   "source": [
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "booking_trip_details_known": {
+   "name": "booking_trip_details_known",
+   "description": "The trip type, origin, and destination for the pending reservation have been stated by the user or returned by an earlier tool call.",
+   "source": [
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "reservation_has_at_most_five_passengers": {
+   "name": "reservation_has_at_most_five_passengers",
+   "description": "The pending reservation arguments contain no more than five passengers.",
+   "source": [
+    "call_arguments"
+   ]
+  },
+  "every_passenger_has_required_identity_details": {
+   "name": "every_passenger_has_required_identity_details",
+   "description": "Every passenger in the pending reservation arguments has a first name, last name, and date of birth.",
+   "source": [
+    "call_arguments"
+   ]
+  },
+  "all_passengers_share_flights_and_cabin": {
+   "name": "all_passengers_share_flights_and_cabin",
+   "description": "The passengers in the pending reservation arguments are assigned the same flights and cabin.",
+   "source": [
+    "call_arguments"
+   ]
+  },
+  "booking_payment_method_limits_respected": {
+   "name": "booking_payment_method_limits_respected",
+   "description": "The pending reservation arguments use no more than one travel certificate, one credit card, and three gift cards.",
+   "source": [
+    "call_arguments"
+   ]
+  },
+  "booking_payment_methods_are_in_user_profile": {
+   "name": "booking_payment_methods_are_in_user_profile",
+   "description": "Every payment method in the pending reservation arguments is present in the user's profile according to an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "baggage_counts_match_member_allowance": {
+   "name": "baggage_counts_match_member_allowance",
+   "description": "The pending baggage totals and nonfree baggage count match the free allowance calculated for the passenger count, cabin, and user membership tier: regular members receive 0, 1, or 2 free bags per passenger for basic economy, economy, or business; silver members receive 1, 2, or 3; gold members receive 2, 3, or 3; any bags beyond the total free allowance are counted as nonfree.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "travel_insurance_choice_was_requested": {
+   "name": "travel_insurance_choice_was_requested",
+   "description": "Before the pending booking action, the agent asked the user whether they wanted to buy travel insurance.",
+   "source": [
+    "agent_messages"
+   ]
+  },
+  "pending_booking_change_details_were_listed": {
+   "name": "pending_booking_change_details_were_listed",
+   "description": "Before the pending database update, the agent listed the details of that specific booking or reservation change, matching the pending action arguments.",
+   "source": [
+    "agent_messages",
+    "call_arguments"
+   ]
+  },
+  "user_explicitly_confirmed_pending_change_after_details": {
+   "name": "user_explicitly_confirmed_pending_change_after_details",
+   "description": "After the agent listed the details matching the pending database update, the user explicitly replied yes to proceeding with that change.",
+   "source": [
+    "agent_messages",
+    "user_messages",
+    "call_arguments"
+   ]
+  },
+  "reservation_id_known": {
+   "name": "reservation_id_known",
+   "description": "The reservation ID has been stated by the user or returned by an earlier tool call.",
+   "source": [
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "reservation_is_basic_economy": {
+   "name": "reservation_is_basic_economy",
+   "description": "An earlier tool result identifies the reservation as basic economy.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "reservation_flight_itinerary_unchanged": {
+   "name": "reservation_flight_itinerary_unchanged",
+   "description": "The flights and itinerary in the pending flight-update arguments match the reservation's flights and itinerary in an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "reservation_origin_destination_and_trip_type_unchanged": {
+   "name": "reservation_origin_destination_and_trip_type_unchanged",
+   "description": "The pending flight-update arguments preserve the reservation's original origin, destination, and trip type, as shown by an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "all_updated_flight_segments_use_one_cabin": {
+   "name": "all_updated_flight_segments_use_one_cabin",
+   "description": "All flight segments in the pending flight-update arguments use the same cabin class.",
+   "source": [
+    "call_arguments"
+   ]
+  },
+  "user_id_known": {
+   "name": "user_id_known",
+   "description": "The user ID has been stated by the user or returned by an earlier tool call.",
+   "source": [
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "reservation_baggage_is_not_reduced": {
+   "name": "reservation_baggage_is_not_reduced",
+   "description": "The pending baggage-update arguments do not reduce the reservation's total checked baggage compared with an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "reservation_passenger_count_is_unchanged": {
+   "name": "reservation_passenger_count_is_unchanged",
+   "description": "The pending passenger-update arguments contain the same number of passengers as the reservation in an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "flight_change_payment_method_is_user_provided_credit_or_gift_card": {
+   "name": "flight_change_payment_method_is_user_provided_credit_or_gift_card",
+   "description": "The pending flight-update payment ID corresponds to one credit card or gift card the user provided as the payment or refund method.",
+   "source": [
+    "call_arguments",
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "agent_asked_for_payment_or_refund_method": {
+   "name": "agent_asked_for_payment_or_refund_method",
+   "description": "Before the pending flight update, the agent asked the user for a payment or refund method.",
+   "source": [
+    "agent_messages"
+   ]
+  },
+  "cancellation_reason_is_known_and_valid": {
+   "name": "cancellation_reason_is_known_and_valid",
+   "description": "The user has provided a cancellation reason that is change of plan, airline-cancelled flight, or another reason.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "reservation_was_booked_within_24_hours_of_policy_time": {
+   "name": "reservation_was_booked_within_24_hours_of_policy_time",
+   "description": "An earlier tool result gives a booking time no more than 24 hours before the current time stated in policy sentence S1.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "airline_cancelled_the_reservation": {
+   "name": "airline_cancelled_the_reservation",
+   "description": "The user stated, or an earlier tool result indicates, that the airline cancelled the reservation's flight.",
+   "source": [
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "reservation_is_business_cabin": {
+   "name": "reservation_is_business_cabin",
+   "description": "An earlier tool result identifies the reservation as business cabin.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "reservation_is_basic_or_economy_cabin": {
+   "name": "reservation_is_basic_or_economy_cabin",
+   "description": "An earlier tool result identifies the reservation as basic economy or economy cabin.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "reservation_has_travel_insurance": {
+   "name": "reservation_has_travel_insurance",
+   "description": "An earlier tool result indicates that the reservation has travel insurance.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "cancellation_reason_is_health_or_weather": {
+   "name": "cancellation_reason_is_health_or_weather",
+   "description": "The user stated that the cancellation is needed for a health or weather reason.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "no_reservation_segments_have_been_flown_or_used": {
+   "name": "no_reservation_segments_have_been_flown_or_used",
+   "description": "An earlier tool result indicates that none of the reservation's flight segments have been flown or used.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "request_is_outside_available_agent_scope": {
+   "name": "request_is_outside_available_agent_scope",
+   "description": "From the user's stated goal, available tools, and prior tool results, the requested outcome cannot be completed within the agent's permitted actions.",
+   "source": [
+    "user_messages",
+    "tool_outputs",
+    "call_arguments"
+   ]
+  },
+  "user_complained_about_cancelled_reservation_flights": {
+   "name": "user_complained_about_cancelled_reservation_flights",
+   "description": "The user complained about cancelled flights in a reservation.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "user_complained_about_delayed_reservation_flights": {
+   "name": "user_complained_about_delayed_reservation_flights",
+   "description": "The user complained about delayed flights in a reservation.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "compensation_eligibility_criterion_met": {
+   "name": "compensation_eligibility_criterion_met",
+   "description": "Earlier tool results show that the user is silver or gold, or the reservation has travel insurance, or the reservation flies business cabin.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "disruption_facts_were_confirmed_with_user": {
+   "name": "disruption_facts_were_confirmed_with_user",
+   "description": "The agent stated the relevant cancelled-flight or delayed-flight facts to the user, those facts are supported by earlier tool results or user statements, and the user confirmed them.",
+   "source": [
+    "agent_messages",
+    "user_messages",
+    "tool_outputs"
+   ]
+  },
+  "certificate_amount_is_100_dollars_per_passenger": {
+   "name": "certificate_amount_is_100_dollars_per_passenger",
+   "description": "The pending certificate amount equals $100 multiplied by the reservation's passenger count shown in an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "user_wants_change_or_cancellation_due_to_delay": {
+   "name": "user_wants_change_or_cancellation_due_to_delay",
+   "description": "The user wants to change or cancel the reservation because of the complained-about flight delay.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "reservation_change_or_cancellation_succeeded_before_certificate": {
+   "name": "reservation_change_or_cancellation_succeeded_before_certificate",
+   "description": "An earlier tool result shows a successful change or cancellation of the reservation associated with the delayed-flight complaint.",
+   "source": [
+    "tool_outputs"
+   ]
+  },
+  "certificate_amount_is_50_dollars_per_passenger": {
+   "name": "certificate_amount_is_50_dollars_per_passenger",
+   "description": "The pending certificate amount equals $50 multiplied by the reservation's passenger count shown in an earlier tool result.",
+   "source": [
+    "call_arguments",
+    "tool_outputs"
+   ]
+  },
+  "user_explicitly_requested_compensation": {
+   "name": "user_explicitly_requested_compensation",
+   "description": "The user explicitly asked for compensation for the complained-about situation.",
+   "source": [
+    "user_messages"
+   ]
+  },
+  "user_is_regular_uninsured_and_flies_basic_or_economy": {
+   "name": "user_is_regular_uninsured_and_flies_basic_or_economy",
+   "description": "Earlier tool results show that the user is a regular member, the reservation has no travel insurance, and the reservation flies basic economy or economy.",
+   "source": [
+    "tool_outputs"
+   ]
+  }
+ },
+ "actions": {},
+ "action_names": [
+  "book_reservation",
+  "calculate",
+  "cancel_reservation",
+  "get_reservation_details",
+  "get_user_details",
+  "list_all_airports",
+  "respond",
+  "search_direct_flight",
+  "search_onestop_flight",
+  "send_certificate",
+  "think",
+  "transfer_to_human_agents",
+  "update_reservation_baggages",
+  "update_reservation_flights",
+  "update_reservation_passengers"
+ ],
+ "circuits": {
+  "book_reservation": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "9",
+   "10",
+   "11"
+  ],
+  "update_reservation_flights": [
+   "12",
+   "13",
+   "14",
+   "21",
+   "22",
+   "23",
+   "27",
+   "28"
+  ],
+  "update_reservation_baggages": [
+   "15",
+   "16",
+   "17",
+   "24",
+   "25"
+  ],
+  "update_reservation_passengers": [
+   "18",
+   "19",
+   "20",
+   "26"
+  ],
+  "cancel_reservation": [
+   "29",
+   "30",
+   "31"
+  ],
+  "transfer_to_human_agents": [
+   "32"
+  ],
+  "send_certificate": [
+   "33",
+   "34",
+   "35"
+  ]
+ },
+ "dispositions": [
+  {
+   "sentence": "S1",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It supplies the current time used to evaluate the 24-hour cancellation window.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S2",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It describes the agent's general service scope.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S3",
+   "disposition": "rule",
+   "rule_ids": [
+    "10",
+    "11",
+    "13",
+    "14",
+    "16",
+    "17",
+    "19",
+    "20"
+   ],
+   "reason": "Each booking database update requires listed details and explicit user confirmation.",
+   "model_rule_ids": [
+    "R10",
+    "R11",
+    "R13",
+    "R14",
+    "R16",
+    "R17",
+    "R19",
+    "R20"
+   ]
+  },
+  {
+   "sentence": "S4",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "Grounding, subjectivity, and general response quality cannot be checked as restrictions on one action.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S5",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "Simultaneous tool calls and user responses cannot be checked one action at a time.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S6",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "Combining a response and a tool call cannot be checked one action at a time.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S7",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "A general obligation to refuse prohibited requests is not a checkable restriction on one action.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S8",
+   "disposition": "rule",
+   "rule_ids": [
+    "32"
+   ],
+   "reason": "The transfer action is restricted to requests outside the available agent scope.",
+   "model_rule_ids": [
+    "R32"
+   ]
+  },
+  {
+   "sentence": "S9",
+   "disposition": "rule",
+   "rule_ids": [
+    "1",
+    "2"
+   ],
+   "reason": "The required booking identifiers and trip details must be known before booking; the requested order of earlier questions cannot be checked.",
+   "model_rule_ids": [
+    "R1",
+    "R2"
+   ]
+  },
+  {
+   "sentence": "S10",
+   "disposition": "rule",
+   "rule_ids": [
+    "3"
+   ],
+   "reason": "The passenger limit is checked against the pending booking arguments.",
+   "model_rule_ids": [
+    "R3"
+   ]
+  },
+  {
+   "sentence": "S11",
+   "disposition": "rule",
+   "rule_ids": [
+    "4"
+   ],
+   "reason": "Required passenger details are checked against the pending booking arguments.",
+   "model_rule_ids": [
+    "R4"
+   ]
+  },
+  {
+   "sentence": "S12",
+   "disposition": "rule",
+   "rule_ids": [
+    "5"
+   ],
+   "reason": "Shared flights and cabin are checked against the pending booking arguments.",
+   "model_rule_ids": [
+    "R5"
+   ]
+  },
+  {
+   "sentence": "S13",
+   "disposition": "rule",
+   "rule_ids": [
+    "6"
+   ],
+   "reason": "The payment-method limits are checked against the pending booking arguments.",
+   "model_rule_ids": [
+    "R6"
+   ]
+  },
+  {
+   "sentence": "S14",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It states the refund property of a travel certificate.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S15",
+   "disposition": "rule",
+   "rule_ids": [
+    "7"
+   ],
+   "reason": "Booking payment methods are checked against the user's profile.",
+   "model_rule_ids": [
+    "R7"
+   ]
+  },
+  {
+   "sentence": "S16",
+   "disposition": "rule",
+   "rule_ids": [
+    "8",
+    "25"
+   ],
+   "reason": "The regular-member baggage allowance is checked for booking and baggage updates.",
+   "model_rule_ids": [
+    "R8",
+    "R25"
+   ]
+  },
+  {
+   "sentence": "S17",
+   "disposition": "rule",
+   "rule_ids": [
+    "8",
+    "25"
+   ],
+   "reason": "The silver-member baggage allowance is checked for booking and baggage updates.",
+   "model_rule_ids": [
+    "R8",
+    "R25"
+   ]
+  },
+  {
+   "sentence": "S18",
+   "disposition": "rule",
+   "rule_ids": [
+    "8",
+    "25"
+   ],
+   "reason": "The gold-member baggage allowance is checked for booking and baggage updates.",
+   "model_rule_ids": [
+    "R8",
+    "R25"
+   ]
+  },
+  {
+   "sentence": "S19",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "The extra-baggage price is stated, but no available action argument exposes a price to check.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S20",
+   "disposition": "rule",
+   "rule_ids": [
+    "9"
+   ],
+   "reason": "The agent must ask about travel insurance before booking.",
+   "model_rule_ids": [
+    "R9"
+   ]
+  },
+  {
+   "sentence": "S21",
+   "disposition": "rule",
+   "rule_ids": [
+    "12",
+    "15",
+    "18"
+   ],
+   "reason": "Both identifiers must be known before each reservation modification.",
+   "model_rule_ids": [
+    "R12",
+    "R15",
+    "R18"
+   ]
+  },
+  {
+   "sentence": "S22",
+   "disposition": "rule",
+   "rule_ids": [
+    "21"
+   ],
+   "reason": "Basic economy flight changes are blocked except for an unchanged itinerary.",
+   "model_rule_ids": [
+    "R21"
+   ]
+  },
+  {
+   "sentence": "S23",
+   "disposition": "rule",
+   "rule_ids": [
+    "22"
+   ],
+   "reason": "Flight updates must preserve origin, destination, and trip type.",
+   "model_rule_ids": [
+    "R22"
+   ]
+  },
+  {
+   "sentence": "S24",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It describes how prices behave for retained segments.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S25",
+   "disposition": "rule",
+   "rule_ids": [
+    "21",
+    "22"
+   ],
+   "reason": "The applicable flight-change restrictions are checked before the update action.",
+   "model_rule_ids": [
+    "R21",
+    "R22"
+   ]
+  },
+  {
+   "sentence": "S26",
+   "disposition": "exception",
+   "rule_ids": [
+    "21"
+   ],
+   "reason": "A cabin-only change with an unchanged itinerary is the exception to the basic-economy flight-change prohibition.",
+   "model_rule_ids": [
+    "R21"
+   ]
+  },
+  {
+   "sentence": "S27",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "The available flight-update arguments do not expose the cabin price difference or whether that amount was paid.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S28",
+   "disposition": "rule",
+   "rule_ids": [
+    "23"
+   ],
+   "reason": "The cabin class across updated flight segments is checked in the pending arguments.",
+   "model_rule_ids": [
+    "R23"
+   ]
+  },
+  {
+   "sentence": "S29",
+   "disposition": "rule",
+   "rule_ids": [
+    "24"
+   ],
+   "reason": "The pending baggage total is compared with the current reservation.",
+   "model_rule_ids": [
+    "R24"
+   ]
+  },
+  {
+   "sentence": "S30",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "No available action can add insurance after the initial booking.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S31",
+   "disposition": "rule",
+   "rule_ids": [
+    "26"
+   ],
+   "reason": "The passenger count is compared with the current reservation.",
+   "model_rule_ids": [
+    "R26"
+   ]
+  },
+  {
+   "sentence": "S32",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It describes a limitation on human-agent assistance.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S33",
+   "disposition": "rule",
+   "rule_ids": [
+    "27"
+   ],
+   "reason": "The pending flight update must use a user-provided credit card or gift card.",
+   "model_rule_ids": [
+    "R27"
+   ]
+  },
+  {
+   "sentence": "S34",
+   "disposition": "rule",
+   "rule_ids": [
+    "28"
+   ],
+   "reason": "The agent must ask for a payment or refund method before the flight update.",
+   "model_rule_ids": [
+    "R28"
+   ]
+  },
+  {
+   "sentence": "S35",
+   "disposition": "rule",
+   "rule_ids": [
+    "29"
+   ],
+   "reason": "The required identifiers and cancellation reason must be known before cancellation.",
+   "model_rule_ids": [
+    "R29"
+   ]
+  },
+  {
+   "sentence": "S36",
+   "disposition": "rule",
+   "rule_ids": [
+    "30"
+   ],
+   "reason": "The 24-hour window and airline-cancellation exception are included in the cancellation eligibility condition.",
+   "model_rule_ids": [
+    "R30"
+   ]
+  },
+  {
+   "sentence": "S37",
+   "disposition": "rule",
+   "rule_ids": [
+    "30"
+   ],
+   "reason": "The cabin, insurance, and qualifying-reason cancellation conditions are included.",
+   "model_rule_ids": [
+    "R30"
+   ]
+  },
+  {
+   "sentence": "S38",
+   "disposition": "rule",
+   "rule_ids": [
+    "30"
+   ],
+   "reason": "The cancellation eligibility condition does not depend on membership status.",
+   "model_rule_ids": [
+    "R30"
+   ]
+  },
+  {
+   "sentence": "S39",
+   "disposition": "rule",
+   "rule_ids": [
+    "30"
+   ],
+   "reason": "The cancellation eligibility restrictions are checked before cancellation.",
+   "model_rule_ids": [
+    "R30"
+   ]
+  },
+  {
+   "sentence": "S40",
+   "disposition": "rule",
+   "rule_ids": [
+    "31"
+   ],
+   "reason": "Cancellation is blocked when any segment has already been flown or used.",
+   "model_rule_ids": [
+    "R31"
+   ]
+  },
+  {
+   "sentence": "S41",
+   "disposition": "not_enforceable",
+   "rule_ids": [],
+   "reason": "A block-only guardrail cannot require the agent to initiate the needed transfer.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S42",
+   "disposition": "fact",
+   "rule_ids": [],
+   "reason": "It states the refund destination and processing timeframe.",
+   "model_rule_ids": []
+  },
+  {
+   "sentence": "S43",
+   "disposition": "rule",
+   "rule_ids": [
+    "33"
+   ],
+   "reason": "The cancelled-flight certificate case and its eligibility, confirmation, and amount conditions are checked.",
+   "model_rule_ids": [
+    "R33"
+   ]
+  },
+  {
+   "sentence": "S44",
+   "disposition": "rule",
+   "rule_ids": [
+    "33"
+   ],
+   "reason": "The delayed-flight certificate case and its eligibility, confirmation, completion, and amount conditions are checked.",
+   "model_rule_ids": [
+    "R33"
+   ]
+  },
+  {
+   "sentence": "S45",
+   "disposition": "rule",
+   "rule_ids": [
+    "34"
+   ],
+   "reason": "A compensation certificate requires an explicit user request for compensation.",
+   "model_rule_ids": [
+    "R34"
+   ]
+  },
+  {
+   "sentence": "S46",
+   "disposition": "rule",
+   "rule_ids": [
+    "35"
+   ],
+   "reason": "The specified regular-member, uninsured, economy case is prohibited from receiving compensation.",
+   "model_rule_ids": [
+    "R35"
+   ]
+  }
+ ],
+ "background": [
+  {
+   "id": "S1",
+   "text": "The current time is 2024-05-15 15:00:00 EST."
+  },
+  {
+   "id": "S10",
+   "text": "Passengers: Each reservation can have at most five passengers."
+  },
+  {
+   "id": "S13",
+   "text": "Payment: each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards."
+  },
+  {
+   "id": "S15",
+   "text": "All payment methods must already be in user profile for safety reasons."
+  },
+  {
+   "id": "S16",
+   "text": "Checked bag allowance: If the booking user is a regular member, 0 free checked bag for each basic economy passenger, 1 free checked bag for each economy passenger, and 2 free checked bags for each business passenger."
+  },
+  {
+   "id": "S17",
+   "text": "If the booking user is a silver member, 1 free checked bag for each basic economy passenger, 2 free checked bag for each economy passenger, and 3 free checked bags for each business passenger."
+  },
+  {
+   "id": "S18",
+   "text": "If the booking user is a gold member, 2 free checked bag for each basic economy passenger, 3 free checked bag for each economy passenger, and 3 free checked bags for each business passenger."
+  },
+  {
+   "id": "S20",
+   "text": "Travel insurance: the agent should ask if the user wants to buy the travel insurance, which is 30 dollars per passenger and enables full refund if the user needs to cancel the flight given health or weather reasons."
+  },
+  {
+   "id": "S36",
+   "text": "All reservations can be cancelled within 24 hours of booking, or if the airline cancelled the flight."
+  },
+  {
+   "id": "S37",
+   "text": "Otherwise, basic economy or economy flights can be cancelled only if travel insurance is bought and the condition is met, and business flights can always be cancelled."
+  },
+  {
+   "id": "S38",
+   "text": "The rules are strict regardless of the membership status."
+  },
+  {
+   "id": "S43",
+   "text": "If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture after confirming the facts, with the amount being $100 times the number of passengers."
+  },
+  {
+   "id": "S44",
+   "text": "If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture after confirming the facts and changing or cancelling the reservation, with the amount being $50 times the number of passengers."
+  },
+  {
+   "id": "S46",
+   "text": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy."
+  },
+  {
+   "id": "S2",
+   "text": "As an airline agent, you can help users book, modify, or cancel flight reservations."
+  },
+  {
+   "id": "S14",
+   "text": "The remaining amount of a travel certificate is not refundable."
+  },
+  {
+   "id": "S19",
+   "text": "Each extra baggage is 50 dollars."
+  },
+  {
+   "id": "S24",
+   "text": "Some flight segments can be kept, but their prices will not be updated based on the current price."
+  },
+  {
+   "id": "S32",
+   "text": "This is something that even a human agent cannot assist with."
+  },
+  {
+   "id": "S42",
+   "text": "The refund will go to original payment methods in 5 to 7 business days."
+  }
+ ],
+ "validation": {
+  "remaining_errors": [],
+  "invalid_rules_dropped": {},
+  "duplicates_dropped": [],
+  "repair_rounds": [],
+  "unused_predicates": []
+ },
+ "usage": {
+  "n_llm_calls": 1,
+  "cache_hits": 0,
+  "input_tokens": 3745,
+  "output_tokens": 20657,
+  "reasoning_tokens": 13663,
+  "api_seconds": 263.3,
+  "cost_usd": 0.010703,
+  "calls_by_stage": {
+   "tgr_rules": 1
+  }
+ },
+ "prompt_hashes": {
+  "actions_free": "afa381adcb6c1f8b",
+  "actions_tools": "062f4d76f84e290c",
+  "dispositions": "94ae3489c99456bd",
+  "example_general": "cf9801403e312668",
+  "example_restriction": "ff23a600589c1fcf",
+  "form_general": "21d47105f2020558",
+  "form_restriction": "8b9c21ea09fd68b6",
+  "judge": "e91f321f78219c1a",
+  "no_dispositions": "ab626a5b8d6a53d8",
+  "predicates_grounded": "ea16ee627f4498d5",
+  "predicates_plain": "0de622b60074d664",
+  "repair": "f099786338a41f89",
+  "rules_system": "a9b6172907b30867",
+  "rules_user": "af2d72bb054d67a4",
+  "scope": "b8529de989bc23f5"
+ }
+}

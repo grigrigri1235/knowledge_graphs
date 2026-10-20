@@ -1,0 +1,265 @@
+{
+  "run_id": "v1",
+  "domain": "retail",
+  "started": "2026-10-14T16:27:12",
+  "finished": "2026-10-14T16:47:05",
+  "inputs": {
+    "policy": [
+      "policy_docs/retail_wiki.txt",
+      "d539fd2a46a8b8dd2e934ff9ed92f43e9f6b56bc7a718db8d2803ba8ad8f6bf7"
+    ],
+    "tools": [
+      "policy_pipeline/inputs/retail_tools_raw.json",
+      "e1c75931580afd0f051573447d55199675a51a78ff8f1e1d9c517c471d0a8bcf"
+    ],
+    "addendum": [
+      null,
+      null
+    ],
+    "config": [
+      null,
+      null
+    ]
+  },
+  "model": "gpt-5-nano",
+  "deployment": "gpt-5-nano",
+  "api": "Azure OpenAI Responses API, structured outputs (json_schema, strict)",
+  "parameters": {
+    "reasoning_effort": {
+      "s0": "medium",
+      "s1": "medium",
+      "s2_extract": "medium",
+      "s2_critic": "low",
+      "s2_revise": "medium",
+      "s3": "low",
+      "s3b": "low",
+      "s4": "medium",
+      "s5": "low",
+      "s7": "low",
+      "s8": "low"
+    },
+    "max_output_tokens": 16000,
+    "k_majority": 3,
+    "max_repairs": 2,
+    "max_critic_rounds": 2,
+    "thresholds": {
+      "s1_sentence_coverage": 0.5,
+      "s3_rule_cluster": 0.88,
+      "s5_predicate_cluster": 0.85
+    },
+    "temperature": "not supported by deployment",
+    "seed": "not supported"
+  },
+  "embedding": {
+    "model": "minishlab/potion-base-8M",
+    "revision": "bf8b056651a2c21b8d2565580b8569da283cab23",
+    "method": "model2vec static: mean of token vectors, L2-normalised"
+  },
+  "prompt_template_sha256_16": {
+    "s0_tool_class": "f2bf42b4c7b67594",
+    "s1_segment": "5af7b0262654984c",
+    "s2_critic": "37df7f74f547119f",
+    "s2_extract": "17b7af9d62480bb3",
+    "s2_revise": "d03d5da847350576",
+    "s3_dedupe": "e95dbe6b27e02c5e",
+    "s3b_tools": "ae1869e216312ee0",
+    "s4_logic": "6d8ed70ac4a9ffda",
+    "s5_vocab": "f414e16dd545b2cb",
+    "s7_spec": "4fea679dfdea49cc",
+    "s8_enforce": "fb8467228f495f52"
+  },
+  "stage_seconds": {
+    "stage0_tools": 13.6,
+    "stage1_clauses": 120.6,
+    "stage2_rules": 408.1,
+    "stage3_pruned": 39.7,
+    "stage3b_tools": 91.6,
+    "stage4_logic": 218.2,
+    "stage5_vocab": 101.4,
+    "stage6_tree": 0.0,
+    "stage7_predicates": 118.3,
+    "stage8_enforcement": 81.5
+  },
+  "llm_usage_by_stage": {
+    "s0": {
+      "calls": 48,
+      "cache_hits": 6,
+      "input_tokens": 16389,
+      "output_tokens": 15341,
+      "reasoning_tokens": 12160,
+      "api_seconds": 108.37674117088318,
+      "errors": 0
+    },
+    "s1": {
+      "calls": 13,
+      "cache_hits": 0,
+      "input_tokens": 26150,
+      "output_tokens": 76102,
+      "reasoning_tokens": 70848,
+      "api_seconds": 385.66681456565857,
+      "errors": 0
+    },
+    "s2_critic": {
+      "calls": 76,
+      "cache_hits": 0,
+      "input_tokens": 110332,
+      "output_tokens": 73859,
+      "reasoning_tokens": 50368,
+      "api_seconds": 629.4527206420898,
+      "errors": 1
+    },
+    "s2_extract": {
+      "calls": 60,
+      "cache_hits": 0,
+      "input_tokens": 126520,
+      "output_tokens": 313842,
+      "reasoning_tokens": 302464,
+      "api_seconds": 2246.696739435196,
+      "errors": 0
+    },
+    "s2_revise": {
+      "calls": 32,
+      "cache_hits": 0,
+      "input_tokens": 58775,
+      "output_tokens": 118744,
+      "reasoning_tokens": 112896,
+      "api_seconds": 871.9578328132629,
+      "errors": 0
+    },
+    "s3": {
+      "calls": 72,
+      "cache_hits": 0,
+      "input_tokens": 24522,
+      "output_tokens": 41329,
+      "reasoning_tokens": 36416,
+      "api_seconds": 395.9116885662079,
+      "errors": 0
+    },
+    "s3b": {
+      "calls": 327,
+      "cache_hits": 1,
+      "input_tokens": 327999,
+      "output_tokens": 188673,
+      "reasoning_tokens": 142528,
+      "api_seconds": 1283.6439526081085,
+      "errors": 0
+    },
+    "s4": {
+      "calls": 126,
+      "cache_hits": 2,
+      "input_tokens": 138222,
+      "output_tokens": 560708,
+      "reasoning_tokens": 535744,
+      "api_seconds": 3039.300337076187,
+      "errors": 0
+    },
+    "s5": {
+      "calls": 69,
+      "cache_hits": 0,
+      "input_tokens": 33069,
+      "output_tokens": 53436,
+      "reasoning_tokens": 45760,
+      "api_seconds": 461.1982452869415,
+      "errors": 0
+    },
+    "s7": {
+      "calls": 414,
+      "cache_hits": 0,
+      "input_tokens": 949587,
+      "output_tokens": 276216,
+      "reasoning_tokens": 204864,
+      "api_seconds": 1754.0195753574371,
+      "errors": 0
+    },
+    "s8": {
+      "calls": 324,
+      "cache_hits": 0,
+      "input_tokens": 103221,
+      "output_tokens": 141971,
+      "reasoning_tokens": 105472,
+      "api_seconds": 1204.9895577430725,
+      "errors": 0
+    }
+  },
+  "totals": {
+    "calls": 1561,
+    "cache_hits": 9,
+    "input_tokens": 1914786,
+    "output_tokens": 1860221,
+    "reasoning_tokens": 1619520
+  },
+  "counts": {
+    "tools": 17,
+    "write_tools": [
+      "cancel_pending_order",
+      "exchange_delivered_order_items",
+      "modify_pending_order_address",
+      "modify_pending_order_items",
+      "modify_pending_order_payment",
+      "modify_user_address",
+      "return_delivered_order_items",
+      "transfer_to_human_agents"
+    ],
+    "clauses": 63,
+    "normative_clauses": 51,
+    "rules_s2": 123,
+    "rules_s3": 109,
+    "rules_s4_valid": 108,
+    "predicates_before_s5": 193,
+    "predicates_after_s5": 138,
+    "aspm_rules": 290,
+    "enforcement": {
+      "block": 271,
+      "warn": 19
+    }
+  },
+  "validation": {
+    "s1": {
+      "all_sections_valid": false,
+      "invalid_sections": [
+        "Exchange delivered order"
+      ]
+    },
+    "s2": {
+      "normative_clauses_without_rule": [],
+      "rules_without_source": [],
+      "clauses_with_validation_errors": []
+    },
+    "s2_critic": {
+      "first_pass": 33,
+      "final_pass": 45,
+      "clauses": 51
+    },
+    "s3": {
+      "coverage_unchanged": true,
+      "lost_clauses": []
+    },
+    "s4": {
+      "invalid": [
+        "S0-C03-R1"
+      ],
+      "repaired": [
+        "S0-C01-R1",
+        "S0-C05-R2",
+        "S1-C12-R3",
+        "S2-C04-R1",
+        "S3-C06-R1",
+        "S5-C02-R6",
+        "S5-C02-R7",
+        "S5-C06-R6",
+        "S5-C08-R1",
+        "S6-C03-R3",
+        "S7-C03-R2",
+        "S7-C07-R1",
+        "S7-C07-R2",
+        "S7-C09-R1"
+      ]
+    },
+    "s5": {
+      "rules_invalid_after_rename": []
+    },
+    "s6": {
+      "rule_errors": []
+    }
+  }
+}

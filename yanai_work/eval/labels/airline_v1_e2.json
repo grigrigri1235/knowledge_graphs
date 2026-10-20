@@ -1,0 +1,628 @@
+{
+ "run": "output/auto_aspm/airline/v1",
+ "labeller": "manual (Claude, careful reading; Step 1 rubric)",
+ "conventions": "Over-included tools on an otherwise faithful rule -> covered with note 'TOOLS+'. A missing essential constrained tool -> partial (TOOLS). Compound rules that keep all content -> covered (MERGE noted).",
+ "labels": {
+  "AIR-GEN-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R1"
+   ],
+   "note": "Lists details before DB updates; attached to all write tools incl. cancel."
+  },
+  "AIR-GEN-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C03-R2"
+   ],
+   "note": "Explicit yes; cancel not in scope (literal wiki parenthetical)."
+  },
+  "AIR-GEN-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R1"
+   ],
+   "note": "TOOLS+: also read tools and send_certificate.",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-GEN-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C04-R2"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C05-R2"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C06-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-04": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S0-C07-R1"
+   ],
+   "note": ""
+  },
+  "AIR-GEN-05a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S0-C08-R1"
+   ],
+   "note": "Keeps 'if and only if' in one rule; 'your actions' unresolved but clear."
+  },
+  "AIR-GEN-05b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S0-C08-R1"
+   ],
+   "note": "Same iff rule.",
+   "spot_check_2026-10-15": "Status kept (covered), but questionable: the iff rule sits on transfer_to_human_agents, where only the ONLY-IF direction is enforceable; the IF direction (must transfer) would need respond_to_user, which is why AIR-CAN-03b was labelled partial (TOOLS). Kept for comparability; RET-GEN-07b was labelled the same way. Listed as an open question."
+  },
+  "AIR-DOM-04c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S1-C06-R1",
+    "S1-C06-R2"
+   ],
+   "note": "Only book_reservation (literal 'booked').",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-DOM-04e": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S1-C08-R1"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R1"
+   ],
+   "note": "'As the first step, obtain the user id' (merged from the booking and modify clauses); TOOLS+.",
+   "spot_check_2026-10-15": "Status confirmed (covered, TOOLS+). Added: one of the extra tools is respond_to_user with enforcement block, i.e. 'respond_to_user IMPLIES user_id_obtained' would block the agent's first message asking for the id (not shielded in the Step 4 default)."
+  },
+  "AIR-BOOK-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C01-R2"
+   ],
+   "note": "'then' relies on the preceding rule; attached to book_reservation (+ search tools).",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-BOOK-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C02-R1",
+    "S2-C02-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C03-R1",
+    "S2-C03-R2",
+    "S2-C03-R3"
+   ],
+   "note": "Split per field."
+  },
+  "AIR-BOOK-02c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C04-R1",
+    "S2-C04-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R1",
+    "S2-C07-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R2",
+    "S2-C07-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C05-R3",
+    "S2-C07-R2"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-03e": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C07-R1"
+   ],
+   "note": ""
+  },
+  "AIR-BOOK-04a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S2-C08-R1",
+    "S2-C08-R2",
+    "S2-C08-R3"
+   ],
+   "note": "Numbers and 'booking user' kept; book + update_baggages."
+  },
+  "AIR-BOOK-04b": {
+   "status": "incorrect",
+   "issues": [
+    "MODAL",
+    "INV"
+   ],
+   "auto_rules": [
+    "S2-C09-R1",
+    "S2-C09-R2",
+    "S2-C09-R3"
+   ],
+   "note": "Numbers right, but 'if silver' became 'ONLY IF silver': 'provide 3 free bags per business passenger only if silver' forbids the gold business allowance (3) and contradicts S2-C10-R3.",
+   "spot_check_2026-10-15": "Status confirmed (incorrect), reason refined: the DESCRIPTIONS say 'only if silver' (contradicting the regular/gold allowances), but the LOGIC is tier -> allowance ('if'). The logic is still contradictory: S2-C09-R1 (free = #basic economy) and S2-C09-R2 (free = 2 x #economy) have no cabin antecedent, so for any silver reservation at least one of them fails unless the allowance is zero."
+  },
+  "AIR-BOOK-04c": {
+   "status": "incorrect",
+   "issues": [
+    "MODAL",
+    "INV"
+   ],
+   "auto_rules": [
+    "S2-C10-R1",
+    "S2-C10-R2",
+    "S2-C10-R3"
+   ],
+   "note": "Same 'only if gold' strengthening: '3 per business passenger only if gold' forbids the silver business allowance.",
+   "spot_check_2026-10-15": "Status confirmed (incorrect), reason refined as for 04b: S2-C10-R2 (free = 3 x #economy) and S2-C10-R3 (free >= 3 x #business) have no cabin antecedent and conflict for any gold reservation with passengers in only one of these cabins."
+  },
+  "AIR-BOOK-04d": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S2-C11-R1"
+   ],
+   "note": "$50 correct, but attached only to bag updates; not to book_reservation, where non-free bags are also charged."
+  },
+  "AIR-BOOK-05a": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S2-C12-R1"
+   ],
+   "note": "Content right; attached only to respond_to_user, so it is never checked at booking."
+  },
+  "AIR-BOOK-05b": {
+   "status": "missing",
+   "issues": [
+    "DROP"
+   ],
+   "auto_rules": [],
+   "note": "The $30-per-passenger insurance price appears in no rule.",
+   "spot_check_2026-10-15": "Status confirmed (missing): no rule in the run mentions the $30 per-passenger price (grep over all rule descriptions and predicates)."
+  },
+  "AIR-MOD-01a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R1",
+    "S3-C13-R2"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-01b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C01-R2",
+    "S3-C13-R2"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-02a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C02-R1",
+    "S3-C07-R1"
+   ],
+   "note": "Cabin-change exception expressed separately (S3-C08-R1)."
+  },
+  "AIR-MOD-02b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C03-R1",
+    "S3-C03-R2",
+    "S3-C03-R3",
+    "S3-C07-R3"
+   ],
+   "note": "TOOLS+ (bags/passengers updates).",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-MOD-02d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C07-R1",
+    "S3-C07-R3",
+    "S3-C07-R4",
+    "S3-C07-R5",
+    "S3-C07-R6"
+   ],
+   "note": "The meta clause was resolved into concrete 'verify X before modifying' rules."
+  },
+  "AIR-MOD-03a": {
+   "status": "partial",
+   "issues": [
+    "MODAL",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C08-R1",
+    "S3-C08-R4"
+   ],
+   "note": "Permission became 'must allow cabin changes'; S3-C08-R4 adds 'must not modify flights as part of a cabin change' for every reservation (over-reading)."
+  },
+  "AIR-MOD-03b": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S3-C08-R3",
+    "S3-C09-R1",
+    "S3-C07-R5"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-03c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C07-R4"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-03d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C07-R4"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-04a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C11-R2",
+    "S3-C07-R10"
+   ],
+   "note": "",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-MOD-04b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C12-R1",
+    "S3-C07-R11"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-05a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C13-R3",
+    "S3-C07-R9"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-05b": {
+   "status": "partial",
+   "issues": [
+    "SCOPE",
+    "HALL"
+   ],
+   "auto_rules": [
+    "S3-C07-R12",
+    "S3-C15-R1"
+   ],
+   "note": "The 'no transfer for passenger-count change' consequence is lost; S3-C15-R1 is an unresolved reference ('the operation described by the target clause S3-C15')."
+  },
+  "AIR-MOD-06a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C16-R1",
+    "S3-C07-R6"
+   ],
+   "note": ""
+  },
+  "AIR-MOD-06b": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S3-C07-R7"
+   ],
+   "note": "S3-C17-R1 ('… instead') is an unresolved duplicate."
+  },
+  "AIR-CAN-01a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S4-C01-R1",
+    "S4-C07-R1"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-01b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S4-C01-R1",
+    "S4-C07-R1"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-01c": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S4-C01-R1"
+   ],
+   "note": "Reason enumeration kept."
+  },
+  "AIR-CAN-02a": {
+   "status": "partial",
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S4-C02-R1",
+    "S4-C05-R3"
+   ],
+   "note": "Permission 'can be cancelled within 24 h' became 'must cancel if within 24 h'."
+  },
+  "AIR-CAN-02b": {
+   "status": "partial",
+   "issues": [
+    "MODAL"
+   ],
+   "auto_rules": [
+    "S4-C02-R1",
+    "S4-C05-R3"
+   ],
+   "note": "Same 'must cancel' strengthening."
+  },
+  "AIR-CAN-02c": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S4-C03-R1",
+    "S4-C05-R4",
+    "S4-C07-R3"
+   ],
+   "note": "'must not cancel (basic) economy unless insured and the condition is met': the 24 h / airline-cancelled exceptions are not integrated (the rule alone forbids them), and 'the condition' is never grounded (health or weather)."
+  },
+  "AIR-CAN-02d": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S4-C07-R4"
+   ],
+   "note": "'may cancel business flights'; S4-C05-R5 duplicates it with wrong tools.",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-CAN-02e": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S4-C05-R1"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-02f": {
+   "status": "partial",
+   "issues": [
+    "COND"
+   ],
+   "auto_rules": [
+    "S4-C05-R6",
+    "S4-C07-R8",
+    "S4-C02-R3",
+    "S4-C04-R6"
+   ],
+   "note": "Meta-reference stays unresolved ('make sure the rules apply', 'these checks')."
+  },
+  "AIR-CAN-03a": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S4-C08-R1",
+    "S4-C09-R1",
+    "S4-C05-R7"
+   ],
+   "note": ""
+  },
+  "AIR-CAN-03b": {
+   "status": "partial",
+   "issues": [
+    "TOOLS"
+   ],
+   "auto_rules": [
+    "S4-C09-R2",
+    "S4-C05-R8"
+   ],
+   "note": "Obligation to transfer is attached to cancel/read/update tools but not to transfer_to_human_agents or respond_to_user."
+  },
+  "AIR-COMP-01a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C01-R1",
+    "S5-C04-R2"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-01b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C01-R1"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-01c": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C01-R1"
+   ],
+   "note": "$100 x passengers.",
+   "spot_check_2026-10-15": "Status confirmed."
+  },
+  "AIR-COMP-02a": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C02-R1",
+    "S5-C04-R3"
+   ],
+   "note": "S5-C02-R2 additionally turns the permission into 'must offer'."
+  },
+  "AIR-COMP-02b": {
+   "status": "covered",
+   "issues": [
+    "MERGE"
+   ],
+   "auto_rules": [
+    "S5-C02-R1"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-02c": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C02-R2",
+    "S5-C02-R4"
+   ],
+   "note": "$50 x passengers."
+  },
+  "AIR-COMP-03a": {
+   "status": "covered",
+   "issues": [],
+   "auto_rules": [
+    "S5-C03-R1",
+    "S5-C02-R1"
+   ],
+   "note": ""
+  },
+  "AIR-COMP-03b": {
+   "status": "covered",
+   "issues": [
+    "DUP"
+   ],
+   "auto_rules": [
+    "S5-C04-R1"
+   ],
+   "note": "'(basic) economy' kept; a duplicate S5-C02-R3 narrows it to basic economy (the Step-1 extraction error), but the correct rule exists."
+  }
+ },
+ "spot_check": {
+  "date": "2026-10-15",
+  "by": "Claude (Step 2b resume)",
+  "checked": [
+   "AIR-BOOK-01a",
+   "AIR-BOOK-01b",
+   "AIR-BOOK-04b",
+   "AIR-BOOK-04c",
+   "AIR-BOOK-05b",
+   "AIR-CAN-02d",
+   "AIR-COMP-01c",
+   "AIR-DOM-04c",
+   "AIR-GEN-02a",
+   "AIR-GEN-05b",
+   "AIR-MOD-02b",
+   "AIR-MOD-04a"
+  ],
+  "result": "12 labels re-checked (all 2 incorrect, the 1 missing, 9 covered). No status changed; reasons refined for AIR-BOOK-04b/04c, a harm note added to AIR-BOOK-01a, AIR-GEN-05b flagged as an open question."
+ }
+}

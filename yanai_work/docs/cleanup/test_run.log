@@ -1,0 +1,20 @@
+...........................................
+step adapter: {'runs': 1980, 'steps': 26260, 'tool_steps': 14285, 'respond_steps': 11975, 'tool_obs_missing': 0}
+[alg2] it1 VR progress: done 5, refined 2, verifiable 3, heap 5, running 0, budget 2/18, rules 8
+[alg2] it1 VR progress: done 7, refined 2, verifiable 5, heap 3, running 0, budget 2/18, rules 8
+[alg2] it1 VR progress: done 9, refined 2, verifiable 7, heap 1, running 0, budget 2/18, rules 8
+[alg2] it1 VR progress: done 10, refined 3, verifiable 7, heap 2, running 0, budget 3/18, rules 9
+[alg2] it1 VR progress: done 12, refined 3, verifiable 9, heap 0, running 0, budget 3/18, rules 9
+[alg2] it1 VR done: {'iteration': 1, 'phase': 'after_VR', 'vr_calls': 12, 'refinements': 3, 'verifiable': 9, 'refinement_invalid': 0, 'lineage_capped': 0, 'budget_skipped': 0, 'budget_used': 3, 'budget': 18, 'rules': 9, 'predicates': 5, 'action_predicates': 2, 'condition_predicates': 3, 'vagueness_mean': 0.2479, 'vagueness_min': -0.0877, 'vagueness_max': 0.4288}
+[alg2] it1 RP start: 1 clusters
+[alg2] it1 RP progress: calls 1, merges 0, pending 0, rules 9
+[alg2] it1 RP done: {'iteration': 1, 'phase': 'after_RP', 'rp_clusters': 1, 'rp_calls': 1, 'merges': 0, 'conflicts_deferred': 0, 'rules': 9, 'predicates': 5, 'action_predicates': 2, 'condition_predicates': 3, 'vagueness_mean': 0.2479, 'vagueness_min': -0.0877, 'vagueness_max': 0.4288}
+[alg2] it2 VR done: {'iteration': 2, 'phase': 'after_VR', 'vr_calls': 0, 'refinements': 0, 'verifiable': 0, 'refinement_invalid': 0, 'lineage_capped': 0, 'budget_skipped': 0, 'budget_used': 3, 'budget': 18, 'rules': 9, 'predicates': 5, 'action_predicates': 2, 'condition_predicates': 3, 'vagueness_mean': 0.2479, 'vagueness_min': -0.0877, 'vagueness_max': 0.4288}
+[alg2] it2 RP start: 1 clusters
+[alg2] it2 RP progress: calls 1, merges 0, pending 0, rules 9
+[alg2] it2 RP done: {'iteration': 2, 'phase': 'after_RP', 'rp_clusters': 1, 'rp_calls': 1, 'merges': 0, 'conflicts_deferred': 0, 'rules': 9, 'predicates': 5, 'action_predicates': 2, 'condition_predicates': 3, 'vagueness_mean': 0.2479, 'vagueness_min': -0.0877, 'vagueness_max': 0.4288}
+.............
+----------------------------------------------------------------------
+Ran 56 tests in 350.075s
+
+OK

@@ -1,0 +1,1185 @@
+{
+  "domain": "airline",
+  "wiki_source": "policy_docs/airline_wiki.txt",
+  "wiki_sha256": "56c335801c16e26b54f600f9db99eb04d31db477e86eb160341d5c66b796c5c8",
+  "extraction_dir": "output/deep_policy/extraction_20261012_112735",
+  "config": "policies/curated/airline_config.json",
+  "generated": "2026-10-14",
+  "step": "step1-rule-audit (closed out 2026-10-14, Step-2 Part A)",
+  "notes": "extracted_rule_ids = rule_id in *_risk_categories.json (refined); extracted_raw_rule_ids = rule_id in *_all_extracted_rules.json. origin: extracted | modified | added | interpretation (a reading the wiki does not force) | tool_spec (taken from the τ-bench tool description). verification_types: data needed: state (current args + latest DB objects in tool outputs), tool_log (earlier tool calls/results), structural (format of the current agent turn), dialogue (message content; LLM judge).",
+  "rules": [
+    {
+      "rule_id": "AIR-R001",
+      "description": "The agent must list the action details to the user before calling any tool that updates the booking database (booking, cancelling, changing flights or cabin, editing baggage, or updating passengers).",
+      "source_clause_ids": [
+        "AIR-GEN-01a"
+      ],
+      "wiki_quote": "Before taking any actions that update the booking database (booking, modifying flights, editing baggage, upgrading cabin class, or updating passenger information), you must list the action details",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "1"
+      ],
+      "extracted_raw_rule_ids": [
+        1
+      ],
+      "related_tools": [
+        "book_reservation",
+        "cancel_reservation",
+        "update_reservation_flights",
+        "update_reservation_baggages",
+        "update_reservation_passengers"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Split from compound R1, which also used the wrong subject. AMBIGUITY: the wiki's parenthetical list omits cancellation, but cancel_reservation updates the booking database, so it is included under the literal head phrase 'any actions that update the booking database'. send_certificate writes to the user profile, not the booking database, and is excluded. Review this. Decision (Step 1 close-out): cancel_reservation stays in scope and send_certificate stays excluded. The cancellation part of the scope is an INTERPRETATION, kept explicit so it can be ablated later."
+    },
+    {
+      "rule_id": "AIR-R002",
+      "description": "The agent must obtain an explicit 'yes' from the user, given after the action details were listed, before calling any tool that updates the booking database.",
+      "source_clause_ids": [
+        "AIR-GEN-01b"
+      ],
+      "wiki_quote": "obtain explicit user confirmation (yes) to proceed.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "1"
+      ],
+      "extracted_raw_rule_ids": [
+        1
+      ],
+      "related_tools": [
+        "book_reservation",
+        "cancel_reservation",
+        "update_reservation_flights",
+        "update_reservation_baggages",
+        "update_reservation_passengers"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Same tool scope and ambiguity as AIR-R001. Decision (Step 1 close-out): same scope as AIR-R001. The cancellation part is an INTERPRETATION (ablation candidate)."
+    },
+    {
+      "rule_id": "AIR-R003",
+      "description": "The agent must not provide information, knowledge, or procedures that were not provided by the user or by the available tools.",
+      "source_clause_ids": [
+        "AIR-GEN-02a"
+      ],
+      "wiki_quote": "You should not provide any information, knowledge, or procedures not provided by the user or available tools",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "9"
+      ],
+      "extracted_raw_rule_ids": [
+        2
+      ],
+      "related_tools": [
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Fixes R9 (inverted subject, 'TauBench' substituted for 'the user', invented 'do not request'). Facts in the wiki (refund timing, certificate remainder) are policy knowledge the agent may state."
+    },
+    {
+      "rule_id": "AIR-R004",
+      "description": "The agent must not give subjective recommendations or comments.",
+      "source_clause_ids": [
+        "AIR-GEN-02b"
+      ],
+      "wiki_quote": "or give subjective recommendations or comments.",
+      "origin": "added",
+      "extracted_rule_ids": [],
+      "extracted_raw_rule_ids": [],
+      "related_tools": [
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Dropped by the extraction at the raw-rule stage."
+    },
+    {
+      "rule_id": "AIR-R005",
+      "description": "The agent must make at most one tool call per turn.",
+      "source_clause_ids": [
+        "AIR-GEN-03a"
+      ],
+      "wiki_quote": "You should only make one tool call at a time",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "47"
+      ],
+      "extracted_raw_rule_ids": [
+        3
+      ],
+      "related_tools": [
+        "*"
+      ],
+      "verification_types": [
+        "structural"
+      ],
+      "notes": "R47 had the user as subject. Verification type changed to structural: a property of the current model turn (number of tool calls), not of history."
+    },
+    {
+      "rule_id": "AIR-R006",
+      "description": "The agent must not respond to the user and make a tool call in the same turn.",
+      "source_clause_ids": [
+        "AIR-GEN-03b",
+        "AIR-GEN-03c"
+      ],
+      "wiki_quote": "if you make a tool call, you should not respond to the user simultaneously. … If you respond to the user, you should not make a tool call at the same time.",
+      "origin": "added",
+      "extracted_rule_ids": [],
+      "extracted_raw_rule_ids": [],
+      "related_tools": [
+        "*",
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "structural"
+      ],
+      "notes": "One rule for both directions of the same constraint. The τ-bench runtime may already enforce this structurally, depending on the agent loop. Verification type changed to structural: a property of the current model turn (text alongside a tool call)."
+    },
+    {
+      "rule_id": "AIR-R007",
+      "description": "The agent must deny (refuse to carry out) user requests that are against this policy.",
+      "source_clause_ids": [
+        "AIR-GEN-04"
+      ],
+      "wiki_quote": "You should deny user requests that are against this policy.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "48"
+      ],
+      "extracted_raw_rule_ids": [
+        4
+      ],
+      "related_tools": [
+        "*",
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Meta-rule. The shield enforces it at action level by blocking any action that violates another rule. At message level, the agent must state a refusal rather than pretend compliance."
+    },
+    {
+      "rule_id": "AIR-R008",
+      "description": "The agent must not transfer the user to a human agent unless the request cannot be handled within the scope of the agent's actions or the user explicitly asks for a human agent.",
+      "source_clause_ids": [
+        "AIR-GEN-05a",
+        "AIR-CTX-02"
+      ],
+      "wiki_quote": "You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions. … As an airline agent, you can help users book, modify, or cancel flight reservations.",
+      "origin": "tool_spec",
+      "extracted_rule_ids": [
+        "49"
+      ],
+      "extracted_raw_rule_ids": [
+        5
+      ],
+      "related_tools": [
+        "transfer_to_human_agents"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Restores the 'only if' half of 'if and only if'. NOTE: the τ-bench tool description also allows a transfer when the user explicitly asks for a human. The wiki does not, so the literal wiki reading is kept. AIR-R044 is an explicit case where a transfer is required. Decision (Step 1 close-out): the second disjunct ('the user explicitly asks for a human agent') comes from the τ-bench transfer_to_human_agents tool description, not the wiki; hence origin tool_spec. Precedence: AIR-R007 (deny requests against policy) and AIR-R036 (never transfer a passenger-count change) override the explicit-request permission. An explicit request for a human does not justify a transfer of a request the policy says to deny, nor of a passenger-count change."
+    },
+    {
+      "rule_id": "AIR-R009",
+      "description": "The agent must transfer the user to a human agent when the request cannot be handled within the scope of the agent's actions.",
+      "source_clause_ids": [
+        "AIR-GEN-05b",
+        "AIR-CTX-02"
+      ],
+      "wiki_quote": "You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions. … As an airline agent, you can help users book, modify, or cancel flight reservations.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "49"
+      ],
+      "extracted_raw_rule_ids": [
+        5
+      ],
+      "related_tools": [
+        "transfer_to_human_agents",
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Precedence: requests that are within scope but against policy are denied (AIR-R007), not transferred. Requests to change the passenger count are never transferred (AIR-R036). Decision (Step 1 close-out): unchanged obligation. An explicit request for a human only PERMITS a transfer (AIR-R008); it does not oblige one. Precedence as in AIR-R008: AIR-R007 and AIR-R036 take priority."
+    },
+    {
+      "rule_id": "AIR-R010",
+      "description": "The agent must not book a flight, or add a new flight to an existing reservation, unless the flight's status on that date is 'available'.",
+      "source_clause_ids": [
+        "AIR-DOM-04c",
+        "AIR-DOM-04e",
+        "AIR-DOM-04b",
+        "AIR-DOM-04d"
+      ],
+      "wiki_quote": "If the status is \"delayed\" or \"on time\", the flight has not taken off, cannot be booked. … If the status is \"flying\", the flight has taken off but not landed, cannot be booked.",
+      "origin": "interpretation",
+      "extracted_rule_ids": [],
+      "extracted_raw_rule_ids": [],
+      "related_tools": [
+        "book_reservation",
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "The whole Domain Basic section was dropped by the extraction. AMBIGUITY: τ-bench data also contains flight-date statuses 'landed' and 'cancelled', which the wiki never mentions, and the API books only 'available'. The literal list is kept here. A stricter 'only available' reading is an open question. For update_reservation_flights the rule applies to newly added segments only; this is an interpretation. Decision (Step 1 close-out): stricter 'only available' reading adopted (an interpretation). The wiki lists only 'delayed', 'on time' and 'flying' as non-bookable; τ-bench data also has 'landed' and 'cancelled'. The τ-bench API books only 'available' (book_reservation.py:65, update_reservation_flights.py:49)."
+    },
+    {
+      "rule_id": "AIR-R011",
+      "description": "When booking a flight, the agent must obtain the user id first, before collecting the trip type, origin, and destination.",
+      "source_clause_ids": [
+        "AIR-BOOK-01a"
+      ],
+      "wiki_quote": "The agent must first obtain the user id",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "2"
+      ],
+      "extracted_raw_rule_ids": [
+        6
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Split from R2 and given the agent as subject."
+    },
+    {
+      "rule_id": "AIR-R012",
+      "description": "The agent must ask the user for the trip type, origin, and destination before booking a flight.",
+      "source_clause_ids": [
+        "AIR-BOOK-01b"
+      ],
+      "wiki_quote": "then ask for the trip type, origin, destination.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "2"
+      ],
+      "extracted_raw_rule_ids": [
+        6
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "R2 imposed an order 'trip type, then origin, then destination' that the wiki does not state. The wiki lists the three items unordered."
+    },
+    {
+      "rule_id": "AIR-R013",
+      "description": "The agent must not book a reservation with more than five passengers.",
+      "source_clause_ids": [
+        "AIR-BOOK-02a"
+      ],
+      "wiki_quote": "Passengers: Each reservation can have at most five passengers.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "3"
+      ],
+      "extracted_raw_rule_ids": [
+        7
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R014",
+      "description": "The agent must collect the first name, last name, and date of birth of every passenger before booking.",
+      "source_clause_ids": [
+        "AIR-BOOK-02b"
+      ],
+      "wiki_quote": "The agent needs to collect the first name, last name, and date of birth for each passenger.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "4"
+      ],
+      "extracted_raw_rule_ids": [
+        8
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Deterministic part: every passenger in the call has all three fields. Checking that the values come from the user, not fabricated, falls under AIR-R003."
+    },
+    {
+      "rule_id": "AIR-R015",
+      "description": "The agent must book all passengers of a reservation on the same flights in the same cabin.",
+      "source_clause_ids": [
+        "AIR-BOOK-02c"
+      ],
+      "wiki_quote": "All passengers must fly the same flights in the same cabin.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "5"
+      ],
+      "extracted_raw_rule_ids": [
+        9
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "The book_reservation schema already guarantees this: one cabin and one flight list per reservation. Kept for completeness."
+    },
+    {
+      "rule_id": "AIR-R016",
+      "description": "The agent must not use more than one travel certificate as payment for a reservation.",
+      "source_clause_ids": [
+        "AIR-BOOK-03a"
+      ],
+      "wiki_quote": "Payment: each reservation can use at most one travel certificate",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "29"
+      ],
+      "extracted_raw_rule_ids": [
+        10
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Count payment_ids with the 'certificate_' prefix."
+    },
+    {
+      "rule_id": "AIR-R017",
+      "description": "The agent must not use more than one credit card as payment for a reservation.",
+      "source_clause_ids": [
+        "AIR-BOOK-03b"
+      ],
+      "wiki_quote": "at most one credit card",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "30"
+      ],
+      "extracted_raw_rule_ids": [
+        11
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R018",
+      "description": "The agent must not use more than three gift cards as payment for a reservation.",
+      "source_clause_ids": [
+        "AIR-BOOK-03c"
+      ],
+      "wiki_quote": "and at most three gift cards.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "31"
+      ],
+      "extracted_raw_rule_ids": [
+        12
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R019",
+      "description": "The agent must only use payment methods that already exist in the user's profile when booking.",
+      "source_clause_ids": [
+        "AIR-BOOK-03e"
+      ],
+      "wiki_quote": "All payment methods must already be in user profile for safety reasons.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "33"
+      ],
+      "extracted_raw_rule_ids": [
+        14
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "The clause sits under 'Book flight'. The τ-bench API also rejects unknown payment ids on the update tools."
+    },
+    {
+      "rule_id": "AIR-R020",
+      "description": "When the booking user is a regular member, the agent must set nonfree_baggages to exactly the number of checked bags in excess of the pooled free allowance (number of passengers x per-passenger allowance), with a per-passenger allowance of 0 bags in basic economy, 1 in economy and 2 in business.",
+      "source_clause_ids": [
+        "AIR-BOOK-04a"
+      ],
+      "wiki_quote": "If the booking user is a regular member, 0 free checked bag for each basic economy passenger, 1 free checked bag for each economy passenger, and 2 free checked bags for each business passenger.",
+      "origin": "interpretation",
+      "extracted_rule_ids": [
+        "22"
+      ],
+      "extracted_raw_rule_ids": [
+        15
+      ],
+      "related_tools": [
+        "book_reservation",
+        "update_reservation_baggages"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Restores 'booking user': the tier is the reservation owner's, not the passengers'. Check: nonfree_baggages == max(0, total_baggages - allowance x passengers). The table appears under 'Book flight'. Applying it to later bag additions is an interpretation. Decision (Step 1 close-out): exact equality (charging for a free bag is also wrong). The allowance is POOLED across passengers (an interpretation; the wiki gives a per-passenger allowance). Checked against the tool source: total_baggages and nonfree_baggages are reservation-level totals in book_reservation (book_reservation.py:48-49, priced at line 77) and update_reservation_baggages (update_reservation_baggages.py:22, 34-35)."
+    },
+    {
+      "rule_id": "AIR-R021",
+      "description": "When the booking user is a silver member, the agent must set nonfree_baggages to exactly the number of checked bags in excess of the pooled free allowance (number of passengers x per-passenger allowance), with a per-passenger allowance of 1 bag in basic economy, 2 in economy and 3 in business.",
+      "source_clause_ids": [
+        "AIR-BOOK-04b"
+      ],
+      "wiki_quote": "If the booking user is a silver member, 1 free checked bag for each basic economy passenger, 2 free checked bag for each economy passenger, and 3 free checked bags for each business passenger.",
+      "origin": "interpretation",
+      "extracted_rule_ids": [
+        "23"
+      ],
+      "extracted_raw_rule_ids": [
+        16
+      ],
+      "related_tools": [
+        "book_reservation",
+        "update_reservation_baggages"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "See AIR-R020. Decision (Step 1 close-out): see AIR-R020 (exact equality, pooled allowance; reservation-level totals confirmed in the tool source)."
+    },
+    {
+      "rule_id": "AIR-R022",
+      "description": "When the booking user is a gold member, the agent must set nonfree_baggages to exactly the number of checked bags in excess of the pooled free allowance (number of passengers x per-passenger allowance), with a per-passenger allowance of 2 bags in basic economy, 3 in economy and 3 in business.",
+      "source_clause_ids": [
+        "AIR-BOOK-04c"
+      ],
+      "wiki_quote": "If the booking user is a gold member, 2 free checked bag for each basic economy passenger, 3 free checked bag for each economy passenger, and 3 free checked bags for each business passenger.",
+      "origin": "interpretation",
+      "extracted_rule_ids": [
+        "24"
+      ],
+      "extracted_raw_rule_ids": [
+        17
+      ],
+      "related_tools": [
+        "book_reservation",
+        "update_reservation_baggages"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "See AIR-R020. Decision (Step 1 close-out): see AIR-R020 (exact equality, pooled allowance; reservation-level totals confirmed in the tool source)."
+    },
+    {
+      "rule_id": "AIR-R023",
+      "description": "The agent must charge 50 dollars for each extra (non-free) checked bag.",
+      "source_clause_ids": [
+        "AIR-BOOK-04d"
+      ],
+      "wiki_quote": "Each extra baggage is 50 dollars.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "25"
+      ],
+      "extracted_raw_rule_ids": [
+        18
+      ],
+      "related_tools": [
+        "book_reservation",
+        "update_reservation_baggages"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "The API adds 50 x nonfree_baggages to the price. The agent must quote and collect the same amount."
+    },
+    {
+      "rule_id": "AIR-R024",
+      "description": "The agent must ask the user whether they want to buy travel insurance before booking.",
+      "source_clause_ids": [
+        "AIR-BOOK-05a"
+      ],
+      "wiki_quote": "Travel insurance: the agent should ask if the user wants to buy the travel insurance",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "27"
+      ],
+      "extracted_raw_rule_ids": [
+        19
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "R27 had turned the obligation into a user option."
+    },
+    {
+      "rule_id": "AIR-R025",
+      "description": "The agent must charge travel insurance at 30 dollars per passenger when the user buys it.",
+      "source_clause_ids": [
+        "AIR-BOOK-05b"
+      ],
+      "wiki_quote": "which is 30 dollars per passenger",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "27"
+      ],
+      "extracted_raw_rule_ids": [
+        19
+      ],
+      "related_tools": [
+        "book_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Split from compound R27. The coverage part (health or weather) is a fact and is used in AIR-R042."
+    },
+    {
+      "rule_id": "AIR-R026",
+      "description": "The agent must obtain the user id before modifying a reservation (flights, cabin, baggage, or passengers).",
+      "source_clause_ids": [
+        "AIR-MOD-01a"
+      ],
+      "wiki_quote": "The agent must first obtain the user id and the reservation id.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "10"
+      ],
+      "extracted_raw_rule_ids": [
+        20
+      ],
+      "related_tools": [
+        "update_reservation_flights",
+        "update_reservation_baggages",
+        "update_reservation_passengers"
+      ],
+      "verification_types": [
+        "tool_log",
+        "state"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R027",
+      "description": "The agent must obtain the reservation id before modifying a reservation (flights, cabin, baggage, or passengers).",
+      "source_clause_ids": [
+        "AIR-MOD-01b"
+      ],
+      "wiki_quote": "The agent must first obtain the user id and the reservation id.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "10"
+      ],
+      "extracted_raw_rule_ids": [
+        20
+      ],
+      "related_tools": [
+        "update_reservation_flights",
+        "update_reservation_baggages",
+        "update_reservation_passengers"
+      ],
+      "verification_types": [
+        "tool_log"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R028",
+      "description": "The agent must not change the flights of a basic economy reservation; for a basic economy reservation it may only change the cabin while keeping exactly the same flights (flight numbers and dates).",
+      "source_clause_ids": [
+        "AIR-MOD-02a",
+        "AIR-MOD-02d",
+        "AIR-MOD-03a"
+      ],
+      "wiki_quote": "Change flights: Basic economy flights cannot be modified. … The API does not check these for the agent, so the agent must make sure the rules apply before calling the API! … Change cabin: all reservations, including basic economy, can change cabin without changing the flights.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "11",
+        "14",
+        "6"
+      ],
+      "extracted_raw_rule_ids": [
+        21,
+        24,
+        25
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Fixes R11, which banned all modification of basic economy reservations. 'Basic economy' means the reservation's current cabin. AMBIGUITY: whether flights can be changed after a cabin upgrade, in a separate later call. Literal reading: once upgraded, the reservation is no longer basic economy."
+    },
+    {
+      "rule_id": "AIR-R029",
+      "description": "When changing flights, the agent must keep the reservation's origin and destination unchanged.",
+      "source_clause_ids": [
+        "AIR-MOD-02b",
+        "AIR-MOD-02d"
+      ],
+      "wiki_quote": "Other reservations can be modified without changing the origin, destination, and trip type. … The API does not check these for the agent, so the agent must make sure the rules apply before calling the API!",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "12"
+      ],
+      "extracted_raw_rule_ids": [
+        22
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Split from compound R12."
+    },
+    {
+      "rule_id": "AIR-R030",
+      "description": "When changing flights, the agent must keep the reservation's trip type (one way or round trip) unchanged.",
+      "source_clause_ids": [
+        "AIR-MOD-02b",
+        "AIR-MOD-02d",
+        "AIR-DOM-02"
+      ],
+      "wiki_quote": "Other reservations can be modified without changing the origin, destination, and trip type. … The API does not check these for the agent, so the agent must make sure the rules apply before calling the API! … Each reservation has an reservation id, user id, trip type (one way, round trip), flights, passengers, payment methods, created time, baggages, and travel insurance information.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "12"
+      ],
+      "extracted_raw_rule_ids": [
+        22
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Split from R12. This also blocks partial cancellation by dropping a leg of a round trip."
+    },
+    {
+      "rule_id": "AIR-R031",
+      "description": "When changing the cabin of a reservation, the agent must charge the user the price difference between the current and the new cabin class and must not waive it.",
+      "source_clause_ids": [
+        "AIR-MOD-03b"
+      ],
+      "wiki_quote": "Cabin changes require the user to pay for the difference between their current cabin and the new cabin class.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "15"
+      ],
+      "extracted_raw_rule_ids": [
+        26
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "The API computes the difference itself. Violations show up as promised free upgrades or offsets, e.g. via certificates. A downgrade yields a refund to the given payment method; the wiki says only 'pay for the difference'."
+    },
+    {
+      "rule_id": "AIR-R032",
+      "description": "The agent must apply a cabin change to all flights in the reservation and must not change the cabin of only some flight segments.",
+      "source_clause_ids": [
+        "AIR-MOD-03c",
+        "AIR-MOD-03d"
+      ],
+      "wiki_quote": "Cabin class must be the same across all the flights in the same reservation … changing cabin for just one flight segment is not possible.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "16",
+        "17"
+      ],
+      "extracted_raw_rule_ids": [
+        27,
+        28
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Merges the redundant R16 and R17. The schema enforces this structurally (one cabin per call)."
+    },
+    {
+      "rule_id": "AIR-R033",
+      "description": "The agent must not remove checked bags from a reservation: the new total number of checked bags must not be lower than the current total.",
+      "source_clause_ids": [
+        "AIR-MOD-04a"
+      ],
+      "wiki_quote": "Change baggage and insurance: The user can add but not remove checked bags.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "26"
+      ],
+      "extracted_raw_rule_ids": [
+        29
+      ],
+      "related_tools": [
+        "update_reservation_baggages"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "AMBIGUITY: the wiki does not say whether nonfree_baggages may decrease, e.g. by re-labelling bags as free. Literal check: total_baggages only."
+    },
+    {
+      "rule_id": "AIR-R034",
+      "description": "The agent must not add travel insurance to a reservation after it has been booked.",
+      "source_clause_ids": [
+        "AIR-MOD-04b"
+      ],
+      "wiki_quote": "The user cannot add insurance after initial booking.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "28"
+      ],
+      "extracted_raw_rule_ids": [
+        30
+      ],
+      "related_tools": [
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "No τ-bench tool can add insurance to an existing reservation, so violations appear in messages: promising or claiming that insurance was added."
+    },
+    {
+      "rule_id": "AIR-R035",
+      "description": "The agent must not change the number of passengers in a reservation: an updated passenger list must have the same number of passengers as the current list.",
+      "source_clause_ids": [
+        "AIR-MOD-05a"
+      ],
+      "wiki_quote": "Change passengers: The user can modify passengers but cannot modify the number of passengers.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "18"
+      ],
+      "extracted_raw_rule_ids": [
+        31
+      ],
+      "related_tools": [
+        "update_reservation_passengers"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "The API also checks this."
+    },
+    {
+      "rule_id": "AIR-R036",
+      "description": "The agent must not transfer the user to a human agent for a request to change the number of passengers.",
+      "source_clause_ids": [
+        "AIR-MOD-05b"
+      ],
+      "wiki_quote": "This is something that even a human agent cannot assist with.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "19"
+      ],
+      "extracted_raw_rule_ids": [
+        32
+      ],
+      "related_tools": [
+        "transfer_to_human_agents"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Exception to AIR-R009: even a human agent cannot help, so the agent must deny instead."
+    },
+    {
+      "rule_id": "AIR-R037",
+      "description": "When changing flights, the agent must use exactly one payment method, which must be a gift card or a credit card from the user's profile (not a travel certificate).",
+      "source_clause_ids": [
+        "AIR-MOD-06a"
+      ],
+      "wiki_quote": "Payment: If the flights are changed, the user needs to provide one gift card or credit card for payment or refund method.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "20",
+        "35"
+      ],
+      "extracted_raw_rule_ids": [
+        33
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "R35 duplicates R20. Literal scope is 'if the flights are changed'. The same tool performs cabin changes, and the API rejects certificates for every update. Decision (Step 1 close-out): literal scope kept (applies only when the flights are changed). Tool source: update_reservation_flights rejects certificates for ANY call, flights changed or cabin only ('Error: certificate cannot be used to update reservation', update_reservation_flights.py:68-69), and takes a single payment_id. This rule is therefore API-enforced."
+    },
+    {
+      "rule_id": "AIR-R038",
+      "description": "When changing flights, the agent must ask the user which payment or refund method to use rather than choosing a method itself.",
+      "source_clause_ids": [
+        "AIR-MOD-06b"
+      ],
+      "wiki_quote": "The agent should ask for the payment or refund method instead.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "21"
+      ],
+      "extracted_raw_rule_ids": [
+        34
+      ],
+      "related_tools": [
+        "update_reservation_flights"
+      ],
+      "verification_types": [
+        "state",
+        "dialogue"
+      ],
+      "notes": "Restores the 'if the flights are changed' trigger. AMBIGUITY: the wiki does not say what 'instead' contrasts with. Read here as 'instead of choosing for the user'."
+    },
+    {
+      "rule_id": "AIR-R039",
+      "description": "The agent must obtain the user id before cancelling a reservation.",
+      "source_clause_ids": [
+        "AIR-CAN-01a"
+      ],
+      "wiki_quote": "The agent must first obtain the user id, the reservation id, and the reason for cancellation (change of plan, airline cancelled flight, or other reasons)",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "7"
+      ],
+      "extracted_raw_rule_ids": [
+        35
+      ],
+      "related_tools": [
+        "cancel_reservation"
+      ],
+      "verification_types": [
+        "tool_log",
+        "state"
+      ],
+      "notes": "R7 had lost the cancellation context."
+    },
+    {
+      "rule_id": "AIR-R040",
+      "description": "The agent must obtain the reservation id before cancelling a reservation.",
+      "source_clause_ids": [
+        "AIR-CAN-01b"
+      ],
+      "wiki_quote": "The agent must first obtain the user id, the reservation id, and the reason for cancellation (change of plan, airline cancelled flight, or other reasons)",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "8"
+      ],
+      "extracted_raw_rule_ids": [
+        36
+      ],
+      "related_tools": [
+        "cancel_reservation"
+      ],
+      "verification_types": [
+        "tool_log"
+      ],
+      "notes": ""
+    },
+    {
+      "rule_id": "AIR-R041",
+      "description": "The agent must obtain the user's reason for cancellation (change of plan, airline cancelled flight, or other reasons) before cancelling a reservation.",
+      "source_clause_ids": [
+        "AIR-CAN-01c"
+      ],
+      "wiki_quote": "The agent must first obtain the user id, the reservation id, and the reason for cancellation (change of plan, airline cancelled flight, or other reasons)",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "38"
+      ],
+      "extracted_raw_rule_ids": [
+        37
+      ],
+      "related_tools": [
+        "cancel_reservation"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Restores the enumeration of reasons."
+    },
+    {
+      "rule_id": "AIR-R042",
+      "description": "The agent must not cancel a basic economy or economy reservation unless it was created within the 24 hours before the current time, the airline cancelled a flight in the reservation, or travel insurance was bought and the cancellation reason is covered by it (health or weather).",
+      "source_clause_ids": [
+        "AIR-CAN-02a",
+        "AIR-CAN-02b",
+        "AIR-CAN-02c",
+        "AIR-CAN-02d",
+        "AIR-CAN-02e",
+        "AIR-CAN-02f",
+        "AIR-BOOK-05c",
+        "AIR-CTX-01"
+      ],
+      "wiki_quote": "All reservations can be cancelled within 24 hours of booking, or if the airline cancelled the flight. … Otherwise, basic economy or economy flights can be cancelled only if travel insurance is bought and the condition is met … and business flights can always be cancelled. … The rules are strict regardless of the membership status. … The API does not check these for the agent, so the agent must make sure the rules apply before calling the API! … and enables full refund if the user needs to cancel the flight given health or weather reasons. … The current time is 2024-05-15 15:00:00 EST.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "39",
+        "40",
+        "41",
+        "42"
+      ],
+      "extracted_raw_rule_ids": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "related_tools": [
+        "cancel_reservation"
+      ],
+      "verification_types": [
+        "state",
+        "dialogue"
+      ],
+      "notes": "This is one implication with three exceptions. Business reservations are not restricted by it (AIR-CAN-02d). Membership tier gives no exception (AIR-CAN-02e). AMBIGUITIES: (1) 'the condition is met' is read as the insurance condition of AIR-BOOK-05c (health or weather); (2) the 24-hour boundary is assumed inclusive, and created_at (no timezone) is assumed to be EST; (3) 'airline cancelled the flight' is read as any segment with flight status 'cancelled', a status the wiki never lists. The reason predicate (health/weather) is semantic, taken from the user's stated reason. Everything else is deterministic. Decision (Step 1 close-out): the hard-coded boundary date was removed. The current time is the config value policies/curated/airline_config.json:current_time (2024-05-15T15:00:00, EST); the validator checks it against clause AIR-CTX-01. Data note: no τ-bench v1 airline tool exposes a non-'available' flight status, so 'the airline cancelled a flight' cannot be verified from tool outputs (see policies/tau_bench/airline_data_notes.md).",
+      "config_params": [
+        "current_time",
+        "timezone"
+      ]
+    },
+    {
+      "rule_id": "AIR-R043",
+      "description": "The agent must not cancel a reservation in which any flight segment has already been flown.",
+      "source_clause_ids": [
+        "AIR-CAN-03a"
+      ],
+      "wiki_quote": "The agent can only cancel the whole trip that is not flown.",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "43",
+        "44"
+      ],
+      "extracted_raw_rule_ids": [
+        42,
+        43
+      ],
+      "related_tools": [
+        "cancel_reservation"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "'Whole trip' is structural: cancel_reservation always cancels the whole reservation. 'Flown' means segment status 'flying' or 'landed', or a flight date before 2024-05-15. AMBIGUITY: the wiki does not list 'landed'."
+    },
+    {
+      "rule_id": "AIR-R044",
+      "description": "If the user asks to cancel a reservation in which any flight segment has already been flown, the agent must transfer the user to a human agent.",
+      "source_clause_ids": [
+        "AIR-CAN-03b"
+      ],
+      "wiki_quote": "If any of the segments are already used, the agent cannot help and transfer is needed.",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "43",
+        "44"
+      ],
+      "extracted_raw_rule_ids": [
+        42,
+        43
+      ],
+      "related_tools": [
+        "transfer_to_human_agents",
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "state",
+        "dialogue"
+      ],
+      "notes": "Split from compound R43; R44 was a user-subject duplicate. Justifies a transfer under AIR-R008."
+    },
+    {
+      "rule_id": "AIR-R045",
+      "description": "The agent must not send a certificate to a user who is a regular member, has no travel insurance on the reservation, and flies basic economy or economy in it.",
+      "source_clause_ids": [
+        "AIR-COMP-03b",
+        "AIR-COMP-01a",
+        "AIR-COMP-02a"
+      ],
+      "wiki_quote": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy. … If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture … If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "37",
+        "45",
+        "46"
+      ],
+      "extracted_raw_rule_ids": [
+        45,
+        46,
+        48
+      ],
+      "related_tools": [
+        "send_certificate"
+      ],
+      "verification_types": [
+        "state"
+      ],
+      "notes": "Fixes R37, which narrowed '(basic) economy' to basic economy. Eligibility is silver/gold OR insured OR business, as in AIR-COMP-01a and AIR-COMP-02a."
+    },
+    {
+      "rule_id": "AIR-R046",
+      "description": "The agent must not offer or send compensation unless the user has complained about the situation and explicitly asked for compensation.",
+      "source_clause_ids": [
+        "AIR-COMP-03a",
+        "AIR-COMP-01a",
+        "AIR-COMP-02a"
+      ],
+      "wiki_quote": "Do not proactively offer these unless the user complains about the situation and explicitly asks for some compensation. … If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture … If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture",
+      "origin": "extracted",
+      "extracted_rule_ids": [
+        "36"
+      ],
+      "extracted_raw_rule_ids": [
+        47
+      ],
+      "related_tools": [
+        "respond_to_user",
+        "send_certificate"
+      ],
+      "verification_types": [
+        "dialogue"
+      ],
+      "notes": "Restores the complaint trigger that R45 and R46 had weakened to 'experiences'."
+    },
+    {
+      "rule_id": "AIR-R047",
+      "description": "The agent must confirm the facts (that the flight in the user's reservation was actually cancelled or delayed, verified via tool lookups) before offering or sending a certificate.",
+      "source_clause_ids": [
+        "AIR-COMP-01b",
+        "AIR-COMP-02b"
+      ],
+      "wiki_quote": "after confirming the facts … after confirming the facts and changing or cancelling the reservation",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "45",
+        "46"
+      ],
+      "extracted_raw_rule_ids": [
+        45,
+        46
+      ],
+      "related_tools": [
+        "send_certificate",
+        "respond_to_user"
+      ],
+      "verification_types": [
+        "tool_log"
+      ],
+      "notes": "Check: get_reservation_details, plus a flight-status lookup for the flight concerned, happen before send_certificate."
+    },
+    {
+      "rule_id": "AIR-R048",
+      "description": "For a complaint about a cancelled flight, the agent must set the certificate amount to exactly 100 dollars times the number of passengers in the reservation.",
+      "source_clause_ids": [
+        "AIR-COMP-01c",
+        "AIR-COMP-01a"
+      ],
+      "wiki_quote": "with the amount being $100 times the number of passengers. … If the user is silver/gold member or has travel insurance or flies business, and complains about cancelled flights in a reservation, the agent can offer a certificate as a gesture",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "45"
+      ],
+      "extracted_raw_rule_ids": [
+        45
+      ],
+      "related_tools": [
+        "send_certificate"
+      ],
+      "verification_types": [
+        "state",
+        "dialogue"
+      ],
+      "notes": "Restores the dollar unit. Raw r45 had wrongly added 'wants to change or cancel' to this case."
+    },
+    {
+      "rule_id": "AIR-R049",
+      "description": "For a complaint about a delayed flight, the agent must send a certificate only if the user wanted to change or cancel the reservation and only after that change or cancellation has been completed.",
+      "source_clause_ids": [
+        "AIR-COMP-02a",
+        "AIR-COMP-02b"
+      ],
+      "wiki_quote": "If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture … after confirming the facts and changing or cancelling the reservation",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "46"
+      ],
+      "extracted_raw_rule_ids": [
+        46
+      ],
+      "related_tools": [
+        "send_certificate"
+      ],
+      "verification_types": [
+        "tool_log",
+        "dialogue"
+      ],
+      "notes": "Check: an update_reservation_flights or cancel_reservation call on that reservation occurs earlier in the trajectory."
+    },
+    {
+      "rule_id": "AIR-R050",
+      "description": "For a complaint about a delayed flight, the agent must set the certificate amount to exactly 50 dollars times the number of passengers in the reservation.",
+      "source_clause_ids": [
+        "AIR-COMP-02c",
+        "AIR-COMP-02a"
+      ],
+      "wiki_quote": "with the amount being $50 times the number of passengers. … If the user is silver/gold member or has travel insurance or flies business, and complains about delayed flights in a reservation and wants to change or cancel the reservation, the agent can offer a certificate as a gesture",
+      "origin": "modified",
+      "extracted_rule_ids": [
+        "46"
+      ],
+      "extracted_raw_rule_ids": [
+        46
+      ],
+      "related_tools": [
+        "send_certificate"
+      ],
+      "verification_types": [
+        "state",
+        "dialogue"
+      ],
+      "notes": ""
+    }
+  ]
+}

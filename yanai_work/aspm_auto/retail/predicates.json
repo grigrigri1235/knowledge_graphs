@@ -1,0 +1,4148 @@
+{
+  "domain": "retail",
+  "source": "auto",
+  "run_id": "v1",
+  "config": {},
+  "types": {
+    "judge": "evaluated at runtime by an LLM judge (all predicates of a circuit batched in one call)"
+  },
+  "signature": "judge(question, context) -> yes | no | unknown",
+  "predicates": [
+    {
+      "name": "action_is_exchange_or_return",
+      "type": "judge",
+      "description": "True when the selected this_action is either exchange_delivered_order_items or return_delivered_order_items.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action (this_action) one of exchange_delivered_order_items or return_delivered_order_items?",
+        "context": [
+          "arguments of the current call (this_action)",
+          "the possible action values: 'exchange_delivered_order_items', 'return_delivered_order_items'"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The judge cannot determine whether this_action matches the allowed values without the actual value of this_action from the current call arguments."
+        }
+      },
+      "used_by_rules": [
+        "68",
+        "69"
+      ]
+    },
+    {
+      "name": "action_is_modify_items",
+      "type": "judge",
+      "description": "True if the current this_action corresponds to modify_pending_order_items (the agent is about to modify items in a pending order).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action a modify_pending_order_items action (i.e., does this_action correspond to modifying items in a pending order) for which the agent would later need to provide modification details and obtain explicit user confirmation?",
+        "context": [
+          "arguments of the current action (order_id, item_ids, new_item_ids, payment_method_id)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the current action arguments or action type are not available, the judge cannot determine whether the action is modify_pending_order_items."
+        }
+      },
+      "used_by_rules": [
+        "63",
+        "64",
+        "65",
+        "66"
+      ]
+    },
+    {
+      "name": "address_change_explanation_provided",
+      "type": "judge",
+      "description": "True when the assistant has explained the address change and asked for explicit confirmation for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the assistant provided an explanation of the address change for the pending order and explicitly asked the user for confirmation (yes/no) to proceed with modifying the address for that order?",
+        "context": [
+          "the assistant's most recent user-facing message explaining the address change and requesting explicit confirmation",
+          "the order_id of the pending order being modified (as referenced by the current action modify_pending_order_address)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence in dialogue about whether the address change was explained and a clear yes/no confirmation request was made is missing or incomplete."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "available_new_item_different_option",
+      "type": "judge",
+      "description": "true if there exists at least one index i across item_ids and new_item_ids such that new_item_ids[i] is the same product as item_ids[i], has a different option than item_ids[i], and is currently available for exchange (e.g., in stock or allocatable).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is there at least one index i such that item_ids[i] and new_item_ids[i] refer to the same product, new_item_ids[i] has a different option than item_ids[i], and new_item_ids[i] is currently available (in stock or allocatable)?",
+        "context": [
+          "the arguments of the current action (item_ids, new_item_ids)",
+          "tool outputs related to product details and current inventory/availability for the new_item_ids (to determine same product and availability)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient evidence to determine existence of a matching same-product, different-option, and currently available item from the provided evidence."
+        }
+      },
+      "used_by_rules": [
+        "238",
+        "239"
+      ]
+    },
+    {
+      "name": "available_new_item_exists",
+      "type": "judge",
+      "description": "There exists at least one item that is available for exchange and is of the same product as an item in the pending order and has a different product option from that item; the item is stock-available and not currently allocated to another order.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is there at least one stock-available, unallocated item that belongs to the same product as any item in the pending order and has a different product option from that item?",
+        "context": [
+          "The current action arguments (items in the pending order to be exchanged) with their product_id and option_id",
+          "Inventory data from prior tool outputs showing stock-availability and allocation status for items of the same product",
+          "Details of the pending order (items, their product_id and option_id)",
+          "Any prior tool results related to available new items for exchange that share the same product as pending items"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The judge cannot determine availability or allocation status of potential replacement items without complete inventory data and the specific pending order item details. If the necessary tool outputs or action arguments are missing or inconclusive, the predicate cannot be evaluated."
+        }
+      },
+      "used_by_rules": [
+        "222",
+        "273",
+        "274"
+      ]
+    },
+    {
+      "name": "balance_ge_order_total",
+      "type": "judge",
+      "description": "The user's balance is greater than or equal to the pending order's total amount identified by the action's order_id (i.e., balance >= order_total for that order).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 1,
+        "tool_outputs": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Is the user's balance greater than or equal to the total amount of the pending order identified by the action's order_id (i.e., balance >= order_total for that order_id '#W...')?",
+        "context": [
+          "the current action's order_id",
+          "tool outputs containing the pending order total for that order_id",
+          "tool outputs containing the user's balance"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The necessary data to decide balance >= order_total is missing or inconclusive (either the user's balance or the order's total is not available from the provided sources)."
+        }
+      },
+      "used_by_rules": [
+        "180"
+      ]
+    },
+    {
+      "name": "can_be_handled_by_actions",
+      "type": "judge",
+      "description": "True when the user's issue can be resolved using the agent's available actions/tools within this session, given the current conversation and tool results (i.e., it is within scope to handle without transferring).",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current user issue resolvable using the agent's available actions/tools within this session, given the present dialogue and tool outputs, without transferring to a human agent?",
+        "context": [
+          "the current conversation/dialogue with the user",
+          "the outputs/results from any tools invoked in this session so far",
+          "the arguments of the current action being considered (call_args) if relevant to the scope of actions",
+          "any relevant tool results that indicate what can be done within this session"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is incomplete: it is unclear from the available dialogue and tool outputs whether the necessary tools and session scope exist to resolve the issue without transfer. If key tool results or action scope details are missing, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "116"
+      ]
+    },
+    {
+      "name": "cancellation_details_listed_before_action",
+      "type": "judge",
+      "description": "True if, before this cancellation action, the agent has presented the user with a clear, itemized cancellation explanation including the order_id, cancellation reason (no longer needed or ordered by mistake), and refund details.",
+      "value_source": [
+        "call_args",
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "call_args": 2,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Before this cancellation action, has the agent presented an itemized cancellation explanation including the order_id, cancellation reason (no longer needed or ordered by mistake), and refund details, and obtained explicit user confirmation (yes) to proceed?",
+        "context": [
+          "the arguments of the current cancellation call (order_id, reason, etc.)",
+          "the user/agent dialogue showing the cancellation explanation",
+          "any prior cancellation explanation content presented to the user before this action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient evidence in the provided dialogue and call arguments to determine whether the agent explicitly presented the itemized cancellation details and obtained a user confirmation before executing the cancellation action."
+        }
+      },
+      "used_by_rules": [
+        "61"
+      ]
+    },
+    {
+      "name": "cancellation_explanation_provided",
+      "type": "judge",
+      "description": "True when the assistant has explained the cancellation details and asked for explicit confirmation for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the assistant provided cancellation details for the targeted pending order and explicitly requested user confirmation (yes/no) to proceed with cancellation?",
+        "context": [
+          "the full dialogue history between user and agent up to now",
+          "the targeted order's id and pending status from order details (e.g., get_order_details for the order_id)",
+          "evidence that the assistant explained the cancellation details and asked for explicit user confirmation (yes/no) in the latest relevant interaction"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the dialogue does not contain clear evidence that cancellation details were explained and explicit confirmation was requested, the predicate value cannot be determined from available information."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "cancellation_reason_valid",
+      "type": "judge",
+      "description": "True when the cancellation reason argument is either 'no longer needed' or 'ordered by mistake'.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the cancellation_reason argument equal to 'no longer needed' or 'ordered by mistake'?",
+        "context": [
+          "the arguments of the current action being checked"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The cancellation_reason argument is not present in the current action call arguments, so the truth of the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "132",
+        "245",
+        "246"
+      ]
+    },
+    {
+      "name": "confirmation_requested",
+      "type": "judge",
+      "description": "The agent has asked the user to confirm whether to proceed with the modification (expecting an explicit yes or no response).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the agent explicitly asked the user to confirm whether to proceed with modifying the pending order items to new items of the same product but different option, expecting a yes or no response?",
+        "context": [
+          "the dialogue history showing the agent's confirmation prompt to proceed with modification",
+          "any user responses (yes/no) to that prompt",
+          "the pending order modification context (which items could be modified)",
+          "any rules requiring explicit user confirmation for pending order item modifications"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient evidence in the dialogue to determine whether an explicit confirmation request has already been made and answered. If the user has not clearly provided a yes or no, the predicate cannot be decided."
+        }
+      },
+      "used_by_rules": [
+        "222"
+      ]
+    },
+    {
+      "name": "confirmation_requested_v2",
+      "type": "judge",
+      "description": "The agent has asked the user to confirm whether to proceed with the modification, presenting a clear yes/no prompt and recording the user's response in the conversation history.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user provided a clear yes or no confirmation in the conversation history to proceed with the modification?",
+        "context": [
+          "the agent's prompt requesting confirmation about proceeding with the modification",
+          "the conversation/dialogue history including user and agent messages",
+          "whether there is an explicit yes/no response from the user in the dialogue history"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient or missing evidence in the dialogue history to determine whether a clear yes/no confirmation has been provided."
+        }
+      },
+      "used_by_rules": [
+        "7"
+      ]
+    },
+    {
+      "name": "details_listed_for_action",
+      "type": "judge",
+      "description": "True when, prior to executing the action, the agent has presented a concrete list of required details for the action. For a return, this includes order_id, item_ids, and payment_method_id. For an exchange, this includes order_id, item_ids, new_item_ids (aligned by position with item_ids), and payment_method_id. The agent has also explained the details and next steps to the user.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 1,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Is there a concrete list of required details (order_id, item_ids, and payment_method_id as applicable) for the current action (exchange or return) that the agent presented to the user, and has the user explicitly confirmed 'yes' to proceed?",
+        "context": [
+          "current_action_type (exchange or return)",
+          "details_listed_for_action presented to user (order_id, item_ids, payment_method_id)",
+          "user confirmation to proceed (yes/no)",
+          "agent's explanation of details and next steps to the user",
+          "relevant dialogue messages showing these items"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence may be missing or incomplete (e.g., no record of the agent listing the details or no explicit user confirmation in the dialogue). In such cases, the predicate truth cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "68",
+        "69"
+      ]
+    },
+    {
+      "name": "diff_product_type_holds",
+      "type": "judge",
+      "description": "True when there exists an index i such that item_ids[i] and new_item_ids[i] refer to different product types, or the two lists have different lengths, indicating a product type change or invalid mapping.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Does there exist an index i such that item_ids[i] and new_item_ids[i] refer to different product types, or do the two lists have different lengths?",
+        "context": [
+          "current action arguments: item_ids and new_item_ids (and their lengths)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the product types corresponding to each item_id and new_item_id is not available in the provided data."
+        }
+      },
+      "used_by_rules": [
+        "230"
+      ]
+    },
+    {
+      "name": "different_payment_method_from_original",
+      "type": "judge",
+      "description": "The payment_method_id provided to modify_pending_order_payment for the order identified by order_id is different from the order's currently stored original payment_method_id (i.e., payment_method_id != original_payment_method_id).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the payment_method_id provided in modify_pending_order_payment for the current order_id different from the order's original_payment_method_id?",
+        "context": [
+          "Arguments of modify_pending_order_payment call (order_id, payment_method_id)",
+          "Order details from get_order_details for the order_id, showing original_payment_method_id",
+          "Current order_id being acted upon"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If either the modify_pending_order_payment arguments or the original_payment_method_id from the order details are missing or cannot be retrieved, the predicate value cannot be determined with certainty."
+        }
+      },
+      "used_by_rules": [
+        "179"
+      ]
+    },
+    {
+      "name": "email_how_to_return_sent_before_action",
+      "type": "judge",
+      "description": "True when, prior to this action, an email containing instructions on how to return items has been sent to the user (e.g., subject includes how to return or return instructions).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has an email containing instructions on how to return items (e.g., a subject mentioning 'how to return' or 'return instructions') been sent prior to this action?",
+        "context": [
+          "the current action being evaluated (email regarding how to return)",
+          "tool_outputs: logs of previously sent emails or email-related actions",
+          "dialogue history (user and agent messages) relevant to return instructions"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient or inconclusive evidence in the available tool outputs to determine whether a prior return-instruction email was sent before this action."
+        }
+      },
+      "used_by_rules": [
+        "285"
+      ]
+    },
+    {
+      "name": "email_return_instructions_sent",
+      "type": "judge",
+      "description": "An email has been sent to the user containing instructions on how to return items, including steps, required information, and where to follow up.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has an email containing return instructions (including steps, required information, and where to follow up) been sent to the user?",
+        "context": [
+          "the latest tool outputs related to email sending (email_sent status or equivalent result)",
+          "any prior user confirmation or action indicating a return instruction email should be sent (e.g., explicit user confirmation or 'yes' to return)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no verifiable tool output confirming email delivery and no corroborating dialogue indicating the email was requested/sent, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "268",
+        "288",
+        "289"
+      ]
+    },
+    {
+      "name": "exactly_one_payment_method_selected",
+      "type": "judge",
+      "description": "True when the user has selected exactly one payment method in the current interaction. This means payment_method_id is provided and corresponds to a single valid method, and there is no indication of multiple payment_method_id selections in this turn (e.g., only one non-empty method_id among the possible options such as credit_card_0000001, gift_card_0000002, bank_transfer_0000003).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Is the current action specifying exactly one non-empty payment_method_id and that payment_method_id is a valid method_id, with no other non-empty payment_method_id present in this turn?",
+        "context": [
+          "the arguments of the current action being checked (including payment_method_id and any related payment method options)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence may be incomplete if the action arguments do not clearly show all candidate payment_method_id fields or if validation against the list of valid method_ids is not accessible from the current context."
+        }
+      },
+      "used_by_rules": [
+        "178"
+      ]
+    },
+    {
+      "name": "exchange_already_done",
+      "type": "judge",
+      "description": "There has already been a completed exchange for this delivered order in the current session; true if an exchange occurred previously for the same order_id (e.g., via exchange_delivered_order_items).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has an exchange already been completed for the delivered order with the current order_id in this session?",
+        "context": [
+          "tool_outputs from past tool calls related to this order (e.g., records of exchange_delivered_order_items results and order history)",
+          "the current action's order_id and any prior exchange checks in the session"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about prior exchanges for the specified order_id is missing or inconclusive in the available call_args and tool_outputs."
+        }
+      },
+      "used_by_rules": [
+        "70",
+        "117",
+        "272"
+      ]
+    },
+    {
+      "name": "exchange_context_valid",
+      "type": "judge",
+      "description": "True when the action context is valid for performing an exchange or modification: the user has explicitly confirmed to proceed with the exchange/modification, and for a delivered order there has been no prior exchange, or for a pending order this is the first such call.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with the exchange/modification, and is the order status such that (a) delivered order with no prior exchange, or (b) pending order and this is the first such exchange attempt on that order?",
+        "context": [
+          "the user dialogue confirming the action (e.g., user says yes/no to proceeding)",
+          "order details result from get_order_details showing status and history (delivered with no prior exchange or pending with first exchange attempt)",
+          "any relevant tool outputs that indicate prior exchanges for delivered orders or that this is the first exchange attempt for a pending order"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the required dialogue confirmation or order history/status information is missing or inconclusive, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "200",
+        "201"
+      ]
+    },
+    {
+      "name": "exchange_details_explained",
+      "type": "judge",
+      "description": "The agent has provided a clear explanation of the exchange: which items are changed, the new items, the product options, any price differences, and how refunds/payments will be handled.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Has the agent provided a clear explanation of the exchange that specifies which items are changed, the new items, the product options, any price differences, and how refunds/payments will be handled?",
+        "context": [
+          "the most recent agent explanation in the dialogue detailing the exchange (which items are changed, the new items, product options, price differences, and refund/payment handling)",
+          "the surrounding conversation context relevant to the exchange decision (e.g., earlier or later statements about the exchange)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If any of the required elements (which items are changed, the new items, product options, price differences, and refund/payment handling) are missing or not clearly documented in the conversation or tool outputs, the predicate cannot be determined. In that case, the judge should respond with unknown."
+        }
+      },
+      "used_by_rules": [
+        "222"
+      ]
+    },
+    {
+      "name": "exchange_details_listed",
+      "type": "judge",
+      "description": "The agent has listed the exchange details to the user, including the order_id, the item_ids to exchange, the new_item_ids in the same positions, and the payment_method_id for any price difference or refund.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Has the agent listed the exchange details (order_id, item_ids, new_item_ids in the same positions, and payment_method_id) to the user and obtained explicit user confirmation of 'yes' to proceed?",
+        "context": [
+          "dialogue history showing the agent presenting exchange details for the current order and the user replying with explicit 'yes' confirmation",
+          "any prior or subsequent user confirmations related to this exchange decision"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether the exchange details were listed and whether the user confirmed with 'yes' is missing or inconclusive in the current context."
+        }
+      },
+      "used_by_rules": [
+        "70"
+      ]
+    },
+    {
+      "name": "exchange_details_provided",
+      "type": "judge",
+      "description": "The agent has provided the exchange details including which delivered items will be exchanged (mapping item_ids to new_item_ids) and the payment method (payment_method_id).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "In the current exchange_delivered_order_items call, are there non-empty item_ids and non-empty new_item_ids of the same length such that each pair item_id_i -> new_item_id_i references the same product with a different option, and a non-empty payment_method_id is provided?",
+        "context": [
+          "the arguments of the current exchange_delivered_order_items call: order_id, item_ids, new_item_ids, payment_method_id"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether exchange_details_provided is present may be missing if the current call arguments are unavailable or incomplete."
+        }
+      },
+      "used_by_rules": [
+        "272"
+      ]
+    },
+    {
+      "name": "explanation_given",
+      "type": "judge",
+      "description": "True if the agent has explained the exchange/return details to the user and asked for explicit confirmation to proceed.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the agent clearly explained the exchange/return details to the user and explicitly asked the user to confirm to proceed with a yes/no response?",
+        "context": [
+          "the agent's explanation message detailing the exchange/return process and options",
+          "the explicit user confirmation (yes/no) in the dialogue"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the dialogue does not contain a clear explanation and a explicit confirmation, or if parts are missing, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "name": "explicit_action_confirmation_pending_or_received",
+      "type": "judge",
+      "description": "Explicit confirmation related to specific actions (exchange/return/modify) including confirmations about the item/action, sometimes referencing order_ids or item_ids; may be before or after details explanation.",
+      "value_source": [
+        "call_args",
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "For the current action, has explicit action confirmation either been received from the user or is it still pending (i.e., awaiting user confirmation) for the given order_id?",
+        "context": [
+          "the current action arguments (e.g., order_id, action_type, reason)",
+          "the most recent user dialogue about confirmation or requests",
+          "the latest tool outputs related to confirmations or order details (if any)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is insufficient evidence in the provided dialogue, call_args, or tool outputs to determine whether explicit confirmation has been received or is pending for this action, the judge cannot decide the predicate."
+        }
+      },
+      "used_by_rules": [
+        "142",
+        "252",
+        "253",
+        "254",
+        "255",
+        "256",
+        "257",
+        "258"
+      ]
+    },
+    {
+      "name": "explicit_user_confirmation",
+      "type": "judge",
+      "description": "True when the user has explicitly confirmed to proceed with the exchange (e.g., the user message contains an affirmative response such as 'yes' or 'confirm') after the exchange details have been provided.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with the proposed exchange in the current interaction (e.g., the latest user message contains an affirmative like 'yes' or 'confirm')?",
+        "context": [
+          "all user messages in the current exchange that precede the agent's action",
+          "the proposed exchange details shown to the user before confirmation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive user confirmation in the available dialogue or exchange details to determine if the user has explicitly confirmed."
+        }
+      },
+      "used_by_rules": [
+        "275",
+        "276"
+      ]
+    },
+    {
+      "name": "explicit_user_confirmation_yes_before_action",
+      "type": "judge",
+      "description": "Before performing the action, the user has explicitly responded with yes to proceed with the modification.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed with 'yes' to proceed with the pending order modification (e.g., changing the payment method) before the action is performed?",
+        "context": [
+          "dialogue_history including user messages and confirmations",
+          "the action about to be taken (pending order modification) and its parameters"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No definitive explicit confirmation found in the dialogue or related sources to determine whether the user said yes before the action."
+        }
+      },
+      "used_by_rules": [
+        "67"
+      ]
+    },
+    {
+      "name": "fabricated_information_present",
+      "type": "judge",
+      "description": "true when respond_to_user contains information not derived from user-provided content or from results of earlier tool calls; i.e., a factual assertion with no basis in the conversation or tool outputs",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Does respond_to_user contain any factual assertion not derived from the user-provided content or from results of earlier tool calls?",
+        "context": [
+          "the ongoing conversation (user messages and agent messages so far)",
+          "the results of all prior tool calls and their outputs",
+          "the action the agent is about to take (respond_to_user)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient or ambiguous evidence about whether the upcoming respond_to_user content contains ungrounded factual assertions not derived from user content or tool outputs."
+        }
+      },
+      "used_by_rules": [
+        "71"
+      ]
+    },
+    {
+      "name": "gift_card_balance_ge_difference",
+      "type": "judge",
+      "description": "True when the balance on the chosen gift card is greater than or equal to the price difference required to cover the order's remaining amount (i.e., gift_card_balance >= price_difference_for_order). The price difference is computed as the order's total minus any other payments already applied.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current gift card balance greater than or equal to the price difference required to cover the order's remaining amount (i.e., is gift_card_balance >= price_difference_for_order for the current order)?",
+        "context": [
+          "arguments of the current action (whether gift_card_provided_for_difference is true)",
+          "tool outputs related to the current order (order details, including price_difference_for_order)",
+          "tool outputs related to the user's gift card balance (gift_card_balance)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If any of the needed inputs are missing (e.g., the current action did not include gift_card_provided_for_difference, or the system does not have the latest order balance or gift card balance data), the truth of gift_card_balance_ge_difference cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "280"
+      ]
+    },
+    {
+      "name": "gift_card_balance_ge_price_diff",
+      "type": "judge",
+      "description": "true when the balance on the gift card identified by payment_method_id is greater than or equal to the price difference for the order identified by order_id; the price difference is order_total_for_order_id minus non_gift_card_payments_allocated_to_order (not less than zero).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the gift card balance associated with payment_method_id greater than or equal to max(0, order_total_for_order_id - non_gift_card_payments_allocated_to_order) for the given order_id?",
+        "context": [
+          "the current action arguments (payment_method_id, order_id)",
+          "the outputs of get_order_details(order_id) including order_total_for_order_id and non_gift_card_payments_allocated_to_order",
+          "the gift card balance corresponding to payment_method_id (if available from tool outputs)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the necessary data (gift card balance for payment_method_id or the numeric values from order details) is missing or inconclusive from the available tool outputs, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "247"
+      ]
+    },
+    {
+      "name": "gift_card_balance_sufficient",
+      "type": "judge",
+      "description": "True when the selected gift card's available balance is greater than or equal to the price difference amount that must be covered by the gift card (gift_card_balance >= price_diff).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is gift_card_balance >= price_diff (i.e., does the selected gift card balance cover the price difference)?",
+        "context": [
+          "current call arguments for this_action, gift_card_payment_method_action, and price_diff_known",
+          "the most recent tool output showing gift card balance",
+          "the price_diff value from the call arguments"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient data to determine truth: either gift_card_balance or price_diff is missing from the provided context."
+        }
+      },
+      "used_by_rules": [
+        "205",
+        "206"
+      ]
+    },
+    {
+      "name": "gift_card_balance_sufficient_for_price_diff",
+      "type": "judge",
+      "description": "The remaining balance on the gift card used for this action is at least the price difference required for this modification (i.e., gift_card_balance >= price_difference_to_cover for this action). The price difference is derived from the order change and the action's effect (payment or refund) on the items or total.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is gift_card_balance >= price_difference_to_cover given that this_action is true and gift_card_payment_method_action is true?",
+        "context": [
+          "the current action is marked as this_action and uses a gift card payment method (gift_card_payment_method_action)",
+          "gift_card_balance from the gift card data (from tool outputs)",
+          "price_difference_to_cover for this action (from tool outputs)",
+          "any intermediate calculations or derived values tied to the action change (from tool outputs)",
+          "the arguments of the current call (from call_args) of the action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is missing or inconclusive for one or more of: gift_card_balance, price_difference_to_cover, or the flags this_action/gift_card_payment_method_action. Without these, we cannot determine the predicate truth value."
+        }
+      },
+      "used_by_rules": [
+        "242",
+        "243"
+      ]
+    },
+    {
+      "name": "gift_card_payment",
+      "type": "judge",
+      "description": "true if the order's payment method was a gift card.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is gift_card_payment true, i.e., was the current order's payment method a gift card?",
+        "context": [
+          "get_order_details for the current order (including the payment_method)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Order details (payment method) are not available in the current context."
+        }
+      },
+      "used_by_rules": [
+        "146"
+      ]
+    },
+    {
+      "name": "gift_card_payment_method",
+      "type": "judge",
+      "description": "The order's payment method is gift_card. True when the order's payment_method equals 'gift_card'.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the order's payment_method equal to 'gift_card' for the current order (i.e., payment_method == 'gift_card')?",
+        "context": [
+          "get_order_details(order_id) result to obtain the payment_method for the current order"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order details do not include payment_method or the order_id is missing, the truth of gift_card_payment_method cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "145"
+      ]
+    },
+    {
+      "name": "gift_card_payment_method_action",
+      "type": "judge",
+      "description": "The action's payment_method_id refers to a gift card (i.e., the value starts with gift_card_ or is a known gift_card_id).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action's payment_method_id a gift card (i.e., starts with 'gift_card_') or matches a known gift_card_id?",
+        "context": [
+          "this_action.payment_method_id"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No information is available about the value of the current action's payment_method_id beyond the action arguments. It is not known whether the payment_method_id corresponds to a gift card or a non-gift-card method based on the provided context."
+        }
+      },
+      "used_by_rules": [
+        "180",
+        "205",
+        "206",
+        "242",
+        "243",
+        "247"
+      ]
+    },
+    {
+      "name": "gift_card_provided_for_difference",
+      "type": "judge",
+      "description": "True when the user has provided a gift card specifically to cover the price difference for the current order. This is evidenced by the action arguments indicating that the payment_method_id is a gift card intended to cover the remaining amount due (the price difference) for the order, and the price difference amount is greater than zero.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action using a gift card to cover the remaining amount due for the order, and is the price difference greater than zero?",
+        "context": [
+          "the current action arguments, including payment_method_id and price_difference (and order_id)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the gift card condition or the price difference is missing or inconclusive in the action arguments provided."
+        }
+      },
+      "used_by_rules": [
+        "280"
+      ]
+    },
+    {
+      "name": "has_item_ids",
+      "type": "judge",
+      "description": "The modify action's item_ids argument contains at least one item ID; the action targets modification of one or more existing items in a pending order. If the action is not a modify_pending_order_items action, this predicate is false.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action a modify_pending_order_items action and does its item_ids argument contain at least one item ID?",
+        "context": [
+          "arguments of the current action (including action type and item_ids)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the action type or the item_ids list is missing or inconclusive in the current context."
+        }
+      },
+      "used_by_rules": [
+        "218",
+        "219",
+        "220",
+        "221"
+      ]
+    },
+    {
+      "name": "item_change_action",
+      "type": "judge",
+      "description": "True if the current action changes items in the order, i.e., the action is exchange_delivered_order_items, modify_pending_order_items, or return_delivered_order_items.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action one of: exchange_delivered_order_items, modify_pending_order_items, or return_delivered_order_items?",
+        "context": [
+          "the arguments of the current action (call_args)",
+          "the action name the agent is about to perform"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the current action type cannot be determined from the available call_args (e.g., missing or ambiguous action name), the predicate value cannot be decided."
+        }
+      },
+      "used_by_rules": [
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125"
+      ]
+    },
+    {
+      "name": "item_options_only_change",
+      "type": "judge",
+      "description": "True if the modify_pending_order_items action would modify only the product item options, i.e., for every position i, item_ids[i] and new_item_ids[i] refer to the same product. This implies no changes to shipping address or payment method, and no changing to a different product.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Is it true that for every position i, item_ids[i] and new_item_ids[i] refer to the same product, given that the action is modify_pending_order_items on a pending order, and that no changes to shipping address or payment method would occur (i.e., the modification affects only the product item options)?",
+        "context": [
+          "Arguments of modify_pending_order_items call (order_id, item_ids, new_item_ids, payment_method_id)",
+          "Output of get_order_details(order_id) showing the order is pending",
+          "Current intent of the agent to modify_pending_order_items (specifically that only item options may change)",
+          "Any tool outputs indicating which attributes would be modified by the action (e.g., whether address or payment_method_id would change)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the required call arguments or tool outputs are missing or inaccessible, and the judge cannot determine whether every corresponding pair refers to the same product (or if the order is not pending), the predicate value cannot be decided."
+        }
+      },
+      "used_by_rules": [
+        "154",
+        "155"
+      ]
+    },
+    {
+      "name": "items_change_explanation_provided",
+      "type": "judge",
+      "description": "True when the assistant has explained the item changes and asked for explicit confirmation for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the assistant explained the item changes for the targeted pending order and explicitly asked the user to confirm the changes with a yes/no response?",
+        "context": [
+          "the current action is modify_pending_order_items for the targeted order (e.g., order_id beginning with '#W')",
+          "the latest assistant message explains the item changes (which items are being modified and what they are being changed to) and explicitly asks the user for confirmation (yes/no) to proceed",
+          "the most recent user response (if any) indicating confirmation or denial"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is not enough evidence in the given context to determine whether the assistant has explained the item changes and asked for explicit confirmation."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "items_collected_before_action",
+      "type": "judge",
+      "description": "True if all items to be changed have been collected into a list before the action is performed. For item_ids-based actions, item_ids is non-empty; if new_item_ids is applicable (for exchange_delivered_order_items or modify_pending_order_items), new_item_ids has the same length as item_ids; this predicate is true only when the lists exist and are in sync prior to the action.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Are item_ids defined and non-empty for the current action, and if new_item_ids are provided for this action, are new_item_ids defined and the same length as item_ids?",
+        "context": [
+          "the arguments of the current action (item_ids and, if present, new_item_ids)",
+          "the action is an order-changing operation (as applicable)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the action arguments do not include item_ids (or new_item_ids when applicable) or these lists are not accessible, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125"
+      ]
+    },
+    {
+      "name": "items_modification_details_provided",
+      "type": "judge",
+      "description": "True if the agent has presented a detailed modification plan for the pending order's items, including: order_id (example '#W0000000'); a pair of arrays item_ids and new_item_ids of equal length (L ≥ 1); for each index i, new_item_ids[i] matches the same product as item_ids[i] and is intended to replace item_ids[i]; the plan includes the total price difference (could be 0) and how payment or refund will be handled; and the plan states that explicit user confirmation is required before proceeding.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the agent presented a detailed modification plan for the pending order's items that includes: a specific order_id (e.g., '#W0000000'), equal-length item_ids and new_item_ids arrays with each new_item_id matching the same product as item_ids[i], the total price difference, how payment or refund will be handled, and a statement that explicit user confirmation is required before proceeding?",
+        "context": [
+          "the agent's dialogue where the modification plan is described (including order_id, item_ids, and new_item_ids, price difference, payment/refund handling, and confirmation requirement)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If either the modification plan details or the user confirmation are not present in the available call arguments and dialogue, the truth value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "63",
+        "64",
+        "65",
+        "66"
+      ]
+    },
+    {
+      "name": "items_modification_user_confirmed_yes",
+      "type": "judge",
+      "description": "True if the user has explicitly replied YES to confirm proceeding with the proposed item modification.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly replied YES to confirm proceeding with the proposed item modification for the current pending order, given that modification details have been provided?",
+        "context": [
+          "All user messages (dialogue) including the explicit yes/no confirmation",
+          "The current action context indicating this action is modifying items in a pending order and whether items_modification_details_provided is true"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient or inconclusive evidence in the provided dialogue to determine whether the user explicitly said 'YES' for the modification confirmation."
+        }
+      },
+      "used_by_rules": [
+        "63",
+        "64",
+        "65",
+        "66"
+      ]
+    },
+    {
+      "name": "modification_details_explained",
+      "type": "judge",
+      "description": "The agent previously provided a clear explanation of the modification, including which items are affected (item_ids) and the corresponding new_item_ids, expected effects, and any price or refund implications, and stated that explicit user confirmation is required before proceeding.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Has the agent previously provided a clear modification explanation that lists the exact item_ids affected and their corresponding new_item_ids, describes the expected effects and any price or refund implications, and stated that explicit user confirmation is required before proceeding?",
+        "context": [
+          "the dialogue evidence showing the agent's modification explanation",
+          "the current pending order action (has_item_ids)",
+          "any user confirmation status in the dialogue"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the agent's prior modification explanation and explicit user confirmation may be incomplete or not present in the current context; without complete dialogue/exchange history, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "218",
+        "219",
+        "220",
+        "221"
+      ]
+    },
+    {
+      "name": "modification_details_listed_before_action",
+      "type": "judge",
+      "description": "Before performing the action, the agent has presented and explained the exact modification details to the user, including the target order_id and the payment_method_id to apply.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 1,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Before performing the pending order modification, did the agent present the exact modification details (order_id and payment_method_id) and obtain explicit user confirmation 'yes' prior to the action?",
+        "context": [
+          "dialogue transcript showing agent explanations of modification details and user confirmation",
+          "the current action arguments for the modification (order_id and payment_method_id)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether the agent presented the exact modification details or whether the user explicitly confirmed is incomplete or unavailable."
+        }
+      },
+      "used_by_rules": [
+        "67"
+      ]
+    },
+    {
+      "name": "modification_details_provided",
+      "type": "judge",
+      "description": "True when the agent has explicitly provided a complete listing of the modification details for the pending order: order_id as used by the action (e.g. '#W0000000'), address1, address2, city, state, country, and zip, matching the values the action intends to apply.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is there an explicit listing of order_id, address1, address2, city, state, country, and zip in the current modify_pending_order_address call_args, and do these values exactly match the intended modification values the action plans to apply?",
+        "context": [
+          "Arguments of the current modify_pending_order_address call (order_id, address1, address2, city, state, country, zip)",
+          "The intended modification details as specified by the action (the same set of values that should be applied)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The evidence provided may be incomplete or the call_args may not yet reflect the final intended values; without a complete and exact match between the call_args and intended values, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "62"
+      ]
+    },
+    {
+      "name": "modification_freeze_active",
+      "type": "judge",
+      "description": "True when the system is in a global no-modifications mode for orders (policy or admin setting currently prohibits any order modifications). In this context, this predicate is true to indicate that order modifications are not allowed at this moment.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 2,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Is the global no-modifications mode active for orders, i.e., is modification_freeze_active true and thus modifications to the order are prohibited at this moment?",
+        "context": [
+          "the current action arguments (the_action) to determine if the action constitutes a modification",
+          "the system-wide setting or flag indicating modification_freeze_active (no-modifications mode) if available from tool outputs",
+          "any prior user or agent dialogue referring to a modification freeze or no-modifications policy"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no available evidence in the dialogue or tool outputs about the current status of the global modification freeze setting (modification_freeze_active)."
+        }
+      },
+      "used_by_rules": [
+        "207",
+        "208",
+        "209",
+        "210",
+        "211",
+        "212"
+      ]
+    },
+    {
+      "name": "modify_details_explained",
+      "type": "judge",
+      "description": "The agent has provided a precise explanation of the modifications to the user's default address, referencing the exact new values from the modify_user_address call (address1, address2, city, state, country, zip) and describing how the final address will differ from the current one.",
+      "value_source": [
+        "call_args",
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Has the agent's explanation clearly listed the new default address components (address1, address2, city, state, country, zip) as provided by the modify_user_address call and compared them to the current default address to describe the difference?",
+        "context": [
+          "the arguments of the modify_user_address call (address1, address2, city, state, country, zip)",
+          "the agent's explanation message about the modification (dialogue)",
+          "the current default address details from the user's profile or system records (tool_outputs)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If any essential evidence is missing (e.g., the modify_user_address arguments, the agent's exact explanation, or the current address), the judge cannot determine whether the explanation is precise and correctly references new values and the difference from the current address."
+        }
+      },
+      "used_by_rules": [
+        "7"
+      ]
+    },
+    {
+      "name": "modifying_other_attributes_due_to_action",
+      "type": "judge",
+      "description": "True when the impending action would modify any attribute of the pending order that is not shipping_address, not payment_method, and not product_item_options.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Given the impending action on the pending order (order_id_pending), does the action modify any attribute of that pending order that is not shipping_address, not payment_method, and not product_item_options?",
+        "context": [
+          "the arguments of the current action (to identify which order and which attributes would be modified)",
+          "the current pending order details from tool outputs (to identify which attributes exist and are modifiable)",
+          "any prior user/agent dialogue relevant to the modification request (optional but may help interpret intent)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient or missing evidence about the specific attributes targeted by the impending action to determine whether any disallowed attributes would be modified."
+        }
+      },
+      "used_by_rules": [
+        "176",
+        "177"
+      ]
+    },
+    {
+      "name": "needs_human",
+      "type": "judge",
+      "description": "True when the user explicitly asks for a human agent in their message OR when the user's issue cannot be resolved using the agent's available tools and scope. This is determined from the latest user input and the results of any earlier tool calls, and is true exactly in those situations.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Has the user explicitly requested a human agent in their latest message, or does the current information (latest user input and tool outputs) indicate that the user's issue cannot be resolved within the agent's scope, requiring transfer to a human agent?",
+        "context": [
+          "latest user input from dialogue",
+          "results of any earlier tool calls (tool_outputs)",
+          "the action the agent is about to take (current decision point)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If neither the latest user message nor the available tool outputs clearly indicate a need for a human or a resolvable scope, the judge cannot determine needs_human and should respond unknown"
+        }
+      },
+      "used_by_rules": [
+        "115"
+      ]
+    },
+    {
+      "name": "new_item_ids_available",
+      "type": "judge",
+      "description": "For every position i, new_item_ids[i] refers to an available replacement item that can be assigned for item_ids[i].",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Is every replacement item new_item_ids[i] an available replacement for the corresponding item_ids[i], i.e., for all i, new_item_ids[i] refers to an item of the same product as item_ids[i] but with a different product option, and is it currently available in inventory?",
+        "context": [
+          "the current action's item_ids array",
+          "the current action's new_item_ids array",
+          "inventory/availability data from previous tool_outputs for the products of item_ids",
+          "any prior tool outputs that indicate availability of the candidate new_item_ids"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about availability may be incomplete or missing (e.g., inventory data not retrieved for some products or new_item_ids not yet checked)"
+        }
+      },
+      "used_by_rules": [
+        "272"
+      ]
+    },
+    {
+      "name": "new_order_required",
+      "type": "judge",
+      "description": "True when performing exchange_delivered_order_items would require the user to place a separate new order to obtain the replacement items, rather than fulfilling the exchange within the existing delivered order. This occurs if: (a) for any product being exchanged, the total requested exchange quantity exceeds the quantity of that product delivered in order_id, e.g. delivered 1 unit but exchange requests 2 units; or (b) the requested replacements cannot be fulfilled in the same transaction due to stock constraints (no available stock to ship the replacements in this transaction).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Given the current exchange_delivered_order_items request (order_id, item_ids, new_item_ids, etc.), is new_order_required true because any product in the exchange has total requested exchange quantity exceeding the delivered quantity in that order, or because there is insufficient stock to fulfill the replacements in this transaction?",
+        "context": [
+          "the arguments of the exchange_delivered_order_items call (order_id, item_ids, new_item_ids, payment_method_id)",
+          "order delivery details for the specified order (delivered quantities per product) from get_order_details(order_id)",
+          "inventory/stock details for the replacement items from get_product_details(product_id) or equivalent inventory data",
+          "mapping between item_ids and their corresponding product ids to determine per-product quantities"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If delivered quantities, per-product exchange quantities, or replacement stock data are missing or inconclusive from the available tool outputs and call arguments, the predicate cannot be confidently determined."
+        }
+      },
+      "used_by_rules": [
+        "290"
+      ]
+    },
+    {
+      "name": "no_previous_modify_calls_for_order",
+      "type": "judge",
+      "description": "true iff there have been zero prior calls to modify_pending_order_items for the same order_id before this action (i.e., this is the first modification attempt for this pending order).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 1,
+        "tool_outputs": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Has there been zero prior calls to modify_pending_order_items for the current order_id before this action? (i.e., is this the first modification attempt for this pending order)",
+        "context": [
+          "order_id of the pending order in question",
+          "this_action's modify_pending_order_items arguments (order_id, item_ids, new_item_ids)",
+          "results of any previous modify_pending_order_items tool calls for the same order_id retrieved from tool_outputs"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about prior modify_pending_order_items calls, the specific order_id, and user confirmation may be incomplete or unavailable in the current context."
+        }
+      },
+      "used_by_rules": [
+        "223",
+        "244"
+      ]
+    },
+    {
+      "name": "order_address_already_modified_before",
+      "type": "judge",
+      "description": "True if, for the order_id given in this_action's arguments, there has already been a prior successful modify_pending_order_address action on the same order_id in this session.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has a prior successful modify_pending_order_address action been performed earlier in this session for the same order_id given in this_action's arguments?",
+        "context": [
+          "the order_id from this_action's arguments",
+          "the results of any prior modify_pending_order_address tool calls in this session for that order_id (including their success status)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Inconclusive: there is not enough evidence available in the provided call_args and tool_outputs to determine whether a prior successful modify_pending_order_address action occurred for the same order_id within this session."
+        }
+      },
+      "used_by_rules": [
+        "118"
+      ]
+    },
+    {
+      "name": "order_already_modified_before",
+      "type": "judge",
+      "description": "true when a prior invocation of modify_pending_order_items has already occurred for the same order_id in this session (i.e., the same pending order has been modified before).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 2,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Has modify_pending_order_items already been invoked earlier in this session with the same order_id as the current action's order_id?",
+        "context": [
+          "current_action.call_args (must include order_id)",
+          "history of tool call results in this session for modify_pending_order_items (to detect prior invocations with the same order_id)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient evidence in tool_outputs to determine whether modify_pending_order_items has been invoked previously for the same order_id in this session."
+        }
+      },
+      "used_by_rules": [
+        "184"
+      ]
+    },
+    {
+      "name": "order_cancellable",
+      "type": "judge",
+      "description": "True when the order is in a cancellable state (not yet processed or delivered), i.e., cancellation is possible.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current order in a cancellable state, meaning it has not yet been processed or delivered? (i.e., order_status is 'pending' or 'unprocessed')",
+        "context": [
+          "get_order_details(order_id) output showing the order status and whether it is still cancellable"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no available order status information from the tool output to determine cancellability, the judge cannot decide True/False."
+        }
+      },
+      "used_by_rules": [
+        "143",
+        "144",
+        "213",
+        "262"
+      ]
+    },
+    {
+      "name": "order_cancelled",
+      "type": "judge",
+      "description": "true when the order status has been updated to 'cancelled' in the order system",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current order status equal to 'cancelled' in the order system?",
+        "context": [
+          "get_order_details(order_id) result showing the order status",
+          "the relevant order_id in question"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order status cannot be retrieved or is missing from tool outputs, the truth of the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "144"
+      ]
+    },
+    {
+      "name": "order_delivered",
+      "type": "judge",
+      "description": "The order referenced by the given order_id has status 'delivered' in the order system at decision time or current context.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the order with the given order_id currently in status 'delivered' in the order system at decision time?",
+        "context": [
+          "get_order_details for the specified order_id",
+          "current decision time context"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order status cannot be retrieved from tool outputs or if the order_id is missing, the judge cannot determine whether the status is 'delivered'."
+        }
+      },
+      "used_by_rules": [
+        "5",
+        "6",
+        "249",
+        "265",
+        "266",
+        "269",
+        "271",
+        "281"
+      ]
+    },
+    {
+      "name": "order_details_retrieved_before",
+      "type": "judge",
+      "description": "True when, for the same order_id as in the current cancel_pending_order action, a retrieval of order details was performed earlier and the order details are available (e.g., status) before attempting the cancellation.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "For the current cancel_pending_order action with the given order_id, was get_order_details called earlier for the same order_id and were the order details available before this cancellation attempt?",
+        "context": [
+          "arguments of the current cancel_pending_order action",
+          "the most recent get_order_details output for that order_id",
+          "any prior tool outputs related to the order's status or details before the cancellation attempt"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is incomplete: there is no clear record that get_order_details was called for the current order_id or that its results were available before attempting cancellation."
+        }
+      },
+      "used_by_rules": [
+        "133"
+      ]
+    },
+    {
+      "name": "order_details_retrieved_before_action",
+      "type": "judge",
+      "description": "True if, before this_action was invoked, the agent retrieved order details for the same order_id as this_action (via a tool call or system query) and the retrieved details contained the current order status; the retrieval happened prior to the action's invocation.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Did we retrieve the details for the same order_id before invoking this_action, and did those details show the current status of the order?",
+        "context": [
+          "the current_action arguments (order_id)",
+          "tool_outputs from get_order_details for the same order_id",
+          "temporal/sequencing information indicating which call happened first (before this_action) and the retrieved order status therefrom"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is missing or inconclusive about either (a) a prior get_order_details call for the same order_id, or (b) whether the retrieved status matches the order's current status at the time of this_action."
+        }
+      },
+      "used_by_rules": [
+        "250",
+        "251"
+      ]
+    },
+    {
+      "name": "order_id_pending",
+      "type": "judge",
+      "description": "True when the this_action's order_id argument refers to an order whose status is 'pending'.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the status of the order with id equal to this_action.order_id exactly 'pending'?",
+        "context": [
+          "the arguments of the current call (this_action.order_id)",
+          "the latest get_order_details output for that order_id",
+          "any relevant dialogue about the order (user requests or confirmations)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the current action's order_id cannot be determined or there is no retrievable get_order_details result for that id, the predicate value cannot be judged."
+        }
+      },
+      "used_by_rules": [
+        "176",
+        "177"
+      ]
+    },
+    {
+      "name": "order_id_present",
+      "type": "judge",
+      "description": "True when the cancel_pending_order action includes a non-empty order_id argument (e.g., '#W0000000'), indicating the target order is identified.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the order_id argument of the current cancel_pending_order action present and non-empty (e.g., '#W0000000')?",
+        "context": [
+          "arguments of the current cancel_pending_order call",
+          "the action about to be executed (cancel_pending_order) and its parameters"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The evidence for whether order_id is present depends on the current call arguments. If those arguments are missing or not accessible, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "134"
+      ]
+    },
+    {
+      "name": "order_id_provided",
+      "type": "judge",
+      "description": "True when the action's argument order_id is a non-empty string starting with '#W'. Example: '#W0000000'.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the order_id argument a non-empty string that starts with '#W' (i.e., order_id.length > 0 and order_id starts with '#W')?",
+        "context": [
+          "the arguments of the current action (specifically the order_id argument)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order_id argument is missing or not accessible from the current action's call_args, the predicate cannot be evaluated."
+        }
+      },
+      "used_by_rules": [
+        "245",
+        "246"
+      ]
+    },
+    {
+      "name": "order_is_cancellable",
+      "type": "judge",
+      "description": "True when the target order (identified by the action's order_id) has status 'pending' (i.e., not yet processed or delivered).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the target order (order_id = <order_id from the current action arguments>) in status 'pending' according to the latest get_order_details output for that order_id?",
+        "context": [
+          "the arguments of the current action (order_id)",
+          "the most recent output of get_order_details for that order_id"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order_id is missing from the action arguments or there is no get_order_details result available, the judge cannot determine whether the status is 'pending'."
+        }
+      },
+      "used_by_rules": [
+        "61"
+      ]
+    },
+    {
+      "name": "order_item_change_count_at_most_1",
+      "type": "judge",
+      "description": "True if the total number of times an order-item change tool call has been invoked in this interaction (including the current potential invocation) is at most 1.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the total number of order-item change tool calls invoked in this interaction, including the current potential invocation (if this_action is an order-item change call), at most 1?",
+        "context": [
+          "history of tool calls and their outputs to identify how many order-item change calls have already occurred in this interaction",
+          "the arguments of the current action (to determine if it is an order-item change call)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient information to determine past count of order-item change tool calls or to confirm that the current action is a change call without access to tool call history and current action details."
+        }
+      },
+      "used_by_rules": [
+        "126",
+        "127",
+        "128"
+      ]
+    },
+    {
+      "name": "order_modifiable",
+      "type": "judge",
+      "description": "True when the current order status allows modifications or cancellations. For concrete decision, it is true if the order status is 'pending'; it is false if the order status is 'processed' or 'delivered'.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current order status equal to 'pending' (i.e., has status 'pending')?",
+        "context": [
+          "The current action targets a specific order identified by order_id.",
+          "Result of get_order_details(order_id): includes the order's status (e.g., 'pending', 'processed', or 'delivered')."
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order status cannot be retrieved or is missing from tool outputs, the predicate value cannot be determined. In that case, respond 'unknown'."
+        }
+      },
+      "used_by_rules": [
+        "185",
+        "186",
+        "187",
+        "188",
+        "189",
+        "190"
+      ]
+    },
+    {
+      "name": "order_original_payment_method_known",
+      "type": "judge",
+      "description": "true if the system knows the original payment method used for the order in question (e.g., gift_card or credit_card) from order details or prior tool results.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has the system already determined and stored the original payment method (e.g., 'gift_card' or 'credit_card') for this order based on order details or prior tool outputs?",
+        "context": [
+          "order details for the current order (e.g., get_order_details output) including any field like original_payment_method",
+          "results from prior tool calls that contain the original payment method information",
+          "the action context being evaluated (this_action)",
+          "references to the order_id in question"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no available order detail or tool output providing the original_payment_method, the predicate cannot be evaluated. In that case, the judge should respond with 'unknown'."
+        }
+      },
+      "used_by_rules": [
+        "203",
+        "204"
+      ]
+    },
+    {
+      "name": "order_pending",
+      "type": "judge",
+      "description": "The order identified by the given order_id is currently in the pending state.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the order with the provided order_id currently in the 'pending' state?",
+        "context": [
+          "get_order_details(order_id) result (includes status field)",
+          "any preceding tool outputs that reference the same order_id status"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order status cannot be determined from available tool outputs, the predicate value cannot be decided."
+        }
+      },
+      "used_by_rules": [
+        "67",
+        "131",
+        "154",
+        "155",
+        "184",
+        "230"
+      ]
+    },
+    {
+      "name": "order_pending_v2",
+      "type": "judge",
+      "description": "True iff the target order identified by the action's order_id has status 'pending' at this moment.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the order with the id provided in the action's call_args currently in status 'pending'vej?",
+        "context": [
+          "the action's call_args containing order_id",
+          "the latest tool_outputs from get_order_details for that order_id showing its status"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the current status could be missing or inconclusive if get_order_details was not called or returned no status."
+        }
+      },
+      "used_by_rules": [
+        "223"
+      ]
+    },
+    {
+      "name": "order_pending_v3",
+      "type": "judge",
+      "description": "True when the order identified by the order_id argument of modify_pending_order_payment currently has status PENDING in the order system.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 2,
+        "call_args": 2
+      },
+      "judge": {
+        "question": "For the current modify_pending_order_payment action, is the order_id argument's order status equal to PENDING in the order system?",
+        "context": [
+          "call_args of the modify_pending_order_payment action (to extract the order_id)",
+          "tool_outputs from get_order_details(order_id) or equivalent status query showing the order's status"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No sufficient evidence: the required tool output (get_order_details for the given order_id) is not available in the current context to determine whether the status is PENDING."
+        }
+      },
+      "used_by_rules": [
+        "119"
+      ]
+    },
+    {
+      "name": "order_pending_v4",
+      "type": "judge",
+      "description": "True when the targeted order is in pending status for the given order_id (not yet processed, not delivered).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "For the given order_id, is the order's status 'pending'?",
+        "context": [
+          "the result of get_order_details for the specified order_id (status field)",
+          "the order_id being evaluated (e.g., '#W0000000' from the current rule context)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no available tool output for get_order_details or the order_id is missing from the call arguments, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "order_status_checked",
+      "type": "judge",
+      "description": "The status of the order identified by the action's order_id has been retrieved earlier in this interaction and is available.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has the status of the order identified by the current action's order_id been retrieved earlier in this interaction and is it available in the tool outputs?",
+        "context": [
+          "the current action's order_id",
+          "the relevant tool outputs from earlier in this interaction (e.g., results from get_order_details or other order-status related tool calls)",
+          "any stored data indicating order status retrieval for this order_id"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive evidence in tool outputs about whether the order status has been retrieved for this specific order_id, or such evidence is not available in the current context."
+        }
+      },
+      "used_by_rules": [
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "170"
+      ]
+    },
+    {
+      "name": "order_status_checked_before_action",
+      "type": "judge",
+      "description": "True when the status of the specified order_id has been checked before attempting the current action (any prior lookup confirms status such as pending, processed, or delivered).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has the status of the current order_id been checked prior to this action, and was the retrieved status one of pending, processed, or delivered?",
+        "context": [
+          "the arguments of the current action",
+          "the most recent output of get_order_details or any prior status-check tool call (tool_outputs)",
+          "the dialogue with the user related to order status checks"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no prior tool output indicating an order status check for the given order_id and no explicit dialogue evidence that status was checked, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "130",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "169",
+        "172",
+        "173",
+        "174",
+        "175",
+        "248",
+        "270",
+        "281"
+      ]
+    },
+    {
+      "name": "order_status_exchange_requested",
+      "type": "judge",
+      "description": "The order status for the relevant order is now 'exchange requested' as a result of performing the exchange_delivered_order_items action (with confirmation).",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the order status for the relevant order equal to 'exchange requested' after performing exchange_delivered_order_items with user confirmation (i.e., the action occurred and the user answered yes)?",
+        "context": [
+          "outputs of exchange_delivered_order_items call (including the order_id and resulting status)",
+          "recent user confirmation dialogue showing a 'yes' from the user",
+          "current order details/status for the order in question (as available from get_order_details or equivalent)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the tool outputs, dialogue, or order status details are incomplete or missing, the true/false value cannot be determined with confidence."
+        }
+      },
+      "used_by_rules": [
+        "281",
+        "286",
+        "287"
+      ]
+    },
+    {
+      "name": "order_status_pending",
+      "type": "judge",
+      "description": "The targeted order's status is currently 'pending' (at decision time or in current context), for the order_id provided to the action.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 1
+      },
+      "judge": {
+        "question": "Is the status of the order identified by the provided order_id equal to 'pending'?",
+        "context": [
+          "get_order_details(order_id) result containing the order's status (e.g., status: 'pending') and related order details"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order details are unavailable or the status field is missing or inconclusive in the retrieved tool output, the judge cannot determine whether the predicate holds."
+        }
+      },
+      "used_by_rules": [
+        "129",
+        "134",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "171",
+        "172",
+        "173",
+        "174",
+        "175"
+      ]
+    },
+    {
+      "name": "order_status_pending_items_modified",
+      "type": "judge",
+      "description": "True when, for the order_id provided in the action's arguments, the order's status after performing the modification is 'pending (items modifed)'.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "For the given order_id in the action arguments, is the final order status exactly 'pending (items modifed)' after the modification?",
+        "context": [
+          "action arguments: order_id from the current modification request",
+          "latest output of get_order_details(order_id) for that order",
+          "latest output of modify_pending_order_items(order_id) result (if available) and any subsequent status update"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the order's post-modification status is not available from the accessible data sources (no tool output showing the updated status, or the order_id is missing from the arguments), the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "224",
+        "225",
+        "226",
+        "227",
+        "228",
+        "229"
+      ]
+    },
+    {
+      "name": "order_status_pending_v2",
+      "type": "judge",
+      "description": "True if, after applying the action, the order's status is 'pending' (i.e., the post-action state has status pending).",
+      "value_source": [
+        "call_args",
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the status of the order after applying the action equal to 'pending' (i.e., post-action status is 'pending')?",
+        "context": [
+          "the arguments of the current action (this_action)",
+          "the user confirmation flag (user_confirmed_v5) from dialogue",
+          "the post-action order details (get_order_details for the relevant order), including the current status",
+          "the order_id involved (as referenced in the action and order details)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If any of the needed evidence is missing or inconclusive (e.g., no post-action order status available, or the action/confirmation cannot be determined from the provided sources), the judge cannot determine the truth value of the predicate."
+        }
+      },
+      "used_by_rules": [
+        "181",
+        "182",
+        "183"
+      ]
+    },
+    {
+      "name": "order_status_return_requested",
+      "type": "judge",
+      "description": "After the action, the order's status is updated to 'return requested' (post-condition of the action).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Have all of the following conditions been observed: this_action is true, user_confirmed_v2 is true, order_delivered is true, and status_checked_before_action is true? If so, then order_status_return_requested is true.",
+        "context": [
+          "the arguments of the current action (this_action, user_confirmed_v2)",
+          "the relevant tool outputs showing order_delivered and status_checked_before_action",
+          "the order_id and its before-action status (if provided)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about pre-action booleans (user_confirmed_v2, order_delivered, status_checked_before_action) and the exact post-action status may be incomplete or missing from the current context."
+        }
+      },
+      "used_by_rules": [
+        "265"
+      ]
+    },
+    {
+      "name": "order_status_return_requested_v2",
+      "type": "judge",
+      "description": "True when the order '#W0000000' has its status updated to 'return requested' as a result of the action.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has the order with ID '#W0000000' been updated to the status 'return requested' as a result of the action taken to initiate the return process?",
+        "context": [
+          "the action taken to change the order status to 'return requested' for order '#W0000000'",
+          "the most recent tool output related to returning or updating order '#W0000000' (e.g., return_delivered_order_items or get_order_details)",
+          "any user confirmation or related dialogue indicating the user's return request or consent to proceed"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no accessible tool output showing the status change to 'return requested' for order '#W0000000', or if the tool output is inconclusive or missing, the system cannot determine the predicate truth value."
+        }
+      },
+      "used_by_rules": [
+        "268"
+      ]
+    },
+    {
+      "name": "order_status_return_requested_v3",
+      "type": "judge",
+      "description": "True when the system has updated the order status to 'return requested' for the given order and the follow-up return instructions email will be sent.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 1,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Has the system updated the order status to 'return requested' for the specified order, and has the follow-up return instructions email been queued to be sent?",
+        "context": [
+          "order_id of interest",
+          "latest get_order_details call results for the order (status and any email dispatch flags)",
+          "any recent tool outputs related to updating order status or sending the return Instructions email"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no available tool output confirming the order status change to 'return requested' or confirmation that the follow-up email will be sent, the truth of the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "267"
+      ]
+    },
+    {
+      "name": "own_orders_provided",
+      "type": "judge",
+      "description": "True when the action's results include at least one order entry for the requester, including order_id and order_status.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Does the current action's tool outputs contain at least one order entry for the requester that includes both an order_id and an order_status?",
+        "context": [
+          "the results of the current action's tool calls (tool_outputs) showing any order entries with fields order_id and order_status",
+          "the identity of the requester (to confirm the orders belong to them) if provided in tool outputs"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence of relevant order entries (order_id and order_status for the requester) is missing or inconclusive in the available tool outputs."
+        }
+      },
+      "used_by_rules": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "name": "own_profile_info_provided",
+      "type": "judge",
+      "description": "True when the action's results include the requesting user's profile information, such as user_id matching the requester and at least one of: profile_name, profile_email, profile_phone.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Does the action's results include the requesting user's profile information such that the stored user_id equals the requester and at least one of profile_name, profile_email, or profile_phone is present?",
+        "context": [
+          "the results of the current action",
+          "the requester’s user_id used for the action",
+          "fields in the action results that may include profile_name, profile_email, profile_phone if present"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the action results do not include or cannot be linked to the requester’s user_id and any of profile_name, profile_email, or profile_phone, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "name": "pairs_match_same_product_diff_option",
+      "type": "judge",
+      "description": "For every position i, new_item_ids[i] refers to the same product as item_ids[i], has a different option, and is a different item id; the arrays are the same length and preserve the mapping order (i.e., the i-th old item is replaced by the i-th new item with the same product and a different option).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "For every position i, does new_item_ids[i] refer to the same product as item_ids[i], is new_item_ids[i] a different item (not equal to item_ids[i]), and does it have a different option from item_ids[i], with item_ids and new_item_ids arrays having the same length and preserving the per-position mapping?",
+        "context": [
+          "the current call arguments containing item_ids and new_item_ids",
+          "no other sources required to evaluate per-position product equivalence and option difference"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the current call_args do not include enough information to determine product identity or option differences for each pair (item_ids[i], new_item_ids[i]), the predicate cannot be evaluated."
+        }
+      },
+      "used_by_rules": [
+        "222",
+        "272"
+      ]
+    },
+    {
+      "name": "pairs_same_product_diff_option_and_available",
+      "type": "judge",
+      "description": "For every position i, new_item_ids[i] matches the same product as item_ids[i], but has a different product option, and is currently available to swap (stock in pool, not already used in another exchange).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 2
+      },
+      "judge": {
+        "question": "For every position i, is product_id(item_ids[i]) equal to product_id(new_item_ids[i]), option_id(item_ids[i]) different from option_id(new_item_ids[i]), and is_available_to_swap(new_item_ids[i]) true for all i?",
+        "context": [
+          "call_args (item_ids, new_item_ids)",
+          "tool_outputs (availability/stock data for candidate new_item_ids)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If availability data or the product-option mapping for any pair is missing or inconclusive in tool outputs, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "200",
+        "201"
+      ]
+    },
+    {
+      "name": "payment_change_explanation_provided",
+      "type": "judge",
+      "description": "True when the assistant has explained the payment modification and asked for explicit confirmation for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the assistant explained the payment modification for the targeted order and explicitly requested the user's confirmation (yes/no)?",
+        "context": [
+          "the assistant's messages that describe the payment modification for the targeted order",
+          "the assistant's explicit request for user confirmation (yes/no) regarding the targeted order",
+          "the user's responses related to confirming or declining the modification for the targeted order"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient evidence in the available dialogue context to determine whether the assistant provided a payment modification explanation and explicitly asked for confirmation for the targeted order."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "payment_method_confirmed_by_user",
+      "type": "judge",
+      "description": "true when the user has explicitly confirmed the refund method to use for this cancellation (e.g., 'refund to gift_card' or 'refund to original_payment_method') prior to executing the action.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed the refund method to use for this cancellation prior to executing the action (e.g., \"refund to gift_card\" or \"refund to original_payment_method\")?",
+        "context": [
+          "the dialogue history showing user confirmations about the refund method for this cancellation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient or missing evidence in the available dialogue to determine whether the user explicitly confirmed the refund method before this action."
+        }
+      },
+      "used_by_rules": [
+        "262"
+      ]
+    },
+    {
+      "name": "payment_method_id_provided",
+      "type": "judge",
+      "description": "The modify_pending_order_payment action includes a non-empty payment_method_id argument.",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the payment_method_id argument of the modify_pending_order_payment action provided and non-empty (i.e., payment_method_id is present and not an empty string)?",
+        "context": [
+          "arguments of the current modify_pending_order_payment action (specifically the payment_method_id argument)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the payment_method_id value is missing or inconclusive in the current context."
+        }
+      },
+      "used_by_rules": [
+        "203",
+        "204",
+        "245",
+        "246"
+      ]
+    },
+    {
+      "name": "payment_method_provided",
+      "type": "judge",
+      "description": "A payment method has been provided to pay or refund the price difference, via the action or prior conversation (context: modify_pending_order_payment).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Has a payment_method_id been provided for the current payment difference handling in this_action (i.e., is payment_method_provided true for the modify_pending_order_payment action)?",
+        "context": [
+          "arguments of the current modify_pending_order_payment call (order_id and payment_method_id)",
+          "any prior dialogue or tool outputs that indicate a payment method has been provided for this order/payment difference"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no sufficient evidence in the current action arguments or prior dialogue/tool outputs to determine whether a payment method has been provided for the price difference."
+        }
+      },
+      "used_by_rules": [
+        "240",
+        "241",
+        "245",
+        "246"
+      ]
+    },
+    {
+      "name": "payment_method_provided_v2",
+      "type": "judge",
+      "description": "true when a payment method is available to be used for payment or refund of the price difference. For modify_pending_order_payment, this is true if the payment_method_id argument is a non-empty string (e.g., 'gift_card_0000000' or 'credit_card_0000000'). For cancel_pending_order, this is true if there exists a payment method on file or provided in the conversation to be used for refund.",
+      "value_source": [
+        "call_args",
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is there a valid payment method available for the current action: either the payment_method_id argument provided for a modify_pending_order_payment action is a non-empty string, or a payment method exists on file or has been provided in the conversation for a cancel_pending_order action?",
+        "context": [
+          "the arguments of the current call",
+          "the type of current action (modify_pending_order_payment or cancel_pending_order)",
+          "tool outputs with stored payment methods or order details",
+          "dialogue messages where user provided or discusses a payment method"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about the existence/availability of a payment method (either in the action argument or in stored data / user dialogue) is incomplete or missing."
+        }
+      },
+      "used_by_rules": [
+        "278",
+        "279"
+      ]
+    },
+    {
+      "name": "payment_modifications_count_at_most_1",
+      "type": "judge",
+      "description": "True when, after this planned modification, the total number of times the payment method for this pending order has been modified would be at most 1. This implies there have been zero prior modifications for this order's payment method.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has there been zero prior modifications to the payment method for this pending order before this_action (i.e., prior payment_modifications_count for the order is 0), so that performing this_action would result in at most 1 total modification?",
+        "context": [
+          "Arguments of the current modify_pending_order_payment call (order_id, payment_method_id)",
+          "Most recent get_order_details(output) for the given order_id showing payment_modifications_count prior to this_action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about prior payment method modification count for this specific pending order is incomplete or unavailable in the provided tool outputs and call arguments."
+        }
+      },
+      "used_by_rules": [
+        "119"
+      ]
+    },
+    {
+      "name": "price_diff_known",
+      "type": "judge",
+      "description": "True when the price difference amount to cover for the order modification has been calculated or is available from the current order state and proposed changes.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is price_diff_known true given the current order state (from get_order_details) and the proposed changes (from the current action's arguments) for the order modification?",
+        "context": [
+          "call_args (arguments of the current action, including any price difference or modification details)",
+          "tool_outputs (recent outputs from get_order_details for the relevant order)",
+          "proposed_changes (specifically the price difference amount required to cover the modification)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the current order state or proposed changes do not provide a clear price difference value or it cannot be determined from available tool outputs and arguments, the predicate cannot be conclusively evaluated."
+        }
+      },
+      "used_by_rules": [
+        "205",
+        "206"
+      ]
+    },
+    {
+      "name": "price_difference_exists",
+      "type": "judge",
+      "description": "True when there is a non-zero monetary difference to settle for the order in context of the action (the amount to pay or refund differs from what was paid). It is computed as current_order_total minus amount_paid and is non-zero when a payment or refund is required.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is current_order_total minus amount_paid not equal to 0? (i.e., is there a non-zero monetary difference to settle for the current order)",
+        "context": [
+          "the relevant tool output with order details, including current_order_total and amount_paid for the target order",
+          "the current action context referencing the order being checked"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient or unavailable data to compute current_order_total or amount_paid for the order in question."
+        }
+      },
+      "used_by_rules": [
+        "240",
+        "241"
+      ]
+    },
+    {
+      "name": "product_type_preserved",
+      "type": "judge",
+      "description": "True if for every index i, the product type of item_ids[i] equals the product type of new_item_ids[i], and the two lists have the same length; evaluated from the action arguments and order/product data available at the moment the action is about to be performed.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Are the two lists the same length and for every index i, the product type of item_ids[i] equals the product type of new_item_ids[i] (i.e., length(item_ids) == length(new_item_ids) and for all i, product_type(item_ids[i]) == product_type(new_item_ids[i]))?",
+        "context": [
+          "the action arguments item_ids and new_item_ids",
+          "tool outputs that provide product types for each item_id (e.g., get_product_details results or inventory data) corresponding to the items in item_ids and new_item_ids"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence may be incomplete: if item_ids/new_item_ids are missing, or corresponding product type data for these item IDs is unavailable from tool outputs, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "244",
+        "277"
+      ]
+    },
+    {
+      "name": "reason_no_longer_needed",
+      "type": "judge",
+      "description": "true when the cancellation reason argument equals the exact string 'no longer needed'",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the cancellation reason argument exactly equal to 'no longer needed' for the current cancellation action?",
+        "context": [
+          "arguments of the current cancel_pending_order action, including the reason parameter"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The evidence about the exact value of the cancellation reason argument may be missing or not provided in the current context."
+        }
+      },
+      "used_by_rules": [
+        "143"
+      ]
+    },
+    {
+      "name": "reason_ordered_by_mistake",
+      "type": "judge",
+      "description": "true when the cancellation reason argument equals the exact string 'ordered by mistake'",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the cancellation reason argument exactly equal to 'ordered by mistake' for the current cancel_pending_order action?",
+        "context": [
+          "arguments of the current cancel_pending_order call (specifically the reason parameter)",
+          "the order_id being cancelled (if needed to disambiguate)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No evidence about the reason parameter is available from the current call_args"
+        }
+      },
+      "used_by_rules": [
+        "143"
+      ]
+    },
+    {
+      "name": "refund_dest_original_or_gift_card",
+      "type": "judge",
+      "description": "True when the refund destination is either the order's original payment method or an existing gift card associated with the user.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the current refund destination equal to the order's original payment method or to an existing gift card associated with the user?",
+        "context": [
+          "the arguments of the current action being checked (specifically the refund destination)",
+          "the latest tool outputs containing: (a) the order details including the original payment method, and (b) the user's existing gift card data or balances relevant to the refund destination"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence may be incomplete if the action arguments do not include the destination or if the tool outputs do not contain the required order/or gift-card information."
+        }
+      },
+      "used_by_rules": [
+        "263"
+      ]
+    },
+    {
+      "name": "refund_immediate_gift_card",
+      "type": "judge",
+      "description": "The total amount is refunded immediately via the original gift card payment method and credited to the user's gift card balance (no processing delay).",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Was the current action a refund executed immediately to the user's gift card balance via the original gift card payment method (i.e., the payment method used was a gift card) with no processing delay?",
+        "context": [
+          "the arguments of the current call (including payment method and refund action)",
+          "the latest tool outputs related to the refund (refund status and any processing time)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether the refund was immediate and via gift card is not available or conclusive in the provided call arguments and tool outputs."
+        }
+      },
+      "used_by_rules": [
+        "145"
+      ]
+    },
+    {
+      "name": "refund_original_within_5_7",
+      "type": "judge",
+      "description": "true if a refund via the original payment method is scheduled to complete within 5 to 7 business days (only applicable when the payment method is not a gift card).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the refund scheduled to complete within 5 to 7 business days using the original payment method, and the original payment method is not a gift card?",
+        "context": [
+          "the current action arguments (specifically whether the action intends a refund via the original payment method and that the method is not a gift card)",
+          "the most recent tool outputs related to the order refund details (including the original payment method indication and the refund ETA)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If either the refund method or the completion timeline is not available from tool outputs or not stated in the dialogue, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "146"
+      ]
+    },
+    {
+      "name": "refund_processed",
+      "type": "judge",
+      "description": "true when the refund has been initiated; if the payment used gift card, the refund is applied to the gift card balance immediately; otherwise the refund will be processed within 5-7 business days",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "dialogue": 1,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the refund status indicating that a refund has been initiated for the order, and does it follow the described timing rules (immediate to gift card balance if paid with gift card, otherwise 5-7 business days)?",
+        "context": [
+          "latest tool output showing order details or cancellation result with refund status and payment method",
+          "dialogue history including user confirmation or requested action related to cancellation/refund"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is not enough evidence in the provided sources to determine whether the refund has been initiated for the order at this moment."
+        }
+      },
+      "used_by_rules": [
+        "144"
+      ]
+    },
+    {
+      "name": "related_products_provided",
+      "type": "judge",
+      "description": "True when the action's results include product details related to the requester (e.g., products in the user's orders or associated with the user's account), including product_type names and item ids.",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "In the current action results, are there product details that are linked to the requester, including both a product_type name and an item_id?",
+        "context": [
+          "the current action's tool_outputs containing product details (product_type names and item_ids)",
+          "the requester identity in the session (to verify linkage)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about related products is missing or inconclusive in tool outputs."
+        }
+      },
+      "used_by_rules": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "name": "remind_customer_to_confirm_all_items",
+      "type": "judge",
+      "description": "True when the agent's current message includes a direct reminder asking the customer to confirm that they have provided all items to be modified for the pending or delivered order (i.e., a yes/no confirmation is requested).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Is the agent's current message containing a direct reminder asking the customer to confirm that they have provided all items to be modified for the pending or delivered order, i.e., a yes/no confirmation is requested?",
+        "context": [
+          "the agent's current message (dialogue) that is being evaluated for the reminder"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No sufficient evidence in the provided dialogue to determine whether a direct yes/no confirmation reminder about all modifiable items is included in the agent's current message."
+        }
+      },
+      "used_by_rules": [
+        "198",
+        "199"
+      ]
+    },
+    {
+      "name": "responding_to_user",
+      "type": "judge",
+      "description": "True when the current interaction is a user-facing response to the user (the agent is replying to the user in the chat).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "dialogue": 3,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Is the current action a user-facing response to the user in the chat (i.e., the agent is replying to the user and no tool is being called in this action)?",
+        "context": [
+          "the dialogue history between user and agent, including the agent's current message",
+          "the current action being evaluated",
+          "any indication within the dialogue of whether a tool was called in this action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether the agent is truly replying to the user (as opposed to performing a tool-based or system action) may be incomplete or ambiguous if the current action context or dialogue is not explicit"
+        }
+      },
+      "used_by_rules": [
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114"
+      ]
+    },
+    {
+      "name": "response_only_known_procedures",
+      "type": "judge",
+      "description": "True if the upcoming respond_to_user content mentions only procedures that were provided by the user in this conversation or by existing tools, and does not mention or imply any new procedures not present in those sources",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "dialogue": 2,
+        "tool_outputs": 2
+      },
+      "judge": {
+        "question": "Is the upcoming respond_to_user content limited to procedures that are only those provided by the user in this conversation or those provided by existing tools, with no mention or implication of any new procedures not present in those sources?",
+        "context": [
+          "the content of the current conversation including user-provided procedures",
+          "the catalog or list of existing tools and their documented procedures (as reflected in tool_outputs)",
+          "the content of the upcoming respond_to_user message to the user (if available)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The evaluation hinges on the exact content of the respond_to_user message and the set of known procedures from prior dialogue and tool outputs. If call_args or tool_outputs are incomplete or ambiguous, the judge cannot determine definitively whether new procedures are being referenced."
+        }
+      },
+      "used_by_rules": [
+        "74"
+      ]
+    },
+    {
+      "name": "return_details_explained",
+      "type": "judge",
+      "description": "True when the agent has explained the return details to the user for the action's arguments, including the exact order_id and item_ids being returned and payment_method_id to be used for the refund, that the order status will change to 'return requested', and that the user will receive a follow-up email with how and where to return.",
+      "value_source": [
+        "call_args",
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the agent provided a complete explanation of the return details for this action, including the exact order_id, item_ids being returned, and payment_method_id to be used for the refund, that the order status will change to 'return requested', and that the user will receive a follow-up email with instructions on how and where to return?",
+        "context": [
+          "the arguments of the current action (order_id, item_ids, payment_method_id)",
+          "the agent's most recent messages to the user explaining the return details",
+          "the user's responses or confirmations in the dialogue"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is missing or inconclusive about whether the agent has explicitly explained all required details (order_id, item_ids, payment_method_id, status change, and follow-up email) to the user for the current action."
+        }
+      },
+      "used_by_rules": [
+        "267"
+      ]
+    },
+    {
+      "name": "return_instructions_email_sent",
+      "type": "judge",
+      "description": "True when an email has been sent to the user containing instructions on how and where to return the items for the order referenced by this action.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has an email containing instructions on how and where to return the items for the order referenced by this action been sent to the user?",
+        "context": [
+          "the current action's referenced order_id",
+          "the agent-user dialogue related to return instructions and email dispatch",
+          "any tool outputs indicating that a return-instructions email was sent or queued"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether the email was sent may be incomplete or missing from both dialogue and tool outputs; without a definitive record (or explicit confirmation from the system that the email was dispatched), the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "283"
+      ]
+    },
+    {
+      "name": "return_list_confirmed",
+      "type": "judge",
+      "description": "True when the user has explicitly confirmed, via an explicit yes response, the exact list of items to be returned or otherwise affected by the current action. The confirmation must enumerate exactly the items listed in the action's item_ids array (and, for exchange, align with the corresponding new_item_ids in the same positions). If applicable, the confirmation should reflect the items to be returned for the current action; the confirmation must be provided before the action proceeds.",
+      "value_source": [
+        "call_args",
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed with an explicit yes that the exact list of items to be returned or affected by this action matches the action's item_ids (and, for exchange, aligns with new_item_ids in the same positions)?",
+        "context": [
+          "the current action's item_ids and new_item_ids (if present) from call_args",
+          "the most recent user confirmation dialogue indicating a yes/no about that exact list"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is insufficient evidence in the provided dialogue and action arguments to confirm that the user explicitly confirmed the exact item list (and alignment with new_item_ids for exchanges)."
+        }
+      },
+      "used_by_rules": [
+        "259",
+        "260",
+        "261"
+      ]
+    },
+    {
+      "name": "same_product_type_for_items",
+      "type": "judge",
+      "description": "True when for every position i, the product type of item_ids[i] equals the product type of new_item_ids[i], and the two lists have the same length; if any corresponding pair has a different product type, or the lengths differ, this predicate is false.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is it true that the number of elements in item_ids equals the number of elements in new_item_ids, and for every position i, the product type of item_ids[i] equals the product type of new_item_ids[i]?",
+        "context": [
+          "Arguments of the current action being checked: item_ids and new_item_ids",
+          "Tool outputs that provide product type information for the corresponding item ids (from prior get_product_details lookups or similar)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is incomplete: product type information for one or more item_ids/new_item_ids is missing or unavailable in the current tool outputs, preventing a definitive true/false determination."
+        }
+      },
+      "used_by_rules": [
+        "202"
+      ]
+    },
+    {
+      "name": "status_checked_before_action",
+      "type": "judge",
+      "description": "Before taking this action, the order's status has been checked and confirmed by the agent (verification completed).",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "dialogue": 2
+      },
+      "judge": {
+        "question": "Has the agent verified (checked) the order status before taking this action and confirmed it?",
+        "context": [
+          "Current action being taken (this_action) and any flag indicating order_delivered",
+          "Most recent get_order_details(order_id) tool output showing the order status",
+          "Dialogue excerpts showing agent's statement of status verification and any user confirmation",
+          "Any prior tool outputs or notes indicating that status was checked before this action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive evidence in the available sources that the agent performed a status check prior to this action. If tool_outputs or dialogue do not show a verified status check, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "265"
+      ]
+    },
+    {
+      "name": "subjective_recommendation_present",
+      "type": "judge",
+      "description": "true if the content of the agent's respond_to_user text expresses subjective opinion, personal judgment, or non-factual recommendations about the user or situation (e.g., phrases like 'I think', 'in my opinion', 'it seems', 'you should', or other value judgments).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Does the agent's respond_to_user text express subjective opinion, personal judgment, or non-factual recommendations about the user or situation (e.g., phrases like 'I think', 'in my opinion', 'it seems', 'you should')?",
+        "context": [
+          "the agent's respond_to_user text in the current turn",
+          "the preceding user messages and the agent's prior responses if relevant to the current statement"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the agent's respond_to_user text is not available or cannot be evaluated from the provided dialogue (e.g., missing or truncated text), the judge cannot determine whether subjective recommendations are present."
+        }
+      },
+      "used_by_rules": [
+        "75"
+      ]
+    },
+    {
+      "name": "summary_derived_from_user_or_tools",
+      "type": "judge",
+      "description": "True when the summary argument provided to transfer_to_human_agents is composed exclusively of content that is present in the user’s prior messages or in outputs from previously used tools, and does not introduce any new facts or claims that are not supported by those sources.",
+      "value_source": [
+        "call_args",
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the transfer_to_human_agents summary argument fully derived from content present in the user’s prior messages (dialogue) and/or in outputs from previously used tools (tool_outputs), such that no new facts or claims are introduced that are not supported by those sources?",
+        "context": [
+          "the arguments of the current call (transfer_to_human_agents summary)",
+          "the user's prior messages (dialogue)",
+          "outputs from previously used tools (tool_outputs)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is incomplete or ambiguous: without access to the full prior dialogue and all tool outputs, it may be unclear whether every element of the summary appears in those sources. In such cases, the predicate value cannot be determined with confidence."
+        }
+      },
+      "used_by_rules": [
+        "72",
+        "73"
+      ]
+    },
+    {
+      "name": "target_user_is_other",
+      "type": "judge",
+      "description": "True if the action targets a user other than the current requester. This is determined from the action's arguments and any results of prior lookups. If the target resolves to the requester or cannot be determined to be a different user, this predicate is false.",
+      "value_source": [
+        "call_args",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "call_args": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the target user for this action different from the requester (i.e., is target_user_is_other true) based on the current action arguments and any prior lookup results?",
+        "context": [
+          "the arguments of the current action",
+          "the outputs of prior lookups that determine the target (tool_outputs)",
+          "any relevant user identity information resolved by lookups if available"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the action arguments and prior lookup results do not allow a definitive determination of whether the target is a different user from the requester, the predicate value cannot be established."
+        }
+      },
+      "used_by_rules": [
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60"
+      ]
+    },
+    {
+      "name": "text_derived_from_user_or_tools",
+      "type": "judge",
+      "description": "True when the text argument provided to respond_to_user is composed exclusively of content that is present in the user’s prior messages or in outputs from previously used tools, and does not introduce any new facts or claims that are not supported by those sources.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Is the text being prepared for respond_to_user exclusively composed of content that appears in the user’s prior messages or in outputs from previously used tools, with no new facts or claims introduced that are not supported by those sources?",
+        "context": [
+          "dialogue (all user messages in the conversation)",
+          "tool_outputs (results from earlier tool calls)",
+          "the text argument of respond_to_user being evaluated"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the dialogue or tool_outputs do not conclusively demonstrate that the respond_to_user text is fully derived from those sources, the truth of the predicate cannot be determined from the available evidence."
+        }
+      },
+      "used_by_rules": [
+        "72",
+        "73"
+      ]
+    },
+    {
+      "name": "tool_call_in_action",
+      "type": "judge",
+      "description": "True when the intended action would invoke an external tool or data source (i.e., the action is one of the tool-calling actions: calculate, cancel_pending_order, exchange_delivered_order_items, find_user_id_by_email, find_user_id_by_name_zip, get_order_details, get_product_details, get_user_details, list_all_product_types, modify_pending_order_address, modify_pending_order_items, modify_pending_order_payment, modify_user_address, return_delivered_order_items, think, transfer_to_human_agents).",
+      "value_source": [
+        "call_args"
+      ],
+      "value_source_votes": {
+        "call_args": 3
+      },
+      "judge": {
+        "question": "Is the current action to be executed one of the tool-calling actions: calculate, cancel_pending_order, exchange_delivered_order_items, find_user_id_by_email, find_user_id_by_name_zip, get_order_details, get_product_details, get_user_details, list_all_product_types, modify_pending_order_address, modify_pending_order_items, modify_pending_order_payment, modify_user_address, return_delivered_order_items, think, or transfer_to_human_agents?",
+        "context": [
+          "the intended_action_name (the action the agent is about to take)",
+          "the action arguments for the current call (if any)",
+          "the predefined list of tool-calling actions (as listed in the policy)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Insufficient information about the planned action to determine if it is a tool-calling action."
+        }
+      },
+      "used_by_rules": [
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114"
+      ]
+    },
+    {
+      "name": "tool_call_in_progress",
+      "type": "judge",
+      "description": "There is a tool call currently in progress (a constrained action involving a tool or external service that has been started and has not yet completed).",
+      "value_source": [
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 3,
+        "call_args": 1,
+        "dialogue": 1
+      },
+      "judge": {
+        "question": "Is there an active tool call in progress right now (i.e., a tool call has been started and has not yet completed)?",
+        "context": [
+          "the outputs/results of the most recent tool calls, including any status indicating an in-progress tool call"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "the available evidence may be incomplete or missing about whether a tool call is currently in progress"
+        }
+      },
+      "used_by_rules": [
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98"
+      ]
+    },
+    {
+      "name": "user_authenticated",
+      "type": "judge",
+      "description": "True when the current user session has been authenticated (the user has completed authentication, e.g., login, and the session holds a valid authentication token).",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "tool_outputs": 2,
+        "dialogue": 2
+      },
+      "judge": {
+        "question": "Is the current user session authenticated (has the user completed login and the session holds a valid authentication token)?",
+        "context": [
+          "the current user dialogue and requests",
+          "any available tool outputs related to authentication status or tokens for the session",
+          "the action being evaluated (what information would be allowed only if user_authenticated is true)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No evidence in tool_outputs about the session's authentication token validity or authentication flag; without this data, we cannot determine if user_authenticated is true or false."
+        }
+      },
+      "used_by_rules": [
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39"
+      ]
+    },
+    {
+      "name": "user_confirmation_obtained",
+      "type": "judge",
+      "description": "True when the user has given explicit affirmative confirmation in the current conversation to proceed with the action and the confirmation references the action's parameters (e.g., specific order_id or item_ids) presented by the agent. Examples of explicit confirmation include messages like 'Yes, proceed with cancel_pending_order #W0000000', 'Yes, please exchange the items', 'Confirm' or 'Proceed', issued after the agent has explained the action details. The confirmation must pertain to the exact action and its arguments.",
+      "value_source": [
+        "call_args",
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly affirmed, in the current conversation, to proceed with the action by saying an explicit yes (or equivalent) that references the exact action parameters (as shown in the agent's explanation of the action, such as order_id and item_ids)?",
+        "context": [
+          "the arguments of the current call (call_args)",
+          "the conversation dialogue including user messages and responses from the agent",
+          "the agent's prior message that presented the action details to be confirmed"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no explicit affirmative user message in the dialogue that references the exact action parameters, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "135",
+        "136",
+        "137",
+        "138",
+        "139",
+        "140",
+        "141"
+      ]
+    },
+    {
+      "name": "user_confirmed",
+      "type": "judge",
+      "description": "Explicit user confirmation to proceed with the constrained action has been received in this interaction. True when the user answered affirmatively to the agent's confirmation prompt for this action (for example, 'yes' or 'confirm'), and false otherwise.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with this action in this interaction by answering affirmatively (for example, 'yes' or 'confirm')?",
+        "context": [
+          "the agent's confirmation prompt text",
+          "the user's most recent response in this interaction",
+          "the action that is being confirmed (this_action)",
+          "any prior user confirmations in this interaction if applicable"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no explicit confirmation available in the provided dialogue or tool outputs to determine whether the user affirmed to proceed with the action."
+        }
+      },
+      "used_by_rules": [
+        "214",
+        "215",
+        "216",
+        "217"
+      ]
+    },
+    {
+      "name": "user_confirmed_before_action",
+      "type": "judge",
+      "description": "True if the user has explicitly replied with 'yes' to proceed prior to the cancellation action.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly replied with 'yes' (case-insensitive) to proceed with the cancellation prior to this cancellation action being executed?",
+        "context": [
+          "dialogue: all user messages received prior to the current action (requests, confirmations, and statements)",
+          "current_action: cancel_pending_order for order_id '#W...'"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the dialogue does not contain an explicit 'yes' from the user prior to this action, or if the prior confirmation is unavailable or missing, the judge cannot determine the predicate with certainty."
+        }
+      },
+      "used_by_rules": [
+        "61"
+      ]
+    },
+    {
+      "name": "user_confirmed_cancel",
+      "type": "judge",
+      "description": "True when the user explicitly confirms cancellation for the targeted order (the user answered yes to the cancellation prompt).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly answered 'yes' to the cancellation confirmation prompt for the targeted order?",
+        "context": [
+          "the cancellation prompt presented to the user and the user's response in the dialogue",
+          "the targeted order_id under consideration for cancellation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No clear explicit confirmation (yes) observed in the available dialogue evidence"
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "user_confirmed_details",
+      "type": "judge",
+      "description": "True when the user explicitly confirms that all details of the action are correct. The confirmation must be an explicit affirmative response (case-insensitive 'yes' or equivalent) that references the action's arguments (e.g., an order_id starting with '#', and the relevant fields such as address, item_ids, payment_method_id, etc.). If the user has not provided such confirmation, this predicate is false.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 1,
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly replied with an affirmative response 'yes' (case-insensitive) that references the action's arguments and confirms that all details of the action (including order_id and related fields) are correct?",
+        "context": [
+          "the current action's arguments (e.g., order_id, address, item_ids, payment_method_id) as provided to the agent",
+          "the user's dialogue messages containing any confirmation (e.g., an explicit 'yes' response referencing the action details)",
+          "any prior confirmations that reference the action's arguments"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence is incomplete or ambiguous: there may be no clear explicit 'yes' that references all required action arguments in the available dialogue and call_args."
+        }
+      },
+      "used_by_rules": [
+        "191",
+        "192",
+        "193",
+        "194",
+        "195",
+        "196",
+        "197"
+      ]
+    },
+    {
+      "name": "user_confirmed_modify_address",
+      "type": "judge",
+      "description": "True when the user explicitly confirms modification of the shipping address for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed modifying the shipping address for the targeted order in the current interaction?",
+        "context": [
+          "the arguments of the current action being checked (order_id and target address modification)",
+          "the user-agent dialogue/messages related to address modification in the current conversation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive confirmation in the dialogue about whether the user explicitly confirmed the address modification, and no tool outputs provide this confirmation."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "user_confirmed_modify_items",
+      "type": "judge",
+      "description": "True when the user explicitly confirms modification of items in the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user provided explicit confirmation (e.g., an affirmative \"yes\") to modify items for the current pending order (order_pending_v4) in the dialogue?",
+        "context": [
+          "the full dialogue history (user and agent messages) showing any explicit confirmation to modify items",
+          "the arguments of the current action being evaluated (order_id, item_ids, new_item_ids, payment_method_id) for modify_pending_order_items",
+          "any tool outputs relevant to the confirmation or the pending order status"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no explicit confirmation evidence in the provided dialogue or tool outputs to determine whether the user approved modifying items for the current pending order."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "user_confirmed_modify_payment",
+      "type": "judge",
+      "description": "True when the user explicitly confirms modification of the payment method for the targeted order.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed the modification of the payment method for the current targeted pending order?",
+        "context": [
+          "the pending order_id being modified",
+          "the user's confirmation message in dialogue",
+          "any relevant context about the payment modification being proposed (e.g., proposed new payment_method_id) in the current action"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no clear user confirmation in the dialogue and no tool outputs definitively indicating a confirmation. Without explicit confirmation, the predicate cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "user_confirmed_payment_method",
+      "type": "judge",
+      "description": "The user has explicitly confirmed which payment method should be used for the refund related to this cancellation (e.g., \"refund to gift card\" or \"refund to original method\"). This is true only after explicit user confirmation in the current conversation.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed in this conversation which payment method should be used for the refund (e.g., 'refund to gift card' or 'refund to original method')?",
+        "context": [
+          "the dialogue history between the user and agent in the current session, with emphasis on any explicit refund payment method confirmation by the user",
+          "any explicit phrases where the user states a specific refund method (gift card, original method, etc.) and is intended to apply to the current cancellation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no explicit confirmation found in the current conversation, or the available dialogue data does not clearly establish a definitive user-confirmed refund method."
+        }
+      },
+      "used_by_rules": [
+        "264"
+      ]
+    },
+    {
+      "name": "user_confirmed_return",
+      "type": "judge",
+      "description": "True when the user has explicitly confirmed to proceed with returning the items for the order referenced by this action (i.e., confirmed the return for the current order_id). This confirmation is the trigger to proceed with the return workflow.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with returning the items for the current order_id referenced by this action?",
+        "context": [
+          "this_action (includes the order_id to be returned)",
+          "dialogue: user messages explicitly confirming or declining the return for the current order_id",
+          "tool_outputs: any prior tool results relevant to the return confirmation (if applicable)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no explicit user confirmation in the dialogue and no tool output confirming the return, the predicate value cannot be determined."
+        }
+      },
+      "used_by_rules": [
+        "283"
+      ]
+    },
+    {
+      "name": "user_confirmed_return_request",
+      "type": "judge",
+      "description": "True when the user explicitly confirms (Yes) to proceed with returning the items for order '#W0000000'. The confirmation occurs prior to performing the action.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly replied with Yes to proceed with returning the items for order '#W0000000' (i.e., user confirmation to return)?",
+        "context": [
+          "the full user-agent dialogue so far",
+          "the order_id associated with the return action: '#W0000000'"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no clear confirmation in the dialogue yet, or the user’s confirmation is not explicit (e.g., no plain 'Yes' or the user has not responded)."
+        }
+      },
+      "used_by_rules": [
+        "268"
+      ]
+    },
+    {
+      "name": "user_confirmed_v2",
+      "type": "judge",
+      "description": "The user has explicitly confirmed to proceed with the return (yes).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with the return by saying a clear 'yes' in the current dialogue?",
+        "context": [
+          "the user dialogue messages showing confirmation (e.g., user said 'yes' to proceed with return)",
+          "the current action flag indicating this_action and user_confirmed_v2 state (if exposed in context)",
+          "any nearby prompts or clarifications from the agent that request explicit confirmation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No explicit user confirmation observed in the available dialogue or context to determine whether the user has confirmed; evidence is missing or inconclusive"
+        }
+      },
+      "used_by_rules": [
+        "265"
+      ]
+    },
+    {
+      "name": "user_confirmed_v3",
+      "type": "judge",
+      "description": "True iff the user has explicitly confirmed to proceed with the exchange (yes).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed to proceed with the exchange by replying 'yes' in this interaction?",
+        "context": [
+          "the dialogue history including user messages in the current interaction (requests, confirmations, answers, and questions)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If there is no explicit 'yes' confirmation from the user in the dialogue history, or the confirmation is ambiguous (e.g., 'yeah', 'sure', or conditional language), the predicate cannot be determined conclusively from the available data."
+        }
+      },
+      "used_by_rules": [
+        "223"
+      ]
+    },
+    {
+      "name": "user_confirmed_v4",
+      "type": "judge",
+      "description": "True when the user has explicitly confirmed cancellation for the order identified by the action's order_id (e.g., the user responds with a clear 'Yes' to cancel that specific order).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "call_args": 1,
+        "tool_outputs": 1
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed cancellation for the current action's order_id?",
+        "context": [
+          "the current action's order_id argument",
+          "the user-agent dialogue history including explicit confirmations"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "No definitive explicit user confirmation found in the available dialogue or call arguments"
+        }
+      },
+      "used_by_rules": [
+        "131"
+      ]
+    },
+    {
+      "name": "user_confirmed_v5",
+      "type": "judge",
+      "description": "True when the user has explicitly confirmed to proceed with the action for the current order, i.e., the user answered yes to the confirmation prompt for the order_id in question.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly answered 'yes' to the confirmation prompt for the current order_id, indicating they want to proceed with the action?",
+        "context": [
+          "the current action's order_id (order_id parameter)",
+          "the user and agent dialogue surrounding the confirmation prompt",
+          "the user's response to the confirmation prompt (yes/no)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive evidence in the provided dialogue that the user explicitly confirmed with 'yes' for the specific order_id, or the order_id context is missing."
+        }
+      },
+      "used_by_rules": [
+        "181",
+        "182",
+        "183"
+      ]
+    },
+    {
+      "name": "user_confirmed_v6",
+      "type": "judge",
+      "description": "true when the user has explicitly confirmed cancellation, i.e., the user replied yes to the cancellation prompt in the current interaction",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed cancellation in the current interaction by replying yes to the cancellation prompt?",
+        "context": [
+          "the current interaction dialogue including the user's messages and the agent's cancellation prompt",
+          "the current action being evaluated (cancellation of the order)",
+          "any explicit user confirmation (e.g., a message containing 'yes' or equivalent) in the dialogue"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "The evidence of explicit user confirmation may be missing, fragmented, or not clearly indicating an affirmative ('yes') in the provided dialogue window or context."
+        }
+      },
+      "used_by_rules": [
+        "144"
+      ]
+    },
+    {
+      "name": "user_confirmed_yes",
+      "type": "judge",
+      "description": "True if the user has responded with 'yes' to proceed with the exchange/return.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Did the user explicitly respond with 'yes' to proceed with the current action (i.e., has user_confirmed_yes been satisfied)?",
+        "context": [
+          "the current action context (this_action)",
+          "the most recent user messages in dialogue containing explicit confirmation or denial (e.g., 'yes' or 'no')"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no explicit user confirmation in the available dialogue or tool outputs to determine if user_confirmed_yes is true."
+        }
+      },
+      "used_by_rules": [
+        "5",
+        "6",
+        "68",
+        "69",
+        "70",
+        "143",
+        "218",
+        "219",
+        "220",
+        "221",
+        "231",
+        "232",
+        "233",
+        "234",
+        "235",
+        "236",
+        "237",
+        "272",
+        "281",
+        "282",
+        "284",
+        "285",
+        "286",
+        "287",
+        "288",
+        "289"
+      ]
+    },
+    {
+      "name": "user_confirmed_yes_received",
+      "type": "judge",
+      "description": "True when the user has given an explicit affirmative confirmation to proceed with the modification (e.g. a message containing a yes).",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly confirmed with an affirmative 'yes' in the conversation to proceed with the modification (e.g., of the shipping address) for the pending order?",
+        "context": [
+          "the user-agent dialogue/history containing the user's latest confirmation or denial",
+          "the details of the modification being proposed (e.g., modify_pending_order_address parameters)",
+          "any explicit 'yes' response from the user in the conversation"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no conclusive user confirmation present in the provided dialogue history or the relevant context to determine if the user said 'yes'."
+        }
+      },
+      "used_by_rules": [
+        "62"
+      ]
+    },
+    {
+      "name": "user_confirmed_yes_v2",
+      "type": "judge",
+      "description": "True when the user has explicitly indicated consent to proceed, e.g., the user replied with 'yes' to proceed with the return.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly responded with 'yes' to indicate consent to proceed?",
+        "context": [
+          "all user messages in the current interaction"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no clear yes/no confirmation from the user in the provided dialogue evidence."
+        }
+      },
+      "used_by_rules": [
+        "267"
+      ]
+    },
+    {
+      "name": "user_id_located_by_email",
+      "type": "judge",
+      "description": "True when a user_id has been found by looking up the provided email address and the resulting user_id is stored in the current session for this conversation. The email must match a registered user and yield a unique user_id.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 3,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has a unique user_id been found by looking up the provided email address and that user_id has been stored in the current session for this conversation?",
+        "context": [
+          "the result of find_user_id_by_email (if invoked)",
+          "the current session state showing the user_id for this conversation (if stored)",
+          "the user-provided email used for the lookup"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If neither a successful tool output nor a session state indicates a found and stored user_id, the predicate cannot be determined from available evidence."
+        }
+      },
+      "used_by_rules": [
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
+      "name": "user_id_located_by_name_zip",
+      "type": "judge",
+      "description": "True when a user_id has been found by looking up the provided first_name, last_name, and zip code and the resulting user_id is stored in the current session for this conversation. This is used when authentication by email is not available.",
+      "value_source": [
+        "dialogue",
+        "tool_outputs"
+      ],
+      "value_source_votes": {
+        "dialogue": 2,
+        "tool_outputs": 3
+      },
+      "judge": {
+        "question": "Has a user_id been found using the provided first_name, last_name, and zip code and is that user_id currently stored in the current conversation session?",
+        "context": [
+          "the results of any find_user_id_by_name_zip tool call (if performed)",
+          "the current session data for this conversation showing any stored user_id",
+          "relevant dialogue noting that the user provided name and zip and that a user_id was located and stored (if present)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "Evidence about whether a user_id was located by name+zip and stored in session may be missing if no tool has been invoked and no session storage indication is present in the dialogue. In such cases, no definitive true/false conclusion can be drawn."
+        }
+      },
+      "used_by_rules": [
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ]
+    },
+    {
+      "name": "user_is_current_participant",
+      "type": "judge",
+      "description": "True if the user initiating the action is the same as the currently participating user in this conversation, as determined from the session context and the action's source.",
+      "value_source": [
+        "call_args",
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "call_args": 2,
+        "tool_outputs": 1,
+        "dialogue": 2
+      },
+      "judge": {
+        "question": "Is the initiating user's id equal to the session's current participant user id for this conversation?",
+        "context": [
+          "the arguments of the current action (call_args)",
+          "the session context showing the current participating user",
+          "relevant user messages from the dialogue (who spoke, when)"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "If the session context or action source does not contain a clear indication of the current participant or the initiator user_id, the judge cannot determine equality with the available evidence."
+        }
+      },
+      "used_by_rules": [
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49"
+      ]
+    },
+    {
+      "name": "user_requested_human_agent",
+      "type": "judge",
+      "description": "True when the user explicitly asks to be transferred to a human agent in the current request or conversation.",
+      "value_source": [
+        "dialogue"
+      ],
+      "value_source_votes": {
+        "dialogue": 3
+      },
+      "judge": {
+        "question": "Has the user explicitly requested to be transferred to a human agent in the current request or conversation?",
+        "context": [
+          "the dialogue messages between the user and the agent in the current conversation",
+          "the user’s explicit request or statement indicating desire to be assisted by a human agent"
+        ],
+        "answer_format": "yes | no | unknown (unknown -> predicate value None)",
+        "unknown_policy_hint": {
+          "answer": "unknown",
+          "reason": "There is no sufficient evidence in the provided dialogue to determine whether the user explicitly requested a human agent."
+        }
+      },
+      "used_by_rules": [
+        "116"
+      ]
+    }
+  ]
+}
