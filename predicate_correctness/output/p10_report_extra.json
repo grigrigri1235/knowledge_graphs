@@ -1,0 +1,200 @@
+{
+ "noise_check": {
+  "train, luna-dev | airline | changed": {
+   "tasks": 0
+  },
+  "train, luna-dev | airline | unchanged": {
+   "ci": [
+    -0.016666666666666666,
+    0.11666666666666667
+   ],
+   "delta": 0.05,
+   "tasks": 20
+  },
+  "train, luna-dev | both | changed": {
+   "ci": [
+    0.0,
+    0.6666666666666666
+   ],
+   "delta": 0.4444444444444444,
+   "tasks": 3
+  },
+  "train, luna-dev | both | unchanged": {
+   "ci": [
+    0.010582010582010585,
+    0.10582010582010583
+   ],
+   "delta": 0.058201058201058205,
+   "tasks": 63
+  },
+  "train, luna-dev | retail | changed": {
+   "ci": [
+    0.0,
+    0.6666666666666666
+   ],
+   "delta": 0.4444444444444444,
+   "tasks": 3
+  },
+  "train, luna-dev | retail | unchanged": {
+   "ci": [
+    2.581914010756178e-18,
+    0.124031007751938
+   ],
+   "delta": 0.062015503875969,
+   "tasks": 43
+  },
+  "train, nano-agent-luna | airline | changed": {
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "delta": 0.0,
+   "tasks": 1
+  },
+  "train, nano-agent-luna | airline | unchanged": {
+   "ci": [
+    -0.03508771929824563,
+    0.15789473684210525
+   ],
+   "delta": 0.05263157894736842,
+   "tasks": 19
+  },
+  "train, nano-agent-luna | both | changed": {
+   "ci": [
+    -0.16666666666666666,
+    0.16666666666666669
+   ],
+   "delta": 6.938893903907228e-18,
+   "tasks": 8
+  },
+  "train, nano-agent-luna | both | unchanged": {
+   "ci": [
+    -0.04597701149425288,
+    0.09195402298850576
+   ],
+   "delta": 0.022988505747126436,
+   "tasks": 58
+  },
+  "train, nano-agent-luna | retail | changed": {
+   "ci": [
+    -0.19047619047619047,
+    0.1904761904761905
+   ],
+   "delta": 7.93016446160826e-18,
+   "tasks": 7
+  },
+  "train, nano-agent-luna | retail | unchanged": {
+   "ci": [
+    -0.08547008547008547,
+    0.10256410256410256
+   ],
+   "delta": 0.008547008547008548,
+   "tasks": 39
+  },
+  "val, luna-dev | airline | changed": {
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "delta": 0.0,
+   "tasks": 1
+  },
+  "val, luna-dev | airline | unchanged": {
+   "ci": [
+    -0.07407407407407408,
+    0.14814814814814817
+   ],
+   "delta": 0.037037037037037035,
+   "tasks": 9
+  },
+  "val, luna-dev | both | changed": {
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "delta": 0.0,
+   "tasks": 1
+  },
+  "val, luna-dev | both | unchanged": {
+   "ci": [
+    -0.10416666666666667,
+    0.052083333333333336
+   ],
+   "delta": -0.02083333333333334,
+   "tasks": 32
+  },
+  "val, luna-dev | retail | changed": {
+   "tasks": 0
+  },
+  "val, luna-dev | retail | unchanged": {
+   "ci": [
+    -0.14492753623188406,
+    0.043478260869565216
+   ],
+   "delta": -0.04347826086956523,
+   "tasks": 23
+  }
+ },
+ "violations": {
+  "train, luna-dev | airline | tgr": {
+   "executed": 3,
+   "other": 3,
+   "through_cap_override": 0
+  },
+  "train, luna-dev | airline | tgr_tracker": {
+   "executed": 3,
+   "other": 3,
+   "through_cap_override": 0
+  },
+  "train, luna-dev | retail | tgr": {
+   "executed": 2,
+   "other": 2,
+   "through_cap_override": 0
+  },
+  "train, luna-dev | retail | tgr_tracker": {
+   "executed": 0,
+   "other": 0,
+   "through_cap_override": 0
+  },
+  "train, nano-agent-luna | airline | tgr": {
+   "executed": 6,
+   "other": 6,
+   "through_cap_override": 0
+  },
+  "train, nano-agent-luna | airline | tgr_tracker": {
+   "executed": 3,
+   "other": 1,
+   "through_cap_override": 2
+  },
+  "train, nano-agent-luna | retail | tgr": {
+   "executed": 28,
+   "other": 26,
+   "through_cap_override": 2
+  },
+  "train, nano-agent-luna | retail | tgr_tracker": {
+   "executed": 1,
+   "other": 0,
+   "through_cap_override": 1
+  },
+  "val, luna-dev | airline | tgr": {
+   "executed": 3,
+   "other": 3,
+   "through_cap_override": 0
+  },
+  "val, luna-dev | airline | tgr_tracker": {
+   "executed": 1,
+   "other": 1,
+   "through_cap_override": 0
+  },
+  "val, luna-dev | retail | tgr": {
+   "executed": 4,
+   "other": 4,
+   "through_cap_override": 0
+  },
+  "val, luna-dev | retail | tgr_tracker": {
+   "executed": 4,
+   "other": 4,
+   "through_cap_override": 0
+  }
+ }
+}

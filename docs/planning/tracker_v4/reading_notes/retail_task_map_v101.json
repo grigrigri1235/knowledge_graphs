@@ -1,0 +1,4488 @@
+{
+ "written_by": "v4_ret_build.py (tracker v4 planning, $0)",
+ "tau3_commit": "v1.0.1 (fc0055d)",
+ "v1_source": "~/opt/tau-bench-59a200c/tau_bench/envs/retail/tasks_test.py",
+ "map_rule": "t3 id i -> v1 test idx i (i<=94), i+1 (i>=95); v1 95 dropped by tau2 as duplicate of v1 93",
+ "match_method": "score = 0.5*SequenceMatcher(expected actions) + 0.3*SequenceMatcher(instruction text) + 0.2*(user_id equal); content of partner-test tasks not inspected beyond this score",
+ "summary": {
+  "n_t3": 114,
+  "n_v1_test": 115,
+  "v1_without_t3_twin": [
+   95
+  ],
+  "v1_95_note": "exact duplicate of v1 93 (same instruction, actions, outputs); partner group test",
+  "n_drop_partner_test": 45,
+  "n_ours_present": 69,
+  "ours_by_group": {
+   "train": 46,
+   "val": 23
+  },
+  "write_buckets_effective": {
+   "1": 34,
+   "2": 15,
+   "3+": 14,
+   "0": 6
+  },
+  "write_buckets_by_group": {
+   "train": {
+    "1": 24,
+    "2": 8,
+    "3+": 10,
+    "0": 4
+   },
+   "val": {
+    "2": 7,
+    "1": 10,
+    "3+": 4,
+    "0": 2
+   }
+  },
+  "actions_identical": 58,
+  "write_actions_identical": 67,
+  "reward_basis": {
+   "[\"DB\", \"NL_ASSERTION\"]": 68,
+   "[\"DB\"]": 1
+  },
+  "with_nl_assertions": 26,
+  "with_communicate_info": 23,
+  "communicate_differs_from_v1_outputs": [
+   37,
+   38
+  ],
+  "nl_but_no_v1_outputs": [
+   107,
+   108,
+   110,
+   111,
+   112
+  ],
+  "v1_outputs_but_no_nl": [
+   31,
+   32
+  ],
+  "gold_final_db_differs": [
+   20,
+   21,
+   37,
+   91,
+   101,
+   108
+  ],
+  "changed_since_tau2_0": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   8,
+   11,
+   14,
+   15,
+   16,
+   17,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   31,
+   32,
+   33,
+   37,
+   38,
+   40,
+   41,
+   46,
+   47,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   56,
+   57,
+   58,
+   59,
+   62,
+   63,
+   64,
+   66,
+   67,
+   71,
+   74,
+   76,
+   78,
+   81,
+   82,
+   84,
+   85,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   96,
+   98,
+   101,
+   102,
+   103,
+   104,
+   107,
+   108,
+   110,
+   111,
+   112
+  ],
+  "ambiguous": [
+   {
+    "t3_id": "93",
+    "candidates": [
+     93,
+     95
+    ],
+    "resolution": "v1 93 == v1 95 byte-identical; sequential order puts t3 93 at v1 93; still the same content as a partner-test task"
+   }
+  ],
+  "low_margin_pairs_note": "identical-action twins in v1 (24/57, 36/37, 41/42, 71/72, 83/84, 97/98) are told apart by instruction; the map is the strict order map (t3 i -> v1 i for i<=94, v1 i+1 after), and the best-score match agrees with it for every task except t3 93 (tie)"
+ },
+ "tasks": [
+  {
+   "t3_id": "0",
+   "v1_test_idx": 0,
+   "partner_group": "test",
+   "match_score": 0.9257,
+   "match_margin": 0.1162,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "1",
+   "v1_test_idx": 1,
+   "partner_group": "test",
+   "match_score": 0.9784,
+   "match_margin": 0.118,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "2",
+   "v1_test_idx": 2,
+   "partner_group": "train",
+   "match_score": 0.9366,
+   "match_margin": 0.2638,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yusuf_rossi_9620",
+   "user_id_in_online_tasks": "yusuf_rossi_9620",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 12,
+   "n_actions_t3": 11,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user that there are 10 t-shirt options available."
+   ],
+   "communicate_info": [
+    "10"
+   ],
+   "v1_outputs": [
+    "10"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "list_all_product_types removed from expected actions; \"exactly how many\"; NL assertion: 10 t-shirt options",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "3",
+   "v1_test_idx": 3,
+   "partner_group": "train",
+   "match_score": 0.8905,
+   "match_margin": 0.0364,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yusuf_rossi_9620",
+   "user_id_in_online_tasks": "yusuf_rossi_9620",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 13,
+   "n_actions_t3": 12,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user that there are 10 t-shirt options available."
+   ],
+   "communicate_info": [
+    "10"
+   ],
+   "v1_outputs": [
+    "10"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "list_all_product_types removed; NL assertion: 10 t-shirt options",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "4",
+   "v1_test_idx": 4,
+   "partner_group": "val",
+   "match_score": 0.8923,
+   "match_margin": 0.032,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "yusuf_rossi_9620",
+   "user_id_in_online_tasks": "yusuf_rossi_9620",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "modify_pending_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": false,
+   "n_actions_v1": 14,
+   "n_actions_t3": 13,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user that there are 10 t-shirt options available."
+   ],
+   "communicate_info": [
+    "10"
+   ],
+   "v1_outputs": [
+    "10"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [
+    "issue_2b74ee61"
+   ],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "issues",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "list_all_product_types removed; \"(i.e., your 2 relevant orders)\" dropped; NL assertion 10 options; OPEN ISSUE issue_2b74ee61 (user never asks for a number)",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "5",
+   "v1_test_idx": 5,
+   "partner_group": "val",
+   "match_score": 0.9811,
+   "match_margin": 0.1828,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "mei_kovacs_8020",
+   "user_id_in_online_tasks": "mei_kovacs_8020",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 5,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [
+    "issue_770466c1"
+   ],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "issues"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "OPEN ISSUE issue_770466c1 (tools do not enforce login; agent can read before auth)",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "6",
+   "v1_test_idx": 6,
+   "partner_group": "val",
+   "match_score": 0.9716,
+   "match_margin": 0.1469,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "mei_kovacs_8020",
+   "user_id_in_online_tasks": "mei_kovacs_8020",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "7",
+   "v1_test_idx": 7,
+   "partner_group": "test",
+   "match_score": 0.9723,
+   "match_margin": 0.1453,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "8",
+   "v1_test_idx": 8,
+   "partner_group": "train",
+   "match_score": 0.9713,
+   "match_margin": 0.1466,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "mei_kovacs_8020",
+   "user_id_in_online_tasks": "mei_kovacs_8020",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "9",
+   "v1_test_idx": 9,
+   "partner_group": "test",
+   "match_score": 0.9591,
+   "match_margin": 0.1424,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "10",
+   "v1_test_idx": 10,
+   "partner_group": "test",
+   "match_score": 0.9099,
+   "match_margin": 0.1616,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "11",
+   "v1_test_idx": 11,
+   "partner_group": "train",
+   "match_score": 0.9961,
+   "match_margin": 0.1988,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "mia_garcia_4516",
+   "user_id_in_online_tasks": "mia_garcia_4516",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "return_delivered_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "12",
+   "v1_test_idx": 12,
+   "partner_group": "test",
+   "match_score": 0.9499,
+   "match_margin": 0.1721,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "13",
+   "v1_test_idx": 13,
+   "partner_group": "test",
+   "match_score": 0.9484,
+   "match_margin": 0.1368,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "14",
+   "v1_test_idx": 14,
+   "partner_group": "train",
+   "match_score": 0.9927,
+   "match_margin": 0.221,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "mia_garcia_4516",
+   "user_id_in_online_tasks": "mia_garcia_4516",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "return_delivered_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "15",
+   "v1_test_idx": 15,
+   "partner_group": "val",
+   "match_score": 0.8742,
+   "match_margin": 0.2722,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "fatima_johnson_7581",
+   "user_id_in_online_tasks": "fatima_johnson_7581",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "instruction adds \"You prefer PayPal for any payment or refund.\"",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "16",
+   "v1_test_idx": 16,
+   "partner_group": "val",
+   "match_score": 0.9778,
+   "match_margin": 0.2779,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "fatima_johnson_7581",
+   "user_id_in_online_tasks": "fatima_johnson_7581",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "cancel_pending_order": 2,
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 9,
+   "n_actions_t3": 9,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total refund amount is $8,276.23."
+   ],
+   "communicate_info": [
+    "8276.23"
+   ],
+   "v1_outputs": [
+    "8276.23"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "17",
+   "v1_test_idx": 17,
+   "partner_group": "train",
+   "match_score": 0.9643,
+   "match_margin": 0.2877,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "fatima_johnson_7581",
+   "user_id_in_online_tasks": "fatima_johnson_7581",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_address": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "18",
+   "v1_test_idx": 18,
+   "partner_group": "test",
+   "match_score": 0.7926,
+   "match_margin": 0.2201,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "19",
+   "v1_test_idx": 19,
+   "partner_group": "test",
+   "match_score": 0.8938,
+   "match_margin": 0.301,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "20",
+   "v1_test_idx": 20,
+   "partner_group": "val",
+   "match_score": 0.8087,
+   "match_margin": 0.2932,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "ethan_garcia_1261",
+   "user_id_in_online_tasks": "ethan_garcia_1261",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 10,
+   "n_actions_t3": 10,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W9911714"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "instruction rewritten: new variants may differ in features, only size matters; if one order cannot be upgraded go on to the next; gift card else PayPal",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "21",
+   "v1_test_idx": 21,
+   "partner_group": "val",
+   "match_score": 0.6776,
+   "match_margin": 0.177,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "ethan_garcia_1261",
+   "user_id_in_online_tasks": "ethan_garcia_1261",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 12,
+   "n_actions_t3": 12,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user their gift card balance is $44.08."
+   ],
+   "communicate_info": [
+    "44.08"
+   ],
+   "v1_outputs": [
+    "44.08"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W9911714"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "3 get_product_details(<item id>) replaced by get_item_details (new tool); instruction clarifies item vs product id and \"when the agent asks for final confirmation\"",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "22",
+   "v1_test_idx": 22,
+   "partner_group": "train",
+   "match_score": 0.9301,
+   "match_margin": 0.4417,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "ethan_garcia_1261",
+   "user_id_in_online_tasks": "ethan_garcia_1261",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_user_address": 2,
+    "modify_pending_order_address": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "instruction pins when to regret: after both default and order address changes are confirmed",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "23",
+   "v1_test_idx": 23,
+   "partner_group": "train",
+   "match_score": 0.9834,
+   "match_margin": 0.7116,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sofia_hernandez_5364",
+   "user_id_in_online_tasks": "sofia_hernandez_5364",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "exchange_delivered_order_items": 2,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 12,
+   "n_actions_t3": 12,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "24",
+   "v1_test_idx": 24,
+   "partner_group": "train",
+   "match_score": 0.7492,
+   "match_margin": 0.221,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sofia_hernandez_5364",
+   "user_id_in_online_tasks": "sofia_hernandez_5364",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": true,
+   "n_actions_v1": 0,
+   "n_actions_t3": 0,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the materials of the two t-shirts are polyester and cotton."
+   ],
+   "communicate_info": [
+    "polyester",
+    "cotton"
+   ],
+   "v1_outputs": [
+    "polyester",
+    "cotton"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "25",
+   "v1_test_idx": 25,
+   "partner_group": "val",
+   "match_score": 0.9801,
+   "match_margin": 0.159,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "isabella_johansson_2152",
+   "user_id_in_online_tasks": "isabella_johansson_2152",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "26",
+   "v1_test_idx": 26,
+   "partner_group": "train",
+   "match_score": 0.973,
+   "match_margin": 0.1127,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "isabella_johansson_2152",
+   "user_id_in_online_tasks": "isabella_johansson_2152",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 8,
+   "n_actions_t3": 8,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "27",
+   "v1_test_idx": 27,
+   "partner_group": "train",
+   "match_score": 0.7457,
+   "match_margin": 0.1611,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "isabella_johansson_2152",
+   "user_id_in_online_tasks": "isabella_johansson_2152",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "\"From a recent order\"; \"if the agent says they can only do one\"",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "28",
+   "v1_test_idx": 28,
+   "partner_group": "train",
+   "match_score": 0.7895,
+   "match_margin": 0.188,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "isabella_johansson_2152",
+   "user_id_in_online_tasks": "isabella_johansson_2152",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "return_delivered_order_items": 3
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 11,
+   "n_actions_t3": 11,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total refund amount is $918.43."
+   ],
+   "communicate_info": [
+    "918.43"
+   ],
+   "v1_outputs": [
+    "918.43"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "instruction restructured: return order spelled out (skateboard; hose+backpack; keyboard+bed); cancel only the hose, refuse whole-order cancel",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "29",
+   "v1_test_idx": 29,
+   "partner_group": "test",
+   "match_score": 0.8709,
+   "match_margin": 0.382,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "30",
+   "v1_test_idx": 30,
+   "partner_group": "test",
+   "match_score": 0.7546,
+   "match_margin": 0.111,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "31",
+   "v1_test_idx": 31,
+   "partner_group": "val",
+   "match_score": 0.9536,
+   "match_margin": 0.0579,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "olivia_lopez_3865",
+   "user_id_in_online_tasks": "olivia_lopez_3865",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "cancel_pending_order": 1,
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 12,
+   "n_actions_t3": 12,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [
+    "746342064230"
+   ],
+   "v1_outputs": [
+    "746342064230"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "reason_for_call begins with a stray \". \"; unknown_info \"You don't have an email.\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "32",
+   "v1_test_idx": 32,
+   "partner_group": "train",
+   "match_score": 0.9492,
+   "match_margin": 0.0531,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "olivia_lopez_3865",
+   "user_id_in_online_tasks": "olivia_lopez_3865",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "cancel_pending_order": 2,
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 13,
+   "n_actions_t3": 13,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [
+    "746342064230"
+   ],
+   "v1_outputs": [
+    "746342064230"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "33",
+   "v1_test_idx": 33,
+   "partner_group": "train",
+   "match_score": 0.9764,
+   "match_margin": 0.1254,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "noah_patel_6952",
+   "user_id_in_online_tasks": "noah_patel_6952",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_user_address": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "reward_basis = DB only (nl_assertions = [])",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "34",
+   "v1_test_idx": 34,
+   "partner_group": "test",
+   "match_score": 0.9956,
+   "match_margin": 0.1246,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "35",
+   "v1_test_idx": 35,
+   "partner_group": "test",
+   "match_score": 0.9845,
+   "match_margin": 0.8878,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "36",
+   "v1_test_idx": 36,
+   "partner_group": "test",
+   "match_score": 0.5907,
+   "match_margin": 0.0018,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "37",
+   "v1_test_idx": 37,
+   "partner_group": "val",
+   "match_score": 0.6705,
+   "match_margin": 0.069,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "daiki_sanchez_3253",
+   "user_id_in_online_tasks": "daiki_sanchez_3253",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 10,
+   "n_actions_t3": 4,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the most expensive item in the order is the camera.",
+    "Agent should tell the user the camera costs $481.50."
+   ],
+   "communicate_info": [
+    "camera",
+    "481.50"
+   ],
+   "v1_outputs": [
+    "camera",
+    "481.5"
+   ],
+   "communicate_equals_v1_outputs": false,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W9348897"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "6 read actions removed (get_order_details + 5 get_product_details); \"If that is possible, confirm and ask the agent to do it\"; \"Do not end the conversation until your changes have been made.\"; communicate 481.5 -> 481.50; 2 NL assertions",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "38",
+   "v1_test_idx": 38,
+   "partner_group": "val",
+   "match_score": 0.7664,
+   "match_margin": 0.1286,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "daiki_sanchez_3253",
+   "user_id_in_online_tasks": "daiki_sanchez_3253",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "cancel_pending_order": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 11,
+   "n_actions_t3": 4,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the most expensive item in the order is the camera.",
+    "Agent should tell the user the camera costs $481.50."
+   ],
+   "communicate_info": [
+    "camera",
+    "481.50"
+   ],
+   "v1_outputs": [
+    "camera",
+    "481.5"
+   ],
+   "communicate_equals_v1_outputs": false,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "7 read actions removed (get_user_details, get_order_details, 5 get_product_details); communicate 481.5 -> 481.50; 2 NL assertions",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "39",
+   "v1_test_idx": 39,
+   "partner_group": "test",
+   "match_score": 0.6709,
+   "match_margin": 0.589,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "40",
+   "v1_test_idx": 40,
+   "partner_group": "train",
+   "match_score": 0.931,
+   "match_margin": 0.8375,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "isabella_lopez_6490",
+   "user_id_in_online_tasks": "isabella_lopez_6490",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_payment": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 4,
+   "n_actions_t3": 4,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user their gift card balance is $60.",
+    "Agent should tell the user their recent order was paid with a Mastercard."
+   ],
+   "communicate_info": [
+    "60",
+    "mastercard"
+   ],
+   "v1_outputs": [
+    "60",
+    "mastercard"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "41",
+   "v1_test_idx": 41,
+   "partner_group": "train",
+   "match_score": 0.9676,
+   "match_margin": 0.1818,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "mei_patel_7272",
+   "user_id_in_online_tasks": "mei_patel_7272",
+   "writes_expected": 4,
+   "writes_effective": 4,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 2,
+    "modify_user_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 4,
+   "actions_identical": true,
+   "n_actions_v1": 10,
+   "n_actions_t3": 10,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 4,
+    "writes_effective": 4,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "42",
+   "v1_test_idx": 42,
+   "partner_group": "test",
+   "match_score": 0.9659,
+   "match_margin": 0.1226,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "43",
+   "v1_test_idx": 43,
+   "partner_group": "test",
+   "match_score": 0.9784,
+   "match_margin": 0.8927,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "44",
+   "v1_test_idx": 44,
+   "partner_group": "test",
+   "match_score": 0.91,
+   "match_margin": 0.5126,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "45",
+   "v1_test_idx": 45,
+   "partner_group": "test",
+   "match_score": 0.9909,
+   "match_margin": 0.5549,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "46",
+   "v1_test_idx": 46,
+   "partner_group": "train",
+   "match_score": 0.9705,
+   "match_margin": 0.2195,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "daiki_johnson_9523",
+   "user_id_in_online_tasks": "daiki_johnson_9523",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total refund amount is $1,126.04.",
+    "Agent should tell the user the total paid for remaining items is $1,497.65."
+   ],
+   "communicate_info": [
+    "1126.04",
+    "1497.65"
+   ],
+   "v1_outputs": [
+    "1126.04",
+    "1497.65"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "47",
+   "v1_test_idx": 47,
+   "partner_group": "train",
+   "match_score": 0.9678,
+   "match_margin": 0.2199,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "daiki_johnson_9523",
+   "user_id_in_online_tasks": "daiki_johnson_9523",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total refund amount is $1,095.55.",
+    "Agent should tell the user the total paid for remaining items is $1,528.14."
+   ],
+   "communicate_info": [
+    "1095.55",
+    "1528.14"
+   ],
+   "v1_outputs": [
+    "1095.55",
+    "1528.14"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "48",
+   "v1_test_idx": 48,
+   "partner_group": "test",
+   "match_score": 0.9508,
+   "match_margin": 0.5096,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "49",
+   "v1_test_idx": 49,
+   "partner_group": "train",
+   "match_score": 0.9828,
+   "match_margin": 0.5918,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "aarav_anderson_8794",
+   "user_id_in_online_tasks": "aarav_anderson_8794",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 10,
+   "n_actions_t3": 10,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "50",
+   "v1_test_idx": 50,
+   "partner_group": "train",
+   "match_score": 0.7869,
+   "match_margin": 0.6902,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "chen_smith_8425",
+   "user_id_in_online_tasks": "chen_smith_8425",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "51",
+   "v1_test_idx": 51,
+   "partner_group": "train",
+   "match_score": 0.9403,
+   "match_margin": 0.4115,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sofia_li_9219",
+   "user_id_in_online_tasks": "sofia_li_9219",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": false,
+   "n_actions_v1": 7,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "list_all_product_types removed",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "52",
+   "v1_test_idx": 52,
+   "partner_group": "train",
+   "match_score": 0.9885,
+   "match_margin": 0.4648,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sofia_li_9219",
+   "user_id_in_online_tasks": "sofia_li_9219",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 5,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "53",
+   "v1_test_idx": 53,
+   "partner_group": "val",
+   "match_score": 0.9817,
+   "match_margin": 0.4566,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "sofia_li_9219",
+   "user_id_in_online_tasks": "sofia_li_9219",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "54",
+   "v1_test_idx": 54,
+   "partner_group": "train",
+   "match_score": 0.8773,
+   "match_margin": 0.0659,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "amelia_silva_7726",
+   "user_id_in_online_tasks": "amelia_silva_7726",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "cancel_pending_order": 2,
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 12,
+   "n_actions_t3": 12,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total refund amount is $3,646.68."
+   ],
+   "communicate_info": [
+    "3646.68"
+   ],
+   "v1_outputs": [
+    "3646.68"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "instruction adds: if NO cheaper boots, keep that order and cancel the other items",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "55",
+   "v1_test_idx": 55,
+   "partner_group": "test",
+   "match_score": 0.8517,
+   "match_margin": 0.082,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "56",
+   "v1_test_idx": 56,
+   "partner_group": "train",
+   "match_score": 0.9754,
+   "match_margin": 0.5092,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "ivan_hernandez_6923",
+   "user_id_in_online_tasks": "ivan_hernandez_6923",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "57",
+   "v1_test_idx": 57,
+   "partner_group": "val",
+   "match_score": 0.7678,
+   "match_margin": 0.2474,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "ivan_hernandez_6923",
+   "user_id_in_online_tasks": "ivan_hernandez_6923",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": true,
+   "n_actions_v1": 0,
+   "n_actions_t3": 0,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "58",
+   "v1_test_idx": 58,
+   "partner_group": "train",
+   "match_score": 0.9793,
+   "match_margin": 0.5075,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "ivan_hernandez_6923",
+   "user_id_in_online_tasks": "ivan_hernandez_6923",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 6,
+   "n_actions_t3": 6,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "59",
+   "v1_test_idx": 59,
+   "partner_group": "val",
+   "match_score": 0.8968,
+   "match_margin": 0.8449,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "yusuf_taylor_7149",
+   "user_id_in_online_tasks": "yusuf_taylor_7149",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "cancel_pending_order": 1,
+    "modify_pending_order_address": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": false,
+   "n_actions_v1": 6,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the refund for the cancelled desk lamp order is $164.28.",
+    "Agent should tell the user the total price of order #W2702727 is $625.60."
+   ],
+   "communicate_info": [
+    "164.28",
+    "625.60"
+   ],
+   "v1_outputs": [
+    "164.28",
+    "625.60"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "calculate removed from expected actions; 2 NL assertions",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "60",
+   "v1_test_idx": 60,
+   "partner_group": "test",
+   "match_score": 0.986,
+   "match_margin": 0.3179,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "61",
+   "v1_test_idx": 61,
+   "partner_group": "test",
+   "match_score": 0.9771,
+   "match_margin": 0.2319,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "62",
+   "v1_test_idx": 62,
+   "partner_group": "train",
+   "match_score": 0.8587,
+   "match_margin": 0.0382,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "chen_johnson_4204",
+   "user_id_in_online_tasks": "chen_johnson_4204",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": false,
+   "n_actions_v1": 6,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the Bluetooth speaker costs $302.67.",
+    "Agent should tell the user the battery life is 20 hours."
+   ],
+   "communicate_info": [
+    "302.67",
+    "20 hours"
+   ],
+   "v1_outputs": [
+    "302.67",
+    "20 hours"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "list_all_product_types removed; adds \"only modify if a speaker under $100 exists, otherwise forget it\"; 2 NL assertions",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 2,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "63",
+   "v1_test_idx": 63,
+   "partner_group": "train",
+   "match_score": 0.9931,
+   "match_margin": 0.1158,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "chen_johnson_4204",
+   "user_id_in_online_tasks": "chen_johnson_4204",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 7,
+   "n_actions_t3": 7,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the Bluetooth speaker costs $302.67.",
+    "Agent should tell the user the battery life is 20 hours.",
+    "Agent should tell the user the new order total is $1,288.65."
+   ],
+   "communicate_info": [
+    "302.67",
+    "20 hours",
+    "1288.65"
+   ],
+   "v1_outputs": [
+    "302.67",
+    "20 hours",
+    "1288.65"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": true,
+    "n_communicate_info": 3,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "64",
+   "v1_test_idx": 64,
+   "partner_group": "val",
+   "match_score": 0.7692,
+   "match_margin": 0.6399,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "james_sanchez_3954",
+   "user_id_in_online_tasks": "harper_moore_6183",
+   "writes_expected": 2,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 8,
+   "n_actions_t3": 8,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [
+    [
+     6,
+     "exchange_delivered_order_items",
+     "non-delivered exchange"
+    ]
+   ],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "v1 user_id label is wrong (harper_moore_6183; the task is James Sanchez = james_sanchez_3954, our online_tasks.json copies the wrong id); gold still has a failing exchange_delivered_order_items on a pending order (errors in v1 and t3), then modify_pending_order_items",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "65",
+   "v1_test_idx": 65,
+   "partner_group": "test",
+   "match_score": 0.9712,
+   "match_margin": 0.8288,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "66",
+   "v1_test_idx": 66,
+   "partner_group": "train",
+   "match_score": 0.862,
+   "match_margin": 0.7408,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "aarav_lee_1982",
+   "user_id_in_online_tasks": "aarav_lee_1982",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "cancel_pending_order": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 5,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "67",
+   "v1_test_idx": 67,
+   "partner_group": "train",
+   "match_score": 0.8875,
+   "match_margin": 0.0931,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "noah_ito_3850",
+   "user_id_in_online_tasks": "noah_ito_3850",
+   "writes_expected": 0,
+   "writes_effective": 0,
+   "write_bucket": "0",
+   "write_tools": {},
+   "writes_v1": 0,
+   "actions_identical": true,
+   "n_actions_v1": 5,
+   "n_actions_t3": 5,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the order total is $829.43."
+   ],
+   "communicate_info": [
+    "829.43"
+   ],
+   "v1_outputs": [
+    "829.43"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": true,
+   "notes": "",
+   "v101": {
+    "writes_expected": 0,
+    "writes_effective": 0,
+    "write_bucket": "0",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "68",
+   "v1_test_idx": 68,
+   "partner_group": "test",
+   "match_score": 0.8644,
+   "match_margin": 0.0837,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "69",
+   "v1_test_idx": 69,
+   "partner_group": "test",
+   "match_score": 0.985,
+   "match_margin": 0.8872,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "70",
+   "v1_test_idx": 70,
+   "partner_group": "test",
+   "match_score": 0.9583,
+   "match_margin": 0.7284,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "71",
+   "v1_test_idx": 71,
+   "partner_group": "train",
+   "match_score": 0.956,
+   "match_margin": 0.0198,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "ivan_khan_7475",
+   "user_id_in_online_tasks": "ivan_khan_7475",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "72",
+   "v1_test_idx": 72,
+   "partner_group": "test",
+   "match_score": 0.927,
+   "match_margin": 0.0298,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "73",
+   "v1_test_idx": 73,
+   "partner_group": "test",
+   "match_score": 0.9403,
+   "match_margin": 0.7819,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "74",
+   "v1_test_idx": 74,
+   "partner_group": "train",
+   "match_score": 0.942,
+   "match_margin": 0.8462,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "lei_li_6575",
+   "user_id_in_online_tasks": "lei_li_6575",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "cancel_pending_order": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "unknown_info adds: pay modification with credit card",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "75",
+   "v1_test_idx": 75,
+   "partner_group": "test",
+   "match_score": 0.8944,
+   "match_margin": 0.7833,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "76",
+   "v1_test_idx": 76,
+   "partner_group": "train",
+   "match_score": 0.9022,
+   "match_margin": 0.8144,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "ava_nguyen_6646",
+   "user_id_in_online_tasks": "ava_nguyen_6646",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "cancel_pending_order": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the total price of all grills is $1,939.05."
+   ],
+   "communicate_info": [
+    "1939.05"
+   ],
+   "v1_outputs": [
+    "1939.05"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "cancel reasons spelled out (\"ordered it by mistake\" / \"no longer need\"); grills = \"all the grills bought in previous orders\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "77",
+   "v1_test_idx": 77,
+   "partner_group": "test",
+   "match_score": 0.8686,
+   "match_margin": 0.7604,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "78",
+   "v1_test_idx": 78,
+   "partner_group": "train",
+   "match_score": 0.9101,
+   "match_margin": 0.4862,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yara_muller_8652",
+   "user_id_in_online_tasks": "yara_muller_8652",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 1,
+    "cancel_pending_order": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "reworded into \"a couple requests\"",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "79",
+   "v1_test_idx": 79,
+   "partner_group": "test",
+   "match_score": 0.9116,
+   "match_margin": 0.6861,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "80",
+   "v1_test_idx": 80,
+   "partner_group": "test",
+   "match_score": 0.9269,
+   "match_margin": 0.8276,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "81",
+   "v1_test_idx": 81,
+   "partner_group": "train",
+   "match_score": 0.9662,
+   "match_margin": 0.8672,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "james_kim_7213",
+   "user_id_in_online_tasks": "james_kim_7213",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "cancel_pending_order": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "82",
+   "v1_test_idx": 82,
+   "partner_group": "train",
+   "match_score": 0.9511,
+   "match_margin": 0.5302,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "chen_silva_7485",
+   "user_id_in_online_tasks": "chen_silva_7485",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "83",
+   "v1_test_idx": 83,
+   "partner_group": "test",
+   "match_score": 0.9452,
+   "match_margin": 0.0888,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "84",
+   "v1_test_idx": 84,
+   "partner_group": "train",
+   "match_score": 0.9311,
+   "match_margin": 0.0747,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "chen_silva_7485",
+   "user_id_in_online_tasks": "chen_silva_7485",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "\"when the agent asks for confirmation\"",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "85",
+   "v1_test_idx": 85,
+   "partner_group": "train",
+   "match_score": 0.9672,
+   "match_margin": 0.2761,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yusuf_hernandez_6785",
+   "user_id_in_online_tasks": "yusuf_hernandez_6785",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "86",
+   "v1_test_idx": 86,
+   "partner_group": "test",
+   "match_score": 0.9804,
+   "match_margin": 0.2797,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "87",
+   "v1_test_idx": 87,
+   "partner_group": "test",
+   "match_score": 0.9779,
+   "match_margin": 0.4392,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "88",
+   "v1_test_idx": 88,
+   "partner_group": "test",
+   "match_score": 0.96,
+   "match_margin": 0.8425,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "89",
+   "v1_test_idx": 89,
+   "partner_group": "train",
+   "match_score": 0.9225,
+   "match_margin": 0.7948,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "raj_santos_9079",
+   "user_id_in_online_tasks": "raj_santos_9079",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the cheapest mechanical keyboard costs $226.11.",
+    "Agent should tell the user the keyboard switch type is tactile.",
+    "Agent should tell the user the keyboard backlight is white.",
+    "Agent should tell the user the keyboard size is full."
+   ],
+   "communicate_info": [
+    "226.11",
+    "tactile",
+    "white",
+    "full"
+   ],
+   "v1_outputs": [
+    "226.11",
+    "tactile",
+    "white",
+    "full"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 4,
+    "nl_scored": true,
+    "n_communicate_info": 4,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "90",
+   "v1_test_idx": 90,
+   "partner_group": "val",
+   "match_score": 0.9619,
+   "match_margin": 0.7337,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "emma_kovacs_9839",
+   "user_id_in_online_tasks": "emma_kovacs_9839",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "cancel_pending_order": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "91",
+   "v1_test_idx": 91,
+   "partner_group": "val",
+   "match_score": 0.6853,
+   "match_margin": 0.0546,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "mei_ahmed_4909",
+   "user_id_in_online_tasks": "mei_ahmed_4909",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "return_delivered_order_items": 1,
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": false,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": false,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W3239882"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "GOLD WRITE CHANGED: exchange new_item 9494281769 (same as old, v1 bug) -> 7609274509; instruction adds fallback \"get the 32GB storage E-Reader instead\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "92",
+   "v1_test_idx": 92,
+   "partner_group": "val",
+   "match_score": 0.9395,
+   "match_margin": 0.2939,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "mei_ahmed_4909",
+   "user_id_in_online_tasks": "mei_ahmed_4909",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "return_delivered_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "\"do not say yes immediately\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "93",
+   "v1_test_idx": 93,
+   "partner_group": "train",
+   "match_score": 0.9182,
+   "match_margin": 0.0,
+   "drop": true,
+   "reason": "content equals a partner-test task (v1 93 == v1 95, byte-identical): drop by rule",
+   "our_group": "train",
+   "dup_of_partner_test_v1_idx": 95,
+   "data_purity_flag": true,
+   "content_removed": "content equals a partner-test task; only ids kept (data purity)"
+  },
+  {
+   "t3_id": "94",
+   "v1_test_idx": 94,
+   "partner_group": "train",
+   "match_score": 0.9182,
+   "match_margin": 0.2088,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "lei_wilson_4541",
+   "user_id_in_online_tasks": "lei_wilson_4541",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "95",
+   "v1_test_idx": 96,
+   "partner_group": "val",
+   "match_score": 0.9423,
+   "match_margin": 0.2332,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "lei_wilson_4541",
+   "user_id_in_online_tasks": "lei_wilson_4541",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "exchange_delivered_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should tell the user the price difference for one laptop exchange is $167.87.",
+    "Agent should tell the user the price difference for the other laptop exchange is $60.78 (a refund).",
+    "Agent should tell the user the total amount to pay today is $107.09."
+   ],
+   "communicate_info": [
+    "167.87",
+    "60.78",
+    "107.09"
+   ],
+   "v1_outputs": [
+    "167.87",
+    "60.78",
+    "107.09"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": true,
+    "n_communicate_info": 3,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "96",
+   "v1_test_idx": 97,
+   "partner_group": "test",
+   "match_score": 0.9402,
+   "match_margin": 0.0336,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "97",
+   "v1_test_idx": 98,
+   "partner_group": "train",
+   "match_score": 0.9598,
+   "match_margin": 0.051,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yusuf_li_7255",
+   "user_id_in_online_tasks": "yusuf_li_7255",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "98",
+   "v1_test_idx": 99,
+   "partner_group": "test",
+   "match_score": 0.7882,
+   "match_margin": 0.4342,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "99",
+   "v1_test_idx": 100,
+   "partner_group": "test",
+   "match_score": 0.7869,
+   "match_margin": 0.301,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "100",
+   "v1_test_idx": 101,
+   "partner_group": "train",
+   "match_score": 0.8572,
+   "match_margin": 0.7612,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "liam_thomas_7882",
+   "user_id_in_online_tasks": "liam_thomas_7882",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "modify_pending_order_items": 1,
+    "return_delivered_order_items": 1
+   },
+   "writes_v1": 2,
+   "actions_identical": true,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W3295833"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "adds \"For the pending order modification, you want to use your credit card\" and \"if the agent says pending orders cannot be exchanged, ask for changing the order\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "101",
+   "v1_test_idx": 102,
+   "partner_group": "val",
+   "match_score": 0.8641,
+   "match_margin": 0.1676,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "noah_ito_3850",
+   "user_id_in_online_tasks": "noah_ito_3850",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 2
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "adds \"You are certain that this order contains both an air purifier and a speaker\"",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "102",
+   "v1_test_idx": 103,
+   "partner_group": "val",
+   "match_score": 0.9712,
+   "match_margin": 0.1686,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "noah_ito_3850",
+   "user_id_in_online_tasks": "noah_ito_3850",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 1,
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 0,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 0,
+    "nl_judge": null
+   }
+  },
+  {
+   "t3_id": "103",
+   "v1_test_idx": 104,
+   "partner_group": "train",
+   "match_score": 0.9746,
+   "match_margin": 0.1804,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "lucas_brown_6720",
+   "user_id_in_online_tasks": "lucas_brown_6720",
+   "writes_expected": 4,
+   "writes_effective": 4,
+   "write_bucket": "3+",
+   "write_tools": {
+    "return_delivered_order_items": 2,
+    "modify_pending_order_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 4,
+   "actions_identical": true,
+   "n_actions_v1": 4,
+   "n_actions_t3": 4,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should provide the tracking number 286422338955."
+   ],
+   "communicate_info": [
+    "286422338955"
+   ],
+   "v1_outputs": [
+    "286422338955"
+   ],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "",
+   "v101": {
+    "writes_expected": 4,
+    "writes_effective": 4,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 1,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "104",
+   "v1_test_idx": 105,
+   "partner_group": "test",
+   "match_score": 0.6901,
+   "match_margin": 0.0517,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "105",
+   "v1_test_idx": 106,
+   "partner_group": "test",
+   "match_score": 0.9558,
+   "match_margin": 0.7189,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "106",
+   "v1_test_idx": 107,
+   "partner_group": "train",
+   "match_score": 0.9518,
+   "match_margin": 0.8356,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sofia_thomas_1518",
+   "user_id_in_online_tasks": "sofia_thomas_1518",
+   "writes_expected": 1,
+   "writes_effective": 1,
+   "write_bucket": "1",
+   "write_tools": {
+    "exchange_delivered_order_items": 1
+   },
+   "writes_v1": 1,
+   "actions_identical": true,
+   "n_actions_v1": 1,
+   "n_actions_t3": 1,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should process the exchange."
+   ],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "both emails stated; NL assertion \"Agent should process the exchange.\"",
+   "v101": {
+    "writes_expected": 1,
+    "writes_effective": 1,
+    "write_bucket": "1",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "107",
+   "v1_test_idx": 108,
+   "partner_group": "val",
+   "match_score": 0.6655,
+   "match_margin": 0.5694,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "yara_ito_8499",
+   "user_id_in_online_tasks": "yara_ito_8499",
+   "writes_expected": 2,
+   "writes_effective": 2,
+   "write_bucket": "2",
+   "write_tools": {
+    "exchange_delivered_order_items": 2
+   },
+   "writes_v1": 2,
+   "actions_identical": false,
+   "n_actions_v1": 2,
+   "n_actions_t3": 2,
+   "write_actions_identical": false,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should exchange items in both orders."
+   ],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [
+    "#W1304208"
+   ],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria",
+    "user_scenario"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "GOLD WRITE CHANGED: exchange new_item 1615379700 (same as old, v1 bug) -> 8106223139; instruction adds fallback size 9 leather waterproof; NL assertion \"exchange items in both orders\"",
+   "v101": {
+    "writes_expected": 2,
+    "writes_effective": 2,
+    "write_bucket": "2",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "108",
+   "v1_test_idx": 109,
+   "partner_group": "test",
+   "match_score": 0.9304,
+   "match_margin": 0.8077,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "109",
+   "v1_test_idx": 110,
+   "partner_group": "val",
+   "match_score": 0.9836,
+   "match_margin": 0.4417,
+   "drop": false,
+   "our_group": "val",
+   "user_id": "sophia_martin_8570",
+   "user_id_in_online_tasks": "sophia_martin_8570",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_user_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should make changes to address on order and user profile",
+    "Agent should modify the pending order."
+   ],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "NL assertions added (address on order + profile; modify pending order); description.purpose set",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "110",
+   "v1_test_idx": 111,
+   "partner_group": "train",
+   "match_score": 0.9802,
+   "match_margin": 0.4348,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "sophia_martin_8570",
+   "user_id_in_online_tasks": "sophia_martin_8570",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_address": 1,
+    "modify_user_address": 1,
+    "modify_pending_order_items": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should modify address for the order",
+    "Agent should modify user address",
+    "Agent should modify the items in the pending order."
+   ],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "NL assertions added (order address, user address, modify items)",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "111",
+   "v1_test_idx": 112,
+   "partner_group": "train",
+   "match_score": 0.9517,
+   "match_margin": 0.2629,
+   "drop": false,
+   "our_group": "train",
+   "user_id": "yara_silva_7567",
+   "user_id_in_online_tasks": "yara_silva_7567",
+   "writes_expected": 3,
+   "writes_effective": 3,
+   "write_bucket": "3+",
+   "write_tools": {
+    "modify_pending_order_items": 2,
+    "modify_pending_order_address": 1
+   },
+   "writes_v1": 3,
+   "actions_identical": true,
+   "n_actions_v1": 3,
+   "n_actions_t3": 3,
+   "write_actions_identical": true,
+   "reward_basis": [
+    "DB",
+    "NL_ASSERTION"
+   ],
+   "nl_assertions": [
+    "Agent should modify the items and address as requested."
+   ],
+   "communicate_info": [],
+   "v1_outputs": [],
+   "communicate_equals_v1_outputs": true,
+   "gold_write_errors_t3": [],
+   "gold_final_orders_differ_from_v1_gold": [],
+   "open_issues": [],
+   "changed_fields_tau2_0_to_now": [
+    "evaluation_criteria"
+   ],
+   "no_write_in_partner_refusal_list": false,
+   "notes": "NL assertion added (\"modify the items and address as requested\")",
+   "v101": {
+    "writes_expected": 3,
+    "writes_effective": 3,
+    "write_bucket": "3+",
+    "reward_basis": [
+     "DB",
+     "NL_ASSERTION"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": true,
+    "n_communicate_info": 0,
+    "communicate_scored": false,
+    "paid_judge_calls_default_ALL": 1,
+    "nl_judge": "gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions"
+   }
+  },
+  {
+   "t3_id": "112",
+   "v1_test_idx": 113,
+   "partner_group": "test",
+   "match_score": 0.8536,
+   "match_margin": 0.1886,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  },
+  {
+   "t3_id": "113",
+   "v1_test_idx": 114,
+   "partner_group": "test",
+   "match_score": 0.8264,
+   "match_margin": 0.3902,
+   "drop": true,
+   "reason": "maps to partner test 66: never use"
+  }
+ ],
+ "tau3_version": "v1.0.1 (commit fc0055d); retail data files are byte-identical to v2.0.0 and cc1df47",
+ "counts_v101": {
+  "tau3_tasks": 114,
+  "drop_partner_test": 45,
+  "drop_content_equals_partner_test": [
+   93
+  ],
+  "ours_present": 68,
+  "ours_train": 45,
+  "ours_val": 23,
+  "write_buckets": {
+   "1": 33,
+   "2": 15,
+   "3+": 14,
+   "0": 6
+  },
+  "write_buckets_by_group": {
+   "train": {
+    "1": 23,
+    "2": 8,
+    "3+": 10,
+    "0": 4
+   },
+   "val": {
+    "2": 7,
+    "1": 10,
+    "3+": 4,
+    "0": 2
+   }
+  },
+  "reward_basis": {
+   "[\"DB\", \"NL_ASSERTION\"]": 67,
+   "[\"DB\"]": 1
+  },
+  "with_nl_assertions": [
+   2,
+   3,
+   4,
+   16,
+   21,
+   24,
+   28,
+   37,
+   38,
+   40,
+   46,
+   47,
+   54,
+   59,
+   62,
+   63,
+   67,
+   76,
+   89,
+   96,
+   104,
+   107,
+   108,
+   110,
+   111,
+   112
+  ],
+  "nl_assertions_total": 43,
+  "with_communicate_info": 23,
+  "paid_judge_calls_per_trial_default_ALL": 26
+ },
+ "grading_v101": "reward = DB x NL_ASSERTION for 112/114 tau3 tasks (DB only for 2). At v1.0.1 the NL judge is gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions; a task with an empty nl_assertions list makes no call and scores NL = 1. COMMUNICATE is computed by substring under ALL but is not in the reward for any retail task.",
+ "counts_note": "summary = counts BEFORE the content-duplicate drop (ours 69: train 46, val 23). counts_v101 = counts AFTER it (t3 93 dropped because v1 93 == partner-test v1 95): ours 68, train 45, val 23. Use counts_v101.",
+ "written_by_v101": "scratchpad/v101/{air_task_map_v101.py,air_task_map_notes_v101.py,v4_ret_map.py,v4_ret_sim.py,v4_ret_build_v101.py,v4_v101_finalize.py} on git-show blobs of tag v1.0.1"
+}

@@ -1,0 +1,151 @@
+{
+ "airline/none": {
+  "write_calls": 123,
+  "v1_violating": 26,
+  "v2_violating": 50,
+  "missed_by_v1": 24,
+  "missed_by_v1_api_accepted": 22,
+  "episodes": 60,
+  "episodes_with_missed_call": 14,
+  "missed_by_rule": {
+   "AIR-R002": 11,
+   "AIR-R042": 14
+  },
+  "confirmation_missed_by_tool": {
+   "book_reservation": 1,
+   "update_reservation_flights": 10
+  },
+  "v1_violating_per_episode": 0.43333333333333335,
+  "v2_violating_per_episode": 0.8333333333333334,
+  "successful": 24,
+  "success_compliant_v1": 23,
+  "success_compliant_v2": 20,
+  "block_precision_scorable_v1": null,
+  "block_precision_scorable_v2": null,
+  "scorable_blocks": 0,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 0
+ },
+ "airline/direct": {
+  "write_calls": 64,
+  "v1_violating": 4,
+  "v2_violating": 7,
+  "missed_by_v1": 3,
+  "missed_by_v1_api_accepted": 3,
+  "episodes": 60,
+  "episodes_with_missed_call": 3,
+  "missed_by_rule": {
+   "AIR-R002": 2,
+   "AIR-R042": 1
+  },
+  "confirmation_missed_by_tool": {
+   "book_reservation": 2
+  },
+  "v1_violating_per_episode": 0.06666666666666667,
+  "v2_violating_per_episode": 0.11666666666666667,
+  "successful": 22,
+  "success_compliant_v1": 22,
+  "success_compliant_v2": 21,
+  "block_precision_scorable_v1": 0.23958333333333334,
+  "block_precision_scorable_v2": 0.34375,
+  "scorable_blocks": 96,
+  "blocks_confirmed_v1": 23,
+  "blocks_confirmed_v2": 33
+ },
+ "airline/tgr": {
+  "write_calls": 93,
+  "v1_violating": 3,
+  "v2_violating": 3,
+  "missed_by_v1": 0,
+  "missed_by_v1_api_accepted": 0,
+  "episodes": 60,
+  "episodes_with_missed_call": 0,
+  "missed_by_rule": {},
+  "confirmation_missed_by_tool": {},
+  "v1_violating_per_episode": 0.05,
+  "v2_violating_per_episode": 0.05,
+  "successful": 26,
+  "success_compliant_v1": 26,
+  "success_compliant_v2": 26,
+  "block_precision_scorable_v1": 0.4230769230769231,
+  "block_precision_scorable_v2": 0.75,
+  "scorable_blocks": 52,
+  "blocks_confirmed_v1": 22,
+  "blocks_confirmed_v2": 39
+ },
+ "retail/none": {
+  "write_calls": 221,
+  "v1_violating": 30,
+  "v2_violating": 39,
+  "missed_by_v1": 9,
+  "missed_by_v1_api_accepted": 9,
+  "episodes": 138,
+  "episodes_with_missed_call": 9,
+  "missed_by_rule": {
+   "RET-R005": 12
+  },
+  "confirmation_missed_by_tool": {
+   "modify_pending_order_address": 1,
+   "modify_pending_order_items": 9,
+   "exchange_delivered_order_items": 1,
+   "return_delivered_order_items": 1
+  },
+  "v1_violating_per_episode": 0.21739130434782608,
+  "v2_violating_per_episode": 0.2826086956521739,
+  "successful": 90,
+  "success_compliant_v1": 85,
+  "success_compliant_v2": 83,
+  "block_precision_scorable_v1": null,
+  "block_precision_scorable_v2": null,
+  "scorable_blocks": 0,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 0
+ },
+ "retail/direct": {
+  "write_calls": 185,
+  "v1_violating": 0,
+  "v2_violating": 2,
+  "missed_by_v1": 2,
+  "missed_by_v1_api_accepted": 2,
+  "episodes": 138,
+  "episodes_with_missed_call": 2,
+  "missed_by_rule": {
+   "RET-R005": 2
+  },
+  "confirmation_missed_by_tool": {
+   "return_delivered_order_items": 1,
+   "modify_pending_order_items": 1
+  },
+  "v1_violating_per_episode": 0.0,
+  "v2_violating_per_episode": 0.014492753623188406,
+  "successful": 94,
+  "success_compliant_v1": 94,
+  "success_compliant_v2": 94,
+  "block_precision_scorable_v1": 0.11764705882352941,
+  "block_precision_scorable_v2": 0.2647058823529412,
+  "scorable_blocks": 68,
+  "blocks_confirmed_v1": 8,
+  "blocks_confirmed_v2": 18
+ },
+ "retail/tgr": {
+  "write_calls": 184,
+  "v1_violating": 1,
+  "v2_violating": 1,
+  "missed_by_v1": 0,
+  "missed_by_v1_api_accepted": 0,
+  "episodes": 138,
+  "episodes_with_missed_call": 0,
+  "missed_by_rule": {},
+  "confirmation_missed_by_tool": {},
+  "v1_violating_per_episode": 0.007246376811594203,
+  "v2_violating_per_episode": 0.007246376811594203,
+  "successful": 93,
+  "success_compliant_v1": 93,
+  "success_compliant_v2": 93,
+  "block_precision_scorable_v1": 0.08646616541353383,
+  "block_precision_scorable_v2": 0.13533834586466165,
+  "scorable_blocks": 266,
+  "blocks_confirmed_v1": 23,
+  "blocks_confirmed_v2": 36
+ }
+}

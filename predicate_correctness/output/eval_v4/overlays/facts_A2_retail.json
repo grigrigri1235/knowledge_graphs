@@ -1,0 +1,120 @@
+{
+ "by": "A2",
+ "domain": "retail",
+ "facts": {
+  "user_chose_pending_payment_method": {
+   "parts": {
+    "b": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4(focus='payment')) > 0",
+     "plain": "A go-ahead candidate (L, B) of D3/D4 where L or a message of B names the call's payment method by a D7 form (full id, 4+ ending digits, last four, a kind / brand / balance word that fits only this method, 'the card' with one card, 'the original payment method' when it is the first payment) and no message of B names another method of the owner.",
+     "question": null,
+     "source": "structure"
+    },
+    "c": {
+     "about": "the candidates of part b",
+     "expr": "go_ahead_fast_v4(focus='payment') or ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false. Same (L, B) and the same answer as the unfocused go-ahead; only candidates of part b.",
+     "question": "K1",
+     "source": "question"
+    }
+   }
+  },
+  "user_chose_price_difference_payment_method": {
+   "parts": {
+    "b": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4(focus='payment')) > 0",
+     "plain": "A go-ahead candidate (L, B) of D3/D4 where L or a message of B names the call's payment method by a D7 form (full id, 4+ ending digits, last four, a kind / brand / balance word that fits only this method, 'the card' with one card, 'the original payment method' when it is the first payment) and no message of B names another method of the owner.",
+     "question": null,
+     "source": "structure"
+    },
+    "c": {
+     "about": "the candidates of part b",
+     "expr": "go_ahead_fast_v4(focus='payment') or ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false. Same (L, B) and the same answer as the unfocused go-ahead; only candidates of part b.",
+     "question": "K1",
+     "source": "question"
+    }
+   }
+  },
+  "user_confirmed_cancellation_order_and_reason": {
+   "combine": "a AND c AND b",
+   "parts": {
+    "a": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4()) > 0",
+     "plain": "D3 + D4 (predicate_table.md): L = the newest agent text in the action span S (D2) that names a key detail of the call and has a user message after it (at most 2 anchors, newest first); B = every user message after L up to the call. A candidate whose B holds a strict no (D9, v3 is_strict_no) is dropped.",
+     "question": null,
+     "source": "structure"
+    },
+    "b": {
+     "about": "the anchor L and every user message after it (B); fast path first",
+     "expr": "go_ahead_fast_v4() or ask_first_yes_v4('K1', go_ahead_candidates_v4(), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false.",
+     "question": "K1",
+     "source": "question"
+    },
+    "c": {
+     "about": null,
+     "expr": "clash_free_v4()",
+     "plain": "D7 and the clash line: no user message after L names, clearly and positively, another payment method of the owner (a form that fits 2+ methods counts only when a brand word picks one), a brand word next to the call card's digits that is not its brand, another item of the order, another value of a changed option (whole value), another zip, or another known passenger, while naming none of the call's values.",
+     "question": null,
+     "source": "structure"
+    }
+   }
+  },
+  "user_confirmed_return_order_items_and_method": {
+   "combine": "a AND c AND b",
+   "parts": {
+    "a": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4()) > 0",
+     "plain": "D3 + D4 (predicate_table.md): L = the newest agent text in the action span S (D2) that names a key detail of the call and has a user message after it (at most 2 anchors, newest first); B = every user message after L up to the call. A candidate whose B holds a strict no (D9, v3 is_strict_no) is dropped.",
+     "question": null,
+     "source": "structure"
+    },
+    "b": {
+     "about": "the anchor L and every user message after it (B); fast path first",
+     "expr": "go_ahead_fast_v4() or ask_first_yes_v4('K1', go_ahead_candidates_v4(), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false.",
+     "question": "K1",
+     "source": "question"
+    },
+    "c": {
+     "about": null,
+     "expr": "clash_free_v4()",
+     "plain": "D7 and the clash line: no user message after L names, clearly and positively, another payment method of the owner (a form that fits 2+ methods counts only when a brand word picks one), a brand word next to the call card's digits that is not its brand, another item of the order, another value of a changed option (whole value), another zip, or another known passenger, while naming none of the call's values.",
+     "question": null,
+     "source": "structure"
+    }
+   }
+  },
+  "user_explicitly_confirmed_pending_action": {
+   "combine": "a AND c AND b",
+   "parts": {
+    "a": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4()) > 0",
+     "plain": "D3 + D4 (predicate_table.md): L = the newest agent text in the action span S (D2) that names a key detail of the call and has a user message after it (at most 2 anchors, newest first); B = every user message after L up to the call. A candidate whose B holds a strict no (D9, v3 is_strict_no) is dropped.",
+     "question": null,
+     "source": "structure"
+    },
+    "b": {
+     "about": "the anchor L and every user message after it (B); fast path first",
+     "expr": "go_ahead_fast_v4() or ask_first_yes_v4('K1', go_ahead_candidates_v4(), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false.",
+     "question": "K1",
+     "source": "question"
+    },
+    "c": {
+     "about": null,
+     "expr": "clash_free_v4()",
+     "plain": "D7 and the clash line: no user message after L names, clearly and positively, another payment method of the owner (a form that fits 2+ methods counts only when a brand word picks one), a brand word next to the call card's digits that is not its brand, another item of the order, another value of a changed option (whole value), another zip, or another known passenger, while naming none of the call's values.",
+     "question": null,
+     "source": "structure"
+    }
+   }
+  }
+ }
+}

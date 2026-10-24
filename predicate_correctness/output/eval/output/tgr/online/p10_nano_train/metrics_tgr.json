@@ -1,0 +1,300 @@
+{
+ "airline/none": {
+  "pass1_paired_delta": {
+   "vs_direct": {
+    "delta": 0.033333333333333326,
+    "ci": [
+     -0.13333333333333333,
+     0.21666666666666665
+    ],
+    "tasks": 20
+   }
+  },
+  "violations_v2": {
+   "attempted": 50,
+   "blocked": 0,
+   "executed": 50,
+   "executed_api_accepted": 38
+  },
+  "episodes_with_block": 0,
+  "max_blocks": 0,
+  "ended_with_transfer": 26,
+  "block_response": {
+   "n": 0,
+   "repeat": null,
+   "respond": null,
+   "other": null
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 11.316666666666666,
+    "input_tokens": 64287.3,
+    "cached_tokens": 45540.26666666667,
+    "output_tokens": 19539.633333333335,
+    "reasoning_tokens": 17398.4
+   },
+   "user": {
+    "calls": 6.333333333333333,
+    "input_tokens": 8036.583333333333,
+    "cached_tokens": 4535.65,
+    "output_tokens": 858.65,
+    "reasoning_tokens": 651.45
+   }
+  },
+  "cost_per_episode_cache_billed": 0.009522091250000003,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ },
+ "airline/direct": {
+  "pass1_paired_delta": {
+   "vs_none": {
+    "delta": -0.033333333333333326,
+    "ci": [
+     -0.21666666666666665,
+     0.13333333333333333
+    ],
+    "tasks": 20
+   }
+  },
+  "violations_v2": {
+   "attempted": 40,
+   "blocked": 33,
+   "executed": 7,
+   "executed_api_accepted": 7
+  },
+  "episodes_with_block": 58,
+  "max_blocks": 32,
+  "ended_with_transfer": 45,
+  "block_response": {
+   "n": 665,
+   "repeat": 0.02706766917293233,
+   "respond": 0.7593984962406015,
+   "other": 0.21353383458646616
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 22.616666666666667,
+    "input_tokens": 228658.48333333334,
+    "cached_tokens": 165277.86666666667,
+    "output_tokens": 44557.78333333333,
+    "reasoning_tokens": 38354.13333333333
+   },
+   "user": {
+    "calls": 6.633333333333334,
+    "input_tokens": 8433.783333333333,
+    "cached_tokens": 4933.75,
+    "output_tokens": 1027.2333333333333,
+    "reasoning_tokens": 799.1333333333333
+   }
+  },
+  "cost_per_episode_cache_billed": 0.042099613916666674,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ },
+ "airline/tgr": {
+  "pass1_paired_delta": {
+   "vs_none": {
+    "delta": 0.03333333333333334,
+    "ci": [
+     -0.13333333333333333,
+     0.16666666666666669
+    ],
+    "tasks": 20
+   },
+   "vs_direct": {
+    "delta": 0.06666666666666668,
+    "ci": [
+     -0.016666666666666666,
+     0.16666666666666669
+    ],
+    "tasks": 20
+   }
+  },
+  "violations_v2": {
+   "attempted": 42,
+   "blocked": 39,
+   "executed": 3,
+   "executed_api_accepted": 3
+  },
+  "episodes_with_block": 28,
+  "max_blocks": 12,
+  "ended_with_transfer": 35,
+  "block_response": {
+   "n": 66,
+   "repeat": 0.07575757575757576,
+   "respond": 0.5757575757575758,
+   "other": 0.3484848484848485
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 12.416666666666666,
+    "input_tokens": 77967.35,
+    "cached_tokens": 50094.933333333334,
+    "output_tokens": 22914.683333333334,
+    "reasoning_tokens": 20417.066666666666
+   },
+   "user": {
+    "calls": 6.883333333333334,
+    "input_tokens": 11703.75,
+    "cached_tokens": 8104.116666666667,
+    "output_tokens": 1057.8666666666666,
+    "reasoning_tokens": 825.2166666666667
+   }
+  },
+  "cost_per_episode_cache_billed": 0.018261101083333325,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ },
+ "retail/none": {
+  "pass1_paired_delta": {
+   "vs_direct": {
+    "delta": -0.028985507246376815,
+    "ci": [
+     -0.12318840579710146,
+     0.07246376811594202
+    ],
+    "tasks": 46
+   }
+  },
+  "violations_v2": {
+   "attempted": 39,
+   "blocked": 0,
+   "executed": 39,
+   "executed_api_accepted": 16
+  },
+  "episodes_with_block": 0,
+  "max_blocks": 0,
+  "ended_with_transfer": 24,
+  "block_response": {
+   "n": 0,
+   "repeat": null,
+   "respond": null,
+   "other": null
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 12.855072463768115,
+    "input_tokens": 66890.46376811594,
+    "cached_tokens": 51706.434782608696,
+    "output_tokens": 13048.159420289856,
+    "reasoning_tokens": 11299.246376811594
+   },
+   "user": {
+    "calls": 7.195652173913044,
+    "input_tokens": 7626.847826086957,
+    "cached_tokens": 3920.036231884058,
+    "output_tokens": 674.8768115942029,
+    "reasoning_tokens": 480.6449275362319
+   }
+  },
+  "cost_per_episode_cache_billed": 0.006711888876811597,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ },
+ "retail/direct": {
+  "pass1_paired_delta": {
+   "vs_none": {
+    "delta": 0.028985507246376815,
+    "ci": [
+     -0.07246376811594202,
+     0.12318840579710146
+    ],
+    "tasks": 46
+   }
+  },
+  "violations_v2": {
+   "attempted": 20,
+   "blocked": 18,
+   "executed": 2,
+   "executed_api_accepted": 2
+  },
+  "episodes_with_block": 135,
+  "max_blocks": 31,
+  "ended_with_transfer": 34,
+  "block_response": {
+   "n": 916,
+   "repeat": 0.02074235807860262,
+   "respond": 0.8646288209606987,
+   "other": 0.1146288209606987
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 19.217391304347824,
+    "input_tokens": 146940.84782608695,
+    "cached_tokens": 115379.01449275362,
+    "output_tokens": 23636.340579710144,
+    "reasoning_tokens": 19967.536231884056
+   },
+   "user": {
+    "calls": 7.072463768115942,
+    "input_tokens": 8131.050724637681,
+    "cached_tokens": 4600.746376811594,
+    "output_tokens": 684.9420289855072,
+    "reasoning_tokens": 490.19565217391306
+   }
+  },
+  "cost_per_episode_cache_billed": 0.024443808586956512,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ },
+ "retail/tgr": {
+  "pass1_paired_delta": {
+   "vs_none": {
+    "delta": 0.021739130434782608,
+    "ci": [
+     -0.043478260869565216,
+     0.09420289855072465
+    ],
+    "tasks": 46
+   },
+   "vs_direct": {
+    "delta": -0.007246376811594204,
+    "ci": [
+     -0.10144927536231885,
+     0.08695652173913043
+    ],
+    "tasks": 46
+   }
+  },
+  "violations_v2": {
+   "attempted": 37,
+   "blocked": 36,
+   "executed": 1,
+   "executed_api_accepted": 0
+  },
+  "episodes_with_block": 75,
+  "max_blocks": 20,
+  "ended_with_transfer": 20,
+  "block_response": {
+   "n": 326,
+   "repeat": 0.27607361963190186,
+   "respond": 0.6288343558282209,
+   "other": 0.0950920245398773
+  },
+  "tokens_per_episode": {
+   "agent": {
+    "calls": 15.826086956521738,
+    "input_tokens": 98046.45652173914,
+    "cached_tokens": 68761.04347826086,
+    "output_tokens": 16251.195652173914,
+    "reasoning_tokens": 14060.985507246376
+   },
+   "user": {
+    "calls": 8.065217391304348,
+    "input_tokens": 10220.884057971014,
+    "cached_tokens": 6217.5,
+    "output_tokens": 734.6449275362319,
+    "reasoning_tokens": 518.9492753623189
+   }
+  },
+  "cost_per_episode_cache_billed": 0.01769340068840579,
+  "models": [
+   "{\"agent\": \"gpt-5-nano\", \"guard\": \"gpt-6-luna\", \"user\": \"gpt-6-luna\"}"
+  ]
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "domain": "retail",
+ "by": "A1",
+ "facts": {
+  "consequential_action_details_listed": {
+   "combine": "a AND b AND (c OR d)",
+   "sources": [
+    "structure",
+    "question"
+   ],
+   "parts": {
+    "a": {
+     "source": "structure",
+     "expr": "len(listing_anchors_v4()) > 0",
+     "question": null,
+     "about": null,
+     "plain": "D3: a listing anchor L exists: an agent text message in the action span S (D2: the messages after the newest worked write that has a user message after it; else the start) that names a key detail of the call (the order id with or without '#', an item id or its product name, the new address1 or zip, a D7 payment form) and has a user message after it."
+    },
+    "b": {
+     "source": "structure",
+     "expr": "listing_ok_v4()",
+     "question": null,
+     "about": null,
+     "plain": "Every code line of the call is stated in T (D5: every agent text message in S, plus L, plus every user message in S; a line passes in one message of T). Lines: the order (also by D6: the newest order id named in any user or agent text); modify address / modify_user_address: each field that differs from the current address (line 1, line 2 as Suite / Ste / Apt / Unit / # + number or the number after line 1, city, state code or name, zip; country dropped), or 'your default address' when the new address is the user's default; payment (modify payment, the price difference, the refund): D7 (full id, 4+ ending digits of the id, the card's last four, a kind / brand word or balance that fits one method of the owner, 'the original payment method' when it is payment_history[0]; an ambiguous 4-digit number names no card); each old item (product name, a word of it naming no other product of the order, or the item id; the item id or an option value only it has when the order has 2+ items of that product and the call does not take all of them; return: 'all the items' when every item is returned); each new item (its id, or every changed option value as a whole value; values of <= 2 characters, numbers, yes / no, or a value under 2+ option names only next to the option name). The cancel reason is part c. Each missing line is noted as a missing record {line, expected, forms, fact, part}. Code: state_tracker/v4/listing_v4.py."
+    },
+    "c": {
+     "source": "structure",
+     "expr": "listing_reason_ok_v4()",
+     "question": null,
+     "about": null,
+     "plain": "cancel_pending_order: the exact reason phrase ('no longer need(ed)', 'ordered (it) by mistake', any case) is in a message of T (said by the agent or the user). True for every other tool. When false, the missing reason is noted and part d decides."
+    },
+    "d": {
+     "source": "question",
+     "question": "K18",
+     "expr": "ask_first_yes_v4('K18', listing_reason_candidates_v4(), items=args['reason'])",
+     "about": "the messages of T (agent and user), newest first, at most 4; asked only for a cancel whose exact reason phrase is not in T",
+     "plain": "K18v4 yes: a message of T gives the call's cancel reason in other words (predicate_table.md K18v4). Unclear: ask K18v4b; still unclear: false (D10)."
+    }
+   }
+  }
+ }
+}

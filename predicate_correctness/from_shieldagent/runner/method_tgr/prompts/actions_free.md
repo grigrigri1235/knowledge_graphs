@@ -1,0 +1,1 @@
+Agent actions. Name the actions of the agent that the policy restricts with your own action predicates (snake_case, each with a one-sentence description of the agent behaviour it denotes). Return them in "actions".

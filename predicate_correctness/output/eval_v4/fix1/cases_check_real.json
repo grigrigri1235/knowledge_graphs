@@ -1,0 +1,127 @@
+{
+ "meta": {
+  "backend": "real",
+  "cases": 180,
+  "dev_ledger": {
+   "at_end": {
+    "bad_lines": 0,
+    "calls": 927,
+    "open": 0,
+    "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+    "runs": [
+     "v4cases_real_20261024T073118Z",
+     "v4cases_real_20261024T080037Z"
+    ],
+    "usd": 0.0726942
+   },
+   "at_start": {
+    "asked_calls": 300,
+    "asked_usd": 0.05,
+    "ledger": {
+     "bad_lines": 0,
+     "calls": 733,
+     "open": 0,
+     "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+     "runs": [
+      "v4cases_real_20261024T073118Z"
+     ],
+     "usd": 0.0540155
+    },
+    "left_calls": 4367,
+    "left_usd": 1.9459845,
+    "limit_calls": 5100,
+    "limit_usd": 2.0,
+    "questions_lines": 733,
+    "questions_usd": 0.0540155,
+    "run_calls": 300,
+    "run_usd": 0.05,
+    "spent_usd": 0.0540155,
+    "used_calls": 733
+   }
+  },
+  "network_events": 0,
+  "policy": null,
+  "problems": [],
+  "run_id": "v4cases_real_20261024T080037Z",
+  "spend": {
+   "calls": 194,
+   "usd": 0.018678699999999986
+  }
+ },
+ "score": {
+  "all_pass": false,
+  "by_question": {
+   "K13": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": false,
+     "right": 27,
+     "right_first_wording": 26,
+     "unclear": 2
+    },
+    "pass": false,
+    "wrong_by_kind": {
+     "hard_no: escalate_wording_in_scope": 2,
+     "hard_no: human_plus_in_scope": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K3": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K4": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "yes: helping_colleague": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 29,
+     "right_first_wording": 28,
+     "unclear": 0
+    }
+   }
+  }
+ }
+}

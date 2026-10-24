@@ -1,0 +1,86 @@
+{
+ "meta": {
+  "backend": "real",
+  "cases": 60,
+  "dev_ledger": {
+   "at_end": {
+    "bad_lines": 0,
+    "calls": 1705,
+    "open": 0,
+    "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+    "runs": [
+     "v4cases_real_20261024T073118Z",
+     "v4cases_real_20261024T080037Z",
+     "v4cases_real_20261024T083831Z",
+     "v4dev_real_20261024T080806Z"
+    ],
+    "usd": 0.1566347
+   },
+   "at_start": {
+    "asked_calls": 5100,
+    "asked_usd": 2.0,
+    "ledger": {
+     "bad_lines": 0,
+     "calls": 1631,
+     "open": 0,
+     "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+     "runs": [
+      "v4cases_real_20261024T073118Z",
+      "v4cases_real_20261024T080037Z",
+      "v4dev_real_20261024T080806Z"
+     ],
+     "usd": 0.1479642
+    },
+    "left_calls": 3469,
+    "left_usd": 1.8520358,
+    "limit_calls": 5100,
+    "limit_usd": 2.0,
+    "questions_lines": 1629,
+    "questions_usd": 0.1479642,
+    "run_calls": 3469,
+    "run_usd": 1.8520358,
+    "spent_usd": 0.1479642,
+    "used_calls": 1631
+   }
+  },
+  "network_events": 0,
+  "policy": null,
+  "problems": [],
+  "run_id": "v4cases_real_20261024T083831Z",
+  "spend": {
+   "calls": 74,
+   "usd": 0.0086705
+  }
+ },
+ "score": {
+  "all_pass": false,
+  "by_question": {
+   "K13": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": false,
+     "right": 27,
+     "right_first_wording": 25,
+     "unclear": 2
+    },
+    "pass": false,
+    "wrong_by_kind": {
+     "hard_no: asks_nothing_new": 1,
+     "hard_no: escalate_wording_in_scope": 1,
+     "hard_no: human_plus_in_scope": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   }
+  }
+ }
+}

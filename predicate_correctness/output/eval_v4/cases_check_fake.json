@@ -1,0 +1,280 @@
+{
+ "meta": {
+  "backend": "fake",
+  "cases": 720,
+  "network_events": 0,
+  "policy": "expect",
+  "problems": [],
+  "run_id": "v4cases_fake_20261024T053730Z",
+  "spend": null
+ },
+ "score": {
+  "all_pass": true,
+  "by_question": {
+   "K1": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K10": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K12": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K13": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K16": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K17": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K18": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K3": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K4": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K6": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K7": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K8": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   }
+  }
+ }
+}

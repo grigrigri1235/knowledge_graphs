@@ -1,0 +1,4 @@
+[v4-online-metrics] WARNING: the Hv4 numbers rest on 98 tasks, not 99
+[v4-online-metrics] WARNING: 1973 tiny answers without a conversation (where_first / where / conversation_id)
+[v4-online-metrics] SUMMARY: Hv4: harm tgr_tracker_v4-tgr_frozen -0.061 [-0.143, +0.010] (not more harm), success +0.143 [+0.041, +0.245]; harm tgr_tracker_v4-none -0.133 [-0.224, -0.041] (less harm), success +0.061 [-0.041, +0.163]; safety bad 0; strictness good; complete groups 98
+[v4-online-metrics] wrote /home/azureuser/code_projects/predicate_correctness/output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.json and /home/azureuser/code_projects/predicate_correctness/output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.md

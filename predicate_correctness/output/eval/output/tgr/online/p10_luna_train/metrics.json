@@ -1,0 +1,538 @@
+{
+ "airline/none": {
+  "episodes": 60,
+  "errors": 0,
+  "tasks": 20,
+  "trials_per_task": 3,
+  "pass1": 0.5333333333333333,
+  "pass1_ci": [
+   0.35,
+   0.7166666666666667
+  ],
+  "pass3": 0.35,
+  "pass3_ci": [
+   0.15,
+   0.55
+  ],
+  "not_done_max_steps": 1,
+  "blocks_per_episode": 0.0,
+  "cap_overrides": 0,
+  "successful_episodes": 32,
+  "compliance_success_no_gold_violation": 1.0,
+  "compliance_success_no_api_accepted_violation": 1.0,
+  "gold_violating_calls_per_episode": 0.0,
+  "gold_violated_rules": [],
+  "blocks_total": 0,
+  "blocks_scorable_write": 0,
+  "block_precision_all_blocks": null,
+  "block_precision_scorable_blocks": null,
+  "blocked_action_kinds": [],
+  "top_blocking_rules": [],
+  "cost_per_episode": {
+   "agent": 0.00526644,
+   "user": 0.0006991133333333333,
+   "guard": 0.0
+  },
+  "cost_total": 0.3579332,
+  "latency_per_episode_s": {
+   "agent": 180.29500000000002,
+   "user": 45.20166666666667,
+   "guard": 0.0
+  },
+  "wall_per_episode_s": 332.0,
+  "guard_latency_per_check_s": null,
+  "guard_cost_per_check": null,
+  "error_examples": []
+ },
+ "airline/direct": {
+  "episodes": 60,
+  "errors": 0,
+  "tasks": 20,
+  "trials_per_task": 3,
+  "pass1": 0.4666666666666667,
+  "pass1_ci": [
+   0.2833333333333333,
+   0.65
+  ],
+  "pass3": 0.35,
+  "pass3_ci": [
+   0.15,
+   0.55
+  ],
+  "not_done_max_steps": 0,
+  "blocks_per_episode": 1.1,
+  "cap_overrides": 2,
+  "successful_episodes": 28,
+  "compliance_success_no_gold_violation": 0.9642857142857143,
+  "compliance_success_no_api_accepted_violation": 0.9642857142857143,
+  "gold_violating_calls_per_episode": 0.016666666666666666,
+  "gold_violated_rules": [
+   [
+    "AIR-R022",
+    1
+   ]
+  ],
+  "blocks_total": 66,
+  "blocks_scorable_write": 4,
+  "block_precision_all_blocks": 0.0,
+  "block_precision_scorable_blocks": 0.0,
+  "blocked_action_kinds": [
+   [
+    "respond",
+    40
+   ],
+   [
+    "transfer_to_human_agents",
+    14
+   ],
+   [
+    "get_reservation_details",
+    5
+   ],
+   [
+    "search_onestop_flight",
+    3
+   ],
+   [
+    "update_reservation_baggages",
+    2
+   ],
+   [
+    "update_reservation_flights",
+    1
+   ],
+   [
+    "book_reservation",
+    1
+   ]
+  ],
+  "top_blocking_rules": [
+   [
+    "P1",
+    66
+   ],
+   [
+    "P2",
+    13
+   ],
+   [
+    "P3",
+    2
+   ]
+  ],
+  "cost_per_episode": {
+   "agent": 0.006262026666666667,
+   "user": 0.0006829866666666667,
+   "guard": 0.005522016666666667
+  },
+  "cost_total": 0.7480218,
+  "latency_per_episode_s": {
+   "agent": 103.475,
+   "user": 25.68,
+   "guard": 66.88666666666667
+  },
+  "wall_per_episode_s": 248.89166666666668,
+  "guard_latency_per_check_s": 5.927917282127031,
+  "guard_cost_per_check": 0.0004893958641063515,
+  "error_examples": []
+ },
+ "airline/tgr": {
+  "episodes": 60,
+  "errors": 0,
+  "tasks": 20,
+  "trials_per_task": 3,
+  "pass1": 0.55,
+  "pass1_ci": [
+   0.35,
+   0.7333333333333333
+  ],
+  "pass3": 0.4,
+  "pass3_ci": [
+   0.2,
+   0.6
+  ],
+  "not_done_max_steps": 0,
+  "blocks_per_episode": 0.2,
+  "cap_overrides": 0,
+  "successful_episodes": 33,
+  "compliance_success_no_gold_violation": 1.0,
+  "compliance_success_no_api_accepted_violation": 1.0,
+  "gold_violating_calls_per_episode": 0.0,
+  "gold_violated_rules": [],
+  "blocks_total": 12,
+  "blocks_scorable_write": 5,
+  "block_precision_all_blocks": 0.08333333333333333,
+  "block_precision_scorable_blocks": 0.2,
+  "blocked_action_kinds": [
+   [
+    "transfer_to_human_agents",
+    5
+   ],
+   [
+    "respond",
+    2
+   ],
+   [
+    "update_reservation_flights",
+    2
+   ],
+   [
+    "update_reservation_baggages",
+    2
+   ],
+   [
+    "book_reservation",
+    1
+   ]
+  ],
+  "top_blocking_rules": [
+   [
+    "27",
+    5
+   ],
+   [
+    "32",
+    2
+   ],
+   [
+    "23",
+    2
+   ],
+   [
+    "3",
+    2
+   ],
+   [
+    "15",
+    1
+   ],
+   [
+    "1",
+    1
+   ]
+  ],
+  "cost_per_episode": {
+   "agent": 0.006009743333333334,
+   "user": 0.0006904066666666667,
+   "guard": 0.0035761666666666663
+  },
+  "cost_total": 0.616579,
+  "latency_per_episode_s": {
+   "agent": 35.955000000000005,
+   "user": 10.51,
+   "guard": 26.775
+  },
+  "wall_per_episode_s": 73.85833333333333,
+  "guard_latency_per_check_s": 2.521978021978022,
+  "guard_cost_per_check": 0.00033684458398744113,
+  "error_examples": []
+ },
+ "retail/none": {
+  "episodes": 138,
+  "errors": 0,
+  "tasks": 46,
+  "trials_per_task": 3,
+  "pass1": 0.7608695652173914,
+  "pass1_ci": [
+   0.6666666666666666,
+   0.855072463768116
+  ],
+  "pass3": 0.5652173913043478,
+  "pass3_ci": [
+   0.41304347826086957,
+   0.717391304347826
+  ],
+  "not_done_max_steps": 0,
+  "blocks_per_episode": 0.0,
+  "cap_overrides": 0,
+  "successful_episodes": 105,
+  "compliance_success_no_gold_violation": 0.9714285714285714,
+  "compliance_success_no_api_accepted_violation": 1.0,
+  "gold_violating_calls_per_episode": 0.043478260869565216,
+  "gold_violated_rules": [
+   [
+    "RET-R013",
+    3
+   ],
+   [
+    "RET-R031",
+    2
+   ],
+   [
+    "RET-R014",
+    1
+   ]
+  ],
+  "blocks_total": 0,
+  "blocks_scorable_write": 0,
+  "block_precision_all_blocks": null,
+  "block_precision_scorable_blocks": null,
+  "blocked_action_kinds": [],
+  "top_blocking_rules": [],
+  "cost_per_episode": {
+   "agent": 0.006216907971014493,
+   "user": 0.0006315898550724638,
+   "guard": 0.0
+  },
+  "cost_total": 0.9450927,
+  "latency_per_episode_s": {
+   "agent": 219.9231884057971,
+   "user": 48.744202898550725,
+   "guard": 0.0
+  },
+  "wall_per_episode_s": 325.9572463768116,
+  "guard_latency_per_check_s": null,
+  "guard_cost_per_check": null,
+  "error_examples": []
+ },
+ "retail/direct": {
+  "episodes": 138,
+  "errors": 0,
+  "tasks": 46,
+  "trials_per_task": 3,
+  "pass1": 0.6811594202898551,
+  "pass1_ci": [
+   0.5797101449275361,
+   0.782608695652174
+  ],
+  "pass3": 0.45652173913043476,
+  "pass3_ci": [
+   0.32608695652173914,
+   0.5869565217391305
+  ],
+  "not_done_max_steps": 0,
+  "blocks_per_episode": 1.1014492753623188,
+  "cap_overrides": 1,
+  "successful_episodes": 94,
+  "compliance_success_no_gold_violation": 1.0,
+  "compliance_success_no_api_accepted_violation": 1.0,
+  "gold_violating_calls_per_episode": 0.0,
+  "gold_violated_rules": [],
+  "blocks_total": 152,
+  "blocks_scorable_write": 14,
+  "block_precision_all_blocks": 0.006578947368421052,
+  "block_precision_scorable_blocks": 0.07142857142857142,
+  "blocked_action_kinds": [
+   [
+    "respond",
+    128
+   ],
+   [
+    "modify_pending_order_items",
+    6
+   ],
+   [
+    "transfer_to_human_agents",
+    5
+   ],
+   [
+    "exchange_delivered_order_items",
+    3
+   ],
+   [
+    "return_delivered_order_items",
+    3
+   ],
+   [
+    "get_order_details",
+    2
+   ],
+   [
+    "list_all_product_types",
+    1
+   ],
+   [
+    "calculate",
+    1
+   ],
+   [
+    "cancel_pending_order",
+    1
+   ],
+   [
+    "find_user_id_by_name_zip",
+    1
+   ],
+   [
+    "modify_pending_order_address",
+    1
+   ]
+  ],
+  "top_blocking_rules": [
+   [
+    "P1",
+    152
+   ],
+   [
+    "P2",
+    30
+   ],
+   [
+    "P3",
+    6
+   ],
+   [
+    "P4",
+    2
+   ],
+   [
+    "P5",
+    2
+   ],
+   [
+    "P6",
+    2
+   ],
+   [
+    "P7",
+    1
+   ],
+   [
+    "P8",
+    1
+   ],
+   [
+    "P9",
+    1
+   ],
+   [
+    "P10",
+    1
+   ]
+  ],
+  "cost_per_episode": {
+   "agent": 0.006869316666666667,
+   "user": 0.0006200717391304348,
+   "guard": 0.005357166666666666
+  },
+  "cost_total": 1.7728246,
+  "latency_per_episode_s": {
+   "agent": 197.8572463768116,
+   "user": 39.23913043478261,
+   "guard": 93.53550724637681
+  },
+  "wall_per_episode_s": 381.881884057971,
+  "guard_latency_per_check_s": 7.29672131147541,
+  "guard_cost_per_check": 0.0004179135104578858,
+  "error_examples": []
+ },
+ "retail/tgr": {
+  "episodes": 138,
+  "errors": 0,
+  "tasks": 46,
+  "trials_per_task": 3,
+  "pass1": 0.7971014492753623,
+  "pass1_ci": [
+   0.7101449275362318,
+   0.8768115942028986
+  ],
+  "pass3": 0.6304347826086957,
+  "pass3_ci": [
+   0.4782608695652174,
+   0.7608695652173914
+  ],
+  "not_done_max_steps": 0,
+  "blocks_per_episode": 0.32608695652173914,
+  "cap_overrides": 0,
+  "successful_episodes": 110,
+  "compliance_success_no_gold_violation": 1.0,
+  "compliance_success_no_api_accepted_violation": 1.0,
+  "gold_violating_calls_per_episode": 0.0,
+  "gold_violated_rules": [],
+  "blocks_total": 45,
+  "blocks_scorable_write": 38,
+  "block_precision_all_blocks": 0.044444444444444446,
+  "block_precision_scorable_blocks": 0.05263157894736842,
+  "blocked_action_kinds": [
+   [
+    "modify_pending_order_items",
+    21
+   ],
+   [
+    "exchange_delivered_order_items",
+    8
+   ],
+   [
+    "respond",
+    6
+   ],
+   [
+    "modify_pending_order_address",
+    4
+   ],
+   [
+    "return_delivered_order_items",
+    2
+   ],
+   [
+    "cancel_pending_order",
+    2
+   ],
+   [
+    "modify_user_address",
+    1
+   ],
+   [
+    "transfer_to_human_agents",
+    1
+   ]
+  ],
+  "top_blocking_rules": [
+   [
+    "53",
+    21
+   ],
+   [
+    "61",
+    8
+   ],
+   [
+    "3",
+    6
+   ],
+   [
+    "47",
+    2
+   ],
+   [
+    "34",
+    2
+   ],
+   [
+    "35",
+    2
+   ],
+   [
+    "43",
+    2
+   ],
+   [
+    "36",
+    2
+   ],
+   [
+    "55",
+    2
+   ],
+   [
+    "40",
+    1
+   ]
+  ],
+  "cost_per_episode": {
+   "agent": 0.0066168326086956525,
+   "user": 0.0006409717391304349,
+   "guard": 0.00526109420289855
+  },
+  "cost_total": 1.727608,
+  "latency_per_episode_s": {
+   "agent": 34.54347826086956,
+   "user": 10.328260869565216,
+   "guard": 41.21739130434783
+  },
+  "wall_per_episode_s": 86.35,
+  "guard_latency_per_check_s": 3.2428734321550743,
+  "guard_cost_per_check": 0.0004139287343215507,
+  "error_examples": []
+ }
+}

@@ -1,0 +1,729 @@
+{
+ "checked": "2026-10-22",
+ "lookup_sha256": {
+  "airline": "4c354258223eed58de8d20fc4b43e0648f64cfd06492e2c0b4cf695a9751ca4b",
+  "retail": "8033144d9fa52713e51233eda67a8138ba013e0652267e34504e8ca4d06baae9"
+ },
+ "results": [
+  {
+   "domain": "airline",
+   "predicate": "booking_has_at_most_five_passengers",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No false case in the data (no booking has more than five passengers).",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task0/trial1/step15/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "all_booking_passengers_share_flights_and_cabin",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "True for every well-formed call, because book_reservation takes one cabin and one flight list. No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task0/trial0/step10/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "booking_payment_method_counts_within_limits",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The false case pays with two different certificates. Distinct ids are counted, as the plain sentence says.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task0/trial0/step12/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/airline/task0/trial0/step9/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "booking_payment_methods_found_in_user_profile",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Uses the newest shown profile. A certificate spent by an earlier booking in the same conversation stays 'found' until the profile is shown again; this never happens in the data. No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task0/trial0/step15/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "booking_user_is_regular_member",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No true case in the data (no regular member booked).",
+   "cases": [
+    {
+     "kind": "false",
+     "step_id": "nano_train/airline/task0/trial0/step15/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "regular_member_booking_baggage_counts_correct",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Checked the allowance table against the policy (regular 0/1/2). Arithmetic checked by hand on both cases.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task7/trial0/step11/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task0/trial2/step11/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "booking_user_is_silver_member",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task25/trial2/step21/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/airline/task7/trial0/step11/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "silver_member_booking_baggage_counts_correct",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Allowance table matches the policy (silver 1/2/3).",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task7/trial0/step11/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task0/trial1/step15/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "booking_user_is_gold_member",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task0/trial0/step12/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task25/trial2/step21/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "gold_member_booking_baggage_counts_correct",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Allowance table matches the policy (gold 2/3/3). No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task0/trial0/step9/attempt2",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "pending_flight_update_is_basic_economy",
+   "verdict": "unclear",
+   "problem": "The lookup reads the reservation's 'cabin' field. tau-bench never updates that field after update_reservation_flights, so after a successful cabin change the details still say the old cabin. The lookup follows the description word for word (the shown details, and the database copy, do say basic_economy), but a person reading the conversation would say the reservation is now economy. Case: nano task5 trial0 step19-21 (FQ8APE): the user upgraded to economy twice (messages 29 and 33: economy prices 155/185, cabin field still basic_economy), then chose new flights HAT166/HAT044. The lookup gives true, so rule 18 is broken at steps 19, 20 and 21, and these attempts were blocked. In all, the lookup says basic economy after an earlier cabin change in 37 of 136 runs; in 34 of them the flights were unchanged, so rule 18 holds anyway.",
+   "suggested_fix": "Decide which reading counts (person review or Part 7). If the cabin change should count: take the cabin argument of the newest successful update_reservation_flights on this reservation, and the shown cabin only if there is none: all((len(ups) > 0 and ups[-1]['args']['cabin'] == 'basic_economy') or (len(ups) == 0 and shown('reservation', args['reservation_id'])['cabin'] == 'basic_economy') for ups in [[e for e in events(tool='update_reservation_flights', ok=True) if e['args'].get('reservation_id') == args['reservation_id']]]). It validates, and changes 37 saved values from true to false; only the 3 flight changes above (nano task5 trial0 steps 19-21) then satisfy rule 18 where they did not before. Apply the same rule to reservation_has_business_cabin and reservation_has_basic_or_economy_cabin. Otherwise keep the lookup and record the reading in the reason.",
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task33/trial0/step25/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task7/trial1/step11/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 136,
+   "my_check_agrees": 136
+  },
+  {
+   "domain": "airline",
+   "predicate": "pending_flight_segments_are_unchanged",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Segments are compared by flight number and date, as a set with counts.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task5/trial0/step11/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/airline/task48/trial0/step16/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 136,
+   "my_check_agrees": 136
+  },
+  {
+   "domain": "airline",
+   "predicate": "origin_destination_and_trip_type_preserved",
+   "verdict": "unclear",
+   "problem": "The result depends on the order of the flights in the call: it takes the first leg as the start and the last leg as the end. Hand-made case: a round trip with the same two legs listed return first gives false, although origin, destination and trip type are unchanged. It also reads the flight schedule (db) while 'uses' says shown, and does not check that legs connect. On all 136 saved runs the value is true and agrees with my own check.",
+   "suggested_fix": "Make it independent of the order: all(len(legs) > 0 and any(l['origin'] == r['origin'] for l in legs) and any(l['destination'] == r['destination'] for l in legs) and ((r['flight_type'] == 'one_way' and not any(l['destination'] == r['origin'] for l in legs) and not any(l['origin'] == r['destination'] for l in legs)) or (r['flight_type'] == 'round_trip' and any(l['destination'] == r['origin'] for l in legs) and any(l['origin'] == r['destination'] for l in legs))) for r in [shown('reservation', args['reservation_id'])] for legs in [[db('flight', f['flight_number']) for f in args['flights']]]). It validates, gives the same 136 saved values, and fixes the hand-made case. Caution: some one-way reservations have origin = destination (e.g. Z7GOZK EWR->EWR); there the two 'not any' parts must be dropped. Or keep the lookup and write the order assumption in its reason.",
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task14/trial1/step18/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 136,
+   "my_check_agrees": 136
+  },
+  {
+   "domain": "airline",
+   "predicate": "all_pending_flight_segments_have_one_cabin",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "True for every well-formed call (one cabin argument). No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task33/trial1/step19/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 136,
+   "my_check_agrees": 136
+  },
+  {
+   "domain": "airline",
+   "predicate": "pending_baggage_total_not_reduced",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task14/trial1/step3/attempt4",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 13,
+   "my_check_agrees": 13
+  },
+  {
+   "domain": "airline",
+   "predicate": "pending_passenger_count_unchanged",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task5/trial1/step9/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 7,
+   "my_check_agrees": 7
+  },
+  {
+   "domain": "airline",
+   "predicate": "pending_flight_update_changes_flights",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Exact negation of pending_flight_segments_are_unchanged when the reservation was shown; both false when not shown.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task48/trial0/step21/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task5/trial2/step9/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 136,
+   "my_check_agrees": 136
+  },
+  {
+   "domain": "airline",
+   "predicate": "reservation_has_business_cabin",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Same stale-cabin field as pending_flight_update_is_basic_economy. 2 cancel steps (nano task34 trial0 step6, trial1 step8) come after a cabin change to economy; the value (false) is the same under both readings.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/airline/task15/trial0/step9/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/airline/task33/trial1/step24/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/airline/task41/trial2/step1/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 35,
+   "my_check_agrees": 35
+  },
+  {
+   "domain": "airline",
+   "predicate": "reservation_has_basic_or_economy_cabin",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Same note as reservation_has_business_cabin; the 2 values (true) are the same under both readings.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task33/trial1/step24/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task30/trial2/step12/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/airline/task41/trial2/step1/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 35,
+   "my_check_agrees": 35
+  },
+  {
+   "domain": "airline",
+   "predicate": "reservation_has_travel_insurance",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task30/trial2/step11/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task30/trial2/step12/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/airline/task27/trial2/step1/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 35,
+   "my_check_agrees": 35
+  },
+  {
+   "domain": "airline",
+   "predicate": "reservation_has_no_used_flight_segments",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No saved case has a segment dated today; the 3 false values come from segments dated before 2024-05-15. Hand-made case: a reservation with a segment today (HAT004, database status 'flying') and no search gives false, which is also the fact.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/airline/task1/trial1/step5/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/airline/task27/trial2/step7/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/airline/task27/trial2/step1/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 35,
+   "my_check_agrees": 35
+  },
+  {
+   "domain": "retail",
+   "predicate": "user_authenticated",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The 340 false values are 339 replies before any user lookup and 1 get_user_details at step 0. In every true case where an order or user_id is involved, the found user is that user (0 exceptions).",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task23/trial1/step19/attempt2",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/retail/task28/trial0/step0/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 3675,
+   "my_check_agrees": 3675
+  },
+  {
+   "domain": "retail",
+   "predicate": "order_status_checked_pending",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The lookup uses the newest shown version of the order, also from write tools. In 15 runs an earlier get_order_details said 'pending' but a later write changed it (to 'pending (item modified)' or 'cancelled'). The lookup gives false there; every one of these calls that ran got 'Error: non-pending order ...' from tau-bench. I agree with this reading.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task63/trial1/step12/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/retail/task41/trial0/step12/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 397,
+   "my_check_agrees": 397
+  },
+  {
+   "domain": "retail",
+   "predicate": "order_status_checked_delivered",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "Same reading as order_status_checked_pending: 27 runs after a return or exchange request; every such call that ran got 'Error: non-delivered order ...'.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task107/trial1/step14/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/retail/task27/trial0/step8/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/retail/task41/trial2/step8/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 273,
+   "my_check_agrees": 273
+  },
+  {
+   "domain": "retail",
+   "predicate": "cancellation_reason_is_allowed",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "No false case in the data.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task76/trial0/step5/attempt1",
+     "lookup": true,
+     "my_value": true
+    }
+   ],
+   "runs": 60,
+   "my_check_agrees": 60
+  },
+  {
+   "domain": "retail",
+   "predicate": "payment_method_differs_from_original",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/retail/task40/trial0/step7/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/retail/task111/trial0/step10/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 10,
+   "my_check_agrees": 10
+  },
+  {
+   "domain": "retail",
+   "predicate": "payment_method_is_gift_card",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The unknown case is a malformed call with no payment_method_id.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task56/trial1/step10/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "luna_train_v5/retail/task74/trial0/step8/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/retail/task41/trial2/step8/attempt1",
+     "lookup": null,
+     "my_value": "malformed:KeyError('payment_method_id')"
+    }
+   ],
+   "runs": 387,
+   "my_check_agrees": 387
+  },
+  {
+   "domain": "retail",
+   "predicate": "gift_card_balance_covers_order_total",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "All 10 saved runs pay with a credit card or PayPal, so the value is false through if_missing (no 'balance'); the rule holds anyway through NOT payment_method_is_gift_card. Hand-made gift-card cases: balance 91 vs amount 53.43 gives true, balance 30 vs 826.7 gives false, profile not shown gives false. Edges not in the data: a balance spent earlier in the same conversation is stale until the profile is shown again; it does not check that the gift card belongs to the order's user.",
+   "cases": [
+    {
+     "kind": "missing",
+     "step_id": "nano_train/retail/task40/trial2/step6/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 10,
+   "my_check_agrees": 10
+  },
+  {
+   "domain": "retail",
+   "predicate": "item_replacements_are_available_same_product_different_option",
+   "verdict": "wrong",
+   "problem": "It does not pair each new item with its original item by position, as the description says ('its paired original item') and as tau-bench does (zip). It only checks that the counts per product match, and that no new id is among the old ids. Hand-made failing cases built from tau-bench orders: (1) crossed pairing [A->B', B->A'] gives true; it should be false (tau-bench answers 'new item ... not found or available'). (2) old [X, Y] of one product -> new [Y, Z] gives false; it should be true (each new item differs from its paired item, and tau-bench accepts it). No saved step is affected (377 of 377 agree with a positional check).",
+   "suggested_fix": "Pair by position, using the index as a loop variable: all(len(args['item_ids']) > 0 and len(args['item_ids']) <= 10 and len(args['new_item_ids']) == len(args['item_ids']) and all(k >= len(args['item_ids']) or (shown('variant', args['new_item_ids'][k])['available'] == True and args['new_item_ids'][k] != args['item_ids'][k] and shown('variant', args['new_item_ids'][k])['product_id'] == [it['product_id'] for it in o['items'] if it['item_id'] == args['item_ids'][k]][0]) for k in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for o in [shown('order', args['order_id'])]). It validates, gives the same 377 saved values, and fixes both hand-made cases.",
+   "note": null,
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/retail/task56/trial0/step11/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/retail/task71/trial0/step14/attempt1",
+     "lookup": false,
+     "my_value": false
+    },
+    {
+     "kind": "missing",
+     "step_id": "nano_train/retail/task49/trial2/step12/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 377,
+   "my_check_agrees": 377
+  },
+  {
+   "domain": "retail",
+   "predicate": "gift_card_balance_covers_price_difference",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The sum over all items does not depend on the pairing, so the pairing problem above does not apply. 321 of the 333 false values are non-gift-card methods (rule holds through NOT payment_method_is_gift_card). Edges not in the data: a stale balance (as above) and rounding to the cent (tau-bench rounds the difference for exchanges).",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "nano_train/retail/task58/trial1/step10/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "missing",
+     "step_id": "luna_train_v5/retail/task74/trial1/step13/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 377,
+   "my_check_agrees": 377
+  },
+  {
+   "domain": "retail",
+   "predicate": "return_refund_method_is_original_or_existing_gift_card",
+   "verdict": "ok",
+   "problem": null,
+   "suggested_fix": null,
+   "note": "The false case refunds to a credit card that is neither the original method (PayPal) nor a gift card.",
+   "cases": [
+    {
+     "kind": "true",
+     "step_id": "luna_train_v5/retail/task82/trial0/step10/attempt1",
+     "lookup": true,
+     "my_value": true
+    },
+    {
+     "kind": "false",
+     "step_id": "nano_train/retail/task11/trial1/step10/attempt1",
+     "lookup": false,
+     "my_value": false
+    }
+   ],
+   "runs": 154,
+   "my_check_agrees": 154
+  }
+ ]
+}

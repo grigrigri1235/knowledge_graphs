@@ -1,0 +1,77 @@
+{
+ "by": "A2",
+ "domain": "airline",
+ "facts": {
+  "booking_insurance_decision_established_and_matched": {
+   "combine": "a AND b",
+   "parts": {
+    "a": {
+     "about": null,
+     "expr": "args['insurance'] in ['yes', 'no'] and len(insurance_candidates_v4()) > 0",
+     "plain": "The call's insurance is yes or no, and the booking span S (D2) has a K17v4 candidate: a user message holding insur* / coverage / protection after the first reply to the newest such agent message (asked alone), or an agent message holding the words with its first user reply.",
+     "question": null,
+     "source": "structure"
+    },
+    "b": {
+     "about": "the insurance candidates of part a, newest first",
+     "expr": "insurance_stated_v4(insurance_candidates_v4(), args['insurance'])",
+     "plain": "K17v4 (added / not_added / not_said / unclear) on the candidates, newest first; the first decided answer must equal {'yes': 'added', 'no': 'not_added'}[args['insurance']]. Unclear: K17v4b once, then the next older candidate; none decided: false.",
+     "question": "K17",
+     "source": "question"
+    }
+   }
+  },
+  "pending_database_change_details_listed_and_explicitly_confirmed": {
+   "combine": "a AND b AND c AND e AND d",
+   "parts": {
+    "a": {
+     "about": null,
+     "expr": "len(go_ahead_anchors_v4()) > 0",
+     "plain": "D3: a listing anchor L exists in the action span S (an agent text naming the reservation id, a flight number or date, a passenger's first + last name, the cabin, a bag count or the payment form, with a user message after it).",
+     "question": null,
+     "source": "structure",
+     "who": "agent"
+    },
+    "b": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4()) > 0",
+     "plain": "D9: no message of B (every user message after L up to the call) is a strict no.",
+     "question": null,
+     "source": "structure"
+    },
+    "d": {
+     "about": "the anchor L and every user message after it (B); fast path first",
+     "expr": "go_ahead_fast_v4() or ask_first_yes_v4('K1', go_ahead_candidates_v4(), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false.",
+     "question": "K1",
+     "source": "question"
+    },
+    "e": {
+     "about": null,
+     "expr": "clash_free_v4()",
+     "plain": "D7 and the clash line: no user message after L names, clearly and positively, another payment method of the owner (a form that fits 2+ methods counts only when a brand word picks one), a brand word next to the call card's digits that is not its brand, another item of the order, another value of a changed option (whole value), another zip, or another known passenger, while naming none of the call's values.",
+     "question": null,
+     "source": "structure"
+    }
+   }
+  },
+  "user_selected_eligible_flight_change_payment_method": {
+   "parts": {
+    "c": {
+     "about": null,
+     "expr": "len(go_ahead_candidates_v4(focus='payment')) > 0",
+     "plain": "A go-ahead candidate (L, B) of D3/D4 where L or a message of B names the call's payment method by a D7 form (full id, 4+ ending digits, last four, a kind / brand / balance word that fits only this method, 'the card' with one card, 'the original payment method' when it is the first payment) and no message of B names another method of the owner.",
+     "question": null,
+     "source": "structure"
+    },
+    "d": {
+     "about": "the candidates of part c",
+     "expr": "go_ahead_fast_v4(focus='payment') or ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'), limit=2)",
+     "plain": "The go-ahead (D4): the newest user message before the call is a plain yes by a whole-message match (D8): true with no LLM call (noted fast_path); else K1v4 on (L, B): do the user's messages B tell the agent to go ahead with what L proposes (one go-ahead covers every listed action)? Unclear: ask K1v4b; still unclear: false. Same (L, B) and the same answer as the unfocused go-ahead; only candidates of part c.",
+     "question": "K1",
+     "source": "question"
+    }
+   }
+  }
+ }
+}

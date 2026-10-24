@@ -1,0 +1,517 @@
+{
+ "airline_brands": {
+  "mastercard": 243,
+  "visa": 260
+ },
+ "airline_cabins": {
+  "basic_economy": 649,
+  "business": 675,
+  "economy": 676
+ },
+ "airline_card_holders": 331,
+ "airline_cards": 503,
+ "airline_cards_id_ends_in_last_four": 0,
+ "airline_cert_same_amount_users": 49,
+ "airline_cross_clash": 0,
+ "airline_cross_clash_examples": [],
+ "airline_flight_forms": {
+  "HAT999": 300
+ },
+ "airline_flight_tails": 300,
+ "airline_flights": 300,
+ "airline_id_forms": {
+  "certificate_9999999": 467,
+  "credit_card_9999999": 503,
+  "gift_card_9999999": 516
+ },
+ "airline_kinds": {
+  "certificate": 467,
+  "credit_card": 503,
+  "gift_card": 516
+ },
+ "airline_methods": 1486,
+ "airline_methods_needing_5_digits": 0,
+ "airline_multi_kind": {
+  "certificate": 117,
+  "credit_card": 130,
+  "gift_card": 129
+ },
+ "airline_nonfree_zero": 2000,
+ "airline_pax_other": 1163,
+ "airline_pax_total": 3593,
+ "airline_res_dup_passenger_name": 6,
+ "airline_res_id_forms": {
+  "6 chars [A-Z0-9]": 2000
+ },
+ "airline_res_letters_only": 275,
+ "airline_res_same_flight_two_dates": 8,
+ "airline_res_two_flights_one_date": 1260,
+ "airline_reservations": 2000,
+ "airline_same_brand_users": 85,
+ "airline_same_last4_users": 0,
+ "airline_tail_clash": 0,
+ "airline_two_cards_users": 130,
+ "airline_users_one_card": 154,
+ "airline_years": {
+  "2024": 5003
+ },
+ "decision_counts": {
+  "changed": 0,
+  "comment only": 3,
+  "kept as generic": 5,
+  "kept from DB / wiki": 32
+ },
+ "decisions": [
+  {
+   "basis": "retail kinds {'paypal': 222, 'credit_card': 239, 'gift_card': 234}; airline kinds {'credit_card': 503, 'certificate': 467, 'gift_card': 516}; retail wiki.md:23 (\"Each payment method is either a gift card\")",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py _pay_line",
+   "decision": "every payment kind (credit card, gift card, PayPal, certificate) is a payment line",
+   "id": "P1",
+   "was": "DB rows 'payment method kinds'"
+  },
+  {
+   "basis": "every id is kind + '_' + 7 digits: retail {'paypal_9999999': 222, 'credit_card_9999999': 239, 'gift_card_9999999': 234}, airline {'credit_card_9999999': 503, 'certificate_9999999': 467, 'gift_card_9999999': 516}",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:216 exact_payment_forms",
+   "decision": "the full payment id is accepted",
+   "id": "P2",
+   "was": "DB rows 'payment id forms'"
+  },
+  {
+   "basis": "generic: the id is what the agent's own tool output shows, its ending digits are the short form of it; DB: card ids ending in the card's last four: retail 0 of 239, airline 0 of 503, so the id digits never collide with the card's own last four; methods whose 4-digit tail fits another method of the owner (they need 5+ digits): retail 1, airline 0",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:217-222",
+   "decision": "4+ ending digits of the id number are accepted (also 5 and 6 digits)",
+   "id": "P3",
+   "was": "DB rows 'payment id forms' + simulator rows 'every 4-digit number', 'payment id as named'"
+  },
+  {
+   "basis": "every card has `last_four` (retail 239, airline 503 cards); brands retail {'mastercard': 133, 'visa': 106}, airline {'visa': 260, 'mastercard': 243}",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:202-203, 238-242",
+   "decision": "a card's last four is accepted, brand word optional",
+   "id": "P4",
+   "was": "DB rows 'credit card: id ends in last four', 'card brands'"
+  },
+  {
+   "basis": "users with such a clash: retail 0 (same tail) / 1 (tail = another card's last four), airline 0 / 0; retail example [{'user': 'mei_johansson_1199', 'id': 'credit_card_7574044', 'other_card_last_four': '4044'}]",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:221-222; state_tracker/v4/helpers_go_ahead_v4.py:18-22 (form_map_v4, methods_named_v4, 246-318)",
+   "decision": "a 4-digit number that is a 4-digit form of 2 of the owner's methods names neither (unless a brand word next to it picks one)",
+   "id": "P5",
+   "was": "DB rows '4-digit clashes' + code comment state_tracker/v4/helpers_go_ahead_v4.py:18 'after the v1 form check'"
+  },
+  {
+   "basis": "same-brand card users: retail 0, airline 85; 2+ of one kind: retail {'credit_card': 23}, airline {'credit_card': 130, 'certificate': 117, 'gift_card': 129}; users with exactly one card: retail 306, airline 154; 2 certificates of one amount: 49. The check is per user, so the domain split ('retail yes, airline no') follows from the DB and needs no per-domain rule",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v3/message_view.py _unique_word_forms (used by state_tracker/v4/listing_v4.py:223)",
+   "decision": "kind word / brand word / 'the card' / the balance name a method only when they fit one method of the owner (per user, at run time)",
+   "id": "P6",
+   "was": "DB rows 'users with 2+ of one kind', 'users with 2+ cards of one brand' + simulator row 'brand only: retail yes, airline no'"
+  },
+  {
+   "basis": "a wrong brand next to the digits names a different card; a negated mention is not a choice",
+   "basis_kind": "generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:236-242; state_tracker/v4/helpers_go_ahead_v4.py:320-356 (brand_mismatch_v4, _payment_clash)",
+   "decision": "a brand word next to the digits that is not the card's brand is a clash, not a match; negation ('not the Mastercard') does not count",
+   "id": "P7",
+   "was": "lesson L1 (generic)"
+  },
+  {
+   "basis": "retail wiki.md:39 (\"refunded via the original payment method\"); retail wiki.md:69 (\"must either go to the original payment method\"); airline wiki.md:62 (\"original payment methods\"); DB kinds of payment_history[0]: {'gift_card': 337, 'credit_card': 304, 'paypal': 359}",
+   "basis_kind": "wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:183-188, 248-251",
+   "decision": "'the original payment method' when the call's method is payment_history[0]",
+   "id": "P8",
+   "was": "DB row 'original payment method'"
+  },
+  {
+   "basis": "airline wiki.md:34 (\"at most one travel certificate, at most one credit card\") (a split payment has amounts)",
+   "basis_kind": "wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:623-626, 434-439",
+   "decision": "airline booking with 2+ methods: each method with its amount",
+   "id": "P9",
+   "was": "predicate_table book row"
+  },
+  {
+   "basis": "order ids {'#W9999999': 1000} (all '#W' + 7 digits); generic: the '#' and the case carry no meaning",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:418-421, 739-740",
+   "decision": "order id: '#W1234567' or 'W1234567', any case; also by D6 (newest order id named)",
+   "id": "R1",
+   "was": "DB row 'order id' + simulator row 'order id as named'"
+  },
+  {
+   "basis": "591 item ids, 50 product ids, item ids equal to a product id: 0; generic: the tools take item ids, not product ids",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:458, 720",
+   "decision": "item id accepted; product id is not a line",
+   "id": "R2",
+   "was": "DB row 'product id / item id'"
+  },
+  {
+   "basis": "(order, product) pairs whose name shares a word with another product of the order: 52 of 2885, so the word must be unique in the order (checked per order at run time)",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:467-475",
+   "decision": "old item: the product name, or a word of it that names no other product of the order",
+   "id": "R3",
+   "was": "DB row 'order with 2+ items of one product' (word clash note)"
+  },
+  {
+   "basis": "orders with 2+ items of one product: 91 of 1000 (same item id twice: 7); there the name names 2 items",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:453-466",
+   "decision": "old item when the order has 2+ items of that product and the call does not take all: item id or an option value only that item has",
+   "id": "R4",
+   "was": "DB row 'order with 2+ items of one product' + simulator row 'items in expected writes'"
+  },
+  {
+   "basis": "retail wiki.md:67 (\"the list of items to be returned\"); generic: 'all' names every item exactly",
+   "basis_kind": "wiki + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:570-573, 285-287",
+   "decision": "return: 'all the items' / 'the whole order' when the call returns every item",
+   "id": "R5",
+   "was": "predicate_table retail row"
+  },
+  {
+   "basis": "variant pairs by number of differing options: {2: 1622, 4: 126, 3: 1098, 1: 853, 5: 17}; the new item is fixed by the product (same as the old) plus every changed value",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:482-504, 778-782",
+   "decision": "new item: its id, or every changed option value (whole value)",
+   "id": "R6",
+   "was": "DB row 'variant pairs'"
+  },
+  {
+   "basis": "value pairs where one is a whole word inside another of the same option: 3",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:115-122; state_tracker/v4/helpers_go_ahead_v4.py:18-22, 276-277 (_outer_spans)",
+   "decision": "option values match as whole values ('black' not inside 'black and white')",
+   "id": "R7",
+   "was": "DB row 'value inside another value' + code comment state_tracker/v4/helpers_go_ahead_v4.py:18-22"
+  },
+  {
+   "basis": "26 such values in the DB; generic: 1-2 character tokens ('S', 'M', '8') occur as ordinary words and numbers. 3-character values (23, e.g. colour words) are whole words and need no option name. Note: predicate_table.md says '<= 3 characters'; the code and this check say <= 2 (code unchanged)",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:376",
+   "decision": "a value of <= 2 characters needs its option name within 3 words",
+   "id": "R8",
+   "was": "DB row 'short option values'"
+  },
+  {
+   "basis": "11 number-only values; generic: a bare number also matches prices, quantities and ids",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:376",
+   "decision": "a number-only value needs its option name within 3 words",
+   "id": "R9",
+   "was": "DB row 'number-only option values'"
+  },
+  {
+   "basis": "3 such values; generic: 'yes' and 'no' are reply words",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:376",
+   "decision": "a yes / no / none value needs its option name within 3 words",
+   "id": "R10",
+   "was": "DB row 'yes / no option values'"
+  },
+  {
+   "basis": "products with one value under 2+ option names: 1",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:377-381",
+   "decision": "a value used under 2+ option names of one product needs its own option name",
+   "id": "R11",
+   "was": "DB row 'one value under 2+ option names'"
+  },
+  {
+   "basis": "country over 1500 addresses (users + orders): {'USA': 1500}; non-USA 0",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:73",
+   "decision": "country dropped (no line)",
+   "id": "A1",
+   "was": "DB row 'country' + code comment state_tracker/v4/listing_v4.py:73"
+  },
+  {
+   "basis": "address2 forms {'Suite N': 1500}, empty 0; generic: the other unit words are common spellings of the same unit and still need the same number",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:294, 335-347",
+   "decision": "address2: line 2 when it changes; 'Suite / Ste / Apt / Unit / #' + the number, or the number right after line 1",
+   "id": "A2",
+   "was": "DB row 'address2'"
+  },
+  {
+   "basis": "zip forms {'99999': 1500}",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:356-357",
+   "decision": "zip: the 5 digits, not inside another number",
+   "id": "A3",
+   "was": "DB row 'zip'"
+  },
+  {
+   "basis": "state forms {'2 capitals': 1500}; generic: the full state name is the same state",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:295-305, 350-355",
+   "decision": "state: the 2-letter code or the full name",
+   "id": "A4",
+   "was": "DB row 'state'"
+  },
+  {
+   "basis": "DB street lines are 'N Name Suffix'; generic: the abbreviation names the same street",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:290-293, 319-327",
+   "decision": "address1: the street line; suffix words and their abbreviations both count (Street / St ...)",
+   "id": "A5",
+   "was": "DB row 'address1'"
+  },
+  {
+   "basis": "orders shipped to the default address: 800 of 1000; retail wiki.md:3 (\"modify their default user address\")",
+   "basis_kind": "DB + wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:288-289, 510-528",
+   "decision": "'your default address' when the call's address equals the user's default",
+   "id": "A6",
+   "was": "predicate_table retail row"
+  },
+  {
+   "basis": "the user is asked to confirm a change; an unchanged field changes nothing",
+   "basis_kind": "generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:517-518",
+   "decision": "an unchanged address field needs no line",
+   "id": "A7",
+   "was": "predicate_table retail row"
+  },
+  {
+   "basis": "reservation id forms {'6 chars [A-Z0-9]': 2000}; letters-only ids 275 (matched as a whole token, so no inner-word hit)",
+   "basis_kind": "DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:424-425, 741-742",
+   "decision": "reservation id: the 6 characters, any case, whole token; also by D6",
+   "id": "F1",
+   "was": "DB row 'reservation id'"
+  },
+  {
+   "basis": "flight numbers {'HAT999': 300}; distinct digit tails 300 of 300 (so '170' alone names one flight); reservations with one flight number on 2+ dates: 8, with 2+ flights on one date: 1260 (the date is part of the line)",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:578-587, 698-707",
+   "decision": "flight: 'HAT170', 'HAT 170', 'flight 170', each with its date",
+   "id": "F2",
+   "was": "DB rows 'flight number', 'flight date'"
+  },
+  {
+   "basis": "generic: a date in any common format names the same day; DB years {'2024': 5003} (one year, so the year adds nothing)",
+   "basis_kind": "generic + DB",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:586, 707; message_view.text_names_date",
+   "decision": "dates: any common format, year optional",
+   "id": "F3",
+   "was": "DB row 'flight date' + simulator row 'date forms'"
+  },
+  {
+   "basis": "cabins {'business': 675, 'economy': 676, 'basic_economy': 649}; generic: 'economy' is a word of 'basic economy'",
+   "basis_kind": "DB + generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:590-592, 692-716, 655-656",
+   "decision": "cabin: 'basic economy' / 'economy' / 'business'; 'economy' is not matched inside 'basic economy'; flight change: only when it differs",
+   "id": "F4",
+   "was": "DB row 'cabin'"
+  },
+  {
+   "basis": "reservations with one passenger name twice: 6 of 2000 (elsewhere first + last name picks one passenger; a change that keeps the name lists the date of birth, so those few still name the changed passenger); passengers who are not the user or a saved passenger: 1163 of 3593; airline wiki.md:32 (\"collect the first name, last name, and date of birth\") (collecting, not listing)",
+   "basis_kind": "DB + wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:595-605, 669-674",
+   "decision": "passenger: first + last name; the date of birth only when it is the changed field",
+   "id": "F5",
+   "was": "DB row 'reservation passengers' + simulator row 'booking passengers'"
+  },
+  {
+   "basis": "the total and the number added both state the same change",
+   "basis_kind": "generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:627-631, 659-666",
+   "decision": "bags: the total when > 0 (book); a bag change: the new total or the number added",
+   "id": "F6",
+   "was": "DB row 'total bags'"
+  },
+  {
+   "basis": "reservations with 0 paid bags: 2000 of 2000; airline wiki.md:36 (\"Each extra baggage is 50 dollars\")",
+   "basis_kind": "DB + wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:632-635, 667-668",
+   "decision": "paid bags: a line only when > 0 (book), as the number with a paid word or the $ amount; a bag change names the payment method only when it costs money",
+   "id": "F7",
+   "was": "DB row 'paid bags'"
+  },
+  {
+   "basis": "airline wiki.md:66 (\"with the amount being $100 times the number of passengers\")",
+   "basis_kind": "wiki",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:640-644",
+   "decision": "certificate amount: '$N' (send_certificate)",
+   "id": "F8",
+   "was": "DB row 'certificate amount'"
+  },
+  {
+   "basis": "they are not arguments of the call, or they do not change",
+   "basis_kind": "generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:614-675",
+   "decision": "no line for flight type, flight status, membership, user address, unchanged flights / passengers",
+   "id": "F9",
+   "was": "DB rows 'flight type', 'flight status', 'membership', 'user address'"
+  },
+  {
+   "basis": "not a string form; decided by K17",
+   "basis_kind": "generic",
+   "changes": "no",
+   "code": "state_tracker/v4/listing_v4.py:636-638",
+   "decision": "insurance (book): the tiny question K17, not a form",
+   "id": "F10",
+   "was": "DB row 'insurance'"
+  },
+  {
+   "basis": "points to output/eval_v4/form_check.md, section 'decisions, DB-only'",
+   "basis_kind": "comment",
+   "changes": "comment only",
+   "code": "state_tracker/v4/listing_v4.py:6",
+   "decision": "comment: forms 'counted on the v1 data' -> now 'the DB-only form check'",
+   "id": "C1",
+   "was": "code comment"
+  },
+  {
+   "basis": "the rule is P5 + P6 above (DB counts)",
+   "basis_kind": "comment",
+   "changes": "comment only",
+   "code": "state_tracker/v4/helpers_go_ahead_v4.py:18",
+   "decision": "comment: ambiguity rule 'after the v1 form check' -> now 'the DB-only form check'",
+   "id": "C2",
+   "was": "code comment"
+  },
+  {
+   "basis": "the traps are DB facts (P5, R4, R7, R8, F1)",
+   "basis_kind": "comment",
+   "changes": "comment only",
+   "code": "tests/test_v4_listing.py:6",
+   "decision": "comment: test docstring 'form-check traps' -> DB-only form check",
+   "id": "C3",
+   "was": "code comment"
+  }
+ ],
+ "inputs_sha256": {
+  "airline/data/flights.json": "444d7565c68434a3e3fb72efd717f9f9cd5c56dce227f6f56e078f1cb0ed233a",
+  "airline/data/reservations.json": "1cf0bbc58ad984be9de7c24dba6dd27393f94cdbd482d8524f6a54db1f561a8c",
+  "airline/data/users.json": "bd264e2a31e0fa35cdfef8987e70a0dd3776828b582fe90e7a44823a12eb4cea",
+  "airline/wiki.md": "56c335801c16e26b54f600f9db99eb04d31db477e86eb160341d5c66b796c5c8",
+  "retail/data/orders.json": "2598a12586d28f2d6bd16bc86f4c800029b6af18e0abb5c475ef5c869c11ced1",
+  "retail/data/products.json": "a9eabcc1a9742c5f5288c2779acce52b9308423383ed24706bbaf0889f762a0f",
+  "retail/data/users.json": "6f4fd104cc5e80b92166c4035315c31532c6cea52a90dcdf18425ee7f87c2b82",
+  "retail/wiki.md": "d539fd2a46a8b8dd2e934ff9ed92f43e9f6b56bc7a718db8d2803ba8ad8f6bf7"
+ },
+ "retail_address2_empty": 0,
+ "retail_address2_forms": {
+  "Suite N": 1500
+ },
+ "retail_addresses": 1500,
+ "retail_brands": {
+  "mastercard": 133,
+  "visa": 106
+ },
+ "retail_card_holders": 216,
+ "retail_cards": 239,
+ "retail_cards_id_ends_in_last_four": 0,
+ "retail_country": {
+  "USA": 1500
+ },
+ "retail_cross_clash": 1,
+ "retail_cross_clash_examples": [
+  {
+   "id": "credit_card_7574044",
+   "other_card_last_four": "4044",
+   "user": "mei_johansson_1199"
+  }
+ ],
+ "retail_cross_option_products": 1,
+ "retail_id_forms": {
+  "credit_card_9999999": 239,
+  "gift_card_9999999": 234,
+  "paypal_9999999": 222
+ },
+ "retail_item_eq_product": 0,
+ "retail_items": 591,
+ "retail_kinds": {
+  "credit_card": 239,
+  "gift_card": 234,
+  "paypal": 222
+ },
+ "retail_methods": 695,
+ "retail_methods_needing_5_digits": 1,
+ "retail_multi_kind": {
+  "credit_card": 23
+ },
+ "retail_non_usa": 0,
+ "retail_numeric_values": 11,
+ "retail_order_id_forms": {
+  "#W9999999": 1000
+ },
+ "retail_order_product_pairs": 2885,
+ "retail_order_product_pairs_word_clash": 52,
+ "retail_orders": 1000,
+ "retail_orders_default_address": 800,
+ "retail_orders_name_word_clash": 26,
+ "retail_orders_same_item_twice": 7,
+ "retail_orders_two_same_product": 91,
+ "retail_original_kinds": {
+  "credit_card": 304,
+  "gift_card": 337,
+  "paypal": 359
+ },
+ "retail_products": 50,
+ "retail_same_brand_users": 0,
+ "retail_same_last4_users": 0,
+ "retail_short_values": 26,
+ "retail_state_forms": {
+  "2 capitals": 1500
+ },
+ "retail_tail_clash": 0,
+ "retail_three_char_values": 23,
+ "retail_two_cards_users": 23,
+ "retail_users_one_card": 306,
+ "retail_value_substring_pairs": 3,
+ "retail_variant_pair_diffs": {
+  "1": 853,
+  "2": 1622,
+  "3": 1098,
+  "4": 126,
+  "5": 17
+ },
+ "retail_yesno_values": 3,
+ "retail_zip_forms": {
+  "99999": 1500
+ }
+}

@@ -1,2 +1,30 @@
 __pycache__/
 *.pyc
+
+# Part 10 (subtask 8): copied baseline runs are 120 MB (> 50 MB); kept on disk, not in git (sha256 in from_shieldagent/SHA256SUMS)
+predicate_correctness/from_shieldagent/runs/
+
+# v4 push (2026-10-24): big run data and caches stay on disk; code, docs, reports and small results go in git
+third_party/
+predicate_correctness/output/_llmcache/
+predicate_correctness/output/eval_v2/
+predicate_correctness/output/eval_v3/
+predicate_correctness/output/online/
+predicate_correctness/output/archive/
+predicate_correctness/output/eval_v4/B1v4/
+predicate_correctness/output/eval_v4/B2v4/
+predicate_correctness/output/eval_v4/B3v4/
+predicate_correctness/output/eval_v4/Hv4/
+predicate_correctness/output/eval_v4/dryrun/
+predicate_correctness/output/eval_v4/dev/
+predicate_correctness/output/eval_v4/backup_pre_fix2/
+predicate_correctness/output/eval_v4/*.superseded_*
+predicate_correctness/output/steps_*.jsonl
+# logs: keep only the final v4 result files
+predicate_correctness/output/logs/*
+!predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.*
+!predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_diagnosis.json
+!predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.*
+!predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_diagnosis.json
+!predicate_correctness/output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.*
+!predicate_correctness/output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_diagnosis.json

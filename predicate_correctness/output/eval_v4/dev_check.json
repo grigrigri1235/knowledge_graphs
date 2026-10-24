@@ -1,0 +1,243 @@
+{
+ "all_pass": true,
+ "backend": "real",
+ "conversations": 200,
+ "marks": {
+  "D1": {
+   "checks": 2164,
+   "note": null,
+   "pass": true,
+   "ratio": 1.15625,
+   "standin_blocks": 32,
+   "tiny_blocks": 37,
+   "v4_tiny_block_flag": 18
+  },
+  "D2": {
+   "by_question": {
+    "K1": {
+     "no": 12,
+     "quote_failed": 1,
+     "yes": 170
+    },
+    "K10": {
+     "yes": 2
+    },
+    "K12": {
+     "no": 222,
+     "yes": 3
+    },
+    "K13": {
+     "no": 101,
+     "unclear": 3,
+     "yes": 60
+    },
+    "K16": {
+     "no": 14,
+     "yes": 9
+    },
+    "K17": {
+     "not_added": 8
+    },
+    "K18": {
+     "no": 7,
+     "yes": 9
+    },
+    "K3": {
+     "no": 51,
+     "yes": 66
+    },
+    "K4": {
+     "no": 15
+    },
+    "K6": {
+     "yes": 4
+    },
+    "K7": {
+     "no": 14,
+     "yes": 9
+    },
+    "K8": {
+     "no": 1,
+     "yes": 2
+    }
+   },
+   "note": null,
+   "pass": true,
+   "share": 0.005108556832694764,
+   "status": {
+    "no": 437,
+    "not_added": 8,
+    "quote_failed": 1,
+    "unclear": 3,
+    "yes": 334
+   },
+   "tiny_calls": 783,
+   "unclear": 4
+  },
+  "D3": {
+   "by_fact": {},
+   "counts": {
+    "asked facts with an answered question part": 1169,
+    "both keys open": 1155,
+    "the answers block, code open (a question decided the block)": 14
+   },
+   "disagreements": 0,
+   "pass": true
+  },
+  "D4": {
+   "by_kind": {},
+   "pass": true,
+   "state_errors": 0
+  },
+  "D5": {
+   "blocks": 37,
+   "fail_patterns": {},
+   "named": 37,
+   "pass": true,
+   "share": 1.0,
+   "unchecked": 0
+  }
+ },
+ "patterns": {
+  "by_fact": {
+   "agent_reminded_user_to_include_all_items_for_exchange": {
+    "disagree: tiny allows": 1
+   },
+   "pending_database_change_details_listed_and_explicitly_confirmed": {
+    "disagree: tiny allows": 3,
+    "disagree: tiny blocks": 3
+   },
+   "pending_response_offers_any_compensation_certificate": {
+    "disagree: tiny blocks": 1
+   },
+   "pending_response_offers_cancelled_flight_certificate": {
+    "disagree: tiny blocks": 2
+   },
+   "pending_response_offers_delayed_flight_certificate": {
+    "disagree: tiny blocks": 1
+   },
+   "request_cannot_be_handled_with_available_tools": {
+    "disagree: tiny allows": 7,
+    "disagree: tiny blocks": 14
+   },
+   "user_chose_pending_payment_method": {
+    "disagree: tiny blocks": 1
+   },
+   "user_complained_about_relevant_flight_situation": {
+    "disagree: tiny allows": 1
+   },
+   "user_explicitly_confirmed_pending_action": {
+    "disagree: tiny allows": 2,
+    "disagree: tiny blocks": 2
+   },
+   "user_explicitly_requested_compensation": {
+    "disagree: tiny allows": 1
+   },
+   "user_selected_eligible_flight_change_payment_method": {
+    "disagree: tiny allows": 1
+   }
+  },
+  "by_question": {
+   "K1": {
+    "agree": 255,
+    "disagree: tiny allows": 6,
+    "disagree: tiny blocks": 6
+   },
+   "K10": {
+    "agree": 2,
+    "disagree: tiny allows": 1
+   },
+   "K12": {
+    "agree": 674,
+    "disagree: tiny blocks": 4
+   },
+   "K13": {
+    "agree": 66,
+    "disagree: tiny allows": 7,
+    "disagree: tiny blocks": 14
+   },
+   "K16": {
+    "agree": 8,
+    "disagree: tiny allows": 1,
+    "disagree: tiny blocks": 5
+   },
+   "K17": {
+    "agree": 8
+   },
+   "K18": {
+    "agree": 9
+   },
+   "K3": {
+    "agree": 75,
+    "disagree: tiny allows": 1
+   },
+   "K4": {
+    "agree": 22
+   },
+   "K6": {
+    "agree": 4
+   },
+   "K7": {
+    "agree": 11
+   },
+   "K8": {
+    "agree": 2,
+    "disagree: tiny allows": 1
+   }
+  },
+  "decisions_by_question": {
+   "tiny allow, stand-in block": {
+    "-": 1,
+    "K1": 5,
+    "K13": 7,
+    "K16": 1,
+    "K3": 1
+   },
+   "tiny block, stand-in allow": {
+    "K1": 5,
+    "K10": 1,
+    "K12": 3,
+    "K13": 14,
+    "K16": 5,
+    "K8": 1
+   }
+  },
+  "decisions_by_tool": {
+   "tiny allow, stand-in block": {
+    "exchange_delivered_order_items": 1,
+    "modify_pending_order_items": 1,
+    "transfer_to_human_agents": 8,
+    "update_reservation_baggages": 1,
+    "update_reservation_flights": 3
+   },
+   "tiny block, stand-in allow": {
+    "modify_pending_order_payment": 1,
+    "respond": 1,
+    "transfer_to_human_agents": 14,
+    "update_reservation_flights": 2,
+    "update_reservation_passengers": 1
+   }
+  },
+  "missing_lines_at_blocks": {
+   "checked bags": 1,
+   "payment method": 3,
+   "payment method for the price difference": 1
+  },
+  "missing_lines_at_tiny_only_blocks": {},
+  "totals": {
+   "agree": 1128,
+   "asked facts": 1168,
+   "asked facts without two values": 1,
+   "disagree": 40
+  }
+ },
+ "rows": 2164,
+ "run_id": "v4dev_real_20261024T084043Z",
+ "validity": {
+  "guard_run_errors": 0,
+  "judge_calls": 0,
+  "missing_answers": 0,
+  "network_events": 0,
+  "valid": true
+ }
+}

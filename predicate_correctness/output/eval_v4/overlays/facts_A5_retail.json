@@ -1,0 +1,83 @@
+{
+  "domain": "retail",
+  "by": "A5",
+  "_about": "Tracker v4 fact overlay of build agent A5 (code_change_map.md sections 0.3 and 1.1, rows marked A5; predicate_table.md section 2.2). Only parts, combine, sources, evidence and update change; names, rules, blocking values, policy and who stay as in facts_v3_retail.json. Helpers: state_tracker/v4/helpers_v4.py (A5), state_tracker/v4/questions_v4.py (A3). The transfer escape (2 tiny blocks on one write key) is applied by the guard (tgr_tracker_v4), not by a part.",
+  "facts": {
+    "request_cannot_be_handled_within_scope": {
+      "combine": "(a AND b) OR d",
+      "sources": [
+        "structure",
+        "question"
+      ],
+      "evidence": "The user messages asked about (indexes), K13's answers and quotes (or 'no request outside the tools' scope in the user messages'); or 'the user could not be found (N failed look-ups)'.",
+      "update": "Computed for each pending transfer_to_human_agents call. True when K13 says yes for a user message (newest first, all user messages), or when two or more find_user_id_by_* calls ran and all failed. An unclear K13 answer is asked once more with the second wording; still unclear gives true (allow + log). The guard's escape can also set it true after 2 tiny blocks on one write.",
+      "parts": {
+        "a": {
+          "source": "structure",
+          "plain": "code picks every user message before the transfer call, newest first (v3 read only the newest two). The transfer's own summary argument is not read: it is the agent's text, not the user's request.",
+          "expr": "len(user_messages()) > 0",
+          "question": null,
+          "about": null
+        },
+        "b": {
+          "source": "question",
+          "plain": "K13 (v4) yes with a quote from a user message: it asks for something the retail tools cannot do (the question lists what they can do, S1, including finding the user by email or by name and zip). Newest message first, first yes wins. An unclear answer is asked once more with the second wording; still unclear: true (the transfer is allowed and the case is logged), because a wrong block of a transfer is a dead end and a needless transfer changes no data. Fix round 2 (K13 v5): each user message is asked with the agent's text message just before it (message B, context only; user_messages_with_agent_before_v4); yes also when B says the policy rules do not let the agent do the task for this user and the user still asks for it or for a person to look at it (never for the refused list).",
+          "expr": "ask_first_yes_v4('K13', user_messages_with_agent_before_v4(), on_unclear=True)",
+          "question": "K13",
+          "about": "every user message before the transfer plus the fixed list of what the tools can do; newest message first, stop at the first yes"
+        },
+        "d": {
+          "source": "structure",
+          "plain": "the user cannot be found, so nothing is in scope: at least two find_user_id_by_email / find_user_id_by_name_zip calls ran before the transfer, all failed (output 'Error ...') and none worked (helpers_v4.user_not_found_v4). Guard-blocked calls are not in the executed history and do not count.",
+          "expr": "user_not_found_v4()",
+          "question": null,
+          "about": null
+        }
+      }
+    },
+    "request_is_for_another_user": {
+      "evidence": "'order #W2 does not belong to the logged-in user' or 'user id X is not the logged-in user' (never any data of the other user), or the reason K4 was asked (relation words / login values not typed) and K4's quote from the user message.",
+      "update": "Computed for each pending call from the call's own object: an earlier request for someone else that the agent denied does not block later calls on the user's own objects. The database decides every call with an object; K4 is asked only when code sees a reason: at the first login (a login value the user did not type, or relation words in a user message) and on screened catalog reads. An unclear K4 answer is asked once more with the second wording; still unclear gives false (allow + log).",
+      "parts": {
+        "b": {
+          "source": "structure",
+          "plain": "K4's gate (helpers_v4.other_person_precondition_v4): first login (find_user_id_by_* while `me` is not set): true when one of the call's identity values (email; or first name, last name, zip) is in no user message, or a user message before the call hits the other-person word list (wife, husband, son, friend, colleague, 'for my', 'on behalf', his / her, ...); catalog reads (get_product_details, list_all_product_types): true when the latest user message hits that list. Every other call: false (part a, the database owner, decides). The word list only decides whether K4 is asked.",
+          "expr": "other_person_precondition_v4()",
+          "question": null,
+          "about": null
+        },
+        "c": {
+          "source": "question",
+          "plain": "K4 (v4) yes with a quote from M (another_user_pick(): at the first login the newest user message holding the call's identity values; at a catalog read the latest user message): the message asks about another person's account or order, or asks the agent to act for another person (another customer or account holder; not a public person, an author, a company, or the user). An unclear answer is asked once more with the second wording; still unclear: false (the login or catalog read is allowed and logged; later calls are still checked against the database owner by part a).",
+          "expr": "ask_first_yes_v4('K4', another_user_pick(), on_unclear=False)",
+          "question": "K4",
+          "about": "the one user message M of another_user_pick(), asked only when part b holds"
+        }
+      }
+    },
+    "response_performs_task_for_another_user": {
+      "combine": "a",
+      "sources": [
+        "structure"
+      ],
+      "evidence": "'the reply holds data of a user who is not the logged-in user' (the kind of value, never the value).",
+      "update": "Computed for each pending reply, by code only (K5 and its always-true screen are gone): true when the reply holds a database value of a user other than the logged-in user that no user message holds (part a, v3's info classes, unchanged); false otherwise.",
+      "parts": {
+        "b": null,
+        "c": null
+      }
+    },
+    "user_specific_information_disclosed": {
+      "combine": "a",
+      "sources": [
+        "structure"
+      ],
+      "evidence": "The kind of value and where it is in the reply ('the reply holds an order id the user did not type'), never a database value beyond the agent's own words.",
+      "update": "Computed for each pending reply, and needed only while user_authenticated is false (after login rule 3 holds either way). True when part a finds a user-data value that a worked tool output showed and the user did not type; false otherwise (K14 is gone: code only).",
+      "parts": {
+        "b": null,
+        "c": null
+      }
+    }
+  }
+}

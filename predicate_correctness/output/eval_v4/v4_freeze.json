@@ -1,0 +1,1239 @@
+{
+ "counts": {
+  "bytes": 7430716,
+  "method": 202,
+  "preregistration": 1,
+  "reading_guide": 1,
+  "total": 204
+ },
+ "files": [
+  {
+   "bytes": 39044,
+   "path": "predicate_correctness/guard/direct_facts_v4.py",
+   "role": "method",
+   "sha256": "98442646ce770c700d833855f3328b128e9c3921b1c5efb6e3c99e76243e7293"
+  },
+  {
+   "bytes": 80306,
+   "path": "predicate_correctness/guard/feedback_v4.py",
+   "role": "method",
+   "sha256": "9c6fd733a37c7cdd0e2dee67a558980ce45e47acad6bc20fc12f026768375715"
+  },
+  {
+   "bytes": 154588,
+   "path": "predicate_correctness/guard/run_online_v4.py",
+   "role": "method",
+   "sha256": "b82712b1990ec4dbe9421ffe81eb4963a9d7d3709bbbe1f3f9c2f78c79b4151b"
+  },
+  {
+   "bytes": 59720,
+   "path": "predicate_correctness/guard/soft_stop_v4.py",
+   "role": "method",
+   "sha256": "78922e178f2c4b535ddb771fae3d08ed3be7532468e80547351472069b9adf16"
+  },
+  {
+   "bytes": 35776,
+   "path": "predicate_correctness/guard/tgr_tracker_v4.py",
+   "role": "method",
+   "sha256": "9db9c861f6a1666904deaaf858077a34cbc692387fd498fa7647ac60c576b5d2"
+  },
+  {
+   "bytes": 23114,
+   "path": "predicate_correctness/output/eval_v4/cases/K1.jsonl",
+   "role": "method",
+   "sha256": "8858213787afef5f2cc5a84db0a31bfe10c898158c5ef8323f849fe7b1816fad"
+  },
+  {
+   "bytes": 14604,
+   "path": "predicate_correctness/output/eval_v4/cases/K10.jsonl",
+   "role": "method",
+   "sha256": "1f71dce327d3ca8f145cf88085efb7ba8cf008fdb21b3d7614ba16d2b14f5c4b"
+  },
+  {
+   "bytes": 17568,
+   "path": "predicate_correctness/output/eval_v4/cases/K12.jsonl",
+   "role": "method",
+   "sha256": "37955043e3bd292bf58a477679616beb0a1d21ddceeaa5937e59189b7183e898"
+  },
+  {
+   "bytes": 17830,
+   "path": "predicate_correctness/output/eval_v4/cases/K13.jsonl",
+   "role": "method",
+   "sha256": "a5fd7758e3995d6722b14783d422dfcd1ad44200e58c7adf2f8c518304e1afcc"
+  },
+  {
+   "bytes": 13499,
+   "path": "predicate_correctness/output/eval_v4/cases/K16.jsonl",
+   "role": "method",
+   "sha256": "4074713d5274f9f3bc5a127f2961b98d53609a881252503022a77da8c034a1b2"
+  },
+  {
+   "bytes": 18132,
+   "path": "predicate_correctness/output/eval_v4/cases/K17.jsonl",
+   "role": "method",
+   "sha256": "96699e7e5d6ed189c3d276ebdcefb799f8ae9e6d3df8b8b50df53f57c1839f15"
+  },
+  {
+   "bytes": 19645,
+   "path": "predicate_correctness/output/eval_v4/cases/K18.jsonl",
+   "role": "method",
+   "sha256": "be9d130f2c115e91c0610c0471dc592b6b95273962f01a741ebba2acb67f4b7f"
+  },
+  {
+   "bytes": 20129,
+   "path": "predicate_correctness/output/eval_v4/cases/K3.jsonl",
+   "role": "method",
+   "sha256": "9822f8200293ea7d8eb5dfedd9c1ed5eba9f3bd661451ff2c2e28baeffa75caf"
+  },
+  {
+   "bytes": 12450,
+   "path": "predicate_correctness/output/eval_v4/cases/K4.jsonl",
+   "role": "method",
+   "sha256": "51bdef0b198dd2995bb4a329e2b11ef6218ae35a07a9439f16f93b7f71061b91"
+  },
+  {
+   "bytes": 10485,
+   "path": "predicate_correctness/output/eval_v4/cases/K6.jsonl",
+   "role": "method",
+   "sha256": "6a9a186c30e4bca972d2dd2cf6946ecac5fdb1879beb08bbbec456f41e7e91e5"
+  },
+  {
+   "bytes": 13634,
+   "path": "predicate_correctness/output/eval_v4/cases/K7.jsonl",
+   "role": "method",
+   "sha256": "54982d7b32666ca584b0ba567057e21f55043f462829e896d1ca1028ed326d9b"
+  },
+  {
+   "bytes": 14670,
+   "path": "predicate_correctness/output/eval_v4/cases/K8.jsonl",
+   "role": "method",
+   "sha256": "1f0e03dc61e61e089a04fa36d2ad917c8694955fc17c58dd71c9b12a30028bbb"
+  },
+  {
+   "bytes": 906,
+   "path": "predicate_correctness/output/eval_v4/cases/SHA256SUMS",
+   "role": "method",
+   "sha256": "f4d6dd8cb214170ee8b7fba3a35db6091ecb3b51d6d1f22d64d1826b70022ea0"
+  },
+  {
+   "bytes": 2628849,
+   "path": "predicate_correctness/output/eval_v4/cases/answers.jsonl",
+   "role": "method",
+   "sha256": "2cbf9064fcbd3eefd44ad28c1da8603c22b276984992fdafe33040f6531a52e7"
+  },
+  {
+   "bytes": 1937,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A1_airline.json",
+   "role": "method",
+   "sha256": "eaabea429f43f5873f0251474310606338ffe07e4a67face7ab32703780dc1ea"
+  },
+  {
+   "bytes": 3140,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A1_retail.json",
+   "role": "method",
+   "sha256": "cca309d26bf9434128514451ecc5015fa1c679acb386665eb7aefbf20b9315c9"
+  },
+  {
+   "bytes": 4274,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A2_airline.json",
+   "role": "method",
+   "sha256": "7818571d8b146d064e9d329628d3c8bc62a589a7c5ca5b9ffafae0282fde5636"
+  },
+  {
+   "bytes": 7640,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A2_retail.json",
+   "role": "method",
+   "sha256": "1bc4fb2b31e5a2c2b441e26e5401467bde2dfa057618ab7c7f3a453e0ee609e4"
+  },
+  {
+   "bytes": 22272,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A5_airline.json",
+   "role": "method",
+   "sha256": "a59b220ec19dfec2e706d864422e698c139523ef092e69fb14c535ede62ac88c"
+  },
+  {
+   "bytes": 7004,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_A5_retail.json",
+   "role": "method",
+   "sha256": "66b95ed6badf50f7b8eb8c23a317219d669e3ba2cc56ef15f35f70b6704d05dc"
+  },
+  {
+   "bytes": 1871,
+   "path": "predicate_correctness/output/eval_v4/overlays/facts_F2_retail.json",
+   "role": "method",
+   "sha256": "341c158d9cf422757c59665a1d9703594d72be9c7ab596f37bd3779d585ee1e9"
+  },
+  {
+   "bytes": 40891,
+   "path": "predicate_correctness/output/eval_v4/overlays/questions_A4.json",
+   "role": "method",
+   "sha256": "f40ce90d301641736c97c308c31d6acea8e5b50fea05fda6f33c45a86d3c2261"
+  },
+  {
+   "bytes": 9251,
+   "path": "predicate_correctness/scoring/v4_after_run.sh",
+   "role": "method",
+   "sha256": "d5b341e40ccb0ea4855997725d3f950c9e7451b376860f8e23a0c6adfc153195"
+  },
+  {
+   "bytes": 19724,
+   "path": "predicate_correctness/scoring/v4_b1_summary.py",
+   "role": "method",
+   "sha256": "18ebb03baafb51b609221914f285289e05208bf2e51ea6260c6fb6af135de8e2"
+  },
+  {
+   "bytes": 21585,
+   "path": "predicate_correctness/scoring/v4_cases.py",
+   "role": "method",
+   "sha256": "ef4d59e603f1b0294214cd74cbb80c1c747595a696df470e02e103df7ef33cb4"
+  },
+  {
+   "bytes": 10765,
+   "path": "predicate_correctness/scoring/v4_dev_answers.py",
+   "role": "method",
+   "sha256": "d7afd0d69bdeb42cf9456d0da92f963dc2e954bb5a648cd0049450881a55243d"
+  },
+  {
+   "bytes": 17667,
+   "path": "predicate_correctness/scoring/v4_dev_check.py",
+   "role": "method",
+   "sha256": "40e7ef99ff117c7f6b8b6ef8326eba7e79a7bab6498363b35c5f78d292e68018"
+  },
+  {
+   "bytes": 36304,
+   "path": "predicate_correctness/scoring/v4_diagnosis.py",
+   "role": "method",
+   "sha256": "4bc58ba0d872f18d201f8a170e0fb62d2d984b05246f15530ad8ad004836b2ec"
+  },
+  {
+   "bytes": 45645,
+   "path": "predicate_correctness/scoring/v4_form_check.py",
+   "role": "method",
+   "sha256": "5add9a725d8e1b18072ec79ba3c8bef9a206255f59b94b99b219f4274d0213b0"
+  },
+  {
+   "bytes": 12815,
+   "path": "predicate_correctness/scoring/v4_freeze.py",
+   "role": "method",
+   "sha256": "497d224e47c05c8e4a9d647aeaea6b13ab720dccb5f37d05142061a398d1b7ab"
+  },
+  {
+   "bytes": 8170,
+   "path": "predicate_correctness/scoring/v4_interim.sh",
+   "role": "method",
+   "sha256": "4a710353eaf1c5d9b2e7e7bff72e4b091d748201d0c5d1482b5c82f0a273d584"
+  },
+  {
+   "bytes": 82937,
+   "path": "predicate_correctness/scoring/v4_message_check.py",
+   "role": "method",
+   "sha256": "6bf4c054822be6cd14582248e5b7334b3651ff236b4975338440460e62813d98"
+  },
+  {
+   "bytes": 64231,
+   "path": "predicate_correctness/scoring/v4_offline_eval.py",
+   "role": "method",
+   "sha256": "315ed1c722bc799b086ddc1a8d46ec92b848e34d47a611b1adb21dd2a241f7c2"
+  },
+  {
+   "bytes": 21481,
+   "path": "predicate_correctness/scoring/v4_online_interim.py",
+   "role": "method",
+   "sha256": "232ffa44e98b41fb434c9be584c92b5c4b7823a13da7f49ec5a619040c5e6e84"
+  },
+  {
+   "bytes": 118457,
+   "path": "predicate_correctness/scoring/v4_online_metrics.py",
+   "role": "method",
+   "sha256": "ba045d699e76f72baf3f076f58ca4cc65f801b474dcc43a5afc0474869e9bce8"
+  },
+  {
+   "bytes": 79870,
+   "path": "predicate_correctness/scoring/v4_report.py",
+   "role": "method",
+   "sha256": "78440799dedc77cdaf202688db0dbcf39fcba9b07d629d6f462b1f60bf50ffa5"
+  },
+  {
+   "bytes": 4856,
+   "path": "predicate_correctness/scripts/v4_cases_gen/check_fewshot_overlap.py",
+   "role": "method",
+   "sha256": "6f05204e6acbd9a9b8df9f6a9fb934dde2646fa9e5bd77680e51433e1bde25e8"
+  },
+  {
+   "bytes": 46398,
+   "path": "predicate_correctness/scripts/v4_cases_gen/gen_a17.py",
+   "role": "method",
+   "sha256": "baa504b8d3b2fe9d10670586528bc46aa69d461047bcf5f588250c2f9133075a"
+  },
+  {
+   "bytes": 20016,
+   "path": "predicate_correctness/scripts/v4_cases_gen/gen_k1.py",
+   "role": "method",
+   "sha256": "a1336816f1cf2a5253e469675ca92c9b909c1784439691d8f05ed4f5a04cf59f"
+  },
+  {
+   "bytes": 14306,
+   "path": "predicate_correctness/scripts/v4_cases_gen/gen_k3.py",
+   "role": "method",
+   "sha256": "358c0f96a05480244f8f0b89e802f9d740a5313bed920a6c9ba64472710c87bb"
+  },
+  {
+   "bytes": 16111,
+   "path": "predicate_correctness/scripts/v4_cases_gen/gen_k4k6.py",
+   "role": "method",
+   "sha256": "4d3527b83f7c350a85238afc8de8614a2ee82208da7c6cfef71f87deb36dbe87"
+  },
+  {
+   "bytes": 27388,
+   "path": "predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py",
+   "role": "method",
+   "sha256": "d21af5c32b71c7e55024c8696cec044695853f2bd3a604e8901d6164477687dd"
+  },
+  {
+   "bytes": 3339,
+   "path": "predicate_correctness/scripts/v4_dry_all.sh",
+   "role": "method",
+   "sha256": "4bc32952c39d87c1d7c51e9393fd90ade909601eca720b6ae1131e3e47403f56"
+  },
+  {
+   "bytes": 3214,
+   "path": "predicate_correctness/scripts/v4_identity_check.sh",
+   "role": "method",
+   "sha256": "5df0d858820dff411f6cc250a7497c24e8e605de94671514eedab71bc25d5784"
+  },
+  {
+   "bytes": 17389,
+   "path": "predicate_correctness/scripts/v4_identity_driver.py",
+   "role": "method",
+   "sha256": "399740adabfc06d1c38fdcd9411f051e4c49e4fe3e12b857ad37633766e260b6"
+  },
+  {
+   "bytes": 20277,
+   "path": "predicate_correctness/scripts/v4_merge_overlays.py",
+   "role": "method",
+   "sha256": "7cfed398462efdf4240bdd007dfad0957baaf7f6dc4156a5c562e248d40de75b"
+  },
+  {
+   "bytes": 2244,
+   "path": "predicate_correctness/scripts/v4_run_tests_parallel.sh",
+   "role": "method",
+   "sha256": "4a46993c705e43e0191fd948de62754d7f39eab038e7506be4cea5ce303f3a0a"
+  },
+  {
+   "bytes": 0,
+   "path": "predicate_correctness/state_tracker/v4/__init__.py",
+   "role": "method",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "bytes": 155993,
+   "path": "predicate_correctness/state_tracker/v4/facts_v4_airline.json",
+   "role": "method",
+   "sha256": "acc994ddf778c73a3101da91b0f4e6538ef113b79b32cd5d9ea03b30db325449"
+  },
+  {
+   "bytes": 75195,
+   "path": "predicate_correctness/state_tracker/v4/facts_v4_retail.json",
+   "role": "method",
+   "sha256": "58c06504a4cf076e72701338a676f9e6aa36628039eff392da7a4bbc97af2ffa"
+  },
+  {
+   "bytes": 28601,
+   "path": "predicate_correctness/state_tracker/v4/helpers_go_ahead_v4.py",
+   "role": "method",
+   "sha256": "e0d603ba6af996edf5aaeceb4e3ee82de4ce63510b57678e1af5c926cd39d5a5"
+  },
+  {
+   "bytes": 20261,
+   "path": "predicate_correctness/state_tracker/v4/helpers_v4.py",
+   "role": "method",
+   "sha256": "7b142a04ed47e04262dd9f12062801fc0178a09cf544731e65df692e94f10488"
+  },
+  {
+   "bytes": 50154,
+   "path": "predicate_correctness/state_tracker/v4/listing_v4.py",
+   "role": "method",
+   "sha256": "5a0f6b702307a2b01b24d94f2bfdddc2bdccb89b3c3c300f9abe69ccb89a7eff"
+  },
+  {
+   "bytes": 44397,
+   "path": "predicate_correctness/state_tracker/v4/questions_v4.json",
+   "role": "method",
+   "sha256": "cbc2b2eaa5f3b67aebce1afefeb3688b15359b7b13b8bc0ff0fe6d4a0631f732"
+  },
+  {
+   "bytes": 73169,
+   "path": "predicate_correctness/state_tracker/v4/questions_v4.py",
+   "role": "method",
+   "sha256": "f3206ee1df708b32e1837d970dc7de1615b39b7a10a364999890f8d85f47a5ae"
+  },
+  {
+   "bytes": 66604,
+   "path": "predicate_correctness/tests/audit_v4_online_recompute.py",
+   "role": "method",
+   "sha256": "ac2f2049bb4b5988f8138ac57904b22e164418e598e5dac0c0be882f9697e1d0"
+  },
+  {
+   "bytes": 9851,
+   "path": "predicate_correctness/tests/fixtures_v4/build_questions_fixture_v4.py",
+   "role": "method",
+   "sha256": "f1ac6add91d59f98bd93c92384f1071fad10c7109afbcde19db786e879898a6a"
+  },
+  {
+   "bytes": 4321,
+   "path": "predicate_correctness/tests/fixtures_v4/feedback/facts_patch_v4.json",
+   "role": "method",
+   "sha256": "32e5d06bf3b5902cbd4e60a02784574ad164ce05b23baff9c547435f206149ee"
+  },
+  {
+   "bytes": 151561,
+   "path": "predicate_correctness/tests/fixtures_v4/guard/facts_v4_airline.json",
+   "role": "method",
+   "sha256": "c49deb8c410247a0dd1b4f5d0a743a5148bf8e899d140595110d7c25f5f16783"
+  },
+  {
+   "bytes": 73245,
+   "path": "predicate_correctness/tests/fixtures_v4/guard/facts_v4_retail.json",
+   "role": "method",
+   "sha256": "0122a87da75543f824806612c346edc67d37e63a63464270216d20327a3f3eba"
+  },
+  {
+   "bytes": 14692,
+   "path": "predicate_correctness/tests/fixtures_v4/questions_v4_fixture.json",
+   "role": "method",
+   "sha256": "d447e429e0809e6b78e27b823d1b14d54668fc38c70449ddde5cb9ac14dfb055"
+  },
+  {
+   "bytes": 3427,
+   "path": "predicate_correctness/tests/test_v4_cases_window.py",
+   "role": "method",
+   "sha256": "553f36d1b7356d1b3c960f644ad02bcba9191eafccef1e4615de5dbba0060449"
+  },
+  {
+   "bytes": 36866,
+   "path": "predicate_correctness/tests/test_v4_code_facts.py",
+   "role": "method",
+   "sha256": "bfb14d2bd1991a10d555019e99b0060bdde0527ef3397a0360dc9932cadb5b5e"
+  },
+  {
+   "bytes": 36506,
+   "path": "predicate_correctness/tests/test_v4_devcheck.py",
+   "role": "method",
+   "sha256": "608fef3dde2e3fee6397b12678b24b546df40e5fb676e404829ccabc7b671e69"
+  },
+  {
+   "bytes": 29602,
+   "path": "predicate_correctness/tests/test_v4_direct_facts.py",
+   "role": "method",
+   "sha256": "940b46ee5f9e04831324ff7df850081533fcc0179b673a3cac8751f6bdf7ddaa"
+  },
+  {
+   "bytes": 46577,
+   "path": "predicate_correctness/tests/test_v4_feedback.py",
+   "role": "method",
+   "sha256": "bd928d8aaf431cf2d783e475a911c660a0fa36cfa240f0503fcd980ba946ef3c"
+  },
+  {
+   "bytes": 10997,
+   "path": "predicate_correctness/tests/test_v4_fix2.py",
+   "role": "method",
+   "sha256": "a15b4352c404994e8deca816e13a1034fee7d7cd2bd73842c4cbaf3cc1716b79"
+  },
+  {
+   "bytes": 4838,
+   "path": "predicate_correctness/tests/test_v4_form_check.py",
+   "role": "method",
+   "sha256": "153640138d37f4dd1535888440bc935e8d89267ff6756ec46e42627fea83b1c3"
+  },
+  {
+   "bytes": 12425,
+   "path": "predicate_correctness/tests/test_v4_freeze.py",
+   "role": "method",
+   "sha256": "3b8f91a5393db68a401ea481418771c56ad752a4f32d26bffee576b8981ffff0"
+  },
+  {
+   "bytes": 35647,
+   "path": "predicate_correctness/tests/test_v4_go_ahead.py",
+   "role": "method",
+   "sha256": "b2dfb13d4b8b1975fb8f032ecc5af4246b24ac7d314fcbe94c4e75ae6091ad78"
+  },
+  {
+   "bytes": 37786,
+   "path": "predicate_correctness/tests/test_v4_guard.py",
+   "role": "method",
+   "sha256": "d6d553f56a68424a4fb2a8f004548769c71649547c27cbe5224a412d8474e054"
+  },
+  {
+   "bytes": 18186,
+   "path": "predicate_correctness/tests/test_v4_interim.py",
+   "role": "method",
+   "sha256": "f67f372d37de288fff8369f6cc760c59f90bd1388a28da5f4b775af1486a7540"
+  },
+  {
+   "bytes": 35306,
+   "path": "predicate_correctness/tests/test_v4_listing.py",
+   "role": "method",
+   "sha256": "5cf938c9c0832fa66eb5af8fe2565cd2f96665f2574c20a732cf1b6eae1f9776"
+  },
+  {
+   "bytes": 54783,
+   "path": "predicate_correctness/tests/test_v4_metrics.py",
+   "role": "method",
+   "sha256": "555254fc5e59c86a9a50595ac6195cc6df012864a0e974ab517a83d0f2f0263d"
+  },
+  {
+   "bytes": 22318,
+   "path": "predicate_correctness/tests/test_v4_no_gold_import.py",
+   "role": "method",
+   "sha256": "23fad82043ccfed1b04a74b500db9033563ea8bfaced1202916299f1174e2be2"
+  },
+  {
+   "bytes": 22429,
+   "path": "predicate_correctness/tests/test_v4_question_texts.py",
+   "role": "method",
+   "sha256": "fe206af46fc3989d252bb3f1c06389d84cd16cf04aad84672392b2112234d40e"
+  },
+  {
+   "bytes": 20648,
+   "path": "predicate_correctness/tests/test_v4_questions.py",
+   "role": "method",
+   "sha256": "ed4a8deab09fcc418405ae3cdf9d05fb6b05f365b070e0384ba42c390396033f"
+  },
+  {
+   "bytes": 49239,
+   "path": "predicate_correctness/tests/test_v4_recompute.py",
+   "role": "method",
+   "sha256": "8f7fce5a1e69b74b21e993f8eaf128d8338341e27c38f397c5989e1083511d03"
+  },
+  {
+   "bytes": 30228,
+   "path": "predicate_correctness/tests/test_v4_report.py",
+   "role": "method",
+   "sha256": "56edd0f896ac301373366c747fbf4453e7754dc8d91f5dd09bfc103b42a8c175"
+  },
+  {
+   "bytes": 126366,
+   "path": "predicate_correctness/tests/test_v4_run_online.py",
+   "role": "method",
+   "sha256": "0d1b8c26423869c57a9facd1440168817f1dd5b2117ab985914c8ceb453f6cf2"
+  },
+  {
+   "bytes": 14092,
+   "path": "predicate_correctness/tests/test_v4_unclear.py",
+   "role": "method",
+   "sha256": "b80a9a73baa1e152a41801537c4d366808ac7793514b5bb32bc330c574f4a5b4"
+  },
+  {
+   "bytes": 24102,
+   "path": "predicate_correctness/tests/test_v4_v3_untouched.py",
+   "role": "method",
+   "sha256": "215c1bfc1892596a6a1d9de3ba7365ef12c89198f0e595cab19a9515ec2ba137"
+  },
+  {
+   "bytes": 89016,
+   "path": "docs/planning/tracker_v4/predicate_table.md",
+   "role": "method",
+   "sha256": "6c5cc9f4ba77b233229be90466325606d526ee690728a69cf7c8cdd1536af438"
+  },
+  {
+   "bytes": 27892,
+   "path": "docs/planning/tracker_v4/cases_spec.md",
+   "role": "method",
+   "sha256": "274f478157c9eb9a6854ee88bca3d47a95bbab65ef73b63efc0c2e36dc63fe51"
+  },
+  {
+   "bytes": 19032,
+   "path": "predicate_correctness/from_shieldagent/SHA256SUMS",
+   "role": "method",
+   "sha256": "3865a434c0939579ea0566bf69cd9cd52f9513dc9067ab1c02762f4f403979e9"
+  },
+  {
+   "bytes": 6155,
+   "path": "predicate_correctness/from_shieldagent/policies/airline_wiki.txt",
+   "role": "method",
+   "sha256": "56c335801c16e26b54f600f9db99eb04d31db477e86eb160341d5c66b796c5c8"
+  },
+  {
+   "bytes": 5718,
+   "path": "predicate_correctness/from_shieldagent/policies/retail_wiki.txt",
+   "role": "method",
+   "sha256": "d539fd2a46a8b8dd2e934ff9ed92f43e9f6b56bc7a718db8d2803ba8ad8f6bf7"
+  },
+  {
+   "bytes": 2922,
+   "path": "predicate_correctness/from_shieldagent/rules/airline/manifest.json",
+   "role": "method",
+   "sha256": "4ee12f830d23b9e6dd32cebbf5dc8e10e6efbfdf8fdda7e08f4deebfac38c674"
+  },
+  {
+   "bytes": 60938,
+   "path": "predicate_correctness/from_shieldagent/rules/airline/rule_set.json",
+   "role": "method",
+   "sha256": "27e2eafa05fd919d41083e8d4dfeb7c4a6d9a789fa2ad7c5da645584d05bc5a4"
+  },
+  {
+   "bytes": 3119,
+   "path": "predicate_correctness/from_shieldagent/rules/retail/manifest.json",
+   "role": "method",
+   "sha256": "845f6d9a40ab05d83242b74ce9b8d35c71d880162c2394b67885c8a279fa602d"
+  },
+  {
+   "bytes": 60517,
+   "path": "predicate_correctness/from_shieldagent/rules/retail/rule_set.json",
+   "role": "method",
+   "sha256": "9e395e2fc259cdf228612c4cd078a5bb3836bad4fe42af4493ffc9359fb63d7b"
+  },
+  {
+   "bytes": 431,
+   "path": "predicate_correctness/from_shieldagent/runner/exp_core/__init__.py",
+   "role": "method",
+   "sha256": "1dae2f991c254a2d44c79a37cc4132e6012355095642d43ede655cb5ffded599"
+  },
+  {
+   "bytes": 2610,
+   "path": "predicate_correctness/from_shieldagent/runner/exp_core/model_profiles.json",
+   "role": "method",
+   "sha256": "03c46ecfbc813e1be2a2cefec865a68b21dc8266ef42c1aaf9e2997b006a2b7e"
+  },
+  {
+   "bytes": 15130,
+   "path": "predicate_correctness/from_shieldagent/runner/exp_core/models.py",
+   "role": "method",
+   "sha256": "0cb9c4e5f3f7ec9febd0365efa6955226e62ba7c27f2fe9487803998ae9d2717"
+  },
+  {
+   "bytes": 7691,
+   "path": "predicate_correctness/from_shieldagent/runner/exp_core/run_online.py",
+   "role": "method",
+   "sha256": "10f04247593d183ffef7d58b5b79c086ab9e0213292cedc24b2e10f090ba86bd"
+  },
+  {
+   "bytes": 862,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/__init__.py",
+   "role": "method",
+   "sha256": "1b11a4724553d7decaefa1dee773878118d1a9f64eed0dcc1b568b90c6525b0f"
+  },
+  {
+   "bytes": 2778,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/feedback.py",
+   "role": "method",
+   "sha256": "6e9bb5c83fbe1c11f8ee40ba26e7c21a6ae5fcaed25aff10690af8b7a892c3d8"
+  },
+  {
+   "bytes": 2016,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/llm.py",
+   "role": "method",
+   "sha256": "567f49cb22c0c5e06be69f606b7cac30a354d00c163ad5676228fae1707b775c"
+  },
+  {
+   "bytes": 1220,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/policy_text.py",
+   "role": "method",
+   "sha256": "6e2416bb9907eb2c6ede388556173e960b2800f3223ecb1a3730723094c8c742"
+  },
+  {
+   "bytes": 1143,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts.py",
+   "role": "method",
+   "sha256": "27b4da24c80ffa657cb6bbae97eb2ce8ee7ff2466d4c6a2668331d2080da55fe"
+  },
+  {
+   "bytes": 215,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/actions_free.md",
+   "role": "method",
+   "sha256": "afa381adcb6c1f8b2720112efde9417e8c18c1405bc591c677d83d3ed447293e"
+  },
+  {
+   "bytes": 230,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/actions_tools.md",
+   "role": "method",
+   "sha256": "062f4d76f84e290cc0824917e804f05ab45b1fb0688032b39d0768284654830f"
+  },
+  {
+   "bytes": 621,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/dispositions.md",
+   "role": "method",
+   "sha256": "94ae3489c99456bd8dc8ce83556b46e2f8223d4b1950ac0eeda8bf980d5f4c9d"
+  },
+  {
+   "bytes": 404,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/example_general.md",
+   "role": "method",
+   "sha256": "cf9801403e312668c1693e2a5cb1cd50c3f2d7701b406971f5e1c1b6801d768b"
+  },
+  {
+   "bytes": 780,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/example_restriction.md",
+   "role": "method",
+   "sha256": "ff23a600589c1fcf9f8d98346cdde536c6246702e129c6bb81abd0afc4945020"
+  },
+  {
+   "bytes": 555,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/form_general.md",
+   "role": "method",
+   "sha256": "21d47105f2020558f045c2268f5a7ace76addb9074ab78a2a00c2f69902b554f"
+  },
+  {
+   "bytes": 1571,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/form_restriction.md",
+   "role": "method",
+   "sha256": "8b9c21ea09fd68b63d40be0f6c5dcf08c0eb9eede4956cd37b75ea0a926dd50f"
+  },
+  {
+   "bytes": 2393,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/judge.md",
+   "role": "method",
+   "sha256": "c3acbd4c26240473656085a950fafdbf8bac6ddf404f52c944d7e117363332a2"
+  },
+  {
+   "bytes": 37,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/no_dispositions.md",
+   "role": "method",
+   "sha256": "ab626a5b8d6a53d80e7f869ff35385ba4aae468ed52c4d90174acc0c3f8232eb"
+  },
+  {
+   "bytes": 836,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/predicates_grounded.md",
+   "role": "method",
+   "sha256": "ea16ee627f4498d5c2cab44ea9d7d6d69f6b8bfe4c96f7b74e77bc71be1e14b7"
+  },
+  {
+   "bytes": 503,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/predicates_plain.md",
+   "role": "method",
+   "sha256": "0de622b60074d66499b39d2f7b68dd7942b647ec86997a82bd072f897fe334ef"
+  },
+  {
+   "bytes": 491,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/repair.md",
+   "role": "method",
+   "sha256": "f099786338a41f8924922380c86ddf8c6a1297e7357035ca01548f9fbdbe02f1"
+  },
+  {
+   "bytes": 230,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/rules_system.md",
+   "role": "method",
+   "sha256": "a9b6172907b3086766dceab3aefd2a3834e3f9d385b410b9d4c60c561a56b226"
+  },
+  {
+   "bytes": 210,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/rules_user.md",
+   "role": "method",
+   "sha256": "af2d72bb054d67a4e1d3c2f7fb07c17906e8c3611e915a6324bf5c5c790799b2"
+  },
+  {
+   "bytes": 2452,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/prompts/scope.md",
+   "role": "method",
+   "sha256": "a58521fd27fea7b47ec797e08cb96faa35197b69a81ae69c19df593cbb11d6f9"
+  },
+  {
+   "bytes": 14286,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/rules.py",
+   "role": "method",
+   "sha256": "1d9c3a8b59d31a2a06fc1e349e92fe6868326fb6cefb24dee460999e215ba178"
+  },
+  {
+   "bytes": 9136,
+   "path": "predicate_correctness/from_shieldagent/runner/method_tgr/runtime.py",
+   "role": "method",
+   "sha256": "895659215ab45db55b0ded2f5ff0caaba45864fd84e5d2fa946f8a5f0b5d5fb8"
+  },
+  {
+   "bytes": 86,
+   "path": "predicate_correctness/from_shieldagent/runner/policy_pipeline/__init__.py",
+   "role": "method",
+   "sha256": "b846dba80622479cf95cf053eaf29309e392c22b97f3ef74388ace9fd89ffb72"
+  },
+  {
+   "bytes": 6004,
+   "path": "predicate_correctness/from_shieldagent/runner/policy_pipeline/llm.py",
+   "role": "method",
+   "sha256": "5786a5d1fd3b5578fce217e97a01b30796203717612db1b3f3ae1eabd34c4564"
+  },
+  {
+   "bytes": 0,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/__init__.py",
+   "role": "method",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "bytes": 1095,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/config.json",
+   "role": "method",
+   "sha256": "30fe454353ae2e1cf2f068be932a38638b4db55f78029b146db4618ae6f7b738"
+  },
+  {
+   "bytes": 5632,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/llm.py",
+   "role": "method",
+   "sha256": "3d1862175438e66bbcbef6d39c34648980c6af4c2cfb936a13a0e282416a19d6"
+  },
+  {
+   "bytes": 10042,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/ltlf.py",
+   "role": "method",
+   "sha256": "a766c1732442368173a3e370a86d46eb630405e36168786cd5275cf5730d2d57"
+  },
+  {
+   "bytes": 5550,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/taubench_run.py",
+   "role": "method",
+   "sha256": "abe667a346ca894c3e2b7104094151c179f11836a951bc7ded4e103f20812a47"
+  },
+  {
+   "bytes": 4005,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_core/taubench_steps.py",
+   "role": "method",
+   "sha256": "07f8e8034f5098663deb86d6e183b5425516d16ea54ebe018aef48a8182104e9"
+  },
+  {
+   "bytes": 448,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_online/__init__.py",
+   "role": "method",
+   "sha256": "73e271c55ff74083b1008f9867530db20911cc87b44b57b7409b3106616c5b30"
+  },
+  {
+   "bytes": 6180,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_online/episode.py",
+   "role": "method",
+   "sha256": "a2b19ad1aecf44d311d9b9247910c45e21f4fb892ae96a8d84106da250cfdb7d"
+  },
+  {
+   "bytes": 4866,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_online/guards.py",
+   "role": "method",
+   "sha256": "72c7cced7a8ec8b67445a18e61d8cd4e640737f9515975f4e3c6b540ebc69320"
+  },
+  {
+   "bytes": 4651,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_online/run.py",
+   "role": "method",
+   "sha256": "2f787d7d42870e3d628cb1d6913110f92bab1dc8d9de82d83d4030020147c427"
+  },
+  {
+   "bytes": 290,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/__init__.py",
+   "role": "method",
+   "sha256": "04dc15bc039cba2e6e04afe6707172de121f878d99461d46eed3120e81034c93"
+  },
+  {
+   "bytes": 5032,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/aspm.py",
+   "role": "method",
+   "sha256": "2afef6749a29880e2892b277afab76a6cd28d383b908b772658322636a517a4a"
+  },
+  {
+   "bytes": 3332,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/calls.py",
+   "role": "method",
+   "sha256": "449e0fe389db4029c399dda0b7408eb24bec5c0f11c9764d9dc401e43161ec59"
+  },
+  {
+   "bytes": 1570,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/direct.py",
+   "role": "method",
+   "sha256": "cccb281aa1d98c51ca79d00c927e5eff4e3e9a3bee9e091aff736400510d95c7"
+  },
+  {
+   "bytes": 1212,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/extract.py",
+   "role": "method",
+   "sha256": "d982c4fbf38af5e120b7e0c8a0d7e98e5989d66911c0de139001b2754e1ac66e"
+  },
+  {
+   "bytes": 5788,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/mln.py",
+   "role": "method",
+   "sha256": "6873ce704dab26664e103f680da9c2b9b4ab8ee6862e20548bc8778ca0340c37"
+  },
+  {
+   "bytes": 8599,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/plan.py",
+   "role": "method",
+   "sha256": "5aa045616965e06ac0a55d825b02ffdc37f5f0ab58311a4e29167acac64cb1b4"
+  },
+  {
+   "bytes": 1171,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts.py",
+   "role": "method",
+   "sha256": "885b09f36c27d6efb1172b260d7405000e98c29b9ffbfb239400ce2bc995b5d2"
+  },
+  {
+   "bytes": 362,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/binary_check.md",
+   "role": "method",
+   "sha256": "7642b54ca03a3b221d2a48cf793fbbe39d64abc599bf3a9ea91283f4400cd246"
+  },
+  {
+   "bytes": 352,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/direct.md",
+   "role": "method",
+   "sha256": "c80f90ae0457380d992fb50566adc6d2ec3b30b114c40aec7b40ff8861fdcc17"
+  },
+  {
+   "bytes": 426,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/explain.md",
+   "role": "method",
+   "sha256": "c7b01b4f7e6abc5020c09fd35bfa1c4ce99c2b08eac4cb2fdb10c8515ac9d243"
+  },
+  {
+   "bytes": 452,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/extract.md",
+   "role": "method",
+   "sha256": "905df7e53c9113af1c668dd74e267c5d03890d4284376f6a124132657700074b"
+  },
+  {
+   "bytes": 3020,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/planner_system.md",
+   "role": "method",
+   "sha256": "4742e4d05a266aabcfff9aee3f874330b68f65df845f835eb782d2a9630c534a"
+  },
+  {
+   "bytes": 456,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/planner_user.md",
+   "role": "method",
+   "sha256": "b3bfa0b7caacaa6ebd5934bb2a04272f5afd4333de371af95df93ef0aa0f2e1f"
+  },
+  {
+   "bytes": 1437,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/relevance.md",
+   "role": "method",
+   "sha256": "d321d5c2567098793c6eff31893f1dae33e26b474435fdcdcb6dec580bb859cc"
+  },
+  {
+   "bytes": 290,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/search.md",
+   "role": "method",
+   "sha256": "b63d9a401dffa0069e0f09c7198f6687772cca80d9fccb24c4ab06485062a800"
+  },
+  {
+   "bytes": 447,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/prompts/vocab.md",
+   "role": "method",
+   "sha256": "122e2f6dd2f345304019b7e8eac570e2e584f9bf8ceaa4f99cd22d09f0856280"
+  },
+  {
+   "bytes": 9003,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/shield.py",
+   "role": "method",
+   "sha256": "b800205f40b4100f35e68bdbdddca06012cafdb628891105982b1803b3fc2c90"
+  },
+  {
+   "bytes": 2512,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/verify.py",
+   "role": "method",
+   "sha256": "6151003c9ddd99c644e1c8e1b7a662559ab57c08cba49985cf9d4dc1a32a3d4b"
+  },
+  {
+   "bytes": 1919,
+   "path": "predicate_correctness/from_shieldagent/runner/repro_runtime/vocab.py",
+   "role": "method",
+   "sha256": "090816f49446955abb766cf3a3cd569195cd7d46c880656da4c558a4da06f355"
+  },
+  {
+   "bytes": 5962,
+   "path": "predicate_correctness/from_shieldagent/runner/utility/utils.py",
+   "role": "method",
+   "sha256": "d40b80152f18de43027a1387949e36691bf3d0b23f74341137edde86d2c5f8bc"
+  },
+  {
+   "bytes": 3812,
+   "path": "predicate_correctness/from_shieldagent/splits/splits.json",
+   "role": "method",
+   "sha256": "a3ab3471c67dad9ae3c4d8e252b13282317ad65d648e5a008e1d934568f4abb5"
+  },
+  {
+   "bytes": 239,
+   "path": "predicate_correctness/guard/__init__.py",
+   "role": "method",
+   "sha256": "a2e96047578728b662088b03dbda46d60a9379898b9d30aa4281a59231a21924"
+  },
+  {
+   "bytes": 30534,
+   "path": "predicate_correctness/guard/direct_facts_v3.py",
+   "role": "method",
+   "sha256": "3913e60019d098e7dfd9b675c50f18f7938a46be415f7f25c824bc0d0c0f704b"
+  },
+  {
+   "bytes": 45884,
+   "path": "predicate_correctness/guard/feedback_v3.py",
+   "role": "method",
+   "sha256": "d7c7085eaeb413e7f373e8a4eb5df112b5a191d80ef975174889316d21870f5d"
+  },
+  {
+   "bytes": 13620,
+   "path": "predicate_correctness/guard/offline.py",
+   "role": "method",
+   "sha256": "0690612c965a05ed383761763c3daacb7900f3c1c76ddc6b2e26449bac50e5c6"
+  },
+  {
+   "bytes": 53643,
+   "path": "predicate_correctness/guard/run_online.py",
+   "role": "method",
+   "sha256": "0d91d68442b9e5149e4967d47dc445c52e90414df936ddcd7c8ff4ef93087b75"
+  },
+  {
+   "bytes": 91306,
+   "path": "predicate_correctness/guard/run_online_v3.py",
+   "role": "method",
+   "sha256": "0daab01d99c47203f3c5fb1bc7ab24afa1c0ae97f58c7c82ec9a7bc876b60cd7"
+  },
+  {
+   "bytes": 2582,
+   "path": "predicate_correctness/guard/runner_path.py",
+   "role": "method",
+   "sha256": "e21177aa0902be6a65d0110f9647f528616a7e8eae1222c9f121b66d0e42f6d2"
+  },
+  {
+   "bytes": 12623,
+   "path": "predicate_correctness/guard/soft_stop.py",
+   "role": "method",
+   "sha256": "9230dc30ea3f6b6f8628d4914f8afe348cd2716cbd975b8ec08e25baf31c9c4c"
+  },
+  {
+   "bytes": 31555,
+   "path": "predicate_correctness/guard/soft_stop_v3.py",
+   "role": "method",
+   "sha256": "f83a04b44c5636af389d28d67169e446566f2800ff25ecd19043bc57d3b9a391"
+  },
+  {
+   "bytes": 12622,
+   "path": "predicate_correctness/guard/tgr_tracker.py",
+   "role": "method",
+   "sha256": "a8d65e8f2fb9857b6c88cc6da09776cefccd48026c48a5eb625dd2bd7aadc229"
+  },
+  {
+   "bytes": 45372,
+   "path": "predicate_correctness/guard/tgr_tracker_v3.py",
+   "role": "method",
+   "sha256": "3afdc3a5c0ab33d63bce874a6b171672f0f47718994bc719c2377ef3b434f377"
+  },
+  {
+   "bytes": 7304,
+   "path": "predicate_correctness/guard/write_guard.py",
+   "role": "method",
+   "sha256": "b7e88f9f2212bef5195f654632a45757c10364c4e9444350c8cd30e094a34296"
+  },
+  {
+   "bytes": 16140,
+   "path": "predicate_correctness/output/eval_v3/b3_tasks.json",
+   "role": "method",
+   "sha256": "0394a99ad08d3c832419f63333bc22b78096b993af5fb39c36c20a47917b33ff"
+  },
+  {
+   "bytes": 21687,
+   "path": "predicate_correctness/output/eval_v3/online_tasks.json",
+   "role": "method",
+   "sha256": "5f7b9b71c727531c29cbe1ab8e7189b4bcf67195bb5b78f02437f98d08baf96e"
+  },
+  {
+   "bytes": 111154,
+   "path": "predicate_correctness/output/eval_v3/rule_table_airline.json",
+   "role": "method",
+   "sha256": "ea2f654a6b5e7d5f1e99bf76e24c08aef4199e4516e1ce2074e5fc27ddbd0c69"
+  },
+  {
+   "bytes": 117900,
+   "path": "predicate_correctness/output/eval_v3/rule_table_retail.json",
+   "role": "method",
+   "sha256": "1d288c284351337e2316926d6ca0c68b5980fd5af2a6bdb22215202cb817cd3f"
+  },
+  {
+   "bytes": 13881,
+   "path": "predicate_correctness/output/predicate_types.json",
+   "role": "method",
+   "sha256": "20dade34ca42965be3a3ae139749651b385b268de7d6bd4eb07ca12a21ee1889"
+  },
+  {
+   "bytes": 228,
+   "path": "predicate_correctness/state_tracker/__init__.py",
+   "role": "method",
+   "sha256": "689e8afa9de35b41be7e2b896746b057647c88ba42ddeaa4d594646dc89ec7aa"
+  },
+  {
+   "bytes": 30781,
+   "path": "predicate_correctness/state_tracker/decide_again.py",
+   "role": "method",
+   "sha256": "1966dece578ed6e985a81603212c6c5ef896bf8cf8b60bf4394aeb8b8d7ddabd"
+  },
+  {
+   "bytes": 29832,
+   "path": "predicate_correctness/state_tracker/load_steps.py",
+   "role": "method",
+   "sha256": "2813f004d295acb328e1af0218f79ec15ddd442083a0d8e72abc94ed3e0c4255"
+  },
+  {
+   "bytes": 18997,
+   "path": "predicate_correctness/state_tracker/lookup_format.py",
+   "role": "method",
+   "sha256": "934a074f660d4317bc8034f607d4ab9f8a240c5e9a698b8b22ce55b31937ed70"
+  },
+  {
+   "bytes": 20028,
+   "path": "predicate_correctness/state_tracker/lookups_airline.json",
+   "role": "method",
+   "sha256": "882ca35ed6a1bbda1ea97d1eed87dd36246b2111cc1d4d47c5645ce12b701dc7"
+  },
+  {
+   "bytes": 9748,
+   "path": "predicate_correctness/state_tracker/lookups_retail.json",
+   "role": "method",
+   "sha256": "77918b7727831f8c18353f5b5dce89d7e05017aa4db11f31722ee23cc41044a4"
+  },
+  {
+   "bytes": 32991,
+   "path": "predicate_correctness/state_tracker/p7_sample.py",
+   "role": "method",
+   "sha256": "af72e4237dacb9553cc6b84fb03b58d828b1776037c058fd1065f6d894512f46"
+  },
+  {
+   "bytes": 1885,
+   "path": "predicate_correctness/state_tracker/paths.py",
+   "role": "method",
+   "sha256": "17f3478c7b78e94afa464381bfd1de7ce913836e341d9b18d7ef82071b193a17"
+  },
+  {
+   "bytes": 13808,
+   "path": "predicate_correctness/state_tracker/predicate_types.py",
+   "role": "method",
+   "sha256": "07b27ee0174904255a4661ea215c79f407a59764d5a3fd512a8021250a4b8a7f"
+  },
+  {
+   "bytes": 31380,
+   "path": "predicate_correctness/state_tracker/replay.py",
+   "role": "method",
+   "sha256": "6259af674649e29633999e5d5b5496397a5ad142e7a6c1cd368366796c86035c"
+  },
+  {
+   "bytes": 21585,
+   "path": "predicate_correctness/state_tracker/replay_check.py",
+   "role": "method",
+   "sha256": "086e3288492b86fd2988e8d5aa5424fd931d04f427d63a8e4c3df8eaa488e78d"
+  },
+  {
+   "bytes": 10916,
+   "path": "predicate_correctness/state_tracker/run_lookups.py",
+   "role": "method",
+   "sha256": "77bbe676cc2c87da9e66f914d1dd468026948202a1a1da3d628e2f2e680dad71"
+  },
+  {
+   "bytes": 25307,
+   "path": "predicate_correctness/state_tracker/state.py",
+   "role": "method",
+   "sha256": "a61b7f6214c33e27748c1bbefcee1700865b4654a19e58570ef8f75701542ea0"
+  },
+  {
+   "bytes": 7436,
+   "path": "predicate_correctness/state_tracker/tau_copy.py",
+   "role": "method",
+   "sha256": "339bfc40d8aff4f31ce8eb32cf355ffeb8dd45a12f20707ff456a9baadc4a2cc"
+  },
+  {
+   "bytes": 2508,
+   "path": "predicate_correctness/state_tracker/tgr_to_aspm.py",
+   "role": "method",
+   "sha256": "47baead1369be2ae71cb861088db631f01f9ed5344b5b7679b84eb3edfdd2081"
+  },
+  {
+   "bytes": 10825,
+   "path": "predicate_correctness/state_tracker/tool_table.json",
+   "role": "method",
+   "sha256": "e2631238ff5fa4e709456e5d1dfa0b1280744300dfeef93fe27cc1e091b5dcf7"
+  },
+  {
+   "bytes": 16008,
+   "path": "predicate_correctness/state_tracker/type_counts.py",
+   "role": "method",
+   "sha256": "df4e37e3f6af2021cfa12b7e64484da6c869588a9d2217f730e7bc4d6ea682ec"
+  },
+  {
+   "bytes": 245,
+   "path": "predicate_correctness/state_tracker/v3/__init__.py",
+   "role": "method",
+   "sha256": "2c353fcfb3f87d16c5f9e39f4e5561184c197e42e01cde80bf520bdd84e83463"
+  },
+  {
+   "bytes": 16036,
+   "path": "predicate_correctness/state_tracker/v3/code_helpers.py",
+   "role": "method",
+   "sha256": "53f08edd0675bb3bfc5ca60dcd0c26d3e98f6a903ca2e0203cc3b295789b090d"
+  },
+  {
+   "bytes": 56141,
+   "path": "predicate_correctness/state_tracker/v3/facts_format_v3.py",
+   "role": "method",
+   "sha256": "c4de3e63502e1ec8532e622f77333deb3faa066891c65c23b6578d75614ce727"
+  },
+  {
+   "bytes": 151561,
+   "path": "predicate_correctness/state_tracker/v3/facts_v3_airline.json",
+   "role": "method",
+   "sha256": "c49deb8c410247a0dd1b4f5d0a743a5148bf8e899d140595110d7c25f5f16783"
+  },
+  {
+   "bytes": 73245,
+   "path": "predicate_correctness/state_tracker/v3/facts_v3_retail.json",
+   "role": "method",
+   "sha256": "0122a87da75543f824806612c346edc67d37e63a63464270216d20327a3f3eba"
+  },
+  {
+   "bytes": 15087,
+   "path": "predicate_correctness/state_tracker/v3/frozen.py",
+   "role": "method",
+   "sha256": "d90e5db71eeba5acfe03717802672659db103ac65a7593a64d969d24bc890315"
+  },
+  {
+   "bytes": 20896,
+   "path": "predicate_correctness/state_tracker/v3/info_classes.py",
+   "role": "method",
+   "sha256": "ba55362a818d7edbdd4ec2a64ae17461f9dabf5194eebfba1a10c0f72c119ce7"
+  },
+  {
+   "bytes": 84892,
+   "path": "predicate_correctness/state_tracker/v3/message_view.py",
+   "role": "method",
+   "sha256": "4d302a75b1508403b925b8822b6376cbd447108c85464bbf1b3d24beff0cfad4"
+  },
+  {
+   "bytes": 86879,
+   "path": "predicate_correctness/state_tracker/v3/questions.py",
+   "role": "method",
+   "sha256": "0d43eb12827237ee147e23d14f6cccb21b191ddcd1c36f104b167a7acd27f4ab"
+  },
+  {
+   "bytes": 17931,
+   "path": "predicate_correctness/state_tracker/v3/questions_v3.json",
+   "role": "method",
+   "sha256": "892b0ea5ace3084bedb950d9cb28300b5bae3ae6116b597c66456f45e4391ed0"
+  },
+  {
+   "bytes": 13791,
+   "path": "predicate_correctness/state_tracker/v3/rule_table.py",
+   "role": "method",
+   "sha256": "6593aa658c42641591d0f1b90ca90bc285ac1caae4a91927d82d9c9f311f77c5"
+  },
+  {
+   "bytes": 20623,
+   "path": "predicate_correctness/state_tracker/v3/tool_check.py",
+   "role": "method",
+   "sha256": "493591328ad4687acb7361607d555f3f0b00527bec81cd3bd84300be58bbe21f"
+  },
+  {
+   "bytes": 39974,
+   "path": "docs/planning/tracker_v4/preregistration_v4.md",
+   "role": "preregistration",
+   "sha256": "59b2dc2032db1b1ba8c8535501662724f53457695067fc8ea56e1c1579a3365f"
+  },
+  {
+   "bytes": 22133,
+   "path": "docs/planning/tracker_v4/reading_guide_v4.md",
+   "role": "reading_guide",
+   "sha256": "2e1f160c3fd3dfbc09f126c15d8657b875669da8bbe0f260d76b22c2b641d6f6"
+  }
+ ],
+ "root": "/home/azureuser/code_projects",
+ "version": "v4_freeze 2",
+ "written_by": "predicate_correctness/scoring/v4_freeze.py",
+ "written_utc": "2026-10-24T10:15:13Z"
+}

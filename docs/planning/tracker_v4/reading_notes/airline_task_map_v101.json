@@ -1,0 +1,2431 @@
+{
+ "written_by": "scratchpad/air_task_map.py (tracker v4 planning, $0)",
+ "what": "every tau3 airline task (data/tau2/domains/airline/tasks.json, 50) mapped to its tau-bench v1 airline test task index (tasks_test.py, 50)",
+ "method": "score = [same user_id] + difflib ratio(instruction text) + Jaccard(write actions) + Jaccard(reservation ids); one-to-one optimal assignment (Hungarian) over the 50x50 score matrix; ambiguous if margin to runner-up < 0.5, user_id differs, or the assignment differs from the per-task greedy best",
+ "source_sha256": {
+  "v1_tasks_test.py": "14cdb6b4fe810faac9a0cc8395d3c7b32c883a979d1cde8c8003ae25a93d2ff3",
+  "tau3_tasks.json": "ccd8ba737b4cc371415af70151187788f728d6108d0916e73bb4317b40542052",
+  "splits.json": "a3ab3471c67dad9ae3c4d8e252b13282317ad65d648e5a008e1d934568f4abb5"
+ },
+ "data_purity": "partner TEST-group tasks: only the index is stored (role=DROP_partner_test); no content analysed",
+ "map": [
+  {
+   "tau3_id": "0",
+   "tau3_split": "train",
+   "v1_task_index": 49,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 49,
+    "score": 2.148,
+    "same_user_id": true,
+    "text_sim": 0.148,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.254
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "1",
+   "tau3_split": "train",
+   "v1_task_index": 47,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 47,
+    "score": 2.455,
+    "same_user_id": true,
+    "text_sim": 0.455,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.323
+   },
+   "user_id": "raj_sanchez_7340",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.455,
+   "change_kind": "reads_changed",
+   "change_note": "names the trip (PHL->LGA): expected read MZDDS4 -> Q69X3R; no writes on both sides",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "2",
+   "tau3_split": "test",
+   "v1_task_index": 46,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 46,
+    "score": 2.323,
+    "same_user_id": true,
+    "text_sim": 0.323,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 45,
+    "runner_up_score": 1.628
+   },
+   "user_id": "noah_muller_9847",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 4,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "send_certificate"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.323,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold sent certificate $50; tau3 gold: none (user never changes/cancels). DB: HAT018 2024-05-11 landed -> delayed (in this user's 4OG6T3)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 4,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "3",
+   "tau3_split": "train",
+   "v1_task_index": 44,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 44,
+    "score": 3.111,
+    "same_user_id": true,
+    "text_sim": 0.111,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 41,
+    "runner_up_score": 2.066
+   },
+   "user_id": "anya_garcia_5901",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 1,
+   "v1_n_outputs": 1,
+   "v1_actions": [
+    "get_reservation_details",
+    "get_user_details"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "get_user_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.111,
+   "change_kind": "text_only",
+   "change_note": "adds 'ask for supervisor if told Silver'; communicate '4' kept; actions identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 1,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "4",
+   "tau3_split": "train",
+   "v1_task_index": 40,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 40,
+    "score": 3.079,
+    "same_user_id": true,
+    "text_sim": 0.079,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 39,
+    "runner_up_score": 2.291
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "5",
+   "tau3_split": "train",
+   "v1_task_index": 37,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 37,
+    "score": 3.44,
+    "same_user_id": true,
+    "text_sim": 0.44,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.24
+   },
+   "user_id": "mei_brown_7075",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details"
+   ],
+   "tau3_actions": [
+    "get_user_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.44,
+   "change_kind": "text_only",
+   "change_note": "adds 'do not cancel/modify, accept after a few tries, do not ask transfer'; actions identical (no certificate)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "6",
+   "tau3_split": "test",
+   "v1_task_index": 36,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 35,
+    "score": 2.159,
+    "same_user_id": true,
+    "text_sim": 0.159,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 35,
+    "runner_up_score": 2.179
+   },
+   "user_id": "sophia_taylor_9065",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details",
+    "transfer_to_human_agents"
+   ],
+   "tau3_actions": [
+    "get_reservation_details"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.159,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold had transfer_to_human_agents; tau3 has no transfer (refuse insurance add)",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "7",
+   "tau3_split": "train",
+   "v1_task_index": 34,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 34,
+    "score": 2.626,
+    "same_user_id": true,
+    "text_sim": 0.126,
+    "write_action_jaccard": 0.5,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.223
+   },
+   "user_id": "daiki_muller_1116",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 4,
+   "tau3_n_communicate_info": 1,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details",
+    "get_reservation_details",
+    "calculate",
+    "calculate",
+    "update_reservation_flights",
+    "cancel_reservation",
+    "cancel_reservation"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "get_reservation_details",
+    "update_reservation_flights",
+    "cancel_reservation",
+    "cancel_reservation"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.126,
+   "change_kind": "gold_changed",
+   "change_note": "upgrade XEHM4B to business (v1: economy) before cancel; user is sick; communicate '1628'; cancels identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 3,
+    "write_bucket": "3+",
+    "write_tools": {
+     "update_reservation_flights": 1,
+     "cancel_reservation": 2
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 4,
+    "nl_scored": false,
+    "n_communicate_info": 1,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "8",
+   "tau3_split": "test",
+   "v1_task_index": 32,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 32,
+    "score": 3.669,
+    "same_user_id": true,
+    "text_sim": 0.669,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 33,
+    "runner_up_score": 1.279
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "9",
+   "tau3_split": "train",
+   "v1_task_index": 27,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 27,
+    "score": 2.657,
+    "same_user_id": true,
+    "text_sim": 0.657,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 26,
+    "runner_up_score": 2.454
+   },
+   "user_id": "aarav_ahmed_6699",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 4,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "cancel_reservation",
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "calculate"
+   ],
+   "tau3_actions": [
+    "search_direct_flight"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.657,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold cancelled NQNU5R (plus reads, no M20IZO write); tau3 gold: no writes, only search JFK->MCO; M20IZO must stay unchanged",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 4,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "10",
+   "tau3_split": "train",
+   "v1_task_index": 17,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 17,
+    "score": 2.485,
+    "same_user_id": true,
+    "text_sim": 0.485,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.196
+   },
+   "user_id": "liam_khan_2521",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [],
+   "tau3_actions": [],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.485,
+   "change_kind": "text_only",
+   "change_note": "adds 'no date change without business'; no writes on both sides",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "11",
+   "tau3_split": "train",
+   "v1_task_index": 15,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 15,
+    "score": 2.393,
+    "same_user_id": true,
+    "text_sim": 0.393,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 12,
+    "runner_up_score": 0.179
+   },
+   "user_id": "james_patel_9828",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 1,
+   "v1_n_outputs": 0,
+   "v1_actions": [],
+   "tau3_actions": [
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.393,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold: no write; tau3 gold: update_reservation_flights GV1N64 to basic_economy (downgrade) + communicate '5244'; downgrade target economy -> basic economy; '5 rounds' -> '2 rounds'",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_flights": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 1,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "12",
+   "tau3_split": "train",
+   "v1_task_index": 14,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 14,
+    "score": 3.471,
+    "same_user_id": true,
+    "text_sim": 0.471,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.253
+   },
+   "user_id": "chen_lee_6825",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "calculate",
+    "update_reservation_baggages"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "calculate",
+    "update_reservation_baggages"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.471,
+   "change_kind": "text_only",
+   "change_note": "budget $600 -> $650; 'add 2 bags even if upgrade not possible'; actions identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_baggages": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "13",
+   "tau3_split": "test",
+   "v1_task_index": 13,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 13,
+    "score": 2.592,
+    "same_user_id": true,
+    "text_sim": 0.592,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 22,
+    "runner_up_score": 0.321
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "14",
+   "tau3_split": "train",
+   "v1_task_index": 8,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 8,
+    "score": 3.712,
+    "same_user_id": true,
+    "text_sim": 0.712,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 9,
+    "runner_up_score": 2.669
+   },
+   "user_id": "mohamed_silva_9265",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 5,
+   "tau3_n_communicate_info": 3,
+   "v1_n_outputs": 3,
+   "v1_actions": [
+    "cancel_reservation",
+    "book_reservation"
+   ],
+   "tau3_actions": [
+    "cancel_reservation",
+    "book_reservation"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.712,
+   "change_kind": "text_only",
+   "change_note": "payment rule now 'only book if mastercard charge < $2000'; outputs 327/1000/1786 kept as communicate_info; actions identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 2,
+    "write_bucket": "2",
+    "write_tools": {
+     "cancel_reservation": 1,
+     "book_reservation": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 5,
+    "nl_scored": false,
+    "n_communicate_info": 3,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "15",
+   "tau3_split": "train",
+   "v1_task_index": 7,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 7,
+    "score": 3.356,
+    "same_user_id": true,
+    "text_sim": 0.356,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 6,
+    "runner_up_score": 3.125
+   },
+   "user_id": "aarav_garcia_1177",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "update_reservation_flights"
+   ],
+   "tau3_actions": [
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.356,
+   "change_kind": "text_only",
+   "change_note": "clarifies 'Economy (not Basic Economy)'; actions identical",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_flights": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "16",
+   "tau3_split": "test",
+   "v1_task_index": 6,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 6,
+    "score": 3.151,
+    "same_user_id": true,
+    "text_sim": 0.151,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 7,
+    "runner_up_score": 3.126
+   },
+   "user_id": "aarav_garcia_1177",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "update_reservation_flights"
+   ],
+   "tau3_actions": [
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.151,
+   "change_kind": "text_only",
+   "change_note": "clarifies 'Economy (not Basic Economy)'; actions identical",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_flights": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "17",
+   "tau3_split": "train",
+   "v1_task_index": 5,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 5,
+    "score": 3.143,
+    "same_user_id": true,
+    "text_sim": 0.143,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 4,
+    "runner_up_score": 3.139
+   },
+   "user_id": "omar_rossi_1241",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "update_reservation_flights",
+    "update_reservation_passengers",
+    "update_reservation_baggages"
+   ],
+   "tau3_actions": [
+    "update_reservation_flights",
+    "update_reservation_passengers",
+    "update_reservation_baggages"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.143,
+   "change_kind": "same",
+   "change_note": "same content as list; actions identical",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 3,
+    "write_bucket": "3+",
+    "write_tools": {
+     "update_reservation_flights": 1,
+     "update_reservation_passengers": 1,
+     "update_reservation_baggages": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "18",
+   "tau3_split": "test",
+   "v1_task_index": 2,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 2,
+    "score": 3.089,
+    "same_user_id": true,
+    "text_sim": 0.089,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.271
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "19",
+   "tau3_split": "test",
+   "v1_task_index": 1,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 1,
+    "score": 3.204,
+    "same_user_id": true,
+    "text_sim": 0.204,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.206
+   },
+   "user_id": "olivia_gonzalez_2305",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "cancel_reservation"
+   ],
+   "tau3_actions": [
+    "cancel_reservation"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.204,
+   "change_kind": "db_changed",
+   "change_note": "adds 'on the 28th' and 'book again yourself later'; actions identical (cancel Z7GOZK); DB: Z7GOZK fixed from one_way EWR->EWR to round_trip EWR->IAH",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "cancel_reservation": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "20",
+   "tau3_split": "train",
+   "v1_task_index": 0,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 0,
+    "score": 2.888,
+    "same_user_id": true,
+    "text_sim": 0.888,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.26
+   },
+   "user_id": "mia_li_3668",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "book_reservation"
+   ],
+   "tau3_actions": [
+    "book_reservation"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.888,
+   "change_kind": "same",
+   "change_note": "text split into reason/known/task fields, same content; actions identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "book_reservation": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "21",
+   "tau3_split": "train",
+   "v1_task_index": 3,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 3,
+    "score": 3.125,
+    "same_user_id": true,
+    "text_sim": 0.125,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.196
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "22",
+   "tau3_split": "test",
+   "v1_task_index": 4,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 4,
+    "score": 3.423,
+    "same_user_id": true,
+    "text_sim": 0.423,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 5,
+    "runner_up_score": 3.25
+   },
+   "user_id": "omar_rossi_1241",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "update_reservation_flights",
+    "update_reservation_passengers",
+    "update_reservation_baggages"
+   ],
+   "tau3_actions": [
+    "update_reservation_flights",
+    "update_reservation_passengers",
+    "update_reservation_baggages"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.423,
+   "change_kind": "text_only",
+   "change_note": "adds 'if a change is not possible, move on and end'; actions identical",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 3,
+    "write_bucket": "3+",
+    "write_tools": {
+     "update_reservation_flights": 1,
+     "update_reservation_passengers": 1,
+     "update_reservation_baggages": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "23",
+   "tau3_split": "train",
+   "v1_task_index": 9,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 9,
+    "score": 3.164,
+    "same_user_id": true,
+    "text_sim": 0.831,
+    "write_action_jaccard": 0.333,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 8,
+    "runner_up_score": 2.763
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "24",
+   "tau3_split": "test",
+   "v1_task_index": 10,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 10,
+    "score": 3.127,
+    "same_user_id": true,
+    "text_sim": 0.627,
+    "write_action_jaccard": 0.5,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.206
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "25",
+   "tau3_split": "test",
+   "v1_task_index": 11,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 11,
+    "score": 2.155,
+    "same_user_id": true,
+    "text_sim": 0.155,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.238
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "26",
+   "tau3_split": "test",
+   "v1_task_index": 12,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 12,
+    "score": 2.641,
+    "same_user_id": true,
+    "text_sim": 0.641,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.323
+   },
+   "user_id": "amelia_sanchez_4739",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [],
+   "tau3_actions": [],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.641,
+   "change_kind": "same",
+   "change_note": "same; no write actions on both sides",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "27",
+   "tau3_split": "train",
+   "v1_task_index": 16,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 16,
+    "score": 2.308,
+    "same_user_id": true,
+    "text_sim": 0.308,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.307
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "28",
+   "tau3_split": "train",
+   "v1_task_index": 18,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 18,
+    "score": 3.812,
+    "same_user_id": true,
+    "text_sim": 0.812,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 12,
+    "runner_up_score": 1.272
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "29",
+   "tau3_split": "test",
+   "v1_task_index": 19,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 19,
+    "score": 1.421,
+    "same_user_id": true,
+    "text_sim": 0.088,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 0.333,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.208
+   },
+   "user_id": "raj_brown_5782",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details",
+    "update_reservation_flights",
+    "update_reservation_baggages"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "cancel_reservation",
+    "book_reservation"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.088,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold: update_reservation_flights + baggages on VA5SGQ (LGA->JFK change, which breaks policy); tau3 gold: cancel VA5SGQ + book new DTW<->JFK; user now mentions health problem and names HAT169/HAT033",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 2,
+    "write_bucket": "2",
+    "write_tools": {
+     "cancel_reservation": 1,
+     "book_reservation": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "30",
+   "tau3_split": "test",
+   "v1_task_index": 20,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 20,
+    "score": 2.71,
+    "same_user_id": true,
+    "text_sim": 0.21,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.5,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.276
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "31",
+   "tau3_split": "test",
+   "v1_task_index": 21,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 21,
+    "score": 2.208,
+    "same_user_id": true,
+    "text_sim": 0.208,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 1.301
+   },
+   "user_id": "daiki_lee_6144",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [],
+   "tau3_actions": [],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.208,
+   "change_kind": "text_only",
+   "change_note": "adds 'do not want to buy a new flight'; reservation id moved to unknown_info; no writes on both sides",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "32",
+   "tau3_split": "test",
+   "v1_task_index": 22,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 22,
+    "score": 3.095,
+    "same_user_id": true,
+    "text_sim": 0.095,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.171
+   },
+   "user_id": "ivan_rossi_8555",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "search_direct_flight",
+    "update_reservation_flights",
+    "update_reservation_flights"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "search_direct_flight",
+    "update_reservation_flights",
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.095,
+   "change_kind": "text_only",
+   "change_note": "adds 'upgrade first, then change flights, each confirmed'; actions identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 2,
+    "write_bucket": "2",
+    "write_tools": {
+     "update_reservation_flights": 2
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "33",
+   "tau3_split": "train",
+   "v1_task_index": 23,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 23,
+    "score": 2.688,
+    "same_user_id": true,
+    "text_sim": 0.355,
+    "write_action_jaccard": 0.333,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 24,
+    "runner_up_score": 2.367
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "34",
+   "tau3_split": "train",
+   "v1_task_index": 24,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 24,
+    "score": 3.401,
+    "same_user_id": true,
+    "text_sim": 0.401,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 23,
+    "runner_up_score": 2.361
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "35",
+   "tau3_split": "test",
+   "v1_task_index": 25,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 25,
+    "score": 1.573,
+    "same_user_id": true,
+    "text_sim": 0.573,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 0.0,
+    "runner_up_v1_index": 26,
+    "runner_up_score": 1.144
+   },
+   "user_id": "aarav_ahmed_6699",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "book_reservation"
+   ],
+   "tau3_actions": [
+    "book_reservation"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.573,
+   "change_kind": "gold_changed",
+   "change_note": "book_reservation passenger dob fixed 1985-04-04 -> 1981-05-26 (profile dob); adds no transfer / no bags / no insurance",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "book_reservation": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "36",
+   "tau3_split": "train",
+   "v1_task_index": 48,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 48,
+    "score": 3.475,
+    "same_user_id": true,
+    "text_sim": 0.475,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 12,
+    "runner_up_score": 1.29
+   },
+   "user_id": "lucas_brown_4047",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details"
+   ],
+   "tau3_actions": [
+    "get_reservation_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.475,
+   "change_kind": "same",
+   "change_note": "actions identical (no change)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "37",
+   "tau3_split": "test",
+   "v1_task_index": 26,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 26,
+    "score": 3.062,
+    "same_user_id": true,
+    "text_sim": 0.562,
+    "write_action_jaccard": 0.5,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 27,
+    "runner_up_score": 2.457
+   },
+   "user_id": "aarav_ahmed_6699",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 3,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "cancel_reservation",
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "calculate",
+    "update_reservation_flights"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.562,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold cancelled NQNU5R (already flown); tau3 gold does not; M20IZO upgrade kept",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_flights": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 3,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "38",
+   "tau3_split": "train",
+   "v1_task_index": 45,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 45,
+    "score": 2.197,
+    "same_user_id": true,
+    "text_sim": 0.197,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 46,
+    "runner_up_score": 1.67
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "39",
+   "tau3_split": "train",
+   "v1_task_index": 28,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 28,
+    "score": 3.173,
+    "same_user_id": true,
+    "text_sim": 0.173,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 29,
+    "runner_up_score": 2.116
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "40",
+   "tau3_split": "train",
+   "v1_task_index": 43,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 43,
+    "score": 3.513,
+    "same_user_id": true,
+    "text_sim": 0.513,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 42,
+    "runner_up_score": 2.154
+   },
+   "user_id": "anya_garcia_5901",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details",
+    "update_reservation_passengers"
+   ],
+   "tau3_actions": [
+    "get_reservation_details",
+    "update_reservation_passengers"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.513,
+   "change_kind": "same",
+   "change_note": "actions identical (passenger name change)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 1,
+    "write_bucket": "1",
+    "write_tools": {
+     "update_reservation_passengers": 1
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "41",
+   "tau3_split": "train",
+   "v1_task_index": 29,
+   "partner_group": "val",
+   "in_our_99": true,
+   "our_group": "val",
+   "role": "held_out_val",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 29,
+    "score": 3.646,
+    "same_user_id": true,
+    "text_sim": 0.646,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 28,
+    "runner_up_score": 2.585
+   },
+   "user_id": "amelia_davis_8890",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.646,
+   "change_kind": "same",
+   "change_note": "actions identical (reads only, no cancel)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "42",
+   "tau3_split": "train",
+   "v1_task_index": 30,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 30,
+    "score": 3.18,
+    "same_user_id": true,
+    "text_sim": 0.18,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 48,
+    "runner_up_score": 0.316
+   },
+   "user_id": "sophia_martin_4574",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 2,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "cancel_reservation",
+    "cancel_reservation"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "cancel_reservation",
+    "cancel_reservation"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.18,
+   "change_kind": "text_only",
+   "change_note": "location facts changed (arrive NY from Dallas May 17, leave Boston May 22); actions identical (cancel FDZ0T5, HSR97W)",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 2,
+    "write_bucket": "2",
+    "write_tools": {
+     "cancel_reservation": 2
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 2,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "43",
+   "tau3_split": "train",
+   "v1_task_index": 31,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 31,
+    "score": 2.701,
+    "same_user_id": true,
+    "text_sim": 0.701,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 12,
+    "runner_up_score": 1.229
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "44",
+   "tau3_split": "test",
+   "v1_task_index": 33,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 33,
+    "score": 2.843,
+    "same_user_id": true,
+    "text_sim": 0.093,
+    "write_action_jaccard": 0.75,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 40,
+    "runner_up_score": 2.062
+   },
+   "user_id": "sophia_silva_7557",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 5,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "cancel_reservation",
+    "update_reservation_flights",
+    "update_reservation_flights",
+    "update_reservation_flights"
+   ],
+   "tau3_actions": [
+    "get_user_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "get_reservation_details",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "search_direct_flight",
+    "update_reservation_flights",
+    "update_reservation_flights",
+    "update_reservation_flights"
+   ],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.093,
+   "change_kind": "gold_changed",
+   "change_note": "cancel threshold 'over 3 h' -> 'longer than 4 h'; v1 gold cancelled S61CZX, tau3 does not (user healthy); 3 business upgrades identical",
+   "ambiguity_resolved_by": null,
+   "drop": false,
+   "v101": {
+    "writes_expected": 3,
+    "write_bucket": "3+",
+    "write_tools": {
+     "update_reservation_flights": 3
+    },
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 5,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "45",
+   "tau3_split": "test",
+   "v1_task_index": 35,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 35,
+    "score": 2.754,
+    "same_user_id": true,
+    "text_sim": 0.754,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 36,
+    "runner_up_score": 2.23
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "46",
+   "tau3_split": "train",
+   "v1_task_index": 38,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 39,
+    "score": 2.527,
+    "same_user_id": true,
+    "text_sim": 0.527,
+    "write_action_jaccard": 0.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 39,
+    "runner_up_score": 3.176
+   },
+   "user_id": "sophia_silva_7557",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "transfer_to_human_agents"
+   ],
+   "tau3_actions": [],
+   "write_actions_identical": false,
+   "all_actions_identical": false,
+   "instruction_text_sim": 0.527,
+   "change_kind": "gold_changed",
+   "change_note": "v1 gold had transfer_to_human_agents; tau3 has no transfer (refuse insurance refund)",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "47",
+   "tau3_split": "train",
+   "v1_task_index": 39,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": false,
+   "match": {
+    "greedy_best_v1_index": 39,
+    "score": 3.539,
+    "same_user_id": true,
+    "text_sim": 0.539,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 40,
+    "runner_up_score": 2.268
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  },
+  {
+   "tau3_id": "48",
+   "tau3_split": "test",
+   "v1_task_index": 41,
+   "partner_group": "train",
+   "in_our_99": true,
+   "our_group": "train",
+   "role": "dev_ok_train",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 41,
+    "score": 3.437,
+    "same_user_id": true,
+    "text_sim": 0.437,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 42,
+    "runner_up_score": 3.189
+   },
+   "user_id": "anya_garcia_5901",
+   "tau3_reward_basis": [
+    "DB",
+    "COMMUNICATE"
+   ],
+   "tau3_n_nl_assertions": 1,
+   "tau3_n_communicate_info": 0,
+   "v1_n_outputs": 0,
+   "v1_actions": [
+    "get_reservation_details"
+   ],
+   "tau3_actions": [
+    "get_reservation_details"
+   ],
+   "write_actions_identical": true,
+   "all_actions_identical": true,
+   "instruction_text_sim": 0.437,
+   "change_kind": "same",
+   "change_note": "actions identical (no cancel)",
+   "ambiguity_resolved_by": "content check of our task (unique ids/facts)",
+   "drop": false,
+   "v101": {
+    "writes_expected": 0,
+    "write_bucket": "0",
+    "write_tools": {},
+    "reward_basis": [
+     "DB",
+     "COMMUNICATE"
+    ],
+    "n_nl_assertions": 1,
+    "nl_scored": false,
+    "n_communicate_info": 0,
+    "communicate_scored": true,
+    "communicate_scorer": "substring (lowercase, commas removed from agent text), $0",
+    "paid_judge_calls_default_ALL": 0,
+    "note": "gold writes not replayed here (count of expected WRITE-type actions)"
+   }
+  },
+  {
+   "tau3_id": "49",
+   "tau3_split": "train",
+   "v1_task_index": 42,
+   "partner_group": "test",
+   "in_our_99": false,
+   "our_group": null,
+   "role": "DROP_partner_test",
+   "ambiguous": true,
+   "match": {
+    "greedy_best_v1_index": 42,
+    "score": 3.229,
+    "same_user_id": true,
+    "text_sim": 0.229,
+    "write_action_jaccard": 1.0,
+    "resid_jaccard": 1.0,
+    "runner_up_v1_index": 41,
+    "runner_up_score": 3.117
+   },
+   "change_kind": null,
+   "change_note": "partner test task: not analysed (data purity)",
+   "drop": true
+  }
+ ],
+ "counts": {
+  "tau3_tasks": 50,
+  "by_partner_group": {
+   "test": 20,
+   "train": 20,
+   "val": 10
+  },
+  "in_our_99": 30,
+  "our_train": 20,
+  "our_val": 10,
+  "drop_partner_test": 20,
+  "ambiguous": 12,
+  "v1_indices_hit_twice": {},
+  "change_kind_ours": {
+   "reads_changed": 1,
+   "gold_changed": 10,
+   "text_only": 11,
+   "same": 7,
+   "db_changed": 1
+  }
+ },
+ "db_changes": [
+  {
+   "table": "users",
+   "what": "every user record gains a 'user_id' field (500/500); nothing else changed"
+  },
+  {
+   "table": "reservations",
+   "id": "Z7GOZK",
+   "what": "flight_type one_way -> round_trip, destination EWR -> IAH",
+   "affects_our_task": 1
+  },
+  {
+   "table": "flights",
+   "id": "HAT018",
+   "date": "2024-05-11",
+   "what": "status landed -> delayed",
+   "affects_our_task": 46
+  }
+ ],
+ "notes": [
+  "reward_basis is ['DB','COMMUNICATE'] for all 50 tau3 tasks; nl_assertions are present but NOT scored",
+  "at v1.0.1 COMMUNICATE is scored only by substring match (lowercase, commas removed from the agent text); no LLM judge, $0",
+  "tau3's own split (split_tasks.json train 30 / test 20) is unrelated to the partner split"
+ ],
+ "tau3_version": "v1.0.1 (commit fc0055d); airline data files are byte-identical to v2.0.0 and cc1df47",
+ "source_note": "tasks.json read from the committed v1.0.1 blob (git show v1.0.1:data/tau2/domains/airline/tasks.json)",
+ "counts_v101": {
+  "tau3_tasks": 50,
+  "drop_partner_test": 20,
+  "drop_content_equals_partner_test": [],
+  "ours_present": 30,
+  "ours_train": 20,
+  "ours_val": 10,
+  "write_buckets": {
+   "0": 13,
+   "3+": 4,
+   "1": 9,
+   "2": 4
+  },
+  "write_buckets_by_group": {
+   "train": {
+    "0": 9,
+    "3+": 3,
+    "1": 6,
+    "2": 2
+   },
+   "val": {
+    "0": 4,
+    "2": 2,
+    "1": 3,
+    "3+": 1
+   }
+  },
+  "reward_basis": {
+   "[\"DB\", \"COMMUNICATE\"]": 30
+  },
+  "with_nl_assertions": 30,
+  "nl_assertions_total": 68,
+  "with_communicate_info": [
+   44,
+   34,
+   15,
+   8
+  ],
+  "paid_judge_calls_per_trial_default_ALL": 0
+ },
+ "grading_v101": "reward = DB x COMMUNICATE for all 50. COMMUNICATE is a substring check at v1.0.1 (no LLM). NL assertions exist but are not in reward_basis, so EvaluationType.ALL never calls the NL judge; ALL_WITH_NL_ASSERTIONS(_IGNORE_BASIS) or NL_ASSERTIONS would call gpt-4.1-2025-04-14 (temperature 0.0), one call per task for all its assertions.",
+ "counts_note": "counts = mapping counts; counts_v101 = counts after the drop rules (no airline content duplicates of partner-test tasks). Same numbers.",
+ "written_by_v101": "scratchpad/v101/{air_task_map_v101.py,air_task_map_notes_v101.py,v4_ret_map.py,v4_ret_sim.py,v4_ret_build_v101.py,v4_v101_finalize.py} on git-show blobs of tag v1.0.1"
+}

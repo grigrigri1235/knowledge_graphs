@@ -1,0 +1,76 @@
+{
+  "_about": "Part 5 lookups, retail: one per predicate whose type (output/predicate_types.json) is argument, database fact or event. Written from the predicate descriptions in the frozen rule set and from the copied tau-bench tool code and data only; not from judge values or gold code. Format and evaluator: state_tracker/lookup_format.py. Checked by an independent agent (output/p5_independent_check.md); fixes and explanations in output/p5_audit_responses.md. Frozen 2026-10-22 (sha256 in docs/planning/state_tracking_exp/overview.md). After the freeze a lookup changes only to fix a clear bug, logged in output/p5_lookup_fixes.md (p5.md).",
+  "domain": "retail",
+  "lookups": {
+    "user_authenticated": {
+      "expr": "len(events(tool=['find_user_id_by_email', 'find_user_id_by_name_zip'], ok=True)) > 0",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if an earlier find_user_id_by_email or find_user_id_by_name_zip call worked (its output was a user id, not an error).",
+      "reason": "Description: 'An earlier successful email or name-and-zip lookup output identified the user for this conversation.' An event: these tools return the user id as text, or 'Error: user not found'. The event log is what the conversation showed, so 'shown'. No such call: false. Not checked: that the found user is the one being helped (request_is_for_another_user covers that, Part 3 review)."
+    },
+    "order_status_checked_pending": {
+      "expr": "shown('order', args['order_id'])['status'] == 'pending'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the order in the call was last shown with status exactly 'pending'.",
+      "reason": "Description: 'An earlier order-details tool output for the order id in the pending action reports status pending.' Shown order named by order_id. The newest shown version counts; it can come from get_order_details or from an order write tool, which returns the same order details after the change (so a later 'pending (item modified)' or 'cancelled' replaces an older 'pending'). Exact 'pending', as tau-bench's own check. Not shown: false."
+    },
+    "order_status_checked_delivered": {
+      "expr": "shown('order', args['order_id'])['status'] == 'delivered'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the order in the call was last shown with status exactly 'delivered'.",
+      "reason": "Description: 'An earlier order-details tool output for the order id in the pending action reports status delivered.' Same as order_status_checked_pending (a later 'return requested' or 'exchange requested' replaces 'delivered')."
+    },
+    "cancellation_reason_is_allowed": {
+      "expr": "args['reason'] in ['no longer needed', 'ordered by mistake']",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the cancel call's reason is exactly 'no longer needed' or 'ordered by mistake'.",
+      "reason": "Description: 'The pending cancellation argument is either no longer needed or ordered by mistake.' Exact text, as tau-bench's own check. Arguments only; 'shown' is a placeholder. Missing reason: malformed call, unknown."
+    },
+    "payment_method_differs_from_original": {
+      "expr": "args['payment_method_id'] != shown('order', args['order_id'])['payment_history'][0]['payment_method_id']",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the order was shown earlier and the call's payment method differs from the order's first (original) payment method in that output.",
+      "reason": "Description: 'Earlier tool output establishes the original payment method for the pending order, and the pending payment-change argument identifies a different method.' The original method is the first entry of the shown order's payment_history (tau-bench uses the same entry). Order not shown: the original method is not established, so false."
+    },
+    "payment_method_is_gift_card": {
+      "expr": "'gift_card' in args['payment_method_id']",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the call's payment_method_id is a gift card id (contains 'gift_card').",
+      "reason": "Description: 'The payment method id in the pending action identifies a gift card.' Gift card ids are 'gift_card_<digits>'; the prefix equals the 'source' field for all 695 retail payment methods (Part 3 review), and tau-bench's own tools test 'gift_card' in the id. Arguments only; 'shown' is a placeholder. Missing payment_method_id: malformed call, unknown."
+    },
+    "gift_card_balance_covers_order_total": {
+      "expr": "shown('payment_method', args['payment_method_id'])['balance'] >= shown('order', args['order_id'])['payment_history'][0]['amount']",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the gift card's balance, as last shown in the user's profile, is at least the order's paid amount, as last shown in the order.",
+      "reason": "Description: 'Earlier tool output establishes that the gift card in the pending action has a balance at least equal to the order total.' Balance: the shown payment method (from a shown user profile); only gift cards have 'balance'. Order total: the amount of the order's payment (first payment_history entry), which is what tau-bench compares. It equals the sum of the item prices for all 898 one-payment orders in the data, and avoids rounding in a sum. Gift card or order not shown, or the method has no balance: false."
+    },
+    "item_replacements_are_available_same_product_different_option": {
+      "expr": "all(len(args['item_ids']) > 0 and len(args['item_ids']) <= 10 and len(args['new_item_ids']) == len(args['item_ids']) and all(k >= len(args['item_ids']) or (shown('variant', args['new_item_ids'][k])['available'] == True and args['new_item_ids'][k] != args['item_ids'][k] and shown('variant', args['new_item_ids'][k])['product_id'] == [it['product_id'] for it in o['items'] if it['item_id'] == args['item_ids'][k]][0]) for k in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for o in [shown('order', args['order_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the order was shown and, for each position k, the new item k was shown in product details as available, differs from old item k, and belongs to the same product as old item k in the shown order.",
+      "reason": "Description: each replacement item is available, belongs to the same product as its paired original item, and has a different product option, as established by earlier tool outputs. Pairing is by position, as the tool's own description says ('Each new item id should match the item id in the same position') and as tau-bench pairs them (zip). The format has no zip or range, so the positions are written as k in [0..9] and calls with more than 10 items give false (an order has at most 5 items in the data, so such a call cannot work). Availability and product of a new item: the shown variant (from get_product_details). Product of an old item: the shown order's items. 'Different option': new item id differs from its paired old item id; within a product each item id has its own options (0 products in the data have two variants with the same options). Order or a new variant not shown, an old item not in the order, no items or unequal counts: false. Changed after the independent check: the first version compared counts per product and gave the wrong value for crossed pairs (output/p5_audit_responses.md)."
+    },
+    "gift_card_balance_covers_price_difference": {
+      "expr": "all(sum([shown('payment_method', args['payment_method_id'])['balance'], sum([[it['price'] for it in o['items'] if it['item_id'] == i][0] for i in args['item_ids']])]) >= sum([shown('variant', n)['price'] for n in args['new_item_ids']]) for o in [shown('order', args['order_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the shown gift card balance is at least the price difference: the new items' shown prices minus the old items' prices in the shown order.",
+      "reason": "Description: 'Earlier tool output establishes that the gift card in the pending action has a balance at least equal to the price difference.' Difference = sum of new prices (shown variants) - sum of old prices (shown order items), as tau-bench computes it. The format has no subtraction, so it is written as balance + old >= new. A negative difference (a refund) gives true. Gift card, order or a new variant not shown, or the method has no balance (not a gift card): false. Rounding: a difference equal to the balance to the cent may compare either way."
+    },
+    "return_refund_method_is_original_or_existing_gift_card": {
+      "expr": "all(args['payment_method_id'] == o['payment_history'][0]['payment_method_id'] or (pm is not None and pm['source'] == 'gift_card' and pm['user_id'] == o['user_id']) for o in [shown('order', args['order_id'])] for pm in [shown('payment_method', args['payment_method_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the order was shown and the call's refund method is the order's original payment method, or a gift card shown in the profile of the order's user.",
+      "reason": "Description: 'Earlier tool output establishes that the refund method in the pending return action is either the order's original payment method or an existing gift card belonging to the user.' Original method: first payment_history entry of the shown order. Existing gift card of the user: a shown payment method (from a shown user profile) with source gift_card whose user is the order's user. Order not shown: neither the original method nor the order's user is established, so false."
+    }
+  }
+}

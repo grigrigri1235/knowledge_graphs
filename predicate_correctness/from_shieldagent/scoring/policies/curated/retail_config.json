@@ -1,0 +1,6 @@
+{
+  "domain": "retail",
+  "timezone": "EST",
+  "source_clause_id": "RET-DOM-01",
+  "notes": "All database times are EST, 24-hour (RET-DOM-01). The retail wiki fixes no current time."
+}

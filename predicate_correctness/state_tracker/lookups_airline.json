@@ -1,0 +1,153 @@
+{
+  "_about": "Part 5 lookups, airline: one per predicate whose type (output/predicate_types.json) is argument, database fact or event. Written from the predicate descriptions in the frozen rule set and from the copied tau-bench tool code and data only; not from judge values or gold code. Format and evaluator: state_tracker/lookup_format.py. Checked by an independent agent (output/p5_independent_check.md); fixes and explanations in output/p5_audit_responses.md. Frozen 2026-10-22 (sha256 in docs/planning/state_tracking_exp/overview.md). After the freeze a lookup changes only to fix a clear bug, logged in output/p5_lookup_fixes.md (p5.md).",
+  "domain": "airline",
+  "lookups": {
+    "booking_has_at_most_five_passengers": {
+      "expr": "len(args['passengers']) <= 5",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the booking call lists at most five passengers.",
+      "reason": "Description: 'The pending booking contains no more than five passengers.' Only the call's arguments are read, so fact and shown do not apply ('shown' is written only because the field is required). A missing or malformed passengers argument is a malformed call; the description does not say what it means, so unknown."
+    },
+    "all_booking_passengers_share_flights_and_cabin": {
+      "expr": "all(p.get('cabin', args['cabin']) == args['cabin'] and p.get('flights', args['flights']) == args['flights'] for p in args['passengers'])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True unless a passenger in the booking call carries its own cabin or flight list that differs from the call's single cabin and flight list.",
+      "reason": "Description: 'The pending booking assigns every passenger the same flights and the same cabin.' book_reservation takes one cabin and one flight list for all passengers, so a well-formed call is always true. The lookup only catches a passenger entry that names a different cabin or flights (tau-bench ignores such fields). Arguments only; 'shown' is a placeholder. Missing cabin, flights or passengers: malformed call, unknown."
+    },
+    "booking_payment_method_counts_within_limits": {
+      "expr": "all(not any(a != b for a in ids for b in ids if 'certificate' in a and 'certificate' in b) and not any(a != b for a in ids for b in ids if 'credit_card' in a and 'credit_card' in b) and not any(a != b and a != c and a != d and b != c and b != d and c != d for a in ids for b in ids for c in ids for d in ids if 'gift_card' in a and 'gift_card' in b and 'gift_card' in c and 'gift_card' in d) for ids in [[p['payment_id'] for p in args['payment_methods']]])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the booking call's payment ids include at most one distinct certificate, at most one distinct credit card and at most three distinct gift cards.",
+      "reason": "Description: 'no more than one travel certificate, no more than one credit card, and no more than three gift cards.' The kind comes from the payment id (certificate_, credit_card_, gift_card_), which equals the profile's 'source' for all 1,486 airline payment methods (Part 3 review). Distinct ids are counted (the same card listed twice is one card): 'two different certificates' or 'four different gift cards' make it false. Arguments only; 'shown' is a placeholder. Missing payment_methods or payment_id: malformed call, unknown."
+    },
+    "booking_payment_methods_found_in_user_profile": {
+      "expr": "all(p['payment_id'] in shown('user', args['user_id'])['payment_methods'] for p in args['payment_methods'])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if every payment id in the booking call is among the payment methods of the booking user's profile as an earlier get_user_details output showed it.",
+      "reason": "Description: 'Every payment method in the pending booking appears in an earlier tool output showing the user's profile.' 'Appears in an earlier tool output' means shown. The user is the booking's user_id argument. If that profile was never shown, the methods do not appear in a shown profile: false. With an empty payment list the value is true ('every' over nothing)."
+    },
+    "booking_user_is_regular_member": {
+      "expr": "shown('user', args['user_id'])['membership'] == 'regular'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if an earlier output showed the booking user's profile with membership 'regular'.",
+      "reason": "Description: 'An earlier tool output identifies the booking user as a regular member.' Shown profile of the user_id argument; the membership field holds regular, silver or gold. Not shown: nothing identifies the user, so false."
+    },
+    "regular_member_booking_baggage_counts_correct": {
+      "expr": "all((args['total_baggages'] <= free and args['nonfree_baggages'] == 0) or (args['total_baggages'] > free and sum([args['nonfree_baggages'], free]) == args['total_baggages']) for free in [len([c for p in args['passengers'] for c in ['economy', 'business', 'business'] if c == args['cabin']])])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the booking's non-free bags equal the bags beyond the regular free allowance (0 per basic economy, 1 per economy, 2 per business passenger), or 0 when all bags are free.",
+      "reason": "Description: total and nonfree counts match the regular allowance for the cabin of each passenger, with nonfree = bags beyond the free allowance. Policy: regular member 0 / 1 / 2 free bags per basic economy / economy / business passenger. 'free' = passengers x allowance: the list names each cabin once per free bag, and the count of matches over all passengers gives the total. Correct means nonfree = max(0, total - free); the format has no subtraction, so it is written as nonfree + free = total when total > free. All passengers share the call's one cabin. Membership itself is the separate predicate booking_user_is_regular_member. Arguments only; 'shown' is a placeholder. Missing counts, cabin or passengers: malformed call, unknown."
+    },
+    "booking_user_is_silver_member": {
+      "expr": "shown('user', args['user_id'])['membership'] == 'silver'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if an earlier output showed the booking user's profile with membership 'silver'.",
+      "reason": "Description: 'An earlier tool output identifies the booking user as a silver member.' Same as the regular case."
+    },
+    "silver_member_booking_baggage_counts_correct": {
+      "expr": "all((args['total_baggages'] <= free and args['nonfree_baggages'] == 0) or (args['total_baggages'] > free and sum([args['nonfree_baggages'], free]) == args['total_baggages']) for free in [len([c for p in args['passengers'] for c in ['basic_economy', 'economy', 'economy', 'business', 'business', 'business'] if c == args['cabin']])])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the booking's non-free bags equal the bags beyond the silver free allowance (1 per basic economy, 2 per economy, 3 per business passenger), or 0 when all bags are free.",
+      "reason": "As the regular case, with the policy's silver allowance: 1 / 2 / 3 free bags per basic economy / economy / business passenger."
+    },
+    "booking_user_is_gold_member": {
+      "expr": "shown('user', args['user_id'])['membership'] == 'gold'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if an earlier output showed the booking user's profile with membership 'gold'.",
+      "reason": "Description: 'An earlier tool output identifies the booking user as a gold member.' Same as the regular case."
+    },
+    "gold_member_booking_baggage_counts_correct": {
+      "expr": "all((args['total_baggages'] <= free and args['nonfree_baggages'] == 0) or (args['total_baggages'] > free and sum([args['nonfree_baggages'], free]) == args['total_baggages']) for free in [len([c for p in args['passengers'] for c in ['basic_economy', 'basic_economy', 'economy', 'economy', 'economy', 'business', 'business', 'business'] if c == args['cabin']])])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True if the booking's non-free bags equal the bags beyond the gold free allowance (2 per basic economy, 3 per economy, 3 per business passenger), or 0 when all bags are free.",
+      "reason": "As the regular case, with the policy's gold allowance: 2 / 3 / 3 free bags per basic economy / economy / business passenger."
+    },
+    "pending_flight_update_is_basic_economy": {
+      "expr": "all((len(ups) > 0 and ups[-1]['args']['cabin'] == 'basic_economy') or (len(ups) == 0 and shown('reservation', args['reservation_id'])['cabin'] == 'basic_economy') for ups in [[e for e in events(tool='update_reservation_flights', ok=True) if e['args'].get('reservation_id') == args['reservation_id']]])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the reservation in the flight-update call is basic economy: the cabin of the newest successful earlier flight update of this reservation, or, if there is none, the cabin shown in its details.",
+      "reason": "Description: 'Earlier reservation details identify the reservation in the pending flight update as basic economy.' Reservation named by reservation_id. tau-bench never updates the reservation's 'cabin' field after update_reservation_flights, although the prices and payments change (Part 4; independent check). So the cabin is taken from the newest successful update_reservation_flights call on this reservation (its 'cabin' argument; the call worked, so the conversation showed the change), and from the shown reservation's 'cabin' field only if there is no such call. Example: nano task5 trial0 (FQ8APE) upgraded to economy, but the details still say basic_economy. Both sources are what the conversation showed, so 'shown'. Not shown and never updated: nothing identifies it, so false. Changed after the independent check (output/p5_audit_responses.md)."
+    },
+    "pending_flight_segments_are_unchanged": {
+      "expr": "all(len(args['flights']) == len(r['flights']) and all(any(f['flight_number'] == g['flight_number'] and f['date'] == g['date'] for g in r['flights']) for f in args['flights']) and all(any(f['flight_number'] == g['flight_number'] and f['date'] == g['date'] for f in args['flights']) for g in r['flights']) for r in [shown('reservation', args['reservation_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the call's flights (number and date) are exactly the flights of the reservation as last shown: same count, and each one is in the other list.",
+      "reason": "Description: 'The flights in the pending update match all the reservation's current flight segments shown in earlier tool outputs.' Shown reservation; a segment is identified by flight number and date. Not shown: there are no shown segments to match, so false."
+    },
+    "origin_destination_and_trip_type_preserved": {
+      "expr": "all(len(legs) > 0 and any(l['origin'] == r['origin'] for l in legs) and any(l['destination'] == r['destination'] for l in legs) and ((r['flight_type'] == 'one_way' and (r['origin'] == r['destination'] or (not any(l['destination'] == r['origin'] for l in legs) and not any(l['origin'] == r['destination'] for l in legs)))) or (r['flight_type'] == 'round_trip' and any(l['destination'] == r['origin'] for l in legs) and any(l['origin'] == r['destination'] for l in legs))) for r in [shown('reservation', args['reservation_id'])] for legs in [[db('flight', f['flight_number']) for f in args['flights']]])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the new flights, in any order, keep the shown reservation's route: some flight leaves from its origin and some flight arrives at its destination; for a round trip some flight also returns to the origin and some flight leaves from the destination; for a one-way trip (origin and destination different) no flight returns to the origin and no flight leaves from the destination.",
+      "reason": "Description: origin, destination and trip type of the update match the reservation details shown earlier. The reservation side is shown (origin, destination, flight_type). The update has no origin or destination argument, so the route of each new flight number comes from the flight schedule (db flight: origin, destination), which no tool changes; this is a property of the call's own flight numbers, not of the conversation. The check does not depend on the order of the flights in the call (changed after the independent check: the first version took the first leg as the start and gave false for a round trip listed return first). 35 one-way reservations in the data have origin = destination (for example Z7GOZK EWR -> IAH -> EWR); for them only the first two parts are checked. Not checked: that consecutive legs connect. Reservation not shown, no flights or an unknown flight number: false."
+    },
+    "all_pending_flight_segments_have_one_cabin": {
+      "expr": "all(f.get('cabin', args['cabin']) == args['cabin'] for f in args['flights'])",
+      "uses": "shown",
+      "if_missing": "unknown",
+      "plain": "True unless a flight in the update call carries its own cabin that differs from the call's single cabin.",
+      "reason": "Description: 'The cabin in the pending flight-update arguments is the same across every flight segment in the entire submitted reservation.' update_reservation_flights takes one cabin for all segments, so a well-formed call is always true; the lookup only catches a segment entry that names another cabin. Arguments only; 'shown' is a placeholder. Missing cabin or flights: malformed call, unknown."
+    },
+    "pending_baggage_total_not_reduced": {
+      "expr": "args['total_baggages'] >= shown('reservation', args['reservation_id'])['total_baggages']",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the call's total_baggages is at least the total_baggages of the reservation as last shown.",
+      "reason": "Description: 'The pending baggage update's total baggage count is at least the current total shown in earlier reservation details.' Newest shown version of the reservation named by reservation_id. Not shown: no current total was shown, so false."
+    },
+    "pending_passenger_count_unchanged": {
+      "expr": "len(args['passengers']) == len(shown('reservation', args['reservation_id'])['passengers'])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the passenger-update call lists as many passengers as the reservation had when last shown.",
+      "reason": "Description: 'The number of passengers in the pending passenger update equals the number in earlier reservation details.' Shown reservation named by reservation_id. Not shown: no earlier number, so false."
+    },
+    "pending_flight_update_changes_flights": {
+      "expr": "all(len(args['flights']) != len(r['flights']) or not all(any(f['flight_number'] == g['flight_number'] and f['date'] == g['date'] for g in r['flights']) for f in args['flights']) or not all(any(f['flight_number'] == g['flight_number'] and f['date'] == g['date'] for f in args['flights']) for g in r['flights']) for r in [shown('reservation', args['reservation_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the call's flights (number and date) differ from the flights of the reservation as last shown.",
+      "reason": "Description: 'The flights in the pending update differ from the current reservation flights shown in earlier tool outputs.' Exactly the negation of pending_flight_segments_are_unchanged when the reservation was shown. Not shown: no shown flights to differ from, so false (both predicates are then false)."
+    },
+    "reservation_has_business_cabin": {
+      "expr": "all((len(ups) > 0 and ups[-1]['args']['cabin'] == 'business') or (len(ups) == 0 and shown('reservation', args['reservation_id'])['cabin'] == 'business') for ups in [[e for e in events(tool='update_reservation_flights', ok=True) if e['args'].get('reservation_id') == args['reservation_id']]])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the reservation in the cancel call is business: the cabin of the newest successful earlier flight update of this reservation, or, if there is none, the cabin shown in its details.",
+      "reason": "Description: 'Earlier reservation details identify a flight in the reservation as business cabin.' A reservation has one cabin for all its flights. tau-bench never updates the reservation's 'cabin' field after update_reservation_flights, although the prices and payments change (Part 4; independent check). So the cabin is taken from the newest successful update_reservation_flights call on this reservation (its 'cabin' argument; the call worked, so the conversation showed the change), and from the shown reservation's 'cabin' field only if there is no such call. Example: nano task5 trial0 (FQ8APE) upgraded to economy, but the details still say basic_economy. Both sources are what the conversation showed, so 'shown'. Not shown and never updated: false. Changed after the independent check, to match pending_flight_update_is_basic_economy (output/p5_audit_responses.md)."
+    },
+    "reservation_has_basic_or_economy_cabin": {
+      "expr": "all((len(ups) > 0 and ups[-1]['args']['cabin'] in ['basic_economy', 'economy']) or (len(ups) == 0 and shown('reservation', args['reservation_id'])['cabin'] in ['basic_economy', 'economy']) for ups in [[e for e in events(tool='update_reservation_flights', ok=True) if e['args'].get('reservation_id') == args['reservation_id']]])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the reservation in the cancel call is basic economy or economy: the cabin of the newest successful earlier flight update of this reservation, or, if there is none, the cabin shown in its details.",
+      "reason": "Description: 'Earlier reservation details identify a flight in the reservation as basic economy or economy cabin.' Same as reservation_has_business_cabin."
+    },
+    "reservation_has_travel_insurance": {
+      "expr": "shown('reservation', args['reservation_id'])['insurance'] == 'yes'",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if the reservation in the cancel call was shown earlier with insurance 'yes'.",
+      "reason": "Description: 'Earlier reservation details establish that travel insurance was bought for the reservation.' Shown reservation named by reservation_id; insurance is 'yes' or 'no'. Not shown: not established, so false."
+    },
+    "reservation_has_no_used_flight_segments": {
+      "expr": "all(all(date(f['date']) > today or (shown('flight', f['flight_number']) is not None and shown('flight', f['flight_number'])['dates'].get(f['date']) is not None and shown('flight', f['flight_number'])['dates'][f['date']]['status'] in ['available', 'on time', 'delayed']) for f in r['flights']) for r in [shown('reservation', args['reservation_id'])])",
+      "uses": "shown",
+      "if_missing": "false",
+      "plain": "True if every flight of the shown reservation is dated after today (2024-05-15), or is today's flight and an earlier search showed it on that date as not yet taken off (available, on time or delayed).",
+      "reason": "Description: 'Earlier reservation details establish that none of the reservation's flight segments has been used.' Reservation details give each segment's date only. A date after today's date cannot be used yet; a date before today is used. For a segment dated today (2024-05-15; the policy's time is 15:00), the details cannot tell; it counts as not used only if an earlier search output showed that flight on that date with a status that, by the policy, means it has not taken off. Otherwise not established: false. Reservation not shown: false."
+    }
+  }
+}

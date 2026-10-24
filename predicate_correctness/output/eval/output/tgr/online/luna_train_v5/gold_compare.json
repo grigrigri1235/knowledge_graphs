@@ -1,0 +1,144 @@
+{
+ "airline/none": {
+  "write_calls": 37,
+  "v1_violating": 0,
+  "v2_violating": 1,
+  "missed_by_v1": 1,
+  "missed_by_v1_api_accepted": 1,
+  "episodes": 60,
+  "episodes_with_missed_call": 1,
+  "missed_by_rule": {
+   "AIR-R002": 1
+  },
+  "confirmation_missed_by_tool": {
+   "cancel_reservation": 1
+  },
+  "v1_violating_per_episode": 0.0,
+  "v2_violating_per_episode": 0.016666666666666666,
+  "successful": 32,
+  "success_compliant_v1": 32,
+  "success_compliant_v2": 32,
+  "block_precision_scorable_v1": null,
+  "block_precision_scorable_v2": null,
+  "scorable_blocks": 0,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 0
+ },
+ "airline/direct": {
+  "write_calls": 34,
+  "v1_violating": 1,
+  "v2_violating": 3,
+  "missed_by_v1": 2,
+  "missed_by_v1_api_accepted": 2,
+  "episodes": 60,
+  "episodes_with_missed_call": 1,
+  "missed_by_rule": {
+   "AIR-R002": 2
+  },
+  "confirmation_missed_by_tool": {
+   "cancel_reservation": 2
+  },
+  "v1_violating_per_episode": 0.016666666666666666,
+  "v2_violating_per_episode": 0.05,
+  "successful": 28,
+  "success_compliant_v1": 27,
+  "success_compliant_v2": 27,
+  "block_precision_scorable_v1": 0.0,
+  "block_precision_scorable_v2": 0.0,
+  "scorable_blocks": 4,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 0
+ },
+ "airline/tgr": {
+  "write_calls": 42,
+  "v1_violating": 2,
+  "v2_violating": 3,
+  "missed_by_v1": 1,
+  "missed_by_v1_api_accepted": 1,
+  "episodes": 60,
+  "episodes_with_missed_call": 1,
+  "missed_by_rule": {
+   "AIR-R002": 1
+  },
+  "confirmation_missed_by_tool": {
+   "cancel_reservation": 1
+  },
+  "v1_violating_per_episode": 0.03333333333333333,
+  "v2_violating_per_episode": 0.05,
+  "successful": 30,
+  "success_compliant_v1": 28,
+  "success_compliant_v2": 28,
+  "block_precision_scorable_v1": 0.16666666666666666,
+  "block_precision_scorable_v2": 0.16666666666666666,
+  "scorable_blocks": 6,
+  "blocks_confirmed_v1": 1,
+  "blocks_confirmed_v2": 1
+ },
+ "retail/none": {
+  "write_calls": 200,
+  "v1_violating": 6,
+  "v2_violating": 7,
+  "missed_by_v1": 1,
+  "missed_by_v1_api_accepted": 1,
+  "episodes": 138,
+  "episodes_with_missed_call": 1,
+  "missed_by_rule": {
+   "RET-R005": 1
+  },
+  "confirmation_missed_by_tool": {
+   "return_delivered_order_items": 1
+  },
+  "v1_violating_per_episode": 0.043478260869565216,
+  "v2_violating_per_episode": 0.050724637681159424,
+  "successful": 105,
+  "success_compliant_v1": 102,
+  "success_compliant_v2": 102,
+  "block_precision_scorable_v1": null,
+  "block_precision_scorable_v2": null,
+  "scorable_blocks": 0,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 0
+ },
+ "retail/direct": {
+  "write_calls": 185,
+  "v1_violating": 0,
+  "v2_violating": 0,
+  "missed_by_v1": 0,
+  "missed_by_v1_api_accepted": 0,
+  "episodes": 138,
+  "episodes_with_missed_call": 0,
+  "missed_by_rule": {},
+  "confirmation_missed_by_tool": {},
+  "v1_violating_per_episode": 0.0,
+  "v2_violating_per_episode": 0.0,
+  "successful": 94,
+  "success_compliant_v1": 94,
+  "success_compliant_v2": 94,
+  "block_precision_scorable_v1": 0.07142857142857142,
+  "block_precision_scorable_v2": 0.21428571428571427,
+  "scorable_blocks": 14,
+  "blocks_confirmed_v1": 1,
+  "blocks_confirmed_v2": 3
+ },
+ "retail/tgr": {
+  "write_calls": 192,
+  "v1_violating": 2,
+  "v2_violating": 2,
+  "missed_by_v1": 0,
+  "missed_by_v1_api_accepted": 0,
+  "episodes": 138,
+  "episodes_with_missed_call": 0,
+  "missed_by_rule": {},
+  "confirmation_missed_by_tool": {},
+  "v1_violating_per_episode": 0.014492753623188406,
+  "v2_violating_per_episode": 0.014492753623188406,
+  "successful": 98,
+  "success_compliant_v1": 97,
+  "success_compliant_v2": 97,
+  "block_precision_scorable_v1": 0.0,
+  "block_precision_scorable_v2": 0.044444444444444446,
+  "scorable_blocks": 45,
+  "blocks_confirmed_v1": 0,
+  "blocks_confirmed_v2": 2
+ }
+}

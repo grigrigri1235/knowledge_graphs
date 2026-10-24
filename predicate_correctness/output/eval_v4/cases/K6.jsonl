@@ -1,0 +1,60 @@
+{"A": "I came down with the flu and my doctor told me not to travel, so I need to cancel reservation H7RW2K.", "expect": "yes", "kind": "illness_user", "why": "Airline: insurance gives a full refund when the user cancels for health or weather reasons."}
+{"A": "I tested positive for COVID this morning. Please cancel my trip.", "expect": "yes", "kind": "illness_user", "why": "Airline: insurance gives a full refund when the user cancels for health or weather reasons."}
+{"A": "I need to cancel because I've been really sick all week with a stomach infection.", "expect": "yes", "kind": "illness_user", "why": "Airline: insurance gives a full refund when the user cancels for health or weather reasons."}
+{"A": "My migraines have flared up badly and I can't fly like this. I'd like to cancel the booking.", "expect": "yes", "kind": "illness_user", "why": "Airline: insurance gives a full refund when the user cancels for health or weather reasons."}
+{"A": "Cancel it please, I have pneumonia and I'm on bed rest for two weeks.", "expect": "yes", "kind": "illness_user", "why": "Airline: insurance gives a full refund when the user cancels for health or weather reasons."}
+{"A": "I'm pregnant and my doctor said flying is too risky right now, so I want to cancel.", "expect": "yes", "kind": "illness_user", "why": "A medical problem given as the reason."}
+{"A": "My son has a high fever and we can't take him on a plane, so we need to cancel the whole reservation.", "expect": "yes", "kind": "illness_passenger", "why": "Illness of a person on the trip."}
+{"A": "My husband, who's on the booking, was just diagnosed with shingles. We have to cancel.", "expect": "yes", "kind": "illness_passenger", "why": "Passenger illness is the reason."}
+{"A": "One of the passengers, my mother, was admitted to the hospital last night. Please cancel the trip.", "expect": "yes", "kind": "illness_passenger", "why": "Passenger in hospital."}
+{"A": "My travel companion has strep throat, so the trip is off. Can you cancel it?", "expect": "yes", "kind": "illness_passenger", "why": "Companion illness."}
+{"A": "Our daughter caught chickenpox and the doctor said no travel, so please cancel the flights for all three of us.", "expect": "yes", "kind": "illness_passenger", "why": "Passenger illness."}
+{"A": "My wife is having a bad asthma flare and can't travel, so we'd like to cancel reservation 6TBN4Q.", "expect": "yes", "kind": "illness_passenger", "why": "Passenger medical problem."}
+{"A": "I broke my ankle playing soccer and I'm in a cast, so I need to cancel my flight.", "expect": "yes", "kind": "injury", "why": "Injury as the reason."}
+{"A": "I hurt my back moving furniture and can't sit for long, so I want to cancel.", "expect": "yes", "kind": "injury", "why": "Injury."}
+{"A": "My dad fell and fractured his hip. He's on the reservation with me, so we're cancelling.", "expect": "yes", "kind": "injury", "why": "Injury of a passenger."}
+{"A": "I tore a ligament in my knee yesterday. Please cancel the trip.", "expect": "yes", "kind": "injury", "why": "Injury."}
+{"A": "I was in a car accident and have a concussion, I won't be able to travel. Cancel my booking please.", "expect": "yes", "kind": "injury", "why": "Injury."}
+{"A": "There's a hurricane heading for Miami right when we're supposed to land, so I want to cancel.", "expect": "yes", "kind": "weather_event", "why": "Weather event affects the trip."}
+{"A": "We're getting a huge snowstorm, the roads are closed and I can't get to the airport. Please cancel.", "expect": "yes", "kind": "weather_event", "why": "Snow as the reason."}
+{"A": "I'd like to cancel because of the tropical storm forecast for the whole weekend in Houston.", "expect": "yes", "kind": "weather_event", "why": "Storm as the reason."}
+{"A": "With the blizzard warning in Denver, we've decided to cancel the trip.", "expect": "yes", "kind": "weather_event", "why": "Blizzard as the reason."}
+{"A": "Flooding from the heavy rain has closed the roads around us; we need to cancel.", "expect": "yes", "kind": "weather_event", "why": "Weather (flooding/rain) as the reason."}
+{"A": "Cancel it, there's a tornado warning for that day and I'm not risking it.", "expect": "yes", "kind": "weather_event", "why": "Tornado warning as the reason."}
+{"A": "An ice storm knocked out the power here and I can't leave town, so please cancel the reservation.", "expect": "yes", "kind": "weather_event", "why": "Ice storm as the reason."}
+{"A": "The typhoon in that region means I have to call off the trip.", "expect": "yes", "kind": "weather_event", "why": "Typhoon as the reason."}
+{"A": "I have to have emergency surgery on Thursday, so I won't be able to make the trip. Please cancel.", "expect": "yes", "kind": "medical_appointment_surgery", "why": "Surgery = medical reason."}
+{"A": "My doctor scheduled my chemo for the week of the trip, so I need to cancel.", "expect": "yes", "kind": "medical_appointment_surgery", "why": "Medical treatment as the reason."}
+{"A": "My wife is having her gallbladder removed next week and she's on the booking, so we have to cancel.", "expect": "yes", "kind": "medical_appointment_surgery", "why": "Passenger surgery."}
+{"A": "I have a cardiology appointment I can't move, and it's the same day as my flight. Cancel please.", "expect": "yes", "kind": "medical_appointment_surgery", "why": "Medical appointment as the reason."}
+{"A": "I need to cancel because I'm scheduled for knee surgery the day before departure.", "expect": "yes", "kind": "medical_appointment_surgery", "why": "Surgery as the reason."}
+{"A": "The weather there should be lovely, but my work conference got moved, so I need to cancel.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Weather mentioned; the reason is work."}
+{"A": "I know there was some rain in the forecast, but honestly I'm cancelling because I found a cheaper flight.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Reason is price, not weather."}
+{"A": "Not because of the storm or anything, my plans just changed and I'd like to cancel.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Storm explicitly not the reason."}
+{"A": "It was supposed to be a sunny beach trip, but my friend backed out, so I want to cancel.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Reason is the friend backing out."}
+{"A": "Is the snow affecting flights into Boston? Anyway, I'm cancelling because my meeting got called off.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Snow question; reason is the meeting."}
+{"A": "The weather looks fine, I just don't want to go anymore. Cancel please.", "expect": "no", "kind": "weather_mentioned_other_reason", "why": "Weather mentioned, not the reason."}
+{"A": "I'm feeling much better after my cold, but I'm cancelling because the hotel booking fell through.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Health mentioned; the reason is the hotel."}
+{"A": "My doctor gave me the all-clear, so health isn't the issue, I just can't get the time off work.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Reason is work."}
+{"A": "I was going to visit my mom after her surgery, but she's already recovered, so the trip isn't needed. Cancel it.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Surgery mentioned; the reason is the trip is no longer needed."}
+{"A": "I'm a nurse and the hospital changed my shifts, so I need to cancel the flight.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Work schedule, not a medical problem."}
+{"A": "I just got my flu shot so no worries there, but I'd like to cancel because I double-booked.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Reason is double-booking."}
+{"A": "The trip was for a medical conference that got postponed, so I need to cancel.", "expect": "no", "kind": "health_mentioned_other_reason", "why": "Event postponed, nobody is ill."}
+{"A": "Does the travel insurance cover me if I get sick before the trip?", "expect": "no", "kind": "insurance_rules_question", "why": "A question about the rules, no reason given."}
+{"A": "What counts as a weather reason for the insurance refund?", "expect": "no", "kind": "insurance_rules_question", "why": "Rules question."}
+{"A": "If I cancel because of a hurricane, would I get the full refund with my insurance?", "expect": "no", "kind": "insurance_rules_question", "why": "Hypothetical question, not a reason."}
+{"A": "I bought the insurance, does that mean I can cancel for any reason?", "expect": "no", "kind": "insurance_rules_question", "why": "Rules question."}
+{"A": "Would I need a doctor's note if I cancel for medical reasons?", "expect": "no", "kind": "insurance_rules_question", "why": "Hypothetical question."}
+{"A": "How does the insurance work if one of the passengers gets injured?", "expect": "no", "kind": "insurance_rules_question", "why": "Rules question."}
+{"A": "My plans changed, I won't need the flight anymore.", "expect": "no", "kind": "change_of_plans", "why": "Change of plan is a different reason."}
+{"A": "We decided to drive instead, so please cancel the reservation.", "expect": "no", "kind": "change_of_plans", "why": "Change of plan."}
+{"A": "My sister's wedding got pushed to August, so I need to cancel this trip.", "expect": "no", "kind": "change_of_plans", "why": "Event moved, not health/weather."}
+{"A": "I got a new job and the start date clashes with the trip. Cancel it please.", "expect": "no", "kind": "change_of_plans", "why": "Work reason."}
+{"A": "Something came up at home and I can't go.", "expect": "no", "kind": "change_of_plans", "why": "No health or weather reason is stated."}
+{"A": "I'd rather go next month instead, can you just cancel this one?", "expect": "no", "kind": "change_of_plans", "why": "Change of plan."}
+{"A": "yes", "expect": "no", "kind": "asks_nothing_new", "why": "Asks nothing new (D13)."}
+{"A": "The reservation id is 4QZM8R.", "expect": "no", "kind": "asks_nothing_new", "why": "Only an id."}
+{"A": "Yes, that's the one.", "expect": "no", "kind": "asks_nothing_new", "why": "Only a yes."}
+{"A": "My user id is ilse_brookner_7726.", "expect": "no", "kind": "asks_nothing_new", "why": "Only an id."}
+{"A": "ok thanks", "expect": "no", "kind": "asks_nothing_new", "why": "Only thanks."}
+{"A": "Correct, both passengers.", "expect": "no", "kind": "asks_nothing_new", "why": "Only a confirmation."}

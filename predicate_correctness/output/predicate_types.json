@@ -1,0 +1,276 @@
+{
+  "_review": {
+    "status": "Types reviewed by an independent agent on 2026-10-22; person review pending.",
+    "date": "2026-10-22",
+    "changes": 0,
+    "details": "output/p3_review_changes.md (changes and notes), output/p3_agent_review.json (verdict per predicate)"
+  },
+  "airline": {
+    "pending_database_change_details_listed_and_explicitly_confirmed": {
+      "type": "conversation",
+      "reason": "Needs what the agent listed and whether the user said yes; the arguments only say what the messages must match."
+    },
+    "booking_required_information_established": {
+      "type": "mixed",
+      "reason": "Trip type, origin and destination come from user messages; the user ID can come from a shown profile and the match with the arguments is code."
+    },
+    "booking_has_at_most_five_passengers": {
+      "type": "argument",
+      "reason": "Counts the passengers in the pending booking's arguments."
+    },
+    "passenger_identity_details_established": {
+      "type": "mixed",
+      "reason": "Names and birth dates may come from user messages (meaning) or from saved passengers in a shown profile (code), compared with the arguments."
+    },
+    "all_booking_passengers_share_flights_and_cabin": {
+      "type": "argument",
+      "reason": "Uses only the booking's arguments; book_reservation takes one flight list and one cabin for all passengers."
+    },
+    "booking_payment_method_counts_within_limits": {
+      "type": "argument",
+      "reason": "Counts the payment ids in the arguments by kind; the id prefix (certificate_, credit_card_, gift_card_) gives the kind."
+    },
+    "booking_payment_methods_found_in_user_profile": {
+      "type": "database fact",
+      "reason": "Each payment id in the arguments must be in the payment methods of a shown user profile."
+    },
+    "booking_user_is_regular_member": {
+      "type": "database fact",
+      "reason": "Reads the membership field of the shown profile of the booking user (user_id argument)."
+    },
+    "regular_member_booking_baggage_counts_correct": {
+      "type": "argument",
+      "reason": "Compares total and nonfree bags with passenger count, cabin and the fixed regular allowance; all are in the arguments, and membership is a separate predicate in the rule."
+    },
+    "booking_user_is_silver_member": {
+      "type": "database fact",
+      "reason": "Reads the membership field of the shown profile of the booking user (user_id argument)."
+    },
+    "silver_member_booking_baggage_counts_correct": {
+      "type": "argument",
+      "reason": "Compares total and nonfree bags with passenger count, cabin and the fixed silver allowance; all are in the arguments, and membership is a separate predicate in the rule."
+    },
+    "booking_user_is_gold_member": {
+      "type": "database fact",
+      "reason": "Reads the membership field of the shown profile of the booking user (user_id argument)."
+    },
+    "gold_member_booking_baggage_counts_correct": {
+      "type": "argument",
+      "reason": "Compares total and nonfree bags with passenger count, cabin and the fixed gold allowance; all are in the arguments, and membership is a separate predicate in the rule."
+    },
+    "booking_insurance_decision_established_and_matched": {
+      "type": "conversation",
+      "reason": "The insurance decision is only in a user message; the argument only says what the message must match."
+    },
+    "modification_user_and_reservation_ids_established": {
+      "type": "mixed",
+      "reason": "The IDs may come from user messages (meaning) or from shown profile and reservation outputs (code), compared with the reservation_id argument."
+    },
+    "pending_flight_update_is_basic_economy": {
+      "type": "database fact",
+      "reason": "Reads the cabin of the shown reservation named in the reservation_id argument."
+    },
+    "pending_flight_segments_are_unchanged": {
+      "type": "database fact",
+      "reason": "Compares the flight numbers and dates in the arguments with the flights of the shown reservation."
+    },
+    "origin_destination_and_trip_type_preserved": {
+      "type": "database fact",
+      "reason": "Compares the new flights' origin and destination (from flight data) and the trip shape with the shown reservation."
+    },
+    "all_pending_flight_segments_have_one_cabin": {
+      "type": "argument",
+      "reason": "Uses only the arguments; update_reservation_flights takes one cabin for all segments."
+    },
+    "pending_baggage_total_not_reduced": {
+      "type": "database fact",
+      "reason": "Compares total_baggages in the arguments with total_baggages of the shown reservation."
+    },
+    "pending_passenger_count_unchanged": {
+      "type": "database fact",
+      "reason": "Compares the number of passengers in the arguments with the shown reservation's passengers."
+    },
+    "pending_flight_update_changes_flights": {
+      "type": "database fact",
+      "reason": "Compares the flight numbers and dates in the arguments with the flights of the shown reservation."
+    },
+    "user_selected_eligible_flight_change_payment_method": {
+      "type": "mixed",
+      "reason": "\"The user selected\" needs a user message; gift card or credit card and stored in a shown profile are code checks on the payment_id argument."
+    },
+    "cancellation_context_established": {
+      "type": "mixed",
+      "reason": "The cancellation reason comes from user messages; the user and reservation IDs can come from shown outputs and the match with the argument is code."
+    },
+    "cancellation_is_within_24_hours": {
+      "type": "mixed",
+      "reason": "The description accepts user messages as evidence; the tool-output part is code (created_at of the shown reservation vs the policy's current time)."
+    },
+    "airline_cancelled_flight_confirmed": {
+      "type": "mixed",
+      "reason": "The description accepts user messages as evidence; the code part is flight status in the flight data (no tool output shows a cancelled status)."
+    },
+    "reservation_has_business_cabin": {
+      "type": "database fact",
+      "reason": "Reads the cabin of the shown reservation named in the reservation_id argument."
+    },
+    "reservation_has_basic_or_economy_cabin": {
+      "type": "database fact",
+      "reason": "Reads the cabin of the shown reservation named in the reservation_id argument."
+    },
+    "reservation_has_travel_insurance": {
+      "type": "database fact",
+      "reason": "Reads the insurance field of the shown reservation named in the reservation_id argument."
+    },
+    "insured_cancellation_condition_met": {
+      "type": "conversation",
+      "reason": "A health or weather reason is only stated by the user; no tool output shows it."
+    },
+    "reservation_has_no_used_flight_segments": {
+      "type": "database fact",
+      "reason": "Compares the shown reservation's flight dates (or flight status in flight data) with the policy's current time."
+    },
+    "request_cannot_be_handled_with_available_tools": {
+      "type": "conversation",
+      "reason": "Needs what the user is asking and whether it is in scope; tool outputs are context only, with no separate check code can do."
+    },
+    "user_explicitly_requested_compensation": {
+      "type": "conversation",
+      "reason": "Needs the meaning of the user's messages."
+    },
+    "cancelled_flight_certificate_send_conditions_met": {
+      "type": "mixed",
+      "reason": "The complaint needs user messages; eligibility (membership, insurance, cabin), flight facts and amount = $100 x passengers are code checks."
+    },
+    "delayed_flight_certificate_send_conditions_met": {
+      "type": "mixed",
+      "reason": "The complaint and wish to change or cancel need user messages; eligibility, a completed change or cancellation and amount = $50 x passengers are code checks."
+    },
+    "pending_response_offers_cancelled_flight_certificate": {
+      "type": "conversation",
+      "reason": "The argument of respond is free text; whether it offers a certificate needs its meaning."
+    },
+    "pending_response_offers_delayed_flight_certificate": {
+      "type": "conversation",
+      "reason": "The argument of respond is free text; whether it offers a certificate needs its meaning."
+    },
+    "pending_response_offers_any_compensation_certificate": {
+      "type": "conversation",
+      "reason": "The argument of respond is free text; whether it offers a certificate needs its meaning."
+    },
+    "cancelled_flight_certificate_response_conditions_and_amount_met": {
+      "type": "mixed",
+      "reason": "The complaint and the amount stated in the response need message meaning; eligibility and the passenger count are code checks."
+    },
+    "delayed_flight_certificate_response_conditions_and_amount_met": {
+      "type": "mixed",
+      "reason": "The complaint, the wish and the amount in the response need message meaning; eligibility, a completed change or cancellation and passenger count are code checks."
+    },
+    "user_complained_about_relevant_flight_situation": {
+      "type": "conversation",
+      "reason": "Needs the meaning of the user's messages."
+    },
+    "compensation_is_prohibited_for_relevant_reservation": {
+      "type": "mixed",
+      "reason": "Membership, insurance and cabin are code checks on shown outputs, but which reservation is relevant comes from the conversation (no argument names it)."
+    }
+  },
+  "retail": {
+    "email_identity_provided_by_user": {
+      "type": "conversation",
+      "reason": "Needs whether the user gave this email as their identity; the argument only says what the message must match."
+    },
+    "name_and_zip_identity_provided_by_user": {
+      "type": "conversation",
+      "reason": "Needs whether the user gave this name and zip code; the arguments only say what the message must match."
+    },
+    "user_authenticated": {
+      "type": "event",
+      "reason": "True if an earlier find_user_id_by_email or find_user_id_by_name_zip call worked."
+    },
+    "user_specific_information_disclosed": {
+      "type": "conversation",
+      "reason": "The argument of respond is free text; whether it holds user information needs its meaning."
+    },
+    "request_is_for_another_user": {
+      "type": "conversation",
+      "reason": "Needs the meaning of the user's messages."
+    },
+    "response_performs_task_for_another_user": {
+      "type": "conversation",
+      "reason": "Needs the meaning of the pending response and of the user's messages."
+    },
+    "request_cannot_be_handled_within_scope": {
+      "type": "conversation",
+      "reason": "Needs what the user is asking and the transfer summary text; no separate check code can do."
+    },
+    "consequential_action_details_listed": {
+      "type": "conversation",
+      "reason": "Needs what an earlier agent message listed; the arguments only say what it must match."
+    },
+    "user_explicitly_confirmed_pending_action": {
+      "type": "conversation",
+      "reason": "Needs whether the user said yes after the details were listed."
+    },
+    "order_status_checked_pending": {
+      "type": "database fact",
+      "reason": "Reads the status of the shown order named in the order_id argument."
+    },
+    "order_status_checked_delivered": {
+      "type": "database fact",
+      "reason": "Reads the status of the shown order named in the order_id argument."
+    },
+    "cancellation_reason_is_allowed": {
+      "type": "argument",
+      "reason": "Checks that the reason argument is 'no longer needed' or 'ordered by mistake'."
+    },
+    "user_confirmed_cancellation_order_and_reason": {
+      "type": "conversation",
+      "reason": "Needs what the user confirmed; the arguments only say what it must match."
+    },
+    "user_chose_pending_payment_method": {
+      "type": "conversation",
+      "reason": "Needs what the user stated or agreed to; the argument only says what it must match ('chose' is a conversation fact, brainstorm A2)."
+    },
+    "payment_method_differs_from_original": {
+      "type": "database fact",
+      "reason": "Compares the payment_method_id argument with the payment method in the shown order's payment history."
+    },
+    "payment_method_is_gift_card": {
+      "type": "argument",
+      "reason": "Checks that the payment_method_id argument is a gift card id (prefix gift_card_)."
+    },
+    "gift_card_balance_covers_order_total": {
+      "type": "database fact",
+      "reason": "Compares the gift card balance in the shown user profile with the shown order's total."
+    },
+    "item_replacements_are_available_same_product_different_option": {
+      "type": "database fact",
+      "reason": "Checks each new item in shown product details (available, same product as the old item in the shown order, different options)."
+    },
+    "user_chose_price_difference_payment_method": {
+      "type": "conversation",
+      "reason": "Needs what the user stated or agreed to; the argument only says what it must match."
+    },
+    "gift_card_balance_covers_price_difference": {
+      "type": "database fact",
+      "reason": "Compares the shown gift card balance with the price difference from shown item prices."
+    },
+    "agent_reminded_user_to_include_all_items_for_modification": {
+      "type": "conversation",
+      "reason": "Needs the meaning of earlier agent messages."
+    },
+    "user_confirmed_return_order_items_and_method": {
+      "type": "conversation",
+      "reason": "Needs what the user stated or agreed to; the arguments only say what it must match."
+    },
+    "return_refund_method_is_original_or_existing_gift_card": {
+      "type": "database fact",
+      "reason": "The payment_method_id argument must be the shown order's original method or a gift card in the shown user profile."
+    },
+    "agent_reminded_user_to_include_all_items_for_exchange": {
+      "type": "conversation",
+      "reason": "Needs the meaning of earlier agent messages."
+    }
+  }
+}

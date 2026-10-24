@@ -1,0 +1,248 @@
+{
+  "domain": "airline",
+  "by": "A5",
+  "_about": "Tracker v4 fact overlay of build agent A5 (code_change_map.md sections 0.3 and 1.1, rows marked A5; predicate_table.md section 2.1). Only parts, combine, sources, evidence and update change; names, rules, blocking values, policy and who stay as in facts_v3_airline.json. K8 and K9 merge into K8 (v4); K11 and K15 are gone (code); K12's amount is code over every dollar amount of the reply and its kind comes from the database first. Helpers: state_tracker/v4/helpers_v4.py (A5), questions_v4.py (A3), listing_v4.py (A1). The transfer escape is applied by the guard (tgr_tracker_v4), not by a part.",
+  "facts": {
+    "booking_required_information_established": {
+      "combine": "a AND (b OR (c AND g AND h)) AND (d OR (e AND g AND h))",
+      "sources": [
+        "structure",
+        "question"
+      ],
+      "evidence": "which item is not established: the user id is in neither the user's words nor a tool output; the route (the user named neither the origin nor the destination, and no confirmed listing names both); or the trip type (no 'one way' / 'round trip' phrase from the user or in the listing, and no confirmed listing names every flight that fits the trip).",
+      "update": "True once the booking user id was obtained (user's words or a worked tool output) AND the route is established (the user named the origin and the destination, or the listing L names both and the user's go-ahead D4 holds) AND the trip is established (a phrase of the call's flight_type in a user message or in L, or L names every flight of the call with its date, the flights fit the flight_type in the flights table, and the go-ahead holds). The go-ahead is the shared K1 (v4) answer: fast path D8, else K1 on (L, B), and no clash; it is asked only when a listing path is needed. K15 is gone. Evaluated for the pending call's arguments.",
+      "parts": {
+        "b": {
+          "source": "structure",
+          "plain": "route, user path: the call's origin and its destination are each named in a user message (helpers_v4.user_named_airport_v4): the IATA code written in upper case (JFK, not jfk), the airport's city from list_all_airports (any case), or a metro name (NYC / NY / New York for JFK, LGA, EWR; LA for LAX; SF / San Fran for SFO; Vegas for LAS; Philly for PHL; Chi-town for ORD; Twin Cities for MSP; La Guardia for LGA).",
+          "expr": "user_named_airport_v4(args['origin']) and user_named_airport_v4(args['destination'])",
+          "question": null,
+          "about": null
+        },
+        "c": {
+          "source": "structure",
+          "plain": "route, listing path: a listing anchor L of this booking (go_ahead_anchors_v4(): D3, newest first, at most 2) names both the origin and the destination (code, city or metro name). Needs the go-ahead (parts g and h).",
+          "expr": "anchor_names_route_v4(go_ahead_anchors_v4())",
+          "question": null,
+          "about": null
+        },
+        "d": {
+          "source": "structure",
+          "plain": "trip, words path: a phrase of the call's flight_type is in a user message before the call or in a listing anchor L: one_way 'one way' / 'one-way' / 'oneway'; round_trip 'round trip' / 'round-trip' / 'roundtrip' / 'return trip' / 'return flight' (helpers_v4.trip_type_stated_v4).",
+          "expr": "trip_type_stated_v4(go_ahead_anchors_v4())",
+          "question": null,
+          "about": null
+        },
+        "e": {
+          "source": "structure",
+          "plain": "trip, listing path: a listing anchor L names every flight of the call (number and date in that one message; helpers_v4.anchor_names_flights_v4 with listing_v4's flight line check) and the flights fit the call's flight_type, origin and destination in the flights table (helpers_v4.trip_fits_v4: one chain origin -> destination for one_way; outbound then return for round_trip). Needs the go-ahead (parts g and h).",
+          "expr": "anchor_names_flights_v4(go_ahead_anchors_v4()) and trip_fits_v4()",
+          "question": null,
+          "about": null
+        },
+        "g": {
+          "source": "question",
+          "plain": "the go-ahead D4 to the listing: the shared K1 (v4) answer of this call (the same expression as the confirmation fact, so one answer serves both): the newest user message after L is a plain yes (fast path D8, no LLM call), else K1 (v4) yes on (L, the user messages after L); a strict no drops L. Asked only when part c or e is needed.",
+          "expr": "go_ahead_fast_v4() or ask_first_yes_v4('K1', go_ahead_candidates_v4(), limit=2)",
+          "question": "K1",
+          "about": "the listing anchor L and every user message after it up to the call (go_ahead_candidates_v4)"
+        },
+        "h": {
+          "source": "structure",
+          "plain": "the go-ahead has no clash (D7): no user message after L names another payment method or passenger than the call (helpers_go_ahead_v4.clash_free_v4).",
+          "expr": "clash_free_v4()",
+          "question": null,
+          "about": null
+        }
+      }
+    },
+    "user_complained_about_relevant_flight_situation": {
+      "combine": "a AND b",
+      "evidence": "The quoted complaint (cancelled / delayed: the kind comes from the database), or 'no user message complains about a delayed or cancelled flight'. The message never suggests a complaint.",
+      "update": "False at the start. True once K8 (v4, the merged complaint question) says yes on a user message; saved answers never change, so it stays true for later checks. An unclear answer is asked once more with the second wording; still unclear gives false.",
+      "parts": {
+        "a": {
+          "source": "structure",
+          "plain": "Every user message before the check is a candidate for K8 (v4), newest first (no word screen). Part a holds when there is a user message before the check. It never sets a value alone; K8 decides.",
+          "expr": "len(user_messages()) > 0",
+          "question": null,
+          "about": null
+        },
+        "b": {
+          "source": "question",
+          "plain": "K8 (v4, K8 and K9 merged) yes with a quote: a user message before the check complains about a problem with a flight of the trip, such as the flight being delayed or cancelled. Asking only about a flight's status, or only asking to change or cancel, is no. Whether the flight really was cancelled or delayed comes from the database (the conditions facts).",
+          "expr": "ask_first_yes_v4('K8', user_messages())",
+          "question": "K8",
+          "about": "the user messages before the check, newest first; stop at the first yes"
+        },
+        "c": null
+      }
+    },
+    "cancelled_flight_certificate_send_conditions_met": {
+      "update": "Read at every send_certificate check, from the call's arguments, the database, the event log and the saved K8 (v4) answers. Parts b to e narrow one set of reservations step by step, so they hold for the same reservation. True when the user complained about a flight problem (K8), and the call sends $100 x passengers to the user for a named, eligible reservation that had a cancelled flight (database). False otherwise; an unclear K8 answer (after one more ask) gives false.",
+      "parts": {
+        "f": {
+          "source": "question",
+          "plain": "K8 (v4) yes with a quote: a user message before the send_certificate call complains about a problem with a flight (delayed or cancelled). The kind (cancelled) is checked from the database by part c.",
+          "expr": "ask_first_yes_v4('K8', user_messages())",
+          "question": "K8",
+          "about": "the user messages before the send_certificate call, newest first",
+          "who": "user_only"
+        }
+      }
+    },
+    "delayed_flight_certificate_send_conditions_met": {
+      "combine": "a AND b AND c AND d AND e AND f AND g",
+      "evidence": "The first part that fails: the user_id not obtained; no named reservation (look it up); none had a delayed flight; none eligible; not changed or cancelled yet (do that first, after the user's yes); the amount ($<a>, but $50 x <n> = $<50 n>); or no complaint (quoted, or none).",
+      "update": "Read at every send_certificate check, from the call's arguments, the database, the event log and the saved K8 (v4) answers. Parts b to f narrow one set of reservations step by step. True when the user complained about a flight problem (K8), the named, eligible reservation with a delayed flight was changed or cancelled (event log: this is what the user wanted, so K11 is gone), and the call sends $50 x passengers to the user. False otherwise; an unclear K8 answer (after one more ask) gives false.",
+      "parts": {
+        "g": {
+          "source": "question",
+          "plain": "K8 (v4) yes with a quote: a user message before the send_certificate call complains about a problem with a flight (delayed or cancelled). The kind (delayed) is checked from the database by part c; the change or cancellation by part e (event log).",
+          "expr": "ask_first_yes_v4('K8', user_messages())",
+          "question": "K8",
+          "about": "the user messages before the send_certificate call, newest first",
+          "who": "user_only"
+        },
+        "h": null
+      }
+    },
+    "cancelled_flight_certificate_response_conditions_and_amount_met": {
+      "update": "Read at every reply check, from the database, the event log and the saved K8 (v4) answers. Parts b to e narrow one set of reservations step by step. True when the user complained about a flight problem (K8), a named reservation of the user had a cancelled flight and is eligible, and every-dollar-amount code finds $100 x passengers (or no amount) in the offer. False otherwise; an unclear K8 answer (after one more ask) gives false.",
+      "parts": {
+        "e": {
+          "source": "structure",
+          "plain": "The amount is right (questions_v4.offer_amount_ok_v4, code only, no question: every dollar amount in a sentence of the pending reply that holds a compensation noun such as certificate, voucher, credit, compensation, gesture, goodwill; not K12's quote): true if the reply names no amount, or one amount equals $100 x the passengers of a reservation of d, or is $100 with 'per passenger', 'each' or 'per person' next to it (the send_certificate check then checks the amount again).",
+          "expr": "offer_amount_ok_v4(args['content'], 100, [n_passengers(r) for r in eligible_for_compensation(had_flight_status(named_reservations(obtained_user_ids()), 'cancelled'), ['silver', 'gold'])])",
+          "question": null,
+          "about": null,
+          "who": "agent"
+        },
+        "f": {
+          "source": "question",
+          "plain": "K8 (v4) yes with a quote: a user message before the reply complains about a problem with a flight (delayed or cancelled). The kind (cancelled) is checked from the database by part c.",
+          "expr": "ask_first_yes_v4('K8', user_messages())",
+          "question": "K8",
+          "about": "the user messages before the reply, newest first",
+          "who": "user_only"
+        }
+      }
+    },
+    "delayed_flight_certificate_response_conditions_and_amount_met": {
+      "combine": "a AND b AND c AND d AND e AND f AND g",
+      "evidence": "The first part that fails: no obtained user id; no named reservation; none had a delayed flight; none eligible; not changed or cancelled yet; the amount in the offer ($<x>, but $50 x <n> = $<50 n>); or no complaint.",
+      "update": "Read at every reply check, from the database, the event log and the saved K8 (v4) answers. Parts b to f narrow one set of reservations step by step. True when the user complained about a flight problem (K8), the named, eligible reservation with a delayed flight was changed or cancelled before the reply (event log; K11 is gone), and every-dollar-amount code finds $50 x passengers (or no amount) in the offer. False otherwise; an unclear K8 answer (after one more ask) gives false.",
+      "parts": {
+        "f": {
+          "source": "structure",
+          "plain": "The amount is right (questions_v4.offer_amount_ok_v4, code only, no question: every dollar amount in a sentence of the pending reply that holds a compensation noun such as certificate, voucher, credit, compensation, gesture, goodwill; not K12's quote): true if the reply names no amount, or one amount equals $50 x the passengers of a reservation of e, or is $50 with 'per passenger', 'each' or 'per person' next to it.",
+          "expr": "offer_amount_ok_v4(args['content'], 50, [n_passengers(r) for r in changed_or_cancelled(eligible_for_compensation(had_flight_status(named_reservations(obtained_user_ids()), 'delayed'), ['silver', 'gold']))])",
+          "question": null,
+          "about": null,
+          "who": "agent"
+        },
+        "g": {
+          "source": "question",
+          "plain": "K8 (v4) yes with a quote: a user message before the reply complains about a problem with a flight (delayed or cancelled). The kind (delayed) is checked from the database by part c; the change or cancellation by part e (event log).",
+          "expr": "ask_first_yes_v4('K8', user_messages())",
+          "question": "K8",
+          "about": "the user messages before the reply, newest first",
+          "who": "user_only"
+        },
+        "h": null
+      }
+    },
+    "pending_response_offers_cancelled_flight_certificate": {
+      "evidence": "The quoted offer from the pending reply (shown as true, the value that breaks the rule), and how the kind was decided (the database: the user's named reservations had only a cancelled flight; else the quote words).",
+      "update": "Computed for each pending reply; a new reply starts false. True when screen a hits, K12 (v4) says yes (or stays unclear after one more ask), and the offer's kind is cancelled: from the database first (the named, eligible reservations had a cancelled and no delayed flight), else from K12's quote words, else undecided (true, the blocking value). False when the screen does not hit or K12 says no.",
+      "parts": {
+        "b": {
+          "source": "question",
+          "plain": "K12 (v4) on the pending reply: it offers or promises the user a certificate, voucher, credit or other compensation (a refund, a price difference or fees are not compensation). An unclear answer is asked once more with the second wording; still unclear counts as yes (the blocking value; the agent rewrites one reply).",
+          "expr": "ask_v4('K12', args['content'])",
+          "question": "K12",
+          "about": "the pending reply (respond content), asked only when screen a hits"
+        },
+        "c": {
+          "source": "question",
+          "plain": "The offer is about a cancelled flight (questions_v4.offer_kind_v4): the database decides first (helpers_v4.offer_db_kinds_v4: the user's named, eligible reservations had only cancelled flights -> yes; only delayed -> no); with both kinds or neither, K12's quote words decide (a cancel word and no delay word -> yes; the other way -> no); still undecided: yes (the blocking value).",
+          "expr": "offer_kind_v4(args['content'], 'cancelled', offer_db_kinds_v4())",
+          "question": "K12",
+          "about": "the database kind of the user's named reservations; K12's quote only when it is not decided"
+        }
+      }
+    },
+    "pending_response_offers_delayed_flight_certificate": {
+      "evidence": "The quoted offer from the pending reply (shown as true, the value that breaks the rule), and how the kind was decided (the database: the user's named reservations had only a delayed flight; else the quote words).",
+      "update": "Computed for each pending reply; a new reply starts false. True when screen a hits, K12 (v4) says yes (or stays unclear after one more ask), and the offer's kind is delayed: from the database first (the named, eligible reservations had a delayed and no cancelled flight), else from K12's quote words, else undecided (true, the blocking value). False when the screen does not hit or K12 says no.",
+      "parts": {
+        "b": {
+          "source": "question",
+          "plain": "K12 (v4) on the pending reply: it offers or promises the user a certificate, voucher, credit or other compensation (a refund, a price difference or fees are not compensation). An unclear answer is asked once more with the second wording; still unclear counts as yes (the blocking value; the agent rewrites one reply).",
+          "expr": "ask_v4('K12', args['content'])",
+          "question": "K12",
+          "about": "the pending reply (respond content), asked only when screen a hits"
+        },
+        "c": {
+          "source": "question",
+          "plain": "The offer is about a delayed flight (questions_v4.offer_kind_v4): the database decides first (helpers_v4.offer_db_kinds_v4: the user's named, eligible reservations had only delayed flights -> yes; only cancelled -> no); with both kinds or neither, K12's quote words decide (a delay word and no cancel word -> yes; the other way -> no); still undecided: yes (the blocking value).",
+          "expr": "offer_kind_v4(args['content'], 'delayed', offer_db_kinds_v4())",
+          "question": "K12",
+          "about": "the database kind of the user's named reservations; K12's quote only when it is not decided"
+        }
+      }
+    },
+    "pending_response_offers_any_compensation_certificate": {
+      "update": "Computed for each pending reply; a new reply starts false. True when screen a hits and K12 (v4) says yes (or stays unclear after one more ask with the second wording). False when the screen does not hit or K12 says no.",
+      "parts": {
+        "b": {
+          "source": "question",
+          "plain": "K12 (v4) on the pending reply: it offers or promises the user a certificate, voucher, credit or other compensation (a refund, a price difference or fees are not compensation; saying the user is not eligible is no). An unclear answer is asked once more with the second wording; still unclear counts as yes (the blocking value).",
+          "expr": "ask_v4('K12', args['content'])",
+          "question": "K12",
+          "about": "the pending reply (respond content), asked only when screen a hits"
+        }
+      }
+    },
+    "request_cannot_be_handled_with_available_tools": {
+      "combine": "a OR (b AND (c OR d))",
+      "evidence": "The quoted request that the tools cannot do; or the named reservation with a used flight and the user's cancel attempt (a cancel_reservation call on it) or quoted wish to cancel; else 'the request can be handled with the tools: help, or deny it if the policy forbids it'.",
+      "update": "Read at every transfer check. True when K13 (v4) says yes on a user message, or when a named reservation of the user has a used flight (database) and the user asked to cancel: a cancel_reservation call on it already ran (code), else K16 (v4) says yes. An unclear K13 or K16 answer is asked once more; still unclear gives true (allow + log). The guard's escape can also set it true after 2 tiny blocks on one write.",
+      "parts": {
+        "a": {
+          "source": "question",
+          "plain": "K13 (v4) yes with a quote: a user message before the transfer asks for something the agent's tools cannot do. K13 gets the list of what the 14 airline tools can do, and the policy's hard limits, which are denied, not transferred (S29 no checked bag removed, S30 no insurance added after booking, S31-S32 no change of the number of passengers). Newest first, first yes. An unclear answer is asked once more with the second wording; still unclear: true (allow + log). Fix round 2 (K13 v5): each user message is asked with the agent's text message just before it (message B, context only; user_messages_with_agent_before_v4); yes also when B says the policy rules do not let the agent do the task for this user and the user still asks for it or for a person to look at it (never for the refused list).",
+          "expr": "ask_first_yes_v4('K13', user_messages_with_agent_before_v4(), on_unclear=True)",
+          "question": "K13",
+          "about": "the user messages before the transfer_to_human_agents call, newest first (the latest request first); stop at the first yes"
+        },
+        "c": {
+          "source": "structure",
+          "plain": "S41's case, code part for the wish to cancel: a cancel_reservation call (worked or failed) on a reservation of b ran before the transfer (helpers_v4.cancel_attempted_v4). Guard-blocked calls are not in the executed history and do not count. When it holds, K16 is not asked.",
+          "expr": "cancel_attempted_v4(had_flight_status(named_reservations(obtained_user_ids()), ['flying', 'landed'], current=True))",
+          "question": null,
+          "about": null
+        },
+        "d": {
+          "source": "question",
+          "plain": "S41's case, question part: K16 (v4) yes with a quote: a user message before the transfer asks to cancel a reservation or a trip (all of it or a part). Asked only when b holds and c does not. An unclear answer is asked once more; still unclear: true (allow + log).",
+          "expr": "ask_first_yes_v4('K16', user_messages(), on_unclear=True)",
+          "question": "K16",
+          "about": "every user message before the transfer, newest first; asked only when b is true and c is false"
+        }
+      }
+    },
+    "user_explicitly_requested_compensation": {
+      "update": "False at the start. True once K10 (v4) says yes on a user message that hits the screen; a saved answer never changes, so it stays true for later checks. An unclear K10 answer is asked once more with the second wording; still unclear gives false.",
+      "parts": {
+        "b": {
+          "source": "question",
+          "plain": "K10 (v4) yes with a quote: a user message before the check explicitly asks for compensation (a certificate, voucher, credit, money or something else to make up for a problem). Asking only to change, cancel or refund a booking is no.",
+          "expr": "ask_first_yes_v4('K10', screened_user_messages('compensation_request'))",
+          "question": "K10",
+          "about": "the user messages before the pending send_certificate or reply that hit screen a, newest first; stop at the first yes"
+        }
+      }
+    }
+  }
+}

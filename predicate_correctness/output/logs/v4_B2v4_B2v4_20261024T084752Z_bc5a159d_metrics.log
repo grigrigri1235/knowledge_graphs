@@ -1,0 +1,3 @@
+[v4-online-metrics] WARNING: 1 write attempts whose kwargs differ from the message's arguments (the message's are used)
+[v4-online-metrics] SUMMARY: B2v4: v4 - frozen success +0.017 [-0.034, +0.071] PASS (good), harm +0.024 [-0.013, +0.061]; safety bad 0; strictness good; complete groups 297
+[v4-online-metrics] wrote /home/azureuser/code_projects/predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.json and /home/azureuser/code_projects/predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.md

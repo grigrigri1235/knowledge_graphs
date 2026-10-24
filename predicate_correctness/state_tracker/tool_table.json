@@ -1,0 +1,102 @@
+{
+  "about": "Part 4 tool table, written from the copied τ-bench tool code only (from_shieldagent/tau_bench/tau_bench/envs/<domain>/tools/*.py). Notes: output/p4_tool_notes.md. Used by state_tracker/state.py.",
+  "fields": {
+    "kinds": "object kinds of the shown set and of db(): where the database copy keeps them, and their id",
+    "kinds.<kind>.table": "the top-level key of the τ-bench data dict; the dict key is the object's id",
+    "kinds.<kind>.id_field": "the field inside the object that holds the id, or null if the object has no id field (then the id is only the dict key)",
+    "kinds.<kind>.nested_in": "for a nested kind: [parent kind, field of the parent that maps id -> nested object]. The nested object is given as a copy with the parent's id added under parent_id_as",
+    "kinds.<kind>.from_tool": "for a kind that is not in the data files: the read tool whose constant output defines it",
+    "tools.<tool>.changes_db": "true if a successful call can change the database",
+    "tools.<tool>.changes": "what a successful call changes (from the code)",
+    "tools.<tool>.output": "format of a successful output: object | flight_list | flight_pair_list | name_to_id | code_to_city | text",
+    "tools.<tool>.kind": "kind of the object(s) in the output (null for text)",
+    "tools.<tool>.id_from": "where the object's id comes from: field:<name> (inside the output) or arg:<name> (the call's argument)",
+    "tools.<tool>.errors": "failed outputs start with 'Error'; τ-bench's env turns any exception into 'Error: <exception>'"
+  },
+  "domains": {
+    "retail": {
+      "kinds": {
+        "user": {"table": "users", "id_field": null},
+        "order": {"table": "orders", "id_field": "order_id"},
+        "product": {"table": "products", "id_field": "product_id"},
+        "payment_method": {"nested_in": ["user", "payment_methods"], "id_field": "id", "parent_id_as": "user_id"},
+        "variant": {"nested_in": ["product", "variants"], "id_field": "item_id", "parent_id_as": "product_id"},
+        "product_type": {"from_tool": "list_all_product_types", "id_field": "product_id",
+                         "note": "{name, product_id}; the fact version is built from the products table"}
+      },
+      "tools": {
+        "calculate": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                      "note": "the result as text, rounded to 2 decimals"},
+        "cancel_pending_order": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                 "changes": "order: status -> 'cancelled', cancel_reason, refund entries added to payment_history; user: a gift card used to pay gets the refund added to its balance"},
+        "exchange_delivered_order_items": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                           "changes": "order: status -> 'exchange requested', exchange_items, exchange_new_items, exchange_payment_method_id, exchange_price_difference (no payment is made yet)"},
+        "find_user_id_by_email": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                                  "note": "the user id as plain text; kept in the event log only"},
+        "find_user_id_by_name_zip": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                                     "note": "the user id as plain text; kept in the event log only"},
+        "get_order_details": {"changes_db": false, "changes": "", "output": "object", "kind": "order", "id_from": "field:order_id"},
+        "get_product_details": {"changes_db": false, "changes": "", "output": "object", "kind": "product", "id_from": "field:product_id",
+                                "note": "also adds each variant (kind variant) to the shown set"},
+        "get_user_details": {"changes_db": false, "changes": "", "output": "object", "kind": "user", "id_from": "arg:user_id",
+                             "note": "the user object has no id field; also adds each payment method (kind payment_method)"},
+        "list_all_product_types": {"changes_db": false, "changes": "", "output": "name_to_id", "kind": "product_type",
+                                   "note": "{product name: product id} for all 50 products"},
+        "modify_pending_order_address": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                         "changes": "order: address"},
+        "modify_pending_order_items": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                       "changes": "order: items (item_id, price, options), a payment or refund entry in payment_history, status -> 'pending (item modified)'; user: gift card balance if a gift card pays or gets the difference"},
+        "modify_pending_order_payment": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                         "changes": "order: a new payment and a refund in payment_history; user: gift card balances of the new and the old method"},
+        "modify_user_address": {"changes_db": true, "output": "object", "kind": "user", "id_from": "arg:user_id",
+                                "changes": "user: address (the default address; orders keep their own address)"},
+        "return_delivered_order_items": {"changes_db": true, "output": "object", "kind": "order", "id_from": "field:order_id",
+                                         "changes": "order: status -> 'return requested', return_items, return_payment_method_id (no refund is made yet)"},
+        "think": {"changes_db": false, "changes": "", "output": "text", "kind": null, "note": "always returns the empty string"},
+        "transfer_to_human_agents": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                                     "note": "always 'Transfer successful'; τ-bench ends the conversation after it (terminate_tools)"}
+      }
+    },
+    "airline": {
+      "kinds": {
+        "user": {"table": "users", "id_field": null},
+        "reservation": {"table": "reservations", "id_field": "reservation_id"},
+        "flight": {"table": "flights", "id_field": "flight_number",
+                   "note": "a flight with dates {date: {status, ...}}. The shown version has the same shape, with only the dates that were shown"},
+        "payment_method": {"nested_in": ["user", "payment_methods"], "id_field": "id", "parent_id_as": "user_id"},
+        "airport": {"from_tool": "list_all_airports", "id_field": "code",
+                    "note": "{code, city}; not in the data files: the 20 airports are constants in the tool code"}
+      },
+      "tools": {
+        "book_reservation": {"changes_db": true, "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                             "changes": "new reservation (id HATHAT, then HATHAU, HATHAV; created_at 2024-05-15T15:00:00); user: reservation id added, gift card amount reduced, a used certificate removed. Flight seats are not changed"},
+        "calculate": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                      "note": "the result as text, rounded to 2 decimals"},
+        "cancel_reservation": {"changes_db": true, "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                               "changes": "reservation: status -> 'cancelled', a negative entry per payment added to payment_history. No balance is changed and the status is not checked first"},
+        "get_reservation_details": {"changes_db": false, "changes": "", "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                                    "note": "an unknown reservation gives 'Error: user not found' (sic)"},
+        "get_user_details": {"changes_db": false, "changes": "", "output": "object", "kind": "user", "id_from": "arg:user_id",
+                             "note": "the user object has no id field; also adds each payment method (kind payment_method)"},
+        "list_all_airports": {"changes_db": false, "changes": "", "output": "code_to_city", "kind": "airport",
+                              "note": "a fixed list of 20 airports, not from the database"},
+        "search_direct_flight": {"changes_db": false, "changes": "", "output": "flight_list", "kind": "flight", "id_from": "field:flight_number",
+                                 "note": "a list of flights that are 'available' on the date; each is the flight without 'dates', plus that date's status, available_seats and prices. The date is the call's argument 'date'"},
+        "search_onestop_flight": {"changes_db": false, "changes": "", "output": "flight_pair_list", "kind": "flight", "id_from": "field:flight_number",
+                                  "note": "a list of [first leg, second leg]; each leg has a 'date' field. τ-bench quirk: the second leg's status, seats and prices are taken from the first leg's date, even when its own date is the next day"},
+        "send_certificate": {"changes_db": true, "output": "text", "kind": null,
+                             "changes": "user: a certificate payment method (certificate_3221322, then ...23, ...24) with the amount",
+                             "note": "output 'Certificate <id> added to user <user> with amount <n>.'; kept in the event log only. Returns None (no text) if all 3 ids are taken"},
+        "think": {"changes_db": false, "changes": "", "output": "text", "kind": null, "note": "always returns the empty string"},
+        "transfer_to_human_agents": {"changes_db": false, "changes": "", "output": "text", "kind": null,
+                                     "note": "always 'Transfer successful'; τ-bench ends the conversation after it (terminate_tools)"},
+        "update_reservation_baggages": {"changes_db": true, "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                                        "changes": "reservation: total_baggages, nonfree_baggages, a payment entry if extra bags cost money; user: gift card amount reduced"},
+        "update_reservation_flights": {"changes_db": true, "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                                       "changes": "reservation: flights (all segments, with prices), a payment entry for the price difference; user: gift card amount reduced. The cabin field and flight seats are not changed"},
+        "update_reservation_passengers": {"changes_db": true, "output": "object", "kind": "reservation", "id_from": "field:reservation_id",
+                                          "changes": "reservation: passengers (same number as before)"}
+      }
+    }
+  }
+}

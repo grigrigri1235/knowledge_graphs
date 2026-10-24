@@ -1,0 +1,339 @@
+{
+ "meta": {
+  "backend": "real",
+  "cases": 720,
+  "dev_ledger": {
+   "at_end": {
+    "bad_lines": 0,
+    "calls": 733,
+    "open": 0,
+    "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+    "runs": [
+     "v4cases_real_20261024T073118Z"
+    ],
+    "usd": 0.0540155
+   },
+   "at_start": {
+    "asked_calls": 5100,
+    "asked_usd": 2.0,
+    "ledger": {
+     "bad_lines": 0,
+     "calls": 0,
+     "open": 0,
+     "path": "output/eval_v4/dev/dev_spend_ledger.jsonl",
+     "runs": [],
+     "usd": 0.0
+    },
+    "left_calls": 5100,
+    "left_usd": 2.0,
+    "limit_calls": 5100,
+    "limit_usd": 2.0,
+    "questions_lines": 0,
+    "questions_usd": 0.0,
+    "run_calls": 5100,
+    "run_usd": 2.0,
+    "spent_usd": 0.0,
+    "used_calls": 0
+   }
+  },
+  "network_events": 0,
+  "policy": null,
+  "problems": [],
+  "run_id": "v4cases_real_20261024T073118Z",
+  "spend": {
+   "calls": 733,
+   "usd": 0.05401550000000002
+  }
+ },
+ "score": {
+  "all_pass": false,
+  "by_question": {
+   "K1": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 28,
+     "right_first_wording": 28,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "hard_no: changed_detail": 1,
+     "hard_no: question_price_refund": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K10": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "yes: \"what will you give me for this\"": 2
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 28,
+     "right_first_wording": 28,
+     "unclear": 2
+    }
+   },
+   "K12": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K13": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": false,
+     "right": 26,
+     "right_first_wording": 26,
+     "unclear": 1
+    },
+    "pass": false,
+    "wrong_by_kind": {
+     "hard_no: escalate_wording_in_scope": 3,
+     "hard_no: refused_list": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K16": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 29,
+     "unclear": 0
+    }
+   },
+   "K17": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K18": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "yes: paraphrase_ordered_by_mistake": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 29,
+     "right_first_wording": 29,
+     "unclear": 0
+    }
+   },
+   "K3": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": false,
+     "right": 24,
+     "right_first_wording": 24,
+     "unclear": 0
+    },
+    "pass": false,
+    "wrong_by_kind": {
+     "hard_no: different_order_window_edge": 5,
+     "hard_no: right_item_question": 1,
+     "yes: statement_plus_question": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 29,
+     "right_first_wording": 29,
+     "unclear": 0
+    }
+   },
+   "K4": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 29,
+     "right_first_wording": 29,
+     "unclear": 0
+    },
+    "pass": false,
+    "wrong_by_kind": {
+     "hard_no: gift_bought_for_someone": 1,
+     "yes: indirect_under_name": 3
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": false,
+     "right": 27,
+     "right_first_wording": 27,
+     "unclear": 0
+    }
+   },
+   "K6": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 28,
+     "right_first_wording": 28,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "hard_no: health_mentioned_other_reason": 1,
+     "hard_no: insurance_rules_question": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K7": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {},
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    }
+   },
+   "K8": {
+    "hard_no": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 30,
+     "right_first_wording": 30,
+     "unclear": 0
+    },
+    "pass": true,
+    "wrong_by_kind": {
+     "yes: complaint + request for compensation": 1
+    },
+    "yes": {
+     "n": 30,
+     "not_asked": 0,
+     "note": null,
+     "pass_": true,
+     "right": 29,
+     "right_first_wording": 29,
+     "unclear": 0
+    }
+   }
+  }
+ }
+}

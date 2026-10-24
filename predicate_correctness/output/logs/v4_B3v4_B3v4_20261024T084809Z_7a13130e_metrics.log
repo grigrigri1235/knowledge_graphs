@@ -1,0 +1,3 @@
+[v4-online-metrics] WARNING: 417 tiny answers without a conversation (where_first / where / conversation_id)
+[v4-online-metrics] SUMMARY: B3v4: v4 - frozen success +0.031 [-0.078, +0.141] PASS (good), harm -0.016 [-0.143, +0.111]; safety bad 0; strictness good; complete groups 64
+[v4-online-metrics] wrote /home/azureuser/code_projects/predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.json and /home/azureuser/code_projects/predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.md

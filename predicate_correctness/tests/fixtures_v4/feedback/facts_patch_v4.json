@@ -1,0 +1,65 @@
+{
+  "_about": "Test fixture of agent A7 (tests/test_v4_feedback.py). A made-up v4 fact file = the v3 fact file (state_tracker/v3/facts_v3_<domain>.json) with these entries changed, in the overlay form of code_change_map.md section 0.3 ({fact: {combine?, sources?, who?, parts: {pid: part | null}}}; a part replaces the v3 part of that id, null removes it). Written from code_change_map.md section 1.1 (the fact-file change list), not from the merged v4 files. The v4 helper names are only text here: the tests never evaluate these parts (their results are made up).",
+  "retail": {
+    "consequential_action_details_listed": {
+      "combine": "a AND b", "sources": ["structure"],
+      "parts": {"a": {"source": "structure", "expr": "len(listing_window_v4()) > 0"},
+                "b": {"source": "structure", "expr": "listing_ok_v4()"}}
+    },
+    "user_explicitly_confirmed_pending_action": {
+      "combine": "a AND b AND c", "sources": ["structure", "question"],
+      "parts": {"a": {"source": "structure", "expr": "len(go_ahead_candidates_v4()) > 0"},
+                "b": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4())"},
+                "c": {"source": "structure", "expr": "clash_free_v4()"}}
+    },
+    "user_confirmed_cancellation_order_and_reason": {
+      "combine": "a AND b AND c", "sources": ["structure", "question"],
+      "parts": {"a": {"source": "structure", "expr": "len(go_ahead_candidates_v4()) > 0"},
+                "b": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4())"},
+                "c": {"source": "structure", "expr": "clash_free_v4()"}}
+    },
+    "user_confirmed_return_order_items_and_method": {
+      "combine": "a AND b AND c", "sources": ["structure", "question"],
+      "parts": {"a": {"source": "structure", "expr": "len(go_ahead_candidates_v4()) > 0"},
+                "b": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4())"},
+                "c": {"source": "structure", "expr": "clash_free_v4()"}}
+    },
+    "user_chose_pending_payment_method": {
+      "parts": {"c": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'))"}}
+    },
+    "user_chose_price_difference_payment_method": {
+      "parts": {"c": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'))"}}
+    },
+    "agent_reminded_user_to_include_all_items_for_exchange": {
+      "parts": {"b": {"source": "question", "expr": "ask_first_yes_v4('K3', reminder_candidates(args['order_id']), items='exchanged')"}}
+    },
+    "agent_reminded_user_to_include_all_items_for_modification": {
+      "parts": {"b": {"source": "question", "expr": "ask_first_yes_v4('K3', reminder_candidates(args['order_id']), items='modified')"}}
+    },
+    "request_cannot_be_handled_within_scope": {
+      "parts": {"b": {"source": "question", "expr": "ask_first_yes_v4('K13', user_messages(), on_unclear=True)"}}
+    }
+  },
+  "airline": {
+    "pending_database_change_details_listed_and_explicitly_confirmed": {
+      "combine": "a AND b AND c AND d",
+      "parts": {"a": {"source": "structure", "who": "agent", "expr": "len(go_ahead_candidates_v4()) > 0"},
+                "b": {"source": "structure", "expr": "clash_free_v4()"},
+                "c": {"source": "structure", "who": "agent", "expr": "listing_ok_v4()"},
+                "d": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4())"}}
+    },
+    "cancellation_context_established": {
+      "parts": {"d": {"source": "question", "who": "ask", "expr": "ask_first_yes_v4('K7', user_messages())"}}
+    },
+    "insured_cancellation_condition_met": {
+      "parts": {"b": {"source": "question", "expr": "ask_first_yes_v4('K6', screened_user_messages('health'))"}}
+    },
+    "request_cannot_be_handled_with_available_tools": {
+      "parts": {"a": {"source": "question", "expr": "ask_first_yes_v4('K13', user_messages(), on_unclear=True)"},
+                "c": {"source": "question", "expr": "ask_first_yes_v4('K16', screened_user_messages('cancel'), on_unclear=True)"}}
+    },
+    "user_selected_eligible_flight_change_payment_method": {
+      "parts": {"d": {"source": "question", "expr": "ask_first_yes_v4('K1', go_ahead_candidates_v4(focus='payment'))"}}
+    }
+  }
+}

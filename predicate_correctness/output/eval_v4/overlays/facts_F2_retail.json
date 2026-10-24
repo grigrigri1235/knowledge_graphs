@@ -1,0 +1,29 @@
+{
+  "by": "F2",
+  "domain": "retail",
+  "_about": "Tracker v4 fix round 2 (2026-10-24, docs/planning/tracker_v4/fix_round2_plan.md): the K3 parts call ask_first_yes_v4. K3 v3 (fix round 1) has a second choice input (verb, filled by code from items_action); v3's ask_first_yes does not know 'follows' and raised ValueError on every K3 ask (76 fact errors, 64 extra blocks on the 200 dev conversations). Same window (reminder_candidates), same items; adds the D10 re-ask (K3b) on an unclear answer.",
+  "facts": {
+    "agent_reminded_user_to_include_all_items_for_exchange": {
+      "parts": {
+        "b": {
+          "about": "one candidate agent message M at a time, newest first; stop at the first yes (each message is asked once and the answer saved)",
+          "expr": "ask_first_yes_v4('K3', reminder_candidates(args['order_id']), items='exchanged')",
+          "plain": "K3 yes with a quote from M: the message asks the user to make sure all items to be exchanged are included. K3 v3 (v4 helper): an unclear answer is asked once more with the second wording (K3b); still unclear: false (block).",
+          "question": "K3",
+          "source": "question"
+        }
+      }
+    },
+    "agent_reminded_user_to_include_all_items_for_modification": {
+      "parts": {
+        "b": {
+          "about": "one candidate agent message M at a time, newest first; stop at the first yes (each message is asked once and the answer saved)",
+          "expr": "ask_first_yes_v4('K3', reminder_candidates(args['order_id']), items='modified')",
+          "plain": "K3 yes with a quote from M: the message asks the user to make sure all items to be modified are included. K3 v3 (v4 helper): an unclear answer is asked once more with the second wording (K3b); still unclear: false (block).",
+          "question": "K3",
+          "source": "question"
+        }
+      }
+    }
+  }
+}

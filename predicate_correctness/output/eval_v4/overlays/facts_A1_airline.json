@@ -1,0 +1,18 @@
+{
+ "domain": "airline",
+ "by": "A1",
+ "facts": {
+  "pending_database_change_details_listed_and_explicitly_confirmed": {
+   "parts": {
+    "c": {
+     "source": "structure",
+     "expr": "listing_ok_v4()",
+     "question": null,
+     "about": null,
+     "who": "agent",
+     "plain": "Every code line of the call is stated in T (D5: every agent text message in the action span S, plus the anchor L, plus every user message in S; a line passes in one message of T). book_reservation: each flight number ('HAT170', 'HAT 170', 'flight 170') with its date in the same message (any form, year optional); the cabin word ('basic economy' before 'economy'); each passenger's first + last name (no date of birth); each payment method (D7: full id, 4+ ending digits of the id, the card's last four, a kind / brand word or amount that fits one method of the user) with its amount when the call has 2+ methods; the total bags when > 0; the paid number when > 0. update_reservation_flights: the reservation (also by D6: the newest reservation id named in any user or agent text); each changed flight (number + date; unchanged flights need no line); the cabin only if it differs from the reservation's cabin now; the payment method (D7, also 'the original payment method' when it is payment_history[0]). update_reservation_baggages: the reservation; the new total or the number added; the payment method only when 50 x max(0, nonfree - DB nonfree) > 0. update_reservation_passengers: the reservation; each changed passenger's first + last name, plus the new date of birth only when the date of birth is the changed field. Dropped vs v3: booking dates of birth, 'M paid' when 0, unchanged flights / cabin / passengers. The insurance line is decided by K17 (booking_insurance_decision_established_and_matched). Each missing line is noted as a missing record {line, expected, forms, fact, part}. Code: state_tracker/v4/listing_v4.py."
+    }
+   }
+  }
+ }
+}
