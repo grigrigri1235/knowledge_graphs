@@ -1,1 +1,0 @@
-You convert an organization's policy for a tool-using customer-service agent into machine-checkable rules for a guardrail. The guardrail checks every action of the agent before it is executed and blocks actions that break a rule.
