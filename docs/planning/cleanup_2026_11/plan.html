@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleanup plan</title>
+<style>
+:root{--bg:#fafaf9;--fg:#1c1917;--mut:#57534e;--card:#fff;--line:#e7e5e4;--keep:#15803d;--rm:#b91c1c;--mv:#a16207;--chk:#1d4ed8}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1917;--fg:#f5f5f4;--mut:#a8a29e;--card:#292524;--line:#44403c;--keep:#4ade80;--rm:#f87171;--mv:#facc15;--chk:#60a5fa}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px}
+h1{margin:0 0 4px}.sub{color:var(--mut);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card b{font-size:26px;display:block}.card span{color:var(--mut);font-size:13px}
+.keep b{color:var(--keep)}.rm b{color:var(--rm)}.mv b{color:var(--mv)}.chk b{color:var(--chk)}
+.bar{display:flex;height:22px;border-radius:6px;overflow:hidden;margin:6px 0 24px}
+.bar div{color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+ol.steps{list-style:none;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--chk);border-radius:8px;padding:10px 12px;margin:8px 0}
+ol.steps li::before{content:"Part " counter(s) " · ";font-weight:600}
+.warn{border-left:4px solid var(--rm);background:var(--card);padding:10px 12px;border-radius:8px;margin-bottom:20px}
+</style>
+</head>
+<body><main>
+<h1>Cleanup plan</h1>
+<p class="sub">2026-11-17 · plan only, nothing touched · full detail in plan.md</p>
+
+<div class="warn"><b>Nothing is in git yet.</b> A delete today is permanent. Part 1 makes a snapshot commit first, so every removal can be undone.</div>
+
+<div class="grid">
+  <div class="card keep"><b>keep</b><span>v4 code + what it imports, v4 data, final report, partner copies</span></div>
+  <div class="card rm"><b>A · 27</b><span>drafts, backups, duplicates: remove</span></div>
+  <div class="card rm"><b>B · ~40</b><span>first project (ASPM pipeline): remove</span></div>
+  <div class="card mv"><b>C · 56+</b><span>old plans and reports: move to docs/archive/</span></div>
+  <div class="card rm"><b>D · ~300</b><span>old v1-v3 code and outputs: remove only what v4 does not import</span></div>
+</div>
+
+<p class="sub">Files today: 755. Rough split:</p>
+<div class="bar">
+  <div style="flex:330;background:#15803d">keep ~330</div>
+  <div style="flex:27;background:#b91c1c">A</div>
+  <div style="flex:40;background:#dc2626">B</div>
+  <div style="flex:60;background:#a16207">C</div>
+  <div style="flex:300;background:#7f1d1d">D (checked by import graph)</div>
+</div>
+
+<ol class="steps">
+  <li>Snapshot commit on branch <code>cleanup</code></li>
+  <li>Import graph from v4 entry points → keep list</li>
+  <li>Remove group A</li>
+  <li>Remove group B (after your yes on files_given)</li>
+  <li>Move group C to docs/archive, fix cited paths</li>
+  <li>Remove group D files not on the keep list</li>
+  <li>Check: compile + import every kept module, run v4 tests that run here</li>
+  <li>Rewrite codebase_structure.md and README.md</li>
+  <li>Commit "cleanup" + before/after report</li>
+</ol>
+<p class="sub">Parts 3-6 can run in parallel after part 2. All $0.</p>
+</main></body></html>

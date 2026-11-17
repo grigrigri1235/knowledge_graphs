@@ -1,0 +1,62 @@
+== gitignore
+cat: .gitignore: No such file or directory
+== big files
+5664796 ./predicate_correctness/output/p6_values.jsonl
+== symlinks
+./predicate_correctness/output/eval/scripts
+./predicate_correctness/output/eval/exp_core
+./predicate_correctness/output/eval/aspm
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_train/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_val/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/nano_train/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_luna_val/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/p10_nano_train/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/retail/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/retail/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/retail/tgr/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/airline/direct/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/airline/none/episodes.jsonl
+./predicate_correctness/output/eval/output/tgr/online/luna_train_v5/airline/tgr/episodes.jsonl
+./predicate_correctness/output/eval/agent/predicates
+./predicate_correctness/output/eval/policies
+== branch
+?? CLAUDE.md
+?? README.md
+?? codebase_structure.md
+?? docs/
+?? environment.yml
+?? files_given/
+?? final_presentation.before_rewrite.md
+?? final_presentation.md
+?? handbook_files_to_focus.md
+?? knowledge_retention.md
+?? model_call_example/
+?? output/
+?? predicate_correctness/
+?? src/
+exit=0
