@@ -1,0 +1,136 @@
+== absolute /home/azureuser: file count
+./docs/planning/paths_2026_11/logs/s1_survey.log:24
+./knowledge_retention.md:8
+./docs/planning/cleanup_2026_11/logs/p7_before.json:7
+./docs/archive/reports/tracker_v3_full_report.md:5
+./docs/planning/tracker_v4/next_agent_prompt.md:4
+./docs/archive/planning/tracker_v3/approval_request_B2_draft.md:4
+./predicate_correctness/tests/check_copies.py:3
+./predicate_correctness/scoring/v4_freeze.py:3
+./docs/planning/tracker_v4/reading_notes/tgr_build_method.md:3
+./docs/planning/tracker_v4/reading_notes/tau3_harness.md:3
+./docs/planning/tracker_v4/reading_notes/port_map.md:3
+./docs/planning/cleanup_2026_11/part7_check.md:3
+./docs/planning/cleanup_2026_11/logs/p7_after.json:3
+./docs/planning/cleanup_2026_11/logs/p2_dynamic2.log:3
+./docs/archive/planning/tracker_v3/approval_request_B3_draft.md:3
+./predicate_correctness/tests/audit_v4_online_recompute.py:2
+./predicate_correctness/scripts/v4_identity_check.sh:2
+./predicate_correctness/scripts/v3_session/b3_interim.sh:2
+./predicate_correctness/scoring/v4_interim.sh:2
+./predicate_correctness/scoring/v4_form_check.py:2
+./predicate_correctness/scoring/v4_after_run.sh:2
+./predicate_correctness/scoring/v3_p6_agreement.py:2
+./docs/reports/tracker_v4_report.md:2
+./docs/planning/tracker_v4/reading_notes/tau3_retail_diff.md:2
+./docs/planning/tracker_v4/reading_notes/metrics_costs.md:2
+./docs/planning/tracker_v4/code_change_map.md:2
+./docs/planning/cleanup_2026_11/plan.md:2
+./docs/archive/planning/tracker_v3/next_agent_prompt.md:2
+./predicate_correctness/tests/test_v4_run_online.py:1
+./predicate_correctness/tests/test_v4_report.py:1
+./predicate_correctness/tests/test_v4_recompute.py:1
+./predicate_correctness/tests/test_v4_metrics.py:1
+./predicate_correctness/tests/test_v4_interim.py:1
+./predicate_correctness/tests/test_v4_freeze.py:1
+./predicate_correctness/scripts/v4_run_tests_parallel.sh:1
+./predicate_correctness/scripts/v4_dry_all.sh:1
+./predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:1
+./predicate_correctness/scripts/v4_cases_gen/gen_a17.py:1
+./predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh:1
+./predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh:1
+./predicate_correctness/scripts/build_questions_A4.py:1
+./predicate_correctness/scoring/v4_report.py:1
+./predicate_correctness/scoring/v4_online_metrics.py:1
+./predicate_correctness/scoring/v4_online_interim.py:1
+./predicate_correctness/scoring/v4_diagnosis.py:1
+./predicate_correctness/scoring/v4_b1_summary.py:1
+./predicate_correctness/scoring/v3_online_metrics.py:1
+./predicate_correctness/scoring/v3_online_interim.py:1
+./predicate_correctness/scoring/v3_labels.py:1
+./predicate_correctness/scoring/v3_audit.py:1
+./predicate_correctness/output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.log:1
+./predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.log:1
+./predicate_correctness/output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.json:1
+./predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.log:1
+./predicate_correctness/output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.json:1
+./predicate_correctness/output/implementation_log.md:1
+./predicate_correctness/output/eval_v4/v4_freeze.json:1
+./predicate_correctness/output/eval_v4/form_check.md:1
+./predicate_correctness/output/eval_v4/dev20_check.md:1
+./predicate_correctness/guard/run_online.py:1
+./docs/planning/tracker_v4/session1_process_log.md:1
+./docs/planning/tracker_v4/reading_notes/tiny_questions.md:1
+./docs/planning/tracker_v4/reading_notes/tgr_portability.md:1
+./docs/planning/tracker_v4/reading_notes/facts_rules.md:1
+./docs/planning/tracker_v4/preregistration_v4.md:1
+./docs/planning/tracker_v4/overview.md:1
+./docs/planning/tracker_v4/build_brief.md:1
+./docs/planning/paths_2026_11/logs/s2_files.log:1
+./docs/planning/cleanup_2026_11/result.md:1
+./docs/archive/reports/criticism.md:1
+./docs/archive/planning/tracker_v3/lessons_learned.md:1
+./docs/archive/planning/tracker_eval_v2/HANDOFF.md:1
+./codebase_structure.md:1
+== ~/code_projects
+./docs/reports/tracker_v4_report.md:1027:Run every command from `~/code_projects/predicate_correctness`, with this Python and these settings:
+./docs/reports/tracker_v4_report.md:1073:- Redraw the figures: from `~/code_projects`, `python3 docs/reports/figures/make_v4_figures.py`. The numbers are
+./docs/planning/paths_2026_11/logs/s1_survey.log:64:      1 ~/code_projects/predicate_correctness
+./docs/planning/paths_2026_11/logs/s1_survey.log:65:      1 ~/code_projects
+grep: ./docs/planning/paths_2026_11/logs/s2_files.log: input file is also the output
+== tilde targets missing here: files per target
+~/ShieldAgent: 45 files
+~/venvs: 59 files
+~/opt/tau-bench: 16 files
+~/refs: 2 files
+== kinds of files with ~/venvs
+      3 log
+     20 md
+     36 py
+      1 sh
+== code lines (py/sh) with ~/venvs or /home/azureuser that are not comments
+predicate_correctness/from_shieldagent/runner/repro_core/taubench_run.py:9:Usage (inside ~/venvs/tau-bench):
+predicate_correctness/scripts/v4_identity_check.sh:13:PC=/home/azureuser/code_projects/predicate_correctness
+predicate_correctness/scripts/v4_identity_check.sh:45:  /home/azureuser/miniconda3/bin/python3 -B "$PC/scripts/v4_identity_driver.py" compare "$OUT/v3" "$OUT/v4" \
+predicate_correctness/scripts/build_questions_A4.py:10:PC = "/home/azureuser/code_projects/predicate_correctness"
+predicate_correctness/scripts/v4_run_tests_parallel.sh:12:PC=/home/azureuser/code_projects/predicate_correctness
+predicate_correctness/scripts/v4_merge_overlays.py:7:    ~/venvs/tau-bench/bin/python -B -m scripts.v4_merge_overlays            # report only (writes nothing but the log)
+predicate_correctness/scripts/v4_merge_overlays.py:8:    ~/venvs/tau-bench/bin/python -B -m scripts.v4_merge_overlays --check    # also: built files equal what is on disk
+predicate_correctness/scripts/v4_merge_overlays.py:9:    ~/venvs/tau-bench/bin/python -B -m scripts.v4_merge_overlays --write    # MAIN CHAT ONLY: write the three files
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:3:OUT = "/home/azureuser/code_projects/predicate_correctness/output/eval_v4/cases"
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:2:OUT = "/home/azureuser/code_projects/predicate_correctness/output/eval_v4/cases"
+predicate_correctness/scripts/v4_dry_all.sh:14:PC=/home/azureuser/code_projects/predicate_correctness
+predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh:3:cd /home/azureuser/code_projects/predicate_correctness
+predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh:7:  xargs -P 8 -I{} sh -c 'PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m unittest {} > '"$OUT"'/{}.log 2>&1; echo "{} exit $?" >> '"$OUT"'/summary.txt'
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh:15:MPY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B"
+predicate_correctness/scripts/v3_session/b3_interim.sh:2:cd /home/azureuser/code_projects/predicate_correctness || exit 1
+predicate_correctness/scripts/v3_session/b3_interim.sh:9:PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir $RUN > output/logs/v3_B3_${RUN_ID}_interim.log 2>&1
+predicate_correctness/guard/runner_path.py:8:- Never imports anything from ~/ShieldAgent.
+predicate_correctness/guard/run_online_v3.py:80:under ~/ShieldAgent; models must be gpt-6-luna; the tool schemas must give the rule sets' tools_sha256; the frozen
+predicate_correctness/guard/run_online_v3.py:88:Commands (run from predicate_correctness/, ~/venvs/tau-bench/bin/python -B, PYTHONDONTWRITEBYTECODE=1):
+predicate_correctness/guard/run_online.py:62:write outside predicate_correctness/output/, and opening or listing anything under ~/ShieldAgent; the tool schemas
+predicate_correctness/guard/run_online.py:75:  ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail --tasks train --trials 3 \
+predicate_correctness/guard/run_online.py:79:  cd /home/azureuser/code_projects/predicate_correctness && for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 \
+predicate_correctness/guard/run_online.py:80:      setsid nohup ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail \
+predicate_correctness/guard/run_online.py:85:  ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail --tasks tau_retail_train \
+predicate_correctness/guard/write_guard.py:8:  - under ~/ShieldAgent, opening any file (also for reading) and listing a folder (os.listdir, os.scandir, os.walk,
+predicate_correctness/guard/write_guard.py:11:    os.access, os.readlink, os.path.realpath. They show names, sizes and times under ~/ShieldAgent, never content;
+predicate_correctness/guard/write_guard.py:28:FORBIDDEN_ROOTS = (os.path.realpath(os.path.expanduser("~/ShieldAgent")),)
+predicate_correctness/guard/write_guard.py:37:_LIST_EVENTS = {          # reads that list a folder (refused under ~/ShieldAgent): event -> positions of paths
+predicate_correctness/guard/run_online_v4.py:89:Commands (run from predicate_correctness/, ~/venvs/tau-bench/bin/python -B, PYTHONDONTWRITEBYTECODE=1):
+predicate_correctness/state_tracker/p7_sample.py:449:    w("anything in `~/ShieldAgent`. They show which value is which.")
+predicate_correctness/state_tracker/tgr_to_aspm.py:4:  ~/ShieldAgent/method_tgr/rules.py, function `to_aspm` (lines 251-267), commit 1bacdb0 (the same file at tag
+predicate_correctness/state_tracker/decide_again.py:17:TGR's input, as in ~/ShieldAgent/method_tgr/runtime.py::_step (read only):
+predicate_correctness/fork/rebuild_tasks.py:17:VENV_TAU = os.path.expanduser("~/venvs/tau-bench/lib/python3.12/site-packages/tau_bench")
+predicate_correctness/tests/test_v4_guard.py:18:    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m unittest tests.test_v4_guard -v \\
+predicate_correctness/tests/test_v4_freeze.py:8:    /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_freeze -v
+predicate_correctness/tests/check_copies.py:27:SA = "/home/azureuser/ShieldAgent"
+predicate_correctness/tests/check_copies.py:28:TB = "/home/azureuser/opt/tau-bench-59a200c"
+predicate_correctness/tests/check_copies.py:119:        rows.append(f"| `{rel}` | `{src.replace('/home/azureuser/', '~/')}` | `{commit[:7]}` "
+predicate_correctness/tests/test_v4_v3_untouched.py:20:    ~/venvs/tau-bench/bin/python -B -m unittest tests.test_v4_v3_untouched -v
+predicate_correctness/tests/test_v4_report.py:7:    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_report -v
+== dirs that exist here
+/home/grigrigri1235/miniconda3/bin/python3
+Python 3.13.13
+bina1
+ds

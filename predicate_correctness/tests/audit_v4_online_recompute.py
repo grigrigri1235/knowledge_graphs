@@ -7,7 +7,7 @@ from_shieldagent/splits/splits.json and τ-bench v1's task files. It does NOT im
 or any v3 metrics script: if both agree, the numbers are right; if not, one of them has a bug.
 
     cd predicate_correctness
-    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B \\
+    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B \\
         -m tests.audit_v4_online_recompute <run folder> [<run folder> ...] [--out file.json]
     (or --run-dir <run folder>, repeatable)
 
@@ -102,7 +102,7 @@ ONLINE_TASKS = os.path.join(PC_DIR, "output", "eval_v3", "online_tasks.json")
 B3_TASKS = os.path.join(PC_DIR, "output", "eval_v3", "b3_tasks.json")
 SPLITS = os.path.join(PC_DIR, "from_shieldagent", "splits", "splits.json")
 TOOL_TABLE = os.path.join(PC_DIR, "state_tracker", "tool_table.json")
-TAU_ENVS = "/home/azureuser/venvs/tau-bench/lib/python3.12/site-packages/tau_bench/envs"
+TAU_ENVS = "/home/grigrigri1235/venvs/tau-bench/lib/python3.12/site-packages/tau_bench/envs"
 PINNED = {ONLINE_TASKS: "5f7b9b71c727531c29cbe1ab8e7189b4bcf67195bb5b78f02437f98d08baf96e",
           B3_TASKS: "0394a99ad08d3c832419f63333bc22b78096b993af5fb39c36c20a47917b33ff",
           SPLITS: "a3ab3471c67dad9ae3c4d8e252b13282317ad65d648e5a008e1d934568f4abb5"}

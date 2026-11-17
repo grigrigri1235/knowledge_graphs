@@ -1,0 +1,40 @@
+5:   dev conversations, 64 extra blocks). The facts now call ask_first_yes_v4 (overlay facts_F2_retail.json). These
+6:   tests run the REAL merged facts (state_tracker/v4/facts_v4_retail.json) and the REAL questions file with a fake
+16:from __future__ import annotations
+18:import json
+19:import os
+20:import re
+21:import sys
+22:import unittest
+25:PC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+26:if PC_DIR not in sys.path:
+27:    sys.path.insert(0, PC_DIR)
+29:from state_tracker.v3 import facts_format_v3 as F                 # noqa: E402
+30:from state_tracker.v3 import message_view as MV                   # noqa: E402,F401  (registers v3 helpers)
+31:from state_tracker.v3 import code_helpers as CH                   # noqa: E402,F401
+32:from state_tracker.v3 import info_classes as IC                   # noqa: E402,F401
+33:from state_tracker.v4 import questions_v4 as Q4                   # noqa: E402
+34:from state_tracker.v4 import helpers_v4 as H4                     # noqa: E402
+35:from state_tracker.v4 import helpers_go_ahead_v4 as GA            # noqa: E402,F401
+36:from state_tracker.v4 import listing_v4 as LV                     # noqa: E402,F401
+37:from tests.test_v3_message_view import Ctx, build                 # noqa: E402
+39:V4_DIR = os.path.join(PC_DIR, "state_tracker", "v4")
+----
+        r, rec, view = _evaluate("airline", "request_cannot_be_handled_with_available_tools", self.STEPS,
+                                 "transfer_to_human_agents", args, word="yes")
+        self.assertIs(r["value"], True)
+        self.assertEqual(len([q for q, _ in rec.seen if q == "K13"]), 1)       # first yes wins (newest)
+
+    def test_question_file(self):
+        q = Q4.load_questions_v4()["questions"]["K13"]
+        self.assertEqual(q["version"], 5)
+        self.assertEqual(q["second"]["version"], 2)
+        spec = q["inputs"][-1]
+        self.assertEqual((spec["name"], spec["type"], spec["who"], spec["optional"]),
+                         ("agent_before", "message", "agent", True))
+        self.assertEqual(q["quote_from"], ["message"])
+        self.assertIn("this exception never covers the refused list", q["question"])
+        with open(os.path.join(PC_DIR, "output", "eval_v4", "overlays", "questions_A4.json"), encoding="utf-8") as f:
+            self.assertEqual(json.load(f)["questions"]["K13"], q)               # overlay and merged file in sync
+
+

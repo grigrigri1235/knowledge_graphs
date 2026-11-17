@@ -11,7 +11,7 @@
 # Prints only the summary path. Exit 1 if anything fails. Never a real run: --dry-run is always given and the out
 # root is always under output/eval_v4/dryrun/.
 set -u
-PC=/home/azureuser/code_projects/predicate_correctness
+PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
 cd "$PC" || exit 1
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
 PRE=output/logs/v4_dry_${STAMP}

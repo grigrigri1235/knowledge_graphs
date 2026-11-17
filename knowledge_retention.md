@@ -5,7 +5,7 @@ learned, how to work here, and what comes next. **A new agent: read it all, then
 
 Last updated 2026-10-24 (section 1 only: v4 current state after the part 7 audits). Before that 2026-10-23, after the user chose the next step (tracker v4 on τ³-bench, 20:33 UTC). Anything newer is at
 the end of the event list in `predicate_correctness/output/eval_v3/progress.md` and of
-`predicate_correctness/output/implementation_log.md`. Paths are from `/home/azureuser/code_projects/` unless they
+`predicate_correctness/output/implementation_log.md`. Paths are from `/home/grigrigri1235/knowledge_graphs/` unless they
 start with `~` or `/`.
 
 ---
@@ -1024,7 +1024,7 @@ source per part, a start value and an update rule. Three fixed rules:
    commands, the cost, the hard limit and the time (`docs/archive/planning/tracker_v3/approval_request.md` style, with a
    cost-log row after each run). **Paid runs start from the main chat**; subagents do only $0 work.
 2. **Never write under `~/ShieldAgent`, `~/opt` or `~/venvs`.** Read-only git there with `GIT_OPTIONAL_LOCKS=0`. A new
-   Python env (τ³-bench needs Python 3.12-3.13) goes under `/home/azureuser/code_projects/`, and only after the user
+   Python env (τ³-bench needs Python 3.12-3.13) goes under `/home/grigrigri1235/knowledge_graphs/`, and only after the user
    approves the install.
 3. **Never the partner's test group** (test 66) — a standing rule, in any version of τ-bench, τ²-bench or τ³-bench.
    Lifting it needs the user's explicit words and the partner's OK; it would use up their final test.
@@ -1043,7 +1043,7 @@ source per part, a start value and an update rule. Three fixed rules:
 Workflow tool for fan-out: it ran only 2 agents at a time here. Each agent owns its own files.
 
 **Python.**
-- runner and τ-bench: `~/venvs/tau-bench/bin/python`; analysis: `/home/azureuser/miniconda3/bin/python3` (standard
+- runner and τ-bench: `~/venvs/tau-bench/bin/python`; analysis: `/home/grigrigri1235/miniconda3/bin/python3` (standard
   library only);
 - always `-B` and `PYTHONDONTWRITEBYTECODE=1` (the v4 prompt adds `PYTHONHASHSEED=0`); run from `predicate_correctness/`
   as modules.
@@ -1069,7 +1069,7 @@ B3 build added `tests/test_v3_b3.py`.
 ---
 
 ## 9. Where things are
-All paths checked on 2026-10-23. From `/home/azureuser/code_projects/` unless they start with `~` or `/`.
+All paths checked on 2026-10-23. From `/home/grigrigri1235/knowledge_graphs/` unless they start with `~` or `/`.
 
 **Start here**
 | what | where |
@@ -1153,7 +1153,7 @@ file wins.
 You are taking over a research project that just had a really promising result. Read this whole prompt first.
 
 WHO YOU WORK FOR AND HOW
-- Read /home/azureuser/code_projects/CLAUDE.md and follow ALL of it. Start every message with a short line saying
+- Read /home/grigrigri1235/knowledge_graphs/CLAUDE.md and follow ALL of it. Start every message with a short line saying
   what you understood from it. Short, simple words. Brainstorm in files, not in the chat. No Artifacts.
 - Plan → the user's explicit approval → many tiny parts. After each part say only "done with part i" and go on.
 - The user cares about SPEED. Tracker v3 took a whole day; this one must not. We learned the hard lessons already
@@ -1167,7 +1167,7 @@ RED LINES (never cross them; no exception without the user's new, explicit words
    a subagent. Every paid step has a written request (commands, cost, hard limit, time) and a hard limit in code.
 2. Never write under ~/ShieldAgent (the partner's repo), ~/opt or ~/venvs. Read-only git there with
    GIT_OPTIONAL_LOCKS=0. Never put from_shieldagent/ on sys.path. A new Python env for τ³-bench (it needs
-   Python 3.12-3.13) goes under /home/azureuser/code_projects/, never under ~/venvs, and only after the user
+   Python 3.12-3.13) goes under /home/grigrigri1235/knowledge_graphs/, never under ~/venvs, and only after the user
    approves the install (it is a network step).
 3. Never the partner's test group (the τ-bench v1 test tasks in their test 66 split, in ~/ShieldAgent splits.json),
    in any version of τ-bench, τ²-bench or τ³-bench. In τ³ airline/retail, map every task to its v1 task first and
@@ -1212,8 +1212,8 @@ THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
       tasks are opened once, for the live run.
 - Verify every count and fact above from the repo once the user approves the download; report differences.
 
-READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/azureuser/code_projects/)
-1. /home/azureuser/code_projects/knowledge_retention.md (all of it).
+READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/grigrigri1235/knowledge_graphs/)
+1. /home/grigrigri1235/knowledge_graphs/knowledge_retention.md (all of it).
 2. docs/archive/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
 3. docs/archive/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
 4. docs/archive/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,

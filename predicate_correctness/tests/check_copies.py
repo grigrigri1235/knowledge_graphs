@@ -24,8 +24,8 @@ FROM_SA = os.path.normpath(os.path.join(HERE, "..", "from_shieldagent"))
 SUMS = os.path.join(FROM_SA, "SHA256SUMS")
 NOT_COPIES = {"PROVENANCE.md", "SHA256SUMS"}
 
-SA = "/home/azureuser/ShieldAgent"
-TB = "/home/azureuser/opt/tau-bench-59a200c"
+SA = "/home/grigrigri1235/ShieldAgent"
+TB = "/home/grigrigri1235/opt/tau-bench-59a200c"
 SA_COMMIT = "1bacdb07037bf0f00dbea8982f5bdcc8ae75c506"
 TB_COMMIT = "59a200c6d575d595120f1cb70fea53cef0632f6b"
 
@@ -116,7 +116,7 @@ def write() -> int:
             bad += 1
         lines.append(f"{d_src}  {rel}")
         size = os.path.getsize(src)
-        rows.append(f"| `{rel}` | `{src.replace('/home/azureuser/', '~/')}` | `{commit[:7]}` "
+        rows.append(f"| `{rel}` | `{src.replace('/home/grigrigri1235/', '~/')}` | `{commit[:7]}` "
                     f"({git_state(src, repo, commit)}) | {size:,} | `{d_src}` |")
     with open(SUMS, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")

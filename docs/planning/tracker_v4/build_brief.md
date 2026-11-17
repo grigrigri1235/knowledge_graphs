@@ -26,7 +26,7 @@ Where this file and `code_change_map.md` differ, **this file wins**.
 5. **Bash output** to `predicate_correctness/output/logs/v4_<your agent id>_*.txt`, read with Read.
 6. **Python:** `-B`, `PYTHONDONTWRITEBYTECODE=1`, `PYTHONHASHSEED=0`.
    - Runner and guard code: `~/venvs/tau-bench/bin/python`.
-   - Analysis: `/home/azureuser/miniconda3/bin/python3` (stdlib).
+   - Analysis: `/home/grigrigri1235/miniconda3/bin/python3` (stdlib).
    - Run from `predicate_correctness/` as modules.
 7. **Own only your files.** For a shared fact or question file, write an **overlay** (`code_change_map.md` §0.3);
    the main chat merges.

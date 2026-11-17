@@ -30,14 +30,14 @@
 # Refused (exit 2): a run folder not under output/eval_v4/ (never output/eval_v3/), a folder name that is not
 #   <step>_<UTC>_<uuid8> of B1v4 / B2v4 / B3v4 / Hv4 inside <step>/ (DEV20v4 is dropped).
 set -u
-PC=/home/azureuser/code_projects/predicate_correctness
+PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
 cd "$PC" || exit 1
 RUN_ARG=${1:-}; PIDS=${2:-}
 LOGS=${V4_INTERIM_LOGS:-$PC/output/logs}
 PID_WAIT=${V4_INTERIM_PID_WAIT:-900}
 FAIL_MAX=3
 NAP=10                                     # seconds between liveness / STOP looks while waiting for the next check
-DEF_EVERY=300; DEF_PY=/home/azureuser/miniconda3/bin/python3; DEF_MARK=run_online_v4
+DEF_EVERY=300; DEF_PY=/home/grigrigri1235/miniconda3/bin/python3; DEF_MARK=run_online_v4
 
 refuse() { echo "v4_interim: refused: $*" >&2; exit 2; }
 [ -n "$RUN_ARG" ] || refuse "usage: bash scoring/v4_interim.sh <run_dir> [<pids_file>]"

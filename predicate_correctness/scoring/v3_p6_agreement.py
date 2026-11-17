@@ -25,7 +25,7 @@ Runs (one pass over every development conversation; preregistration.md, P6.1-P6.
                    p6 parts alone, and τ-bench's own Error for the calls no rule blocks.
 
 Run from predicate_correctness/ (main() first checks the eval v2 manifest, then blocks the network):
-    PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement \
+    PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement \
         > output/logs/v3_p6_<nn>_run.log 2>&1
 Writes output/eval_v3/p6_tool_agreement.md and output/eval_v3/p6_parts/p6_run.json. Never imports gold code; never
 reads the hold-out (only conversations with side "dev").
@@ -975,7 +975,7 @@ def write_report(T: Tally, ne: Dict[str, List[dict]], seconds: float, argv: List
     w(f"- Manifest check passed first ({manifest_files:,} files); network attempts: {net_attempts}.")
     w(f"- Run time: {seconds:.0f} s.")
     w("- Command (from `predicate_correctness/`): `PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 "
-      "/home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement " + " ".join(argv) + "`")
+      "/home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement " + " ".join(argv) + "`")
     w("- sha256:")
     for f in OWN_FILES:
         p = os.path.join(PC, f)

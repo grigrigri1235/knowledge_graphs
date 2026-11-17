@@ -1818,7 +1818,7 @@ class TestHalfwayWatcher(unittest.TestCase):
         with open(os.path.join(self.tmp.name, f"v4_B2v4_{rid}_watch.log"), encoding="utf-8") as f:
             w = f.read()
         self.assertIn("test overrides ignored: V4_INTERIM_EVERY V4_INTERIM_CMD V4_INTERIM_PY V4_INTERIM_CMD_MARK", w)
-        self.assertIn("a check every 300s: /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_online_interim", w)
+        self.assertIn("a check every 300s: /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_interim", w)
         self.assertFalse(os.path.exists(real))
         self.assertFalse(os.path.exists(os.path.join(R.V4_ROOT, "B2v4", rid)))
         r = self.watch({"V4_INTERIM_PID_WAIT": "0"})                        # a dry-run folder: obeyed

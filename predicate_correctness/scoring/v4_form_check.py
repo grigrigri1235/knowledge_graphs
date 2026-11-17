@@ -655,8 +655,8 @@ def main():
     L += ["", "Old table rows with no decision ('-': users with 2+ cards, items per order, option names, saved "
           "passengers per user) stay information only.", "",
           "## How to rerun", "```",
-          "cd /home/azureuser/code_projects/predicate_correctness && PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 "
-          "/home/azureuser/miniconda3/bin/python3 -B scoring/v4_form_check.py", "```"]
+          "cd /home/grigrigri1235/knowledge_graphs/predicate_correctness && PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 "
+          "/home/grigrigri1235/miniconda3/bin/python3 -B scoring/v4_form_check.py", "```"]
     with open(OUT_MD, "w") as f:
         f.write("\n".join(L) + "\n")
     print("wrote", OUT_MD, OUT_JSON, "rows", len(ROWS), "decisions", len(D), "changed", c["changed"])

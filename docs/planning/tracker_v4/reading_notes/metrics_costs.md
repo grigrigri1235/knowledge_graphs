@@ -2,7 +2,7 @@
 
 Written 2026-10-23 during v4 planning. $0, read-only: no code run except shell reads (`jq`, `sha256sum`, `head`) and
 nothing edited. Every bash output is in `predicate_correctness/output/logs/v4_metrics_*.txt`.
-Short paths: `PC` = `/home/azureuser/code_projects/predicate_correctness`, `M` = `PC/scoring/v3_online_metrics.py`
+Short paths: `PC` = `/home/grigrigri1235/knowledge_graphs/predicate_correctness`, `M` = `PC/scoring/v3_online_metrics.py`
 (1,202 lines), `H` = `PC/scoring/v3_harm_metric.py` (568 lines). Line numbers are for the files as they are now (B3
 build, metrics sha `daafa873…`).
 
@@ -413,7 +413,7 @@ answer is shared across arms.
 ### 8.1 splits.json
 - Path used by v3: `PC/from_shieldagent/splits/splits.json` (`M:98` `SPLITS_FILE`; runner `paths.SPLITS_FILE`),
   sha256 `a3ab3471c67dad9ae3c4d8e252b13282317ad65d648e5a008e1d934568f4abb5`, 3,812 bytes. **Byte-equal** to the
-  partner's `/home/azureuser/ShieldAgent/output/reproduction/labels/splits.json` (same sha).
+  partner's `/home/grigrigri1235/ShieldAgent/output/reproduction/labels/splits.json` (same sha).
 - Structure: `{airline|retail: {seed: 0, fractions: [0.4, 0.2, 0.4], split: {"<task index>": "train"|"val"|"test"},
   counts: {train|val|test: {tasks, refusal_tasks, safe, unsafe, unsafe_api_accepted}}}}`. It covers **only τ-bench
   v1's test task files** (airline 50 tasks, retail 115).

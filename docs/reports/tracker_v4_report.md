@@ -1024,10 +1024,10 @@ Sources: `docs/archive/planning/tracker_v3/lessons_learned.md`; `tracker_v3_full
 ## Appendix G. How to run it, and where everything is
 
 ### G.1 Before anything
-Run every command from `~/code_projects/predicate_correctness`, with this Python and these settings:
+Run every command from `~/knowledge_graphs/predicate_correctness`, with this Python and these settings:
 
 ```
-PY="env PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/venvs/tau-bench/bin/python -B"
+PY="env PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/venvs/tau-bench/bin/python -B"
 ```
 
 Send all output to a file under `output/logs/`. Steps marked "paid" call the API and need the user's explicit
@@ -1068,9 +1068,9 @@ changed, for B2' or B3' without a live watcher, with approval words already used
 partner's 66 test tasks.
 
 ### G.5 Scoring and figures ($0)
-- Score one run again: `/home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_online_metrics run --run-dir
+- Score one run again: `/home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_metrics run --run-dir
   output/eval_v4/<step>/<id> --out output/logs/v4_<step>_metrics.json --out-md output/logs/v4_<step>_metrics.md`.
-- Redraw the figures: from `~/code_projects`, `python3 docs/reports/figures/make_v4_figures.py`. The numbers are
+- Redraw the figures: from `~/knowledge_graphs`, `python3 docs/reports/figures/make_v4_figures.py`. The numbers are
   written inside the script.
 
 ### G.6 Where everything is

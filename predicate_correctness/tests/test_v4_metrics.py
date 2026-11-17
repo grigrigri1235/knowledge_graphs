@@ -4,7 +4,7 @@ network. Files are written in temporary folders, and (for the CLI and the after-
 output/) in output/logs/v4_p1b_test_* folders that are removed at the end.
 
 Run from predicate_correctness/:
-    /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_metrics -v
+    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_metrics -v
 """
 from __future__ import annotations
 

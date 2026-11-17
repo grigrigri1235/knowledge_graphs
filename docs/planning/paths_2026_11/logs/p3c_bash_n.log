@@ -1,0 +1,23 @@
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'environment.yml', LF will be replaced by CRLF the next time Git touches it
+predicate_correctness/scoring/v4_after_run.sh: line 39: syntax error near unexpected token `$'in\r''
+predicate_correctness/scoring/v4_after_run.sh: line 39: `  case "$1" in'
+predicate_correctness/scoring/v4_after_run.sh exit=2
+predicate_correctness/scoring/v4_interim.sh: line 46: syntax error near unexpected token `$'in\r''
+predicate_correctness/scoring/v4_interim.sh: line 46: `case "$RUN/" in'
+predicate_correctness/scoring/v4_interim.sh exit=2
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh: line 10: syntax error near unexpected token `$'do\r''
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh: line 10: `for f in guard/run_online_v3.py scoring/v3_online_metrics.py scoring/v3_online_interim.py; do'
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh exit=2
+predicate_correctness/scripts/v3_session/b3_interim.sh: line 11: syntax error: unexpected end of file
+predicate_correctness/scripts/v3_session/b3_interim.sh exit=2
+predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh exit=0
+predicate_correctness/scripts/v4_dry_all.sh: line 24: syntax error near unexpected token `$'do\r''
+predicate_correctness/scripts/v4_dry_all.sh: line 24: `for spec in "${SPECS[@]}"; do'
+predicate_correctness/scripts/v4_dry_all.sh exit=2
+predicate_correctness/scripts/v4_identity_check.sh: line 37: syntax error near unexpected token `$'\\\r''
+predicate_correctness/scripts/v4_identity_check.sh: line 37: `  ( cd "$TREE" && $PY scripts/v4_identity_driver.py run v3 "$TREE" "$TREE/output/eval_v3/dryrun/identity" ) \'
+predicate_correctness/scripts/v4_identity_check.sh exit=2
+predicate_correctness/scripts/v4_run_tests_parallel.sh: line 38: syntax error near unexpected token `}'
+predicate_correctness/scripts/v4_run_tests_parallel.sh: line 38: `} > "${PRE}_totals.txt"'
+predicate_correctness/scripts/v4_run_tests_parallel.sh exit=2

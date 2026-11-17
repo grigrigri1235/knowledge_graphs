@@ -2,7 +2,7 @@
 # Tracker v4: the after-run chain of one live step (docs/planning/tracker_v4/overview.md section 10, P5). $0: no LLM
 # call, no network. Run it in the background from the main chat right after the step's shard processes start:
 #
-#   cd /home/azureuser/code_projects/predicate_correctness
+#   cd /home/grigrigri1235/knowledge_graphs/predicate_correctness
 #   nohup bash scoring/v4_after_run.sh --step B2v4 --pids "1234 1235 1236" \
 #       --run-dir output/eval_v4/B2v4/<run_id> > output/logs/v4_after_run_B2v4_launch.txt 2>&1 &
 #
@@ -30,7 +30,7 @@ set -u
 
 PC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REPO="$(dirname "$PC_DIR")"
-PY=/home/azureuser/miniconda3/bin/python3
+PY=/home/grigrigri1235/miniconda3/bin/python3
 export PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0
 
 STEP="" PIDS="" TAG="" OUT_DIR="$PC_DIR/output/logs" PROGRESS="$REPO/docs/planning/tracker_v4/progress.md" POLL=30

@@ -1,0 +1,88 @@
+baseline_ok
+fork
+from_shieldagent
+guard
+output
+scoring
+scripts
+state_tracker
+tests
+# file	A	A2	B	C	special
+codebase_structure.md	1	0	0	0	special=1
+docs/archive/planning/tracker_eval_v2/HANDOFF.md	0	0	1	0
+docs/archive/planning/tracker_v3/approval_request_B2_draft.md	1	0	3	0
+docs/archive/planning/tracker_v3/approval_request_B3_draft.md	1	0	2	0
+docs/archive/planning/tracker_v3/lessons_learned.md	1	0	0	0
+docs/archive/planning/tracker_v3/next_agent_prompt.md	1	0	1	0
+docs/archive/reports/criticism.md	1	0	0	0
+docs/archive/reports/tracker_v3_full_report.md	2	0	0	4
+docs/planning/tracker_v4/build_brief.md	0	0	1	0
+docs/planning/tracker_v4/code_change_map.md	1	0	1	0
+docs/planning/tracker_v4/next_agent_prompt.md	4	0	0	0
+docs/planning/tracker_v4/overview.md	1	0	0	0
+docs/planning/tracker_v4/preregistration_v4.md	1	0	0	0
+docs/planning/tracker_v4/reading_notes/facts_rules.md	0	0	0	1
+docs/planning/tracker_v4/reading_notes/metrics_costs.md	1	0	0	1
+docs/planning/tracker_v4/reading_notes/port_map.md	1	0	2	0
+docs/planning/tracker_v4/reading_notes/tau3_harness.md	3	0	0	0
+docs/planning/tracker_v4/reading_notes/tau3_retail_diff.md	2	0	0	0
+docs/planning/tracker_v4/reading_notes/tgr_build_method.md	3	0	0	0
+docs/planning/tracker_v4/reading_notes/tgr_portability.md	1	0	0	0
+docs/planning/tracker_v4/reading_notes/tiny_questions.md	1	0	0	0
+docs/planning/tracker_v4/session1_process_log.md	1	0	0	0
+docs/reports/tracker_v4_report.md	0	2	1	1
+knowledge_retention.md	7	0	1	0
+predicate_correctness/guard/run_online.py	1	0	0	0
+predicate_correctness/scoring/v3_audit.py	0	0	1	0
+predicate_correctness/scoring/v3_labels.py	0	0	1	0
+predicate_correctness/scoring/v3_online_interim.py	0	0	1	0
+predicate_correctness/scoring/v3_online_metrics.py	0	0	1	0
+predicate_correctness/scoring/v3_p6_agreement.py	0	0	2	0
+predicate_correctness/scoring/v4_after_run.sh	1	0	1	0
+predicate_correctness/scoring/v4_b1_summary.py	0	0	1	0
+predicate_correctness/scoring/v4_diagnosis.py	0	0	1	0
+predicate_correctness/scoring/v4_form_check.py	1	0	1	0
+predicate_correctness/scoring/v4_freeze.py	1	0	2	0
+predicate_correctness/scoring/v4_interim.sh	1	0	1	0
+predicate_correctness/scoring/v4_online_interim.py	0	0	1	0
+predicate_correctness/scoring/v4_online_metrics.py	0	0	1	0
+predicate_correctness/scoring/v4_report.py	0	0	1	0
+predicate_correctness/scripts/build_questions_A4.py	1	0	0	0
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh	0	0	1	0
+predicate_correctness/scripts/v3_session/b3_interim.sh	1	0	1	0
+predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh	1	0	0	0
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py	1	0	0	0
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py	1	0	0	0
+predicate_correctness/scripts/v4_dry_all.sh	1	0	0	0
+predicate_correctness/scripts/v4_identity_check.sh	1	0	1	0
+predicate_correctness/scripts/v4_run_tests_parallel.sh	1	0	0	0
+predicate_correctness/tests/audit_v4_online_recompute.py	0	0	1	1
+predicate_correctness/tests/check_copies.py	0	0	0	3
+predicate_correctness/tests/test_v4_freeze.py	0	0	1	0
+predicate_correctness/tests/test_v4_interim.py	0	0	1	0
+predicate_correctness/tests/test_v4_metrics.py	0	0	1	0
+predicate_correctness/tests/test_v4_recompute.py	0	0	1	0
+predicate_correctness/tests/test_v4_report.py	0	0	1	0
+predicate_correctness/tests/test_v4_run_online.py	0	0	1	0
+TOTAL files=56	A=48	A2=2	B=39	C=11	files_in_set=240	skipped=15
+# skipped (binary / symlink / missing):
+#   docs/archive/reports/figures/tracker_eval_v2_changed_values.png	binary
+#   docs/archive/reports/figures/tracker_eval_v2_effects.png	binary
+#   docs/archive/reports/figures/v3_audit_bins.png	binary
+#   docs/archive/reports/figures/v3_audit_blame.png	binary
+#   docs/archive/reports/figures/v3_audit_facts.png	binary
+#   docs/archive/reports/figures/v3_offline_audit_buckets.png	binary
+#   docs/archive/reports/figures/v3_offline_changes_by_bin.png	binary
+#   docs/archive/reports/figures/v3_offline_llm_share.png	binary
+#   docs/archive/reports/figures/v3_online_paired.png	binary
+#   docs/archive/reports/figures/v3_online_success.png	binary
+#   docs/archive/reports/figures/v3_tiny_disagreements.png	binary
+#   docs/archive/reports/figures/v3_tiny_llm_share.png	binary
+#   docs/reports/figures/v4_cost.png	binary
+#   docs/reports/figures/v4_harm.png	binary
+#   docs/reports/figures/v4_success.png	binary
+exit=0
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+ predicate_correctness/tests/test_v4_report.py            |  2 +-
+ predicate_correctness/tests/test_v4_run_online.py        |  2 +-
+ 56 files changed, 99 insertions(+), 99 deletions(-)

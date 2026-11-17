@@ -80,7 +80,7 @@ than the effect. This plan measures it properly:
 - **Working folder:** `predicate_correctness/`. Run as modules, for example `python -B -m guard.run_online`.
 - **Two Pythons:**
   - `~/venvs/tau-bench/bin/python` (runner, LLM calls, τ-bench);
-  - `/home/azureuser/miniconda3/bin/python3` (analysis; standard library only).
+  - `/home/grigrigri1235/miniconda3/bin/python3` (analysis; standard library only).
 
   Always use `-B` and `PYTHONDONTWRITEBYTECODE=1`.
 - **The earlier online runs,** for reference (`output/p10_runs.md`):

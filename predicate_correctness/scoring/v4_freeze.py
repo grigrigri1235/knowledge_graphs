@@ -18,15 +18,15 @@ v4_freeze.json).
   --no-runner-files: tests with made-up files only (neither adds nor requires the runner's files).
 Both print the counts they computed from the files (no hand-typed counts) and the manifest's own sha256.
 
-Paths are stored relative to the repository root (/home/azureuser/code_projects, the parent of predicate_correctness/)
+Paths are stored relative to the repository root (/home/grigrigri1235/knowledge_graphs, the parent of predicate_correctness/)
 when under it, else absolute. A list file has one path per line; blank lines and lines starting with # are skipped.
 
 Run from predicate_correctness/:
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_freeze --write --files-from output/eval_v4/freeze_list.txt \\
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_freeze --write --files-from output/eval_v4/freeze_list.txt \\
       --prereg ../docs/planning/tracker_v4/preregistration_v4.md \\
       --guide ../docs/planning/tracker_v4/reading_guide_v4.md \\
       > output/logs/v4_freeze_write.txt 2>&1
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_freeze --check > output/logs/v4_freeze_check.txt 2>&1
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_freeze --check > output/logs/v4_freeze_check.txt 2>&1
 """
 from __future__ import annotations
 

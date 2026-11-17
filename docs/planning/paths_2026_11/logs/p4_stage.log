@@ -1,0 +1,19 @@
+56
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p9_commit.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p0_start.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p1_dry.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p2_apply.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_after.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_before.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_code_diff.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_end.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_extra.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_fix2.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_fix2_src.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_peek.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_restore.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3_side_effects.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3a_grep.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3b_check.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/paths_2026_11/logs/p3c_crlf.log', LF will be replaced by CRLF the next time Git touches it

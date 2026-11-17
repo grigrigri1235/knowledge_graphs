@@ -1,0 +1,15 @@
+?? docs/planning/cleanup_2026_11/logs/p9_commit.log
+?? docs/planning/paths_2026_11/
+ab0fac1 Clean up the repo: keep v4 and what it needs, archive old plans and reports
+9ecc20d Snapshot before cleanup
+docs/planning/paths_2026_11:
+logs
+plan.html
+plan.md
+progress.md
+status.log
+
+docs/planning/paths_2026_11/logs:
+p0_start.log
+s1_survey.log
+s2_files.log

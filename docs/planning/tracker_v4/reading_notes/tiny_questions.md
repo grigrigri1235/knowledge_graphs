@@ -1,7 +1,7 @@
 # Reading notes: every v3 tiny question (K1-K16), with a v4 verdict
 
 Written 2026-10-23 for the tracker v4 planning step. $0: read-only, no code edit, no paid call, no network.
-Input for the v4 predicate table. All paths start at `/home/azureuser/code_projects/`.
+Input for the v4 predicate table. All paths start at `/home/grigrigri1235/knowledge_graphs/`.
 
 ## 0. The main idea in plain words
 

@@ -1,7 +1,7 @@
 # Codebase Structure
 
 Last updated: 2026-11-17 (after the cleanup, `docs/planning/cleanup_2026_11/`).
-The original machine path was `/home/azureuser/code_projects`; docs and code still name it.
+Paths were moved from the original machine (`/home/azureuser/code_projects`) to this one on 2026-11-17 (`docs/planning/paths_2026_11/`).
 
 ```text
 knowledge_graphs/

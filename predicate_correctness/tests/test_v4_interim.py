@@ -6,7 +6,7 @@ even with more lines; a late look gives the on-time answer (line-time order from
 moment, re-runs); a live shard's cut-off last line; the error stop per arm file; the CLI.
 
 Run from predicate_correctness/:
-    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_interim -v
+    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_interim -v
 """
 from __future__ import annotations
 

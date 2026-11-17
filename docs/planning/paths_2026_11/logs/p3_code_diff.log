@@ -1,0 +1,43 @@
++  cd /home/grigrigri1235/knowledge_graphs/predicate_correctness && for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 \
++    w("/home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v3_audit > output/logs/v3_p4_<nn>_tests.log 2>&1")
++    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v3_classify -v
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir output/eval_v3/B2/<run_id> \
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_metrics partner-train \
++    PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement \
++      "/home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement " + " ".join(argv) + "`")
++#   cd /home/grigrigri1235/knowledge_graphs/predicate_correctness
++PY=/home/grigrigri1235/miniconda3/bin/python3
++  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_b1_summary \\
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_diagnosis --run-dir output/eval_v4/<step>/<run_id> \\
++          "cd /home/grigrigri1235/knowledge_graphs/predicate_correctness && PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 "
++          "/home/grigrigri1235/miniconda3/bin/python3 -B scoring/v4_form_check.py", "```"]
++Paths are stored relative to the repository root (/home/grigrigri1235/knowledge_graphs, the parent of predicate_correctness/)
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_freeze --write --files-from output/eval_v4/freeze_list.txt \\
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_freeze --check > output/logs/v4_freeze_check.txt 2>&1
++PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
++DEF_EVERY=300; DEF_PY=/home/grigrigri1235/miniconda3/bin/python3; DEF_MARK=run_online_v4
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_interim --run-dir output/eval_v4/B2v4/<run_id> \\
++  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_metrics run --run-dir output/eval_v4/<step>/<run_id> \\
++  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_report \\
++PC = "/home/grigrigri1235/knowledge_graphs/predicate_correctness"
++MPY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B"
++cd /home/grigrigri1235/knowledge_graphs/predicate_correctness || exit 1
++PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir $RUN > output/logs/v3_B3_${RUN_ID}_interim.log 2>&1
++cd /home/grigrigri1235/knowledge_graphs/predicate_correctness
++OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
++OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
++PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
++PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
++  /home/grigrigri1235/miniconda3/bin/python3 -B "$PC/scripts/v4_identity_driver.py" compare "$OUT/v3" "$OUT/v4" \
++PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
++    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B \\
++TAU_ENVS = "/home/grigrigri1235/venvs/tau-bench/lib/python3.12/site-packages/tau_bench/envs"
++SA = "/home/grigrigri1235/ShieldAgent"
++TB = "/home/grigrigri1235/opt/tau-bench-59a200c"
++        rows.append(f"| `{rel}` | `{src.replace('/home/grigrigri1235/', '~/')}` | `{commit[:7]}` "
++    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_freeze -v
++    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_interim -v
++    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_metrics -v
++    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B \\
++    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_report -v
++        self.assertIn("a check every 300s: /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_interim", w)

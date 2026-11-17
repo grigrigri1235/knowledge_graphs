@@ -3,7 +3,7 @@
 This session started the v4 plan and then stopped itself on purpose. Its main chat saw impure
 information about how banking predicates could be made, so the user ended it and asked for a fresh
 agent. This file records everything, so nothing is lost and nothing impure is reused. Times are UTC,
-taken from file times. Paths start at `/home/azureuser/code_projects/`.
+taken from file times. Paths start at `/home/grigrigri1235/knowledge_graphs/`.
 
 ## 1. The main idea in one paragraph
 v4 is the partner's TGR method on τ³-bench, with **only the predicate VALUE part changed**. TGR's own

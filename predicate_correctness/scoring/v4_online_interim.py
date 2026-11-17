@@ -40,7 +40,7 @@ changed. The STOP file holds one JSON line: the rules that fired, the time, and 
 --no-halfway-file: compute the halfway snapshot but do not save halfway.json (a saved one is still read and used).
 
 Run from predicate_correctness/:
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_online_interim --run-dir output/eval_v4/B2v4/<run_id> \\
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_interim --run-dir output/eval_v4/B2v4/<run_id> \\
       [--write-stop] > output/logs/v4_B2v4_interim.log 2>&1
 """
 from __future__ import annotations

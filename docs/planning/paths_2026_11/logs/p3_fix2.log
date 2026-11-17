@@ -1,0 +1,72 @@
+before compile scoring/v4_freeze.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+before compile tests/test_v4_fix2.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+before compile tests/test_v4_freeze.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+before compile tests/test_v4_question_texts.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+before import scoring/v4_freeze.py ok
+before import tests/test_v4_fix2.py ok
+before import tests/test_v4_freeze.py ok
+before import tests/test_v4_question_texts.py ok
+before tests tests/test_v4_fix2.py {'code': 0, 'summary': 'OK'}
+before tests tests/test_v4_freeze.py {'code': 1, 'summary': 'FAILED (failures=1, errors=2)'}
+before tests tests/test_v4_question_texts.py {'code': 5, 'summary': 'FAILED (errors=4)'}
+after compile scoring/v4_freeze.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+after compile tests/test_v4_fix2.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+after compile tests/test_v4_freeze.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+after compile tests/test_v4_question_texts.py error: /dev/null is a non-regular file and will be changed into a regular one if import writes a byte-compiled file to it
+after import scoring/v4_freeze.py ok
+after import tests/test_v4_fix2.py ok
+after import tests/test_v4_freeze.py ok
+after import tests/test_v4_question_texts.py ok
+after tests tests/test_v4_fix2.py {'code': 1, 'summary': 'FAILED (failures=1)'}
+after tests tests/test_v4_freeze.py {'code': 1, 'summary': 'FAILED (errors=2)'}
+after tests tests/test_v4_question_texts.py {'code': 1, 'summary': 'FAILED (failures=3)'}
+==== after run
+test_k13_gets_message_b_as_context (tests.test_v4_fix2.TestK13Window.test_k13_gets_message_b_as_context) ... ok
+test_k13_yes_quotes_the_user_message (tests.test_v4_fix2.TestK13Window.test_k13_yes_quotes_the_user_message) ... ok
+test_newest_agent_text_between_the_user_messages (tests.test_v4_fix2.TestK13Window.test_newest_agent_text_between_the_user_messages) ... ok
+test_pairs_newest_first (tests.test_v4_fix2.TestK13Window.test_pairs_newest_first) ... ok
+test_question_file (tests.test_v4_fix2.TestK13Window.test_question_file) ... FAIL
+test_registered (tests.test_v4_fix2.TestK13Window.test_registered) ... ok
+test_no_candidate_is_false_without_a_call (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_no_candidate_is_false_without_a_call) ... ok
+test_no_is_a_real_no (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_no_is_a_real_no) ... ok
+test_the_facts_call_ask_first_yes_v4 (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_the_facts_call_ask_first_yes_v4) ... ok
+test_unclear_is_asked_again_then_blocks (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_unclear_is_asked_again_then_blocks) ... ok
+test_v3_helper_still_fails_on_the_v4_question (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_v3_helper_still_fails_on_the_v4_question)
+The root cause, pinned: v3's helper cannot fill a `follows` input (so it must not be used for K3 v3). ... ok
+test_yes_sets_the_fact_with_both_choice_inputs (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_yes_sets_the_fact_with_both_choice_inputs) ... ok
+test_every_fact (tests.test_v4_fix2.TestNoV3AskOnFollowsQuestions.test_every_fact) ... ok
+
+======================================================================
+FAIL: test_question_file (tests.test_v4_fix2.TestK13Window.test_question_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grigrigri1235/knowledge_graphs/predicate_correctness/tests/test_v4_fix2.py", line 195, in test_question_file
+    self.assertEqual(json.load(f)["questions"]["K13"], q)               # overlay and merged file in sync
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'acc[233 chars]e.', 'a message that asks for nothing new (onl[2153 chars]es.'} != {'acc[233 chars]e.', "Words such as 'escalate', 'supervisor', [4682 chars]ne."}
+Diff is 8453 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 3.376s
+
+FAILED (failures=1)
+==== before run
+test_k13_gets_message_b_as_context (tests.test_v4_fix2.TestK13Window.test_k13_gets_message_b_as_context) ... ok
+test_k13_yes_quotes_the_user_message (tests.test_v4_fix2.TestK13Window.test_k13_yes_quotes_the_user_message) ... ok
+test_newest_agent_text_between_the_user_messages (tests.test_v4_fix2.TestK13Window.test_newest_agent_text_between_the_user_messages) ... ok
+test_pairs_newest_first (tests.test_v4_fix2.TestK13Window.test_pairs_newest_first) ... ok
+test_question_file (tests.test_v4_fix2.TestK13Window.test_question_file) ... ok
+test_registered (tests.test_v4_fix2.TestK13Window.test_registered) ... ok
+test_no_candidate_is_false_without_a_call (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_no_candidate_is_false_without_a_call) ... ok
+test_no_is_a_real_no (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_no_is_a_real_no) ... ok
+test_the_facts_call_ask_first_yes_v4 (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_the_facts_call_ask_first_yes_v4) ... ok
+test_unclear_is_asked_again_then_blocks (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_unclear_is_asked_again_then_blocks) ... ok
+test_v3_helper_still_fails_on_the_v4_question (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_v3_helper_still_fails_on_the_v4_question)
+The root cause, pinned: v3's helper cannot fill a `follows` input (so it must not be used for K3 v3). ... ok
+test_yes_sets_the_fact_with_both_choice_inputs (tests.test_v4_fix2.TestK3UsesTheV4Helper.test_yes_sets_the_fact_with_both_choice_inputs) ... ok
+test_every_fact (tests.test_v4_fix2.TestNoV3AskOnFollowsQuestions.test_every_fact) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 3.484s
+
+OK

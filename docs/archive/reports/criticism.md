@@ -1,4 +1,4 @@
-  **/home/azureuser/code_projects/output/wiki_extracted_policies.json:**
+  **/home/grigrigri1235/knowledge_graphs/output/wiki_extracted_policies.json:**
 
 lines 26-33
   {

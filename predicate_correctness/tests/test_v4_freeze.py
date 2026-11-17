@@ -5,7 +5,7 @@ TestRunnerFiles writes temp manifests with the runner's real files (guard/run_on
 audit P7 #3): --write adds them all, --check and the runner refuse a manifest that leaves one out.
 
 Run from predicate_correctness/:
-    /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_freeze -v
+    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_freeze -v
 """
 from __future__ import annotations
 

@@ -12,7 +12,7 @@ for f in guard/run_online_v3.py scoring/v3_online_metrics.py scoring/v3_online_i
 done
 sha256sum "$S/guard/run_online_v3.py" "$S/scoring/v3_online_metrics.py" "$S/scoring/v3_online_interim.py" > "$OUT/sha.txt"
 PY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 $HOME/venvs/tau-bench/bin/python -B -W ignore"
-MPY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B"
+MPY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B"
 cd "$S" || exit 1
 $PY -m guard.run_online_v3 tasks-file --check > "$OUT/tasks_check.txt" 2>&1
 $PY -m guard.run_online_v3 run --step B1 --run-id B1_20261024T000000Z_00000000 --shard 0/1 --workers 5 \

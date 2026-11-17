@@ -1,0 +1,48 @@
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K10.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K12.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K13.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K16.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K17.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K18.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K7.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/cases/K8.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'predicate_correctness/output/eval_v4/overlays/questions_A4.json', LF will be replaced by CRLF the next time Git touches it
+ .../output/eval_v4/overlays/questions_A4.json      | 42 ++++++++--------------
+ 1 file changed, 14 insertions(+), 28 deletions(-)
+restore_exit=0
+---- status output after restore
+overlay_same_as_baseline
+==== after test_v4_fix2
+Ran 13 tests in 1.635s
+OK
+==== after test_v4_freeze
+ERROR: test_a_manifest_without_a_runner_file_is_refused (tests.test_v4_freeze.TestRunnerFiles.test_a_manifest_without_a_runner_file_is_refused)
+scoring.v4_freeze.FreezeError: refused: missing: predicate_correctness/output/eval_v3/b3_tasks.json; missing: predicate_correctness/output/eval_v3/online_tasks.json; missing: predicate_correctness/output/eval_v3/rule_table_airline.json; missing: predicate_correctness/output/eval_v3/rule_table_retail.json
+ERROR: test_write_adds_every_runner_file_and_the_runner_accepts_it (tests.test_v4_freeze.TestRunnerFiles.test_write_adds_every_runner_file_and_the_runner_accepts_it)
+scoring.v4_freeze.FreezeError: refused: missing: predicate_correctness/output/eval_v3/b3_tasks.json; missing: predicate_correctness/output/eval_v3/online_tasks.json; missing: predicate_correctness/output/eval_v3/rule_table_airline.json; missing: predicate_correctness/output/eval_v3/rule_table_retail.json
+Ran 9 tests in 0.122s
+FAILED (errors=2)
+==== after test_v4_question_texts
+Ran 24 tests in 0.252s
+OK
+==== before test_v4_freeze
+ERROR: test_a_manifest_without_a_runner_file_is_refused (tests.test_v4_freeze.TestRunnerFiles.test_a_manifest_without_a_runner_file_is_refused)
+scoring.v4_freeze.FreezeError: refused: missing: predicate_correctness/output/eval_v3/b3_tasks.json; missing: predicate_correctness/output/eval_v3/online_tasks.json; missing: predicate_correctness/output/eval_v3/rule_table_airline.json; missing: predicate_correctness/output/eval_v3/rule_table_retail.json
+ERROR: test_write_adds_every_runner_file_and_the_runner_accepts_it (tests.test_v4_freeze.TestRunnerFiles.test_write_adds_every_runner_file_and_the_runner_accepts_it)
+scoring.v4_freeze.FreezeError: refused: missing: predicate_correctness/output/eval_v3/b3_tasks.json; missing: predicate_correctness/output/eval_v3/online_tasks.json; missing: predicate_correctness/output/eval_v3/rule_table_airline.json; missing: predicate_correctness/output/eval_v3/rule_table_retail.json
+FAIL: test_p9_scoring_files_required_and_docstring_names (tests.test_v4_freeze.TestRunnerFiles.test_p9_scoring_files_required_and_docstring_names)
+AssertionError: False is not true : preregistration_v4.md
+Ran 9 tests in 0.120s
+FAILED (failures=1, errors=2)
+==== before test_v4_question_texts
+ERROR: setUpClass (tests.test_v4_question_texts.TestDomainTexts)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/grigrigri1235/.cache/kg_paths_baseline/docs/planning/tracker_v4/predicate_table.md'
+ERROR: setUpClass (tests.test_v4_question_texts.TestFewShot)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/grigrigri1235/.cache/kg_paths_baseline/docs/planning/tracker_v4/predicate_table.md'
+ERROR: setUpClass (tests.test_v4_question_texts.TestShape)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/grigrigri1235/.cache/kg_paths_baseline/docs/planning/tracker_v4/predicate_table.md'
+ERROR: setUpClass (tests.test_v4_question_texts.TestTexts)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/grigrigri1235/.cache/kg_paths_baseline/docs/planning/tracker_v4/predicate_table.md'
+Ran 0 tests in 0.003s
+FAILED (errors=4)
+---- final output status

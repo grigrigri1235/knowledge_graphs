@@ -1,0 +1,14 @@
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'environment.yml', LF will be replaced by CRLF the next time Git touches it
+environment.yml
+----
+warning: in the working copy of 'environment.yml', LF will be replaced by CRLF the next time Git touches it
+ environment.yml | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  977 2026-11-17 17:18:20.151968400 +0200 environment.yml
+
+docs/planning/env_2026_11/logs:
+total 12
+drwxr-xr-x 2 grigrigri1235 grigrigri1235 4096 2026-11-17 17:17:58.321971631 +0200 .
+drwxr-xr-x 3 grigrigri1235 grigrigri1235 4096 2026-11-17 17:17:58.321971631 +0200 ..
+-rw-r--r-- 1 grigrigri1235 grigrigri1235 1202 2026-11-17 17:18:00.471971236 +0200 imports.log

@@ -13,7 +13,7 @@ Everything about τ³-bench in section 6 is **UNVERIFIED** (from memory of τ²-
   `p4_audit_recheck.md`, `p5_retail_notes.md`, `p6_tool_agreement.md`, `p7_structure.md`,
   `direct_facts_diagnosis.md`, `B3_diagnosis.md`, plus `tiny_question_audit.md`, `p11_offline.md` (head),
   `p12_report.md` (head).
-- v1 policies: `/home/azureuser/refs/tau-bench/tau_bench/envs/airline/wiki.md`, `.../retail/wiki.md`; v1 tool
+- v1 policies: `/home/grigrigri1235/refs/tau-bench/tau_bench/envs/airline/wiki.md`, `.../retail/wiki.md`; v1 tool
   signatures in `.../envs/{airline,retail}/tools/*.py`.
 - Logs of this reading: `predicate_correctness/output/logs/v4_facts_*.txt`.
 

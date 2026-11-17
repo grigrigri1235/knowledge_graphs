@@ -4,7 +4,7 @@ Copy everything in the code block into a fresh chat. Before you paste it, fill i
 "defaults"). It replaces the planning prompt that was here before; the planning is done.
 
 ```
-Read /home/azureuser/code_projects/knowledge_retention.md fully, then CLAUDE.md, then the tracker v3 plan:
+Read /home/grigrigri1235/knowledge_graphs/knowledge_retention.md fully, then CLAUDE.md, then the tracker v3 plan:
 docs/planning/tracker_v3/overview.md, docs/planning/tracker_v3/brainstorm.md section 11 (my decisions; it wins over
 sections 1-10), and every part file docs/planning/tracker_v3/p1.md ... p14.md (short files). Also read
 predicate_correctness/output/eval_v3/progress.md (the live status file you keep up to date).
@@ -56,7 +56,7 @@ RULES (from knowledge_retention.md section 7 and CLAUDE.md; all of them, strictl
   tool. Never to the terminal.
 - Python:
   - runner and tau-bench: ~/venvs/tau-bench/bin/python;
-  - analysis: /home/azureuser/miniconda3/bin/python3 (standard library only);
+  - analysis: /home/grigrigri1235/miniconda3/bin/python3 (standard library only);
   - always -B and PYTHONDONTWRITEBYTECODE=1; run from predicate_correctness/ as modules.
 - Tests: python3 -B -m unittest discover -s tests -t . from predicate_correctness/ (288 pass before v3). Every part
   keeps them passing.

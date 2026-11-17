@@ -76,7 +76,7 @@ Earlier online test:
       --tag luna_train --workers 8
   Progress lines "[p10-online] ..."; final line "[p10-online] <env>/<guard> DONE: ...".
 Stage A, strong agent, 4 processes (then the same with --profile nano-agent-luna and logs v2_stage_a_nano_s<i>.log):
-  cd /home/azureuser/code_projects/predicate_correctness && for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 \
+  cd /home/grigrigri1235/knowledge_graphs/predicate_correctness && for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 \
       setsid nohup ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail \
       --tasks tau_retail_train --shard $i/4 --workers 8 > output/logs/v2_stage_a_luna_s$i.log 2>&1 & done
   Check first with the same command plus --dry-run (no LLM call). Progress lines "[v2-stage-a] ..."; final line

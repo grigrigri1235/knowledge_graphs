@@ -1,6 +1,6 @@
 import json, os
 
-OUT = "/home/azureuser/code_projects/predicate_correctness/output/eval_v4/cases"
+OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
 os.makedirs(OUT, exist_ok=True)
 
 # ---------------- K7v4: a reason for cancelling the reservation ----------------

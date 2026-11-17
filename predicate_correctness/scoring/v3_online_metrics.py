@@ -65,7 +65,7 @@ follows; the pass chance P(lower end > MARGIN) if the true difference is 0, -0.0
 Phi((delta - MARGIN) / SE - z)); and a simulation check with the real percentile bootstrap (numpy, if present).
 
 CLI (run from predicate_correctness/, output to output/logs/):
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_metrics partner-train \
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_metrics partner-train \
       --out output/logs/v3_p13d_train.json > output/logs/v3_p13d_train.log 2>&1
   ... partner-val --after-freeze --out output/logs/v3_p13d_val.json     (only after the main chat says v3 is frozen)
   ... run --run-dir output/eval_v3/<step>/<run_id> [--run-dir ...] --out output/logs/v3_<step>_metrics.json

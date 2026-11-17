@@ -1,7 +1,7 @@
 """Tests of tests/audit_v4_online_recompute.py (A13) on SYNTHETIC run folders only (never a real run).
 
     cd predicate_correctness
-    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B \\
+    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B \\
         -m unittest tests.test_v4_recompute -v
 
 Every line here is made up. Task ids come from the step task lists (online_tasks.json, b3_tasks.json) so the

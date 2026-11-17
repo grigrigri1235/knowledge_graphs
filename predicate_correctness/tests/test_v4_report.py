@@ -4,7 +4,7 @@ under docs/reports/ are read for their numbers tables only. Files go to temporar
 refuse other places) and are removed at the end.
 
 Run from predicate_correctness/:
-    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v4_report -v
+    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v4_report -v
 """
 from __future__ import annotations
 

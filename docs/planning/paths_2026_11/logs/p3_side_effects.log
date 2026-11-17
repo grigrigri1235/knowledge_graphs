@@ -1,0 +1,67 @@
+?? condaenv.fe1clud8.requirements.txt
+?? docs/planning/cleanup_2026_11/logs/p9_commit.log
+?? docs/planning/env_2026_11/
+?? docs/planning/paths_2026_11/
+---- modified under output
+ M predicate_correctness/output/eval_v4/cases/K10.jsonl
+ M predicate_correctness/output/eval_v4/cases/K12.jsonl
+ M predicate_correctness/output/eval_v4/cases/K13.jsonl
+ M predicate_correctness/output/eval_v4/cases/K16.jsonl
+ M predicate_correctness/output/eval_v4/cases/K17.jsonl
+ M predicate_correctness/output/eval_v4/cases/K18.jsonl
+ M predicate_correctness/output/eval_v4/cases/K7.jsonl
+ M predicate_correctness/output/eval_v4/cases/K8.jsonl
+ M predicate_correctness/output/eval_v4/overlays/questions_A4.json
+---- cmp overlay
+predicate_correctness/output/eval_v4/overlays/questions_A4.json /home/grigrigri1235/.cache/kg_paths_baseline/predicate_correctness/output/eval_v4/overlays/questions_A4.json differ: byte 2, line 1
+total 108
+drwxr-xr-x 2 grigrigri1235 grigrigri1235  4096 2026-11-17 13:49:11.804456072 +0200 .
+drwxr-xr-x 7 grigrigri1235 grigrigri1235  4096 2026-11-17 15:22:48.643338105 +0200 ..
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  1955 2026-11-17 13:49:11.804456072 +0200 facts_A1_airline.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  3183 2026-11-17 13:49:11.804456072 +0200 facts_A1_retail.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  4351 2026-11-17 13:49:11.804456072 +0200 facts_A2_airline.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  7760 2026-11-17 13:49:11.804456072 +0200 facts_A2_retail.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235 22520 2026-11-17 13:49:11.804456072 +0200 facts_A5_airline.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  7087 2026-11-17 13:49:11.804456072 +0200 facts_A5_retail.json
+-rw-r--r-- 1 grigrigri1235 grigrigri1235  1900 2026-11-17 13:49:11.804456072 +0200 facts_F2_retail.json
+---- recent files in output
+predicate_correctness/output/eval_v4/overlays/questions_A4.json
+predicate_correctness/output/eval_v4/cases/K18.jsonl
+predicate_correctness/output/eval_v4/cases/K8.jsonl
+predicate_correctness/output/eval_v4/cases/K17.jsonl
+predicate_correctness/output/eval_v4/cases/K10.jsonl
+predicate_correctness/output/eval_v4/cases/K16.jsonl
+predicate_correctness/output/eval_v4/cases/K13.jsonl
+predicate_correctness/output/eval_v4/cases/K7.jsonl
+predicate_correctness/output/eval_v4/cases/K12.jsonl
+---- build_questions_A4 head
+10:PC = "/home/grigrigri1235/knowledge_graphs/predicate_correctness"
+14:V3 = json.load(open(os.path.join(PC, "state_tracker/v3/questions_v3.json"), encoding="utf-8"))
+107:    on_unclear="block", unclear_note="write check (D10): K1v4b once; still unclear -> false, block (counted)",
+142:    on_unclear="block", unclear_note="write check (D10): K3v4b -> still unclear -> false, block",
+192:    on_unclear="block", unclear_note="write check (D10): K6v4b -> still unclear -> false, block",
+218:    on_unclear="block", unclear_note="write check (D10): K7v4b once -> still unclear -> false, block",
+282:    unclear_note="reply check (D10): K12v4b -> still unclear -> true (blocking; the agent rewrites one reply)",
+441:with open(out, "w", encoding="utf-8") as f:
+442:    json.dump(doc, f, indent=2, sort_keys=True, ensure_ascii=False)
+443:    f.write("\n")
+---- gen_a17
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:2:OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:4:def write(name, qid, cases):
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:5:    with open(os.path.join(OUT, name), "w") as f:
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:9:            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:29: k13("airline", "Please update the home address on my profile, I moved to 18 Larch Street in Portland.", "yes", NT, "Airline has no profile/address write tool (modify_user_address is retail only) -> transfer."),
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:242:     "Insurance yes belonged to the earlier booking (before the last worked write); this span says nothing about insurance.",
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:336:write("K13.jsonl", "K13v4", K13)
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:337:write("K16.jsonl", "K16v4", K16)
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:338:write("K17.jsonl", "K17v4", K17)
+predicate_correctness/scripts/v4_cases_gen/gen_a17.py:339:write("K18.jsonl", "K18v4", K18)
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:3:OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:4:os.makedirs(OUT, exist_ok=True)
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:387:def write(name, rows, prefix):
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:391:    with open(os.path.join(OUT, name), "w") as f:
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:398:            f.write(json.dumps({"id": cid, **r}, ensure_ascii=False) + "\n")
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:400:write("K7.jsonl", K7, "K7v4")
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:401:write("K8.jsonl", K8, "K8v4")
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:402:write("K10.jsonl", K10, "K10v4")
+predicate_correctness/scripts/v4_cases_gen/make_v4_A15.py:403:write("K12.jsonl", K12, "K12v4")

@@ -288,12 +288,12 @@ bug must be mirrored (or flagged) in any DB fact that reads order item prices af
 
 ## 7. Files
 
-- Map: `/home/azureuser/code_projects/docs/planning/tracker_v4/reading_notes/retail_task_map.json` (114 rows;
+- Map: `/home/grigrigri1235/knowledge_graphs/docs/planning/tracker_v4/reading_notes/retail_task_map.json` (114 rows;
   partner-test rows carry only ids, score and `drop: true`; our 69 carry group, user id, write counts, reward basis,
   NL assertions, communicate_info, gold-replay result, notes).
 - Scripts (stdlib, scratchpad): `/tmp/claude-1000/-home-azureuser-code-projects/796f0c59-5ea8-4a72-8aa7-c0248fb5d2c9/scratchpad/v4_ret_load.py`, `v4_ret_map.py`, `v4_ret_pertask.py`,
   `v4_ret_db.py`, `v4_ret_sim.py`, `v4_ret_build.py` (same folder).
-- Logs: `/home/azureuser/code_projects/predicate_correctness/output/logs/v4_ret_*.txt`.
+- Logs: `/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/logs/v4_ret_*.txt`.
 
 ---
 

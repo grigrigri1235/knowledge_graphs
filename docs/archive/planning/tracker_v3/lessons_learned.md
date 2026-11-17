@@ -14,7 +14,7 @@ any real conversation.
 **v3 in four numbers** (KR §1). Main test B2, 99 tasks: v3 − old guard −0.024 [−0.088, +0.040], pass. Unseen val 33:
 −0.131, "possible leak". Many-step B3: −0.245 [−0.408, −0.061]. Cost per conversation $0.0089 vs $0.0116.
 
-**File key** (all paths from `/home/azureuser/code_projects/`)
+**File key** (all paths from `/home/grigrigri1235/knowledge_graphs/`)
 | short | file |
 |---|---|
 | KR | `knowledge_retention.md` |

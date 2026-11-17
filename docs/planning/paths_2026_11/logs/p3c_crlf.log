@@ -1,0 +1,58 @@
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'environment.yml', LF will be replaced by CRLF the next time Git touches it
+== predicate_correctness/scoring/v4_after_run.sh
+work CRLF lines: 178
+baseline CRLF lines: 178
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scoring/v4_interim.sh
+work CRLF lines: 145
+baseline CRLF lines: 145
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh
+work CRLF lines: 56
+baseline CRLF lines: 56
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v3_session/b3_interim.sh
+work CRLF lines: 10
+baseline CRLF lines: 10
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh
+work CRLF lines: 9
+baseline CRLF lines: 9
+HEAD blob CRLF lines: 0
+baseline bash -n exit=0
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v4_dry_all.sh
+work CRLF lines: 64
+baseline CRLF lines: 64
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v4_identity_check.sh
+work CRLF lines: 54
+baseline CRLF lines: 54
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0
+== predicate_correctness/scripts/v4_run_tests_parallel.sh
+work CRLF lines: 40
+baseline CRLF lines: 40
+HEAD blob CRLF lines: 0
+baseline bash -n exit=2
+HEAD blob bash -n exit=0
+work (CR stripped) bash -n exit=0

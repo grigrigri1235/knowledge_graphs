@@ -1,0 +1,101 @@
+== files with azureuser
+75
+== hits per top folder
+51 23 docs/planning
+20 14 predicate_correctness/scoring
+18 7 docs/archive
+14 10 predicate_correctness/scripts
+11 8 predicate_correctness/tests
+9 9 predicate_correctness/output
+8 1 knowledge_retention.md
+2 1 docs/reports
+1 1 predicate_correctness/guard
+1 1 codebase_structure.md
+== distinct path prefixes (3 levels after /home/azureuser)
+     44 /home/azureuser/miniconda3/bin/python3
+     19 /home/azureuser/code_projects
+     17 /home/azureuser/code_projects/predicate_correctness
+     16 /home/azureuser/code_projects/predicate_correctness/output
+      6 /home/azureuser
+      4 /home/azureuser/code_projects/third_party/tau2-bench
+      4 /home/azureuser/code_pr
+      4 /home/azureuser/ShieldAgent/README.md
+      3 /home/azureuser/code_projects/knowledge_retention.md
+      2 /home/azureuser/code_projects/predicate_correctness/state_tracker
+      2 /home/azureuser/code_projects/docs/planning
+      2 /home/azureuser/code_projects/CLAUDE.md
+      2 /home/azureuser/...
+      1 /home/azureuser/venvs/tau-bench/lib
+      1 /home/azureuser/venvs/tau-bench/bin
+      1 /home/azureuser/refs/tau-bench/tau_bench
+      1 /home/azureuser/opt/tau-bench-59a200c
+      1 /home/azureuser/miniconda3
+      1 /home/azureuser/code_projects/output/wiki_extracted_policies.json
+      1 /home/azureuser/code_projects/.venvs/tau3-v1.0.1
+      1 /home/azureuser/code_projects/.venv_tau3
+      1 /home/azureuser/ShieldAgent/output/reproduction
+      1 /home/azureuser/ShieldAgent
+== tilde forms
+    112 ~/ShieldAgent
+     99 ~/venvs/tau-bench
+     73 ~/opt/tau-bench-59a200c
+     41 ~/ShieldAgent/output
+     25 ~/ShieldAgent/method_tgr
+     24 ~/ShieldAgent/repro_runtime
+     16 ~/venvs
+     13 ~/opt
+     12 ~/ShieldAgent/policies
+      9 ~/ShieldAgent/tgr_rules
+      9 ~/ShieldAgent/repro_core
+      9 ~/ShieldAgent/agent
+      8 ~/ShieldAgent/docs
+      5 ~/ShieldAgent/scripts
+      5 ~/ShieldAgent/exp_core
+      5 ~/ShieldAgent.
+      4 ~/venvs.
+      4 ~/ShieldAgent/repro_online
+      3 ~/ShieldAgent/policy_docs
+      2 ~/refs/tau-bench
+      2 ~/ShieldAgent/policy_pipeline
+      2 ~/ShieldAgent/aspm
+      2 ~/ShieldAgent/README.md
+      2 ~/ShieldAgent/LICENSE
+      2 ~/ShieldAgent/
+      1 ~/code_projects/predicate_correctness
+      1 ~/code_projects
+      1 ~/ShieldAgent/utility
+== what exists here
+no  /home/grigrigri1235/ShieldAgent
+no  /home/grigrigri1235/venvs
+no  /home/grigrigri1235/venvs/tau-bench
+no  /home/grigrigri1235/opt
+no  /home/grigrigri1235/refs
+yes /home/grigrigri1235/miniconda3
+no  /home/grigrigri1235/code_projects
+no  /home/grigrigri1235/knowledge_graphs/third_party
+/usr/bin/python3
+Python 3.12.3
+COMPI
+DS
+FINAL_PARAI
+Miniconda3-latest-Linux-x86_64.sh
+New folder
+PAR_FINAL
+PL
+W_engineering_ai_tools_int
+ad6
+anti
+bina1
+bina2
+cv
+experiments
+fujitsu
+iot
+knowledge_graphs
+miniconda3
+os2
+os3
+os4
+safot
+sw_ai_tools
+sw_ai_tools_hw

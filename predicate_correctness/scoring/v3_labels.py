@@ -98,7 +98,7 @@ saved answer is not an error by itself, and no function here reads a judge value
 Standard library only. No LLM call, no network, no output files. Imports only scoring.v3_audit from scoring (never
 the scorer); fork/ is imported only inside build_labels / task_actions / the default call_of.
 Run the tests from predicate_correctness/:
-    /home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v3_classify -v
+    /home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v3_classify -v
 """
 from __future__ import annotations
 

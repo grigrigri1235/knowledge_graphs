@@ -1,6 +1,6 @@
 # τ³ harness map (for porting our guard runner)
 
-Read-only study of `/home/azureuser/code_projects/third_party/tau2-bench` at commit `cc1df47`.
+Read-only study of `/home/grigrigri1235/knowledge_graphs/third_party/tau2-bench` at commit `cc1df47`.
 No Python run, no tau2 run, no network, $0. All paths below are relative to `src/tau2/` unless they start with `data/`, `docs/` or a top-level file name.
 
 ## 0. Main points first
@@ -77,7 +77,7 @@ No Python run, no tau2 run, no network, $0. All paths below are relative to `src
 - Logging of LLM calls to files happens only with `--verbose-logs` (`llm_utils.py:370-430`). There is a Redis/local cache, off by default (`config.py:71`), and Langfuse, off (`config.py:83`).
 
 ### 2.2 Things that happen at import time
-- `import tau2...` → `tau2/utils/utils.py:10-14` runs **`load_dotenv()`**. It searches for a `.env` up the directory tree, so any `.env` above the code can put API keys into the process. Today `/home/azureuser/code_projects/` has no `.env`, but we should pin this (e.g. `dotenv` override, or run with an empty env).
+- `import tau2...` → `tau2/utils/utils.py:10-14` runs **`load_dotenv()`**. It searches for a `.env` up the directory tree, so any `.env` above the code can put API keys into the process. Today `/home/grigrigri1235/knowledge_graphs/` has no `.env`, but we should pin this (e.g. `dotenv` override, or run with an empty env).
 - `import litellm` (`llm_utils.py:14`): litellm normally **downloads its model price map from GitHub at import**, unless `LITELLM_LOCAL_MODEL_COST_MAP=True`. This is known litellm behaviour, not seen in this repo; check after install. It is a network call, not a paid one. Our v3 runner already sets this variable.
 - `llm_utils.py:53-55` creates httpx clients. This makes no network call.
 - `registry.py` (:284-364) imports every domain module and registers *functions*. It reads no data. Banking package modules have no load calls at module level (only constants: `domains/banking_knowledge/utils.py:11,38-43`).
@@ -191,7 +191,7 @@ This matches the trap we hit in v1. In 2.0 the trap is not in user setup; it is 
 ---
 
 ## 5. Install, network needs, dry run
-- Python `>=3.12,<3.14` (`pyproject.toml:10`), `.python-version` = 3.12. Install with `uv sync` (core) and `uv sync --extra knowledge` for banking (`rank-bm25`, `openai`; `pyproject.toml:68-71`). Set `UV_FROZEN=1` (AGENTS.md:260). Note: `/home/azureuser/code_projects/.venv_tau3` **already exists**, although the brief says no venv yet. Someone should check what is in it.
+- Python `>=3.12,<3.14` (`pyproject.toml:10`), `.python-version` = 3.12. Install with `uv sync` (core) and `uv sync --extra knowledge` for banking (`rank-bm25`, `openai`; `pyproject.toml:68-71`). Set `UV_FROZEN=1` (AGENTS.md:260). Note: `/home/grigrigri1235/knowledge_graphs/.venv_tau3` **already exists**, although the brief says no venv yet. Someone should check what is in it.
 - Runtime network needs: provider APIs for the agent, the user and the judges; OpenAI embeddings for `alltools`/`openai_*`; OpenRouter for `qwen_*`; Baseten for BGE/Qwen rerankers; the litellm price map at import (unless set local). `alltools` also needs the npm `@anthropic-ai/sandbox-runtime@0.0.23` plus `ripgrep bubblewrap socat` (AGENTS.md:264), or env construction raises.
 - **No built-in no-LLM dry run of an episode.** `DummyUser` is solo-only and raises on `generate_next_message` (`user/user_simulator.py:228-248`). There is no dummy agent. For a $0 end-to-end smoke test:
   - (1) Write scripted `HalfDuplexAgent` / `HalfDuplexUser` subclasses (or pass litellm `mock_response` through `llm_args`; this is litellm behaviour, check after install).

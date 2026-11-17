@@ -7,7 +7,7 @@ import json
 import os
 import sys
 
-PC = "/home/azureuser/code_projects/predicate_correctness"
+PC = "/home/grigrigri1235/knowledge_graphs/predicate_correctness"
 sys.path.insert(0, PC)
 from state_tracker.v3 import questions as Q  # noqa: E402
 

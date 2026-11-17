@@ -1749,7 +1749,7 @@ def write_report(path: str, ctx: Dict[str, Any]) -> None:
     w("cd predicate_correctness")
     w("PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_audit "
       "> output/logs/v3_p4_<nn>_audit.log 2>&1")
-    w("/home/azureuser/miniconda3/bin/python3 -B -m unittest tests.test_v3_audit > output/logs/v3_p4_<nn>_tests.log 2>&1")
+    w("/home/grigrigri1235/miniconda3/bin/python3 -B -m unittest tests.test_v3_audit > output/logs/v3_p4_<nn>_tests.log 2>&1")
     w("```")
     smp = data.get("v2_lookup_sample", {})
     w(f"Run time {ctx['seconds']:.0f} s (pass 1 {data['seconds']:.0f} s). v2-lookup state check (a sample of v2 "

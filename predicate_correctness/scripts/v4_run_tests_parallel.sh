@@ -9,7 +9,7 @@
 # Each module: runner Python, -B, PYTHONDONTWRITEBYTECODE=1, PYTHONHASHSEED=0, timeout 3000 s (exit 124 = timeout).
 # Exit 1 if any module fails or no module matched. Prints only the summary path. No LLM call, no network.
 set -u
-PC=/home/azureuser/code_projects/predicate_correctness
+PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
 cd "$PC" || exit 1
 PY=${V4_TEST_PY:-$HOME/venvs/tau-bench/bin/python}
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)

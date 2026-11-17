@@ -1,7 +1,7 @@
 # Can the frozen TGR run unchanged on τ³ airline and retail?
 
 Reading notes, tracker v4 planning ($0, read only). Written 2026-10-23 by a subagent.
-Checked against the τ³ clone at `/home/azureuser/code_projects/third_party/tau2-bench` (commit `cc1df47`, README says
+Checked against the τ³ clone at `/home/grigrigri1235/knowledge_graphs/third_party/tau2-bench` (commit `cc1df47`, README says
 "τ-bench 2.0"; CHANGELOG `[2.0.0] - 2026-10-19`). Below, `T3/` = that folder, `FSA/` =
 `predicate_correctness/from_shieldagent/`.
 

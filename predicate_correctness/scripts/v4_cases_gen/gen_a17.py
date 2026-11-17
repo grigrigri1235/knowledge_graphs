@@ -1,5 +1,5 @@
 import json, os
-OUT = "/home/azureuser/code_projects/predicate_correctness/output/eval_v4/cases"
+OUT = "/home/grigrigri1235/knowledge_graphs/predicate_correctness/output/eval_v4/cases"
 
 def write(name, qid, cases):
     with open(os.path.join(OUT, name), "w") as f:

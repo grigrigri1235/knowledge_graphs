@@ -15,7 +15,7 @@ at the freeze (P3), together with `reading_guide_v4.md`, before B1. Changed on 2
 (old arms reused from v3, 6 arms, new money limits; change log). After the freeze no rule in sections 1-18 changes.
 Any later change goes in the change log at the end, with "result seen?".
 
-"v4" = `tgr_tracker_v4`. "Frozen" = `tgr_frozen`. Paths start at `/home/azureuser/code_projects/`; `PC` =
+"v4" = `tgr_tracker_v4`. "Frozen" = `tgr_frozen`. Paths start at `/home/grigrigri1235/knowledge_graphs/`; `PC` =
 `predicate_correctness/`. The plan is `docs/planning/tracker_v4/overview.md` (approved 2026-10-23, binding).
 
 ---

@@ -205,7 +205,7 @@ same names at top level): numbers within 1e-9, words and pass marks exactly equa
 name is shared, none differs, and EVERY metrics name has a recompute twin (only_metrics empty).
 
 CLI (from predicate_correctness/, output under output/):
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_online_metrics run --run-dir output/eval_v4/<step>/<run_id> \\
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_online_metrics run --run-dir output/eval_v4/<step>/<run_id> \\
       [--baseline <the run.json baseline folder: a cross-check>] --out output/logs/v4_<step>_metrics.json --out-md output/logs/v4_<step>_metrics.md \\
       > output/logs/v4_<step>_metrics.log 2>&1
   ... compare-points --metrics <metrics.json> --recompute <recompute.json> --out output/logs/v4_<step>_points.json

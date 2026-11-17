@@ -3,7 +3,7 @@
 Status: reading notes, $0. No code changed, no network, no LLM call. Paths to v3 code are relative to
 `predicate_correctness/`. Line numbers are as of 2026-10-23.
 
-**τ³ claims:** checked against the clone `/home/azureuser/code_projects/third_party/tau2-bench` at commit
+**τ³ claims:** checked against the clone `/home/grigrigri1235/knowledge_graphs/third_party/tau2-bench` at commit
 **cc1df47** (2026-10-22, package `tau2` version 2.0.0). `T2/` below means
 `third_party/tau2-bench/src/tau2/`.
 - **[VERIFIED file:line]** = read in that code.
@@ -48,10 +48,10 @@ code. It must be re-checked against tau2's retail and airline tools. tau2's tool
 
 | item | v3 fact | ref |
 |---|---|---|
-| Python for runs | `~/venvs/tau-bench/bin/python -B` (Python **3.12.15**; the venv was made with `--system-site-packages` from `/home/azureuser/miniconda3`) | `~/venvs/tau-bench/pyvenv.cfg`; run_online_v3.py:88 |
+| Python for runs | `~/venvs/tau-bench/bin/python -B` (Python **3.12.15**; the venv was made with `--system-site-packages` from `/home/grigrigri1235/miniconda3`) | `~/venvs/tau-bench/pyvenv.cfg`; run_online_v3.py:88 |
 | Packages in that venv | `tau_bench 0.1.0`, `litellm 1.57.8`, `openai 1.69.0`, `pydantic 2.10.4`, `pydantic_settings 2.16.0` (azure-identity comes from miniconda's site-packages) | venv site-packages listing |
 | τ-bench source | the installed `tau_bench` in the venv (used by `get_env`), plus a read-only copy `from_shieldagent/tau_bench/` of commit `59a200c` (used by the state replay, loaded with stdlib only) | from_shieldagent/PROVENANCE.md:21; state_tracker/tau_copy.py:39 |
-| Python for analysis | `/home/azureuser/miniconda3/bin/python3 -B` (metrics, report) | v3_online_metrics.py:68; v3_p14_report.py:280 |
+| Python for analysis | `/home/grigrigri1235/miniconda3/bin/python3 -B` (metrics, report) | v3_online_metrics.py:68; v3_p14_report.py:280 |
 | Env vars | `PYTHONDONTWRITEBYTECODE=1`, `PYTHONHASHSEED=0` (analysis); `LITELLM_LOCAL_MODEL_COST_MAP=True` is set in code | run_online_v3.py:119 |
 | Runner copy on sys.path | `guard/runner_path.py::setup()` puts `from_shieldagent/runner/` first, and checks the sha256 of the shared packages `repro_core` and `repro_runtime` against `from_shieldagent/code/` | runner_path.py:32-59 |
 | How runs start | no Slurm. Background processes: `setsid nohup ... > output/logs/<log> 2>&1 &`. One process per shard, at most 4 shards ("the VM: at most 4 heavy processes"), `--workers` <= 8 threads per shard | run_online.py:79-81, 134; run_online_v3.py:162-165 |

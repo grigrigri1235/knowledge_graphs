@@ -1,0 +1,11 @@
+baseline_removed=0
+?? docs/planning/cleanup_2026_11/logs/p9_commit.log
+?? docs/planning/env_2026_11/
+?? docs/planning/paths_2026_11/
+57
+ls: cannot access 'condaenv.fe1clud8.requirements.txt': No such file or directory
+docs/planning/env_2026_11/:
+total 12
+drwxr-xr-x 3 grigrigri1235 grigrigri1235 4096 Nov 17 17:17 .
+drwxr-xr-x 7 grigrigri1235 grigrigri1235 4096 Nov 17 17:17 ..
+drwxr-xr-x 2 grigrigri1235 grigrigri1235 4096 Nov 17 17:17 logs

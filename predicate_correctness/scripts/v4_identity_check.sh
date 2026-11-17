@@ -10,7 +10,7 @@
 # Output: output/eval_v4/dryrun/identity_<UTC>/{v3,v4}/ (run folders, driver_result.json), summary.json,
 #         driver logs; one line in output/logs/v4_identity_<UTC>.txt. Exit 1 if anything differs.
 set -u
-PC=/home/azureuser/code_projects/predicate_correctness
+PC=/home/grigrigri1235/knowledge_graphs/predicate_correctness
 cd "$PC" || exit 1
 PY="env PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 LITELLM_LOCAL_MODEL_COST_MAP=True $HOME/venvs/tau-bench/bin/python -B -W ignore"
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
@@ -42,7 +42,7 @@ G=gold   # the partner's gold folder name, kept out of the copy (spelled apart: 
   echo "driver v4 exit $?"
   cp -a "$TREE/output/eval_v3/dryrun/identity" "$OUT/v3"
   cp -a "$TREE/output/eval_v4/dryrun/identity" "$OUT/v4"
-  /home/azureuser/miniconda3/bin/python3 -B "$PC/scripts/v4_identity_driver.py" compare "$OUT/v3" "$OUT/v4" \
+  /home/grigrigri1235/miniconda3/bin/python3 -B "$PC/scripts/v4_identity_driver.py" compare "$OUT/v3" "$OUT/v4" \
       "$OUT/summary.json"
   RC=$?
   echo "compare exit $RC"

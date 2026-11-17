@@ -1,7 +1,7 @@
 # Tracker v4: code change map (file by file)
 
 Written 2026-10-23 for part P1 of `overview.md`. $0, read-only planning. Paths are under
-`/home/azureuser/code_projects/predicate_correctness/` unless they start with `docs/`.
+`/home/grigrigri1235/knowledge_graphs/predicate_correctness/` unless they start with `docs/`.
 
 **The main idea in plain words.** v4 is v3 with better ways to give predicates their values. Every v3 file stays
 byte-identical. v4 adds new files only. Where a v3 module is harness glue (runner, metrics, block messages), v4
@@ -200,7 +200,7 @@ They hard-code pids, run ids and paths; the v4 scripts below are the generic ver
 wait for the pids → line, error and dropped-group counts → `freeze_v4 --check` → `v4_online_metrics run` →
 `audit_v4_online_recompute.py` → `v4_compare_recompute.py` (MISMATCH stops the chain's "done" line) →
 `v4_diagnosis.py` → `v4_report.py` (B1: `v4_b1_summary.py`) → progress and implementation-log lines → `freeze_v4
---table`. Analysis Python: `/home/azureuser/miniconda3/bin/python3 -B`; runner Python: `~/venvs/tau-bench/bin/python
+--table`. Analysis Python: `/home/grigrigri1235/miniconda3/bin/python3 -B`; runner Python: `~/venvs/tau-bench/bin/python
 -B`; always `PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0`.
 
 ### 1.6 Docs and outputs

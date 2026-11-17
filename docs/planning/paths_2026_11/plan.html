@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path move plan</title>
+<style>
+:root{--bg:#fafaf9;--fg:#1c1917;--mut:#57534e;--card:#fff;--line:#e7e5e4;--ok:#15803d;--no:#b91c1c;--acc:#1d4ed8}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1917;--fg:#f5f5f4;--mut:#a8a29e;--card:#292524;--line:#44403c;--ok:#4ade80;--no:#f87171;--acc:#60a5fa}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px}
+h1{margin:0 0 4px}.sub{color:var(--mut);margin:0 0 20px}
+.map{display:grid;grid-template-columns:1fr auto 1fr auto;gap:8px 12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:20px}
+code{font-size:13px;word-break:break-all}.arrow{color:var(--mut)}
+.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card h3{margin:0 0 6px;font-size:15px}
+ol.steps{list-style:none;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:8px;padding:10px 12px;margin:8px 0}
+ol.steps li::before{content:"Part " counter(s) " · ";font-weight:600}
+</style>
+</head>
+<body><main>
+<h1>Path move plan</h1>
+<p class="sub">original machine → this machine · plan only · detail in plan.md</p>
+
+<div class="map">
+  <code>/home/azureuser/code_projects</code><span class="arrow">→</span><code>/home/grigrigri1235/knowledge_graphs</code><span class="ok">exists</span>
+  <code>~/code_projects</code><span class="arrow">→</span><code>~/knowledge_graphs</code><span class="ok">exists</span>
+  <code>/home/azureuser/miniconda3</code><span class="arrow">→</span><code>/home/grigrigri1235/miniconda3</code><span class="ok">exists</span>
+  <code>/home/azureuser/{ShieldAgent,venvs,opt,refs}</code><span class="arrow">→</span><code>/home/grigrigri1235/…</code><span class="no">missing</span>
+</div>
+
+<div class="cols">
+  <div class="card"><h3>Change</h3>code + scripts in predicate_correctness (not from_shieldagent), README, codebase_structure, knowledge_retention, docs/reports, docs/planning/tracker_v4, docs/archive</div>
+  <div class="card"><h3>Keep as is</h3>run records in predicate_correctness/output (metrics, logs, v4_freeze.json), and the cleanup/paths logs</div>
+  <div class="card"><h3>Already fine</h3><code>~/…</code> paths mean "home here". No text change. Their targets are missing here.</div>
+</div>
+
+<ol class="steps">
+  <li>Dry run: hits per file and rule → planned_changes.txt</li>
+  <li>Apply the 4 rules (exact strings)</li>
+  <li>Check: none left, compile, bash -n, imports before vs after</li>
+  <li>Commit on branch cleanup + short report</li>
+</ol>
+<p class="sub">All $0. Waits for your "go".</p>
+</main></body></html>

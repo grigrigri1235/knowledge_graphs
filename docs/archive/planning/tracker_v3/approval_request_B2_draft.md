@@ -30,7 +30,7 @@ change.)
 
 Live spend check ($0, before you approve; output to a file):
 ```
-cd /home/azureuser/code_projects/predicate_correctness
+cd /home/grigrigri1235/knowledge_graphs/predicate_correctness
 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -c "from guard import soft_stop_v3 as S; r=S.v3_spend(); print({k: r[k] for k in ('total_usd','questions_usd','episodes_usd','backups_extra_usd','dryrun_usd_not_counted')})" > output/logs/v3_B2_spend_before.txt 2>&1
 ```
 
@@ -72,7 +72,7 @@ for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 setsid nohup ~/v
 - `output/eval_v3/progress.md` gets an "auto:" line every 10 minutes.
 - **Halfway interim check** ($0, main chat; run it when about 742 conversations are done, and again later):
   ```
-  PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_interim \
+  PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_interim \
     --run-dir output/eval_v3/B2/$RUN_ID > output/logs/v3_B2_${RUN_ID}_interim.log 2>&1
   ```
   Its last line says `STOP` or `go on`. On `STOP`: write the STOP file (below) and tell you.
@@ -91,10 +91,10 @@ for i in 0 1 2 3; do PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 setsid nohup ~/v
 ## After B2 ($0)
 1. Metrics and the report:
    ```
-   PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_metrics \
+   PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_metrics \
      run --run-dir output/eval_v3/B2/$RUN_ID --out output/logs/v3_B2_${RUN_ID}_metrics.json \
      > output/logs/v3_B2_${RUN_ID}_metrics.log 2>&1
-   PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_p14_report \
+   PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_p14_report \
      --metrics-json output/logs/v3_B2_${RUN_ID}_metrics.json > output/logs/v3_B2_${RUN_ID}_report.log 2>&1
    ```
    This writes `docs/reports/tracker_v3_report.md` and `docs/reports/figures/v3_online_{success,paired}.png`.

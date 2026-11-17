@@ -21,7 +21,7 @@ TEST mode: a run folder under output/eval_v4/dryrun/ (or run.json "sandbox") mar
 under output/eval_v4/dryrun/report/. A real run's --out must be under output/ (not the dry-run folder).
 
 Command (from predicate_correctness/; analysis python):
-  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_b1_summary \\
+  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_b1_summary \\
       --run-dir output/eval_v4/B1v4/<run_id> --out output/eval_v4/B1v4_<run_id>_summary.md \\
       > output/logs/v4_B1v4_<run_id>_summary.log 2>&1
 Exit 0 on PASS, 1 on FAIL (the files are written either way).

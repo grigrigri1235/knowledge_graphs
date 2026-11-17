@@ -12,7 +12,7 @@ independent recompute predicate_correctness/output/eval_v3/B3/recompute_B3_20261
 LLM call counts per arm (B2 and B3) were counted at $0 from the raw lines (appendix C).
 Exploratory findings (harm, tiny questions, B2 val, B3, Direct + facts; all $0, written after the results) are copied
 from predicate_correctness/output/eval_v3/{harm_metric,tiny_question_audit,B2_val_diagnosis,B3_diagnosis,
-direct_facts_diagnosis}.md. The partner comparison is from /home/azureuser/ShieldAgent/README.md (read only).
+direct_facts_diagnosis}.md. The partner comparison is from /home/grigrigri1235/ShieldAgent/README.md (read only).
 Section 9 is copied from docs/planning/tracker_v3/lessons_learned.md. Section 11 is from
 docs/planning/tracker_v4/next_agent_prompt.md, docs/planning/tracker_v3/next_steps_leak.md and the user's decision.
 -->
@@ -884,7 +884,7 @@ write on a refusal task). **Lower is better.** Exploratory, counted after the re
 
 ## 7. Comparison with the partner's earlier results
 
-Source: the partner's [`/home/azureuser/ShieldAgent/README.md`](/home/azureuser/ShieldAgent/README.md) (read only).
+Source: the partner's [`/home/grigrigri1235/ShieldAgent/README.md`](/home/grigrigri1235/ShieldAgent/README.md) (read only).
 Task success = mean reward over tasks × 3 tries (pass^1). This is **task success, not accuracy**.
 
 | experiment (split; agent / guards) | domain | no guard | Direct | ShieldAgent | TGR (frozen) |
@@ -954,7 +954,7 @@ questions that were too strict**. They asked for details in forms people never u
 On many-step tasks this added up to a clear loss. Build the questions as carefully as the code, and test them before
 any real conversation.
 
-**Source key** (paths from `/home/azureuser/code_projects/`)
+**Source key** (paths from `/home/grigrigri1235/knowledge_graphs/`)
 
 | short | file |
 |---|---|
@@ -1327,7 +1327,7 @@ agent; also in `knowledge_retention.md` section 11) and [`next_steps_leak.md`](.
   with one limit).
 - **Red lines.** No paid LLM or network call without the user's new, explicit approval for that exact step. Paid runs
   start from the main chat only. Never write under `~/ShieldAgent`, `~/opt` or `~/venvs`. A new Python env for
-  τ³-bench (it needs Python 3.12-3.13) goes under `/home/azureuser/code_projects/`, only after the user approves the
+  τ³-bench (it needs Python 3.12-3.13) goes under `/home/grigrigri1235/knowledge_graphs/`, only after the user approves the
   install. No gold scorer in the method.
 
 ### 11.5 Options that were weighed
@@ -1608,7 +1608,7 @@ So must the order id.
 | B2 val diagnosis (exploratory; section 6.4) | `predicate_correctness/output/eval_v3/B2_val_diagnosis.md` |
 | B3 diagnosis (exploratory; section 6.5) | `predicate_correctness/output/eval_v3/B3_diagnosis.md` |
 | Direct + facts diagnosis (exploratory; section 6.6) | `predicate_correctness/output/eval_v3/direct_facts_diagnosis.md` |
-| partner's earlier results (section 7) | `/home/azureuser/ShieldAgent/README.md` (read only) |
+| partner's earlier results (section 7) | `/home/grigrigri1235/ShieldAgent/README.md` (read only) |
 | lessons learned (section 9) | `docs/planning/tracker_v3/lessons_learned.md` |
 | next step: tracker v4 (section 11) | `docs/planning/tracker_v4/next_agent_prompt.md`; leak rules `docs/planning/tracker_v3/next_steps_leak.md` |
 | the method, in full | `knowledge_retention.md` section 7 |

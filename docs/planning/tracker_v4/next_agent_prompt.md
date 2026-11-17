@@ -7,7 +7,7 @@ Written 2026-10-23 by the agent that ran tracker v3, at the user's request. A co
 You are taking over a research project that just had a really promising result. Read this whole prompt first.
 
 WHO YOU WORK FOR AND HOW
-- Read /home/azureuser/code_projects/CLAUDE.md and follow ALL of it. Start every message with a short line saying
+- Read /home/grigrigri1235/knowledge_graphs/CLAUDE.md and follow ALL of it. Start every message with a short line saying
   what you understood from it. Short, simple words. Brainstorm in files, not in the chat. No Artifacts.
 - Plan → the user's explicit approval → many tiny parts. After each part say only "done with part i" and go on.
 - The user cares about SPEED. Tracker v3 took a whole day; this one must not. We learned the hard lessons already
@@ -21,7 +21,7 @@ RED LINES (never cross them; no exception without the user's new, explicit words
    a subagent. Every paid step has a written request (commands, cost, hard limit, time) and a hard limit in code.
 2. Never write under ~/ShieldAgent (the partner's repo), ~/opt or ~/venvs. Read-only git there with
    GIT_OPTIONAL_LOCKS=0. Never put from_shieldagent/ on sys.path. A new Python env for τ³-bench (it needs
-   Python 3.12-3.13) goes under /home/azureuser/code_projects/, never under ~/venvs, and only after the user
+   Python 3.12-3.13) goes under /home/grigrigri1235/knowledge_graphs/, never under ~/venvs, and only after the user
    approves the install (it is a network step).
 3. Never the partner's test group (the τ-bench v1 test tasks in their test 66 split, in ~/ShieldAgent splits.json),
    in any version of τ-bench, τ²-bench or τ³-bench. In τ³ airline/retail, map every task to its v1 task first and
@@ -66,8 +66,8 @@ THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
       tasks are opened once, for the live run.
 - Verify every count and fact above from the repo once the user approves the download; report differences.
 
-READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/azureuser/code_projects/)
-1. /home/azureuser/code_projects/knowledge_retention.md (all of it).
+READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/grigrigri1235/knowledge_graphs/)
+1. /home/grigrigri1235/knowledge_graphs/knowledge_retention.md (all of it).
 2. docs/archive/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
 3. docs/archive/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
 4. docs/archive/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,

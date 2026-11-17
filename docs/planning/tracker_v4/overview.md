@@ -12,7 +12,7 @@ predicate gets its value**:
 Then we freeze v4 and run the same live test again, plus the many-step tasks and a weak-agent harm test.
 
 Written 2026-10-23 by the session-1 agent, after the user's decisions (section 2). Nothing in this plan runs
-before the user approves it. Paths start at `/home/azureuser/code_projects/`.
+before the user approves it. Paths start at `/home/grigrigri1235/knowledge_graphs/`.
 
 **Update 2026-10-24 (after the part 7 audits; all $0).** The retail dev 20 side check is **dropped** (the build read
 those tasks, so they are not unseen). The steps are now B1 → B2' + B3' + H. The halfway stop is decided once, the

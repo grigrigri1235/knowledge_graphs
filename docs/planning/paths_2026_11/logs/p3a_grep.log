@@ -1,0 +1,34 @@
+== grep azureuser in file set ==
+codebase_structure.md:4:Paths were moved from the original machine (`/home/azureuser/code_projects`) to this one on 2026-11-17 (`docs/planning/paths_2026_11/`).
+docs/archive/reports/tracker_v3_full_report.md:5:/tmp/claude-1000/-home-azureuser-code-projects/dbfe7ffd-ee14-4b6f-ab52-d79bdd15e981/scratchpad/tracker_v3_full_report_before_reorg.md
+docs/planning/tracker_v4/code_change_map.md:177:`/tmp/claude-1000/-home-azureuser-code-projects/dbfe7ffd-ee14-4b6f-ab52-d79bdd15e981/scratchpad/`; a temp folder can
+docs/planning/tracker_v4/predicate_table.md:26:`/tmp/claude-1000/-home-azureuser-code-projects/796f0c59-5ea8-4a72-8aa7-c0248fb5d2c9/scratchpad/v4_pt_counts.py`,
+docs/planning/tracker_v4/reading_notes/tau3_airline_diff.md:8:- Scripts ($0, stdlib): `/tmp/claude-1000/-home-azureuser-code-projects/796f0c59-5ea8-4a72-8aa7-c0248fb5d2c9/scratchpad/air_db_diff.py`, `air_task_map.py`, `air_task_map_notes.py`. Logs: `predicate_correctness/output/logs/v4_air_*.txt`.
+docs/planning/tracker_v4/reading_notes/tau3_retail_diff.md:294:- Scripts (stdlib, scratchpad): `/tmp/claude-1000/-home-azureuser-code-projects/796f0c59-5ea8-4a72-8aa7-c0248fb5d2c9/scratchpad/v4_ret_load.py`, `v4_ret_map.py`, `v4_ret_pertask.py`,
+predicate_correctness/scripts/v3_session/README.md:7:- Source: `/tmp/claude-1000/-home-azureuser-code-projects/dbfe7ffd-ee14-4b6f-ab52-d79bdd15e981/scratchpad/<same path>`.
+predicate_correctness/scripts/v3_session/README.md:9:  `/tmp/claude-1000/-home-azureuser-code-projects/7c3c1535-bd0d-4a16-af35-122f073a1f9e/scratchpad/dry_all.sh`.
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh:5:SP=/tmp/claude-1000/-home-azureuser-code-projects/dbfe7ffd-ee14-4b6f-ab52-d79bdd15e981/scratchpad/b3
+== grep untracked/other working files outside excluded (non-git) ==
+./codebase_structure.md
+./docs/planning/tracker_v4/predicate_table.md
+./docs/planning/tracker_v4/code_change_map.md
+./docs/planning/tracker_v4/reading_notes/tau3_airline_diff.md
+./docs/planning/tracker_v4/reading_notes/tau3_retail_diff.md
+./docs/archive/reports/tracker_v3_full_report.md
+./predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh
+./predicate_correctness/scripts/v3_session/README.md
+== changed sh files ==
+warning: in the working copy of 'codebase_structure.md', LF will be replaced by CRLF the next time Git touches it
+predicate_correctness/scoring/v4_after_run.sh
+predicate_correctness/scoring/v4_interim.sh
+predicate_correctness/scripts/v3_session/b3/tools/identity_check.sh
+predicate_correctness/scripts/v3_session/b3_interim.sh
+predicate_correctness/scripts/v3_session/run_v3_tests_parallel.sh
+predicate_correctness/scripts/v4_dry_all.sh
+predicate_correctness/scripts/v4_identity_check.sh
+predicate_correctness/scripts/v4_run_tests_parallel.sh
+== core.autocrlf ==
+true
+== codebase_structure line endings ==
+codebase_structure.md: Unicode text, UTF-8 text
+/dev/stdin: Unicode text, UTF-8 text

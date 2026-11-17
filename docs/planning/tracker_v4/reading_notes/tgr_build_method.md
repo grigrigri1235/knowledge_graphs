@@ -242,12 +242,12 @@ code with no change except the input.
 Rules for all of them:
 - Nothing is written under `~/ShieldAgent`, `~/opt` or `~/venvs`.
 - A τ³ venv is needed only to dump the tool schemas. It is not installed yet. Put it in a project path such as
-  `/home/azureuser/code_projects/.venvs/tau3-v1.0.1`, never under `~/venvs`.
+  `/home/grigrigri1235/knowledge_graphs/.venvs/tau3-v1.0.1`, never under `~/venvs`.
 - Every command's output goes to a log file.
 
 ```bash
-P=/home/azureuser/code_projects/predicate_correctness
-T=/home/azureuser/code_projects/third_party/tau2-bench
+P=/home/grigrigri1235/knowledge_graphs/predicate_correctness
+T=/home/grigrigri1235/knowledge_graphs/third_party/tau2-bench
 OUT=$P/output/tgr_build_t3          # new folder; nothing under ~/ShieldAgent
 # 0. ($0) copy the two missing build files byte-identically from the tag, check sha
 GIT_OPTIONAL_LOCKS=0 git -C ~/ShieldAgent show tgr-frozen-v1:exp_core/tgr_build.py    > $P/from_shieldagent/runner/exp_core/tgr_build.py

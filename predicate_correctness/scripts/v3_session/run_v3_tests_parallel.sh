@@ -1,6 +1,6 @@
 #!/bin/bash
 # Run every v3 test module in its own process, 8 at a time. Output: one log per module + a summary.
-cd /home/azureuser/code_projects/predicate_correctness
+cd /home/grigrigri1235/knowledge_graphs/predicate_correctness
 OUT=output/logs/v3_ptests_$(date -u +%H%M%S)
 mkdir -p "$OUT"
 ls tests/test_v3_*.py tests/test_no_gold_import.py | sed 's#/#.#; s#\.py$##' | \

@@ -29,7 +29,7 @@ must be under output/eval_v4/dryrun/report/. The real docs/reports/ is refused i
 written.
 
 Command (from predicate_correctness/; analysis python):
-  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_report \\
+  PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_report \\
       --metrics output/logs/v4_B2v4_<tag>_metrics.json --metrics output/logs/v4_B3v4_<tag>_metrics.json \\
       --metrics output/logs/v4_Hv4_<tag>_metrics.json \\
       --diagnosis output/logs/v4_B2v4_<tag>_diagnosis.json ... \\

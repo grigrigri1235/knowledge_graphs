@@ -47,7 +47,7 @@ next to it <out>_cases.jsonl, one JSON line per loss or win: {set, domain, task,
 tags, attempts} (+ split, group). Exit 1 when a self-check fails (the files are still written).
 
 CLI (from predicate_correctness/, analysis python, as scoring/v4_after_run.sh calls it):
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v4_diagnosis --run-dir output/eval_v4/<step>/<run_id> \\
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v4_diagnosis --run-dir output/eval_v4/<step>/<run_id> \\
       --metrics output/logs/v4_<step>_<tag>_metrics.json --out output/logs/v4_<step>_<tag>_diagnosis.json \\
       > output/logs/v4_<step>_<tag>_diagnosis.log 2>&1
 Standard library only (imports scoring.v4_online_metrics and, through it, state_tracker/v3/tool_check.py).

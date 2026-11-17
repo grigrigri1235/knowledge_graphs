@@ -18,7 +18,7 @@ halfway point is B3_HALF = 160 conversations (64 tasks x 1 try x 5 arms = 320), 
 the same.
 
 Run from predicate_correctness/:
-  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir output/eval_v3/B2/<run_id> \
+  /home/grigrigri1235/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir output/eval_v3/B2/<run_id> \
       > output/logs/v3_B2_interim.log 2>&1
 """
 from __future__ import annotations
