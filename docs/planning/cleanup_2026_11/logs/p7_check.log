@@ -1,0 +1,6 @@
+Python 3.12.3
+== before
+py 298 compile_err 298 import_fail 23 tests 21 tests_not_ok 13
+== after
+py 195 compile_err 195 import_fail 8 tests 20 tests_not_ok 11
+exit=0

@@ -1,0 +1,32 @@
+== after
+FAIL: test_runtime_v4_extra (tests.test_v4_no_gold_import.TestNoGoldInV4.test_runtime_v4_extra)
+Importing every v4 Python module outside guard/ and state_tracker/v4/ loads no gold module and no scoring
+----------------------------------------------------------------------
+Traceback (most recent call last):
+--
+AssertionError: 'tests.test_v4_v3_untouched' not found in ['scoring.v4_b1_summary', 'scoring.v4_cases', 'scoring.v4_dev_answers', 'scoring.v4_dev_check', 'scoring.v4_diagnosis', 'scoring.v4_form_check', 'scoring.v4_freeze', 'scoring.v4_message_check', 'scoring.v4_offline_eval', 'scoring.v4_online_interim', 'scoring.v4_online_metrics', 'scoring.v4_report', 'tests.test_v4_cases_window', 'tests.test_v4_code_facts', 'tests.test_v4_devcheck', 'tests.test_v4_direct_facts', 'tests.test_v4_feedback', 'tests.test_v4_fix2', 'tests.test_v4_form_check', 'tests.test_v4_freeze', 'tests.test_v4_go_ahead', 'tests.test_v4_guard', 'tests.test_v4_interim', 'tests.test_v4_listing', 'tests.test_v4_metrics', 'tests.test_v4_question_texts', 'tests.test_v4_questions', 'tests.test_v4_recompute', 'tests.test_v4_report', 'tests.test_v4_run_online', 'tests.test_v4_unclear', 'tests.audit_v4_online_recompute', 'scripts.v4_identity_driver', 'scripts.v4_merge_overlays']
+
+======================================================================
+FAIL: test_scan_sets_are_not_empty (tests.test_v4_no_gold_import.TestNoGoldInV4.test_scan_sets_are_not_empty)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grigrigri1235/knowledge_graphs/predicate_correctness/tests/test_v4_no_gold_import.py", line 360, in test_scan_sets_are_not_empty
+--
+AssertionError: 'tests/test_v4_v3_untouched.py' not found in {'guard/run_online_v3.py', 'guard/tgr_tracker.py', 'guard/soft_stop_v4.py', 'scoring/v4_offline_eval.py', 'guard/feedback_v4.py', 'scoring/v4_dev_answers.py', 'scripts/v4_dry_all.sh', 'scripts/v4_identity_check.sh', 'tests/test_v4_cases_window.py', 'state_tracker/v4/listing_v4.py', 'guard/direct_facts_v3.py', 'tests/test_v4_go_ahead.py', 'tests/test_v4_question_texts.py', 'tests/test_v4_devcheck.py', 'guard/run_online_v4.py', 'guard/tgr_tracker_v3.py', 'tests/test_v4_questions.py', 'state_tracker/v4/helpers_go_ahead_v4.py', 'guard/run_online.py', 'scoring/v4_interim.sh', 'scripts/v4_identity_driver.py', 'guard/direct_facts_v4.py', 'scoring/v4_message_check.py', 'scoring/v4_diagnosis.py', 'tests/test_v4_listing.py', 'guard/tgr_tracker_v4.py', 'tests/test_v4_report.py', 'state_tracker/v4/questions_v4.json', 'tests/test_v4_interim.py', 'state_tracker/v4/facts_v4_retail.json', 'tests/test_v4_feedback.py', 'tests/test_v4_fix2.py', 'state_tracker/v4/facts_v4_airline.json', 'guard/soft_stop.py', 'guard/soft_stop_v3.py', 'tests/test_v4_form_check.py', 'scoring/v4_cases.py', 'guard/feedback_v3.py', 'state_tracker/v4/helpers_v4.py', 'state_tracker/v4/questions_v4.py', 'tests/test_v4_direct_facts.py', 'scoring/v4_online_metrics.py', 'tests/test_v4_code_facts.py', 'scoring/v4_online_interim.py', 'tests/test_v4_run_online.py', 'tests/test_v4_unclear.py', 'scoring/v4_freeze.py', 'tests/audit_v4_online_recompute.py', 'tests/test_v4_metrics.py', 'guard/write_guard.py', 'tests/test_v4_guard.py', 'scoring/v4_after_run.sh', 'tests/test_v4_freeze.py', 'scripts/v4_merge_overlays.py', 'scoring/v4_report.py', 'scripts/v4_run_tests_parallel.sh', 'guard/__init__.py', 'scoring/v4_b1_summary.py', 'scoring/v4_dev_check.py', 'state_tracker/v4/__init__.py', 'tests/test_v4_recompute.py', 'guard/runner_path.py', 'scoring/v4_form_check.py'}
+
+----------------------------------------------------------------------
+Ran 13 tests in 3.559s
+--
+FAILED (failures=2)
+== before
+FAIL: test_runtime_v4_extra (tests.test_v4_no_gold_import.TestNoGoldInV4.test_runtime_v4_extra)
+Importing every v4 Python module outside guard/ and state_tracker/v4/ loads no gold module and no scoring
+----------------------------------------------------------------------
+Traceback (most recent call last):
+--
+AssertionError: {'tests.test_v4_feedback': "FileNotFoundEr[112 chars]y')"} != {}
++ {}
+- {'tests.test_v4_feedback': "FileNotFoundError(2, 'No such file or directory')",
+-  'tests.test_v4_recompute': "FileNotFoundError(2, 'No such file or directory')"}
+--
+FAILED (failures=1)

@@ -1,0 +1,32 @@
+== missing frozen paths (repo-relative)
+predicate_correctness/tests/test_v4_v3_untouched.py
+predicate_correctness/guard/offline.py
+predicate_correctness/output/eval_v3/b3_tasks.json
+predicate_correctness/output/eval_v3/online_tasks.json
+predicate_correctness/output/eval_v3/rule_table_airline.json
+predicate_correctness/output/eval_v3/rule_table_retail.json
+predicate_correctness/state_tracker/decide_again.py
+predicate_correctness/state_tracker/p7_sample.py
+predicate_correctness/state_tracker/replay_check.py
+predicate_correctness/state_tracker/run_lookups.py
+predicate_correctness/state_tracker/tgr_to_aspm.py
+predicate_correctness/state_tracker/v3/rule_table.py
+== restore: missing ones that exist in the snapshot, plus the 4 edited frozen docs
+docs/planning/tracker_v4/cases_spec.md
+docs/planning/tracker_v4/predicate_table.md
+docs/planning/tracker_v4/preregistration_v4.md
+docs/planning/tracker_v4/reading_guide_v4.md
+predicate_correctness/guard/offline.py
+predicate_correctness/state_tracker/decide_again.py
+predicate_correctness/state_tracker/p7_sample.py
+predicate_correctness/state_tracker/replay_check.py
+predicate_correctness/state_tracker/run_lookups.py
+predicate_correctness/state_tracker/tgr_to_aspm.py
+predicate_correctness/state_tracker/v3/rule_table.py
+predicate_correctness/tests/test_v4_v3_untouched.py
+== still missing after restore
+predicate_correctness/output/eval_v3/b3_tasks.json
+predicate_correctness/output/eval_v3/online_tasks.json
+predicate_correctness/output/eval_v3/rule_table_airline.json
+predicate_correctness/output/eval_v3/rule_table_retail.json
+exit=0

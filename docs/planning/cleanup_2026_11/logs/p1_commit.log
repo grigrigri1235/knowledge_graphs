@@ -1,1 +1,10 @@
 Switched to a new branch 'cleanup'
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p1_commit.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p1_snapshot.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/plan.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/plan.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/rules_determinism/brainstorm.md', LF will be replaced by CRLF the next time Git touches it
+9ecc20d Snapshot before cleanup
+1
+800
+exit=0

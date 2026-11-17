@@ -1,0 +1,28 @@
+2032 predicate_correctness/docs/planning/tracker_v4/dev_check_fail_notes.md
+1364 docs/planning/tracker_v4/dev_check_fail_notes.md
+3396 total
+== PC copy
+# Dev check on 200 dev conversations: FAIL notes (2026-10-24)
+
+Run `v4dev_real_20261024T080806Z`, spend about $0.075 (dev total about $0.15 of $2).
+
+| mark | result | pass |
+|---|---|---|
+| D1 tiny blocks ≤ 1.5× stand-in | 120 vs 32 (3.75×) | FAIL |
+| D2 unclear ≤ 2 % | 15 / 703 (2.1 %; 14 allowed) | FAIL (by 1) |
+| D3 two-key disagreements 0 | 0 | PASS |
+| D4 state errors 0 | 0 | PASS |
+| D5 fixable messages 100 % | 120 / 120 | PASS |
+
+## Where the 120 blocks come from
+- **64 blocks with no question** (modify_pending_order_items 43, exchange_delivered_order_items 21).
+  Seen on one row: fact `agent_reminded_user_to_include_all_items_for_modification` is a **fact_error**
+== docs copy
+
+## Fix round 2 (approved by the user; $0 part done by a sub-agent, 2026-10-24)
+Plan: `fix_round2_plan.md`.
+- **64 no-question blocks: a wiring bug, not the window.** The K3 facts still called v3's `ask_first_yes`; fix round 1
+  gave K3 a second choice input (`verb`, filled by code), which v3's helper cannot fill, so every K3 ask raised
+  ValueError -> fact_error -> block. All 76 K3 fact errors on the 200 conversations (52 modify, 24 exchange checks;
+  64 where the stand-in allows, 12 where both block) are this one error. Fixed by overlay `facts_F2_retail.json`
+  (K3 parts call `ask_first_yes_v4`). Test: `tests/test_v4_fix2.py`.

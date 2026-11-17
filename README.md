@@ -1,31 +1,23 @@
-# ShieldAgent POC Implementation
+# Cheaper, steadier predicate values for the TGR guard
 
-## Project Overview
-This repository contains our effort to replicate the Action-based Safety Policy Model (ASPM) from the ShieldAgent paper. 
+An AI agent serves airline and retail customers on τ-bench. A guard checks each tool call before it runs. We start
+from TGR, the partner's guard (`~/ShieldAgent`): 98 rules over 66 true/false facts, all set by one big LLM judge.
 
-## What We Have Done So Far
-- Extracted JSON schemas and LLM prompts directly from the ShieldAgent paper into `docs/file_formats/`.
-- Cloned the target GitLab handbook repository to use as our real-world dataset.
-- Successfully implemented the core extraction pipeline (`src/extractor.py`, `src/rule_extractor.py`).
-- Extracted structured JSON policies and translated them to Linear Temporal Logic (LTL) using the Azure OpenAI API (`gpt-5-nano`).
-- Processed `files_given/wiki.md` (Retail Agent Policy), extracting 32 structured policies, 25 LTL rules, and 53 predicates.
-- Built the Action-based Safety Policy Model (ASPM) graph and 8 modular action circuits (`src/circuit_builder.py`), achieving up to 72% overhead reduction.
-- Implemented and evaluated the Algorithm 1 Online Guardrail Verification Engine (`src/verifier.py`), achieving **100% accuracy** across 12 test trajectories with **0.0% False Positive Rate**.
-- Compiled comprehensive research reports (`docs/reports/wiki_full_fledged_aspm_report.md`) and updated `knowledge_retention.md`.
+Our method, v4, keeps TGR's rules and facts and changes only how each fact gets its value:
+- 40 facts are set by code (the call, the database replay, the tool log, message structure).
+- 26 facts use code plus one tiny yes/no LLM question on one or two messages picked by code.
 
+Result: the guard costs about 1/10 of TGR's, with at least the same task success, and no more harm got through.
 
-## Experiment Plan Basics
-Our POC focuses on extracting and verifying safety policies from three primary files in the GitLab handbook:
-1. `record-retention-policy.md`
-2. `acceptable-use-policy.md`
-3. `change-management-policy.md`
+## Where to start
+- Final report: [docs/reports/tracker_v4_report.md](docs/reports/tracker_v4_report.md)
+- Talk: [final_presentation.md](final_presentation.md)
+- Map of the repo: [codebase_structure.md](codebase_structure.md)
+- Handover and lessons: [knowledge_retention.md](knowledge_retention.md)
+- Next step under study: a deterministic rule build, [docs/planning/rules_determinism/](docs/planning/rules_determinism/)
 
-For this initial Proof of Concept (POC), we have utilized the Azure OpenAI API to validate the core extraction logic.
-
-## Resources & Architecture
-- **Current POC Architecture**: We are using an **Azure OpenAI API** endpoint targeting a closed-source model (`gpt-5-nano`). This is securely accessed via Managed Identity, allowing us to rapidly test the Markdown -> Policy JSON -> LTL JSON pipeline.
-
-**Research managers said:**
-I’ve placed a sample file inside the machine that queries a GPT model. Use this file to understand how to query the model.
-The file is located in a folder named: model_call_example
-Please note that you can only query the model from within the virtual machine.
+## History
+1. ASPM reproduction of the ShieldAgent paper (removed in the 2026-11 cleanup; in git history).
+2. State tracking experiment: code vs the judge on fact values (`docs/archive/`).
+3. Tracker eval v2, then tracker v3: first build without the judge (`docs/archive/`).
+4. Tracker v4: the current method (`docs/reports/tracker_v4_report.md`).

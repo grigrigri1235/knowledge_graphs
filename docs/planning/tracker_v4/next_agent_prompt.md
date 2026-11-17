@@ -11,7 +11,7 @@ WHO YOU WORK FOR AND HOW
   what you understood from it. Short, simple words. Brainstorm in files, not in the chat. No Artifacts.
 - Plan → the user's explicit approval → many tiny parts. After each part say only "done with part i" and go on.
 - The user cares about SPEED. Tracker v3 took a whole day; this one must not. We learned the hard lessons already
-  (docs/planning/tracker_v3/lessons_learned.md). Plan in ONE shot, use many parallel subagents (the Agent tool;
+  (docs/archive/planning/tracker_v3/lessons_learned.md). Plan in ONE shot, use many parallel subagents (the Agent tool;
   the Workflow tool is capped here), and keep the number of stops small (see SPEED below).
 
 RED LINES (never cross them; no exception without the user's new, explicit words)
@@ -49,7 +49,7 @@ WHAT WE HAVE (tracker v3, done 2026-10-23; total $21.49)
   * Safety: 0 v3 allows that the database then refused.
   * What went wrong is known and fixable: one badly built tiny question, K2 ("the agent listed the details"),
     caused most lost tasks (its card line could never match the data), plus smaller K1, K5, K13 issues.
-    Details: docs/planning/tracker_v3/lessons_learned.md section 1, predicate_correctness/output/eval_v3/
+    Details: docs/archive/planning/tracker_v3/lessons_learned.md section 1, predicate_correctness/output/eval_v3/
     tiny_question_audit.md, B3_diagnosis.md.
 
 THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
@@ -68,9 +68,9 @@ THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
 
 READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/azureuser/code_projects/)
 1. /home/azureuser/code_projects/knowledge_retention.md (all of it).
-2. docs/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
-3. docs/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
-4. docs/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,
+2. docs/archive/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
+3. docs/archive/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
+4. docs/archive/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,
    preregistration_online.md, b2_reading_guide.md, next_steps_leak.md, approval_request.md (cost log).
 5. predicate_correctness/output/eval_v3/tiny_question_audit.md, B3_diagnosis.md, B2_val_diagnosis.md,
    direct_facts_diagnosis.md, harm_metric.md.

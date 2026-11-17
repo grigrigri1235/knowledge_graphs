@@ -149,8 +149,8 @@ Yet many facts need no LLM at all. "Is the order pending?" is written in the dat
 five passengers?" is in the call itself. That observation is the whole idea.
 
 Sources: `reading_notes/tgr_build_method.md` §1.3 (no temperature or seed); the frozen TGR arm's guard calls per
-conversation in the B2' and B3' metrics; `docs/reports/state_tracking_final_report.md` (code vs judge);
-`docs/planning/tracker_v3/p2.md` (facts per rule).
+conversation in the B2' and B3' metrics; `docs/archive/reports/state_tracking_final_report.md` (code vs judge);
+`docs/archive/planning/tracker_v3/p2.md` (facts per rule).
 
 ## 2. The idea
 
@@ -360,7 +360,7 @@ it is safe.
 TGR's own escape stays as it was: after 3 blocks in a row, the 4th attempt runs anyway. We call that a cap override.
 
 Sources: `docs/planning/tracker_v4/predicate_table.md` §0-§3; `overview.md` §6; `state_tracker/v4/facts_v4_*.json`,
-`questions_v4.json`; `guard/tgr_tracker_v4.py`; `docs/reports/state_tracking_final_report.md` (replay).
+`questions_v4.json`; `guard/tgr_tracker_v4.py`; `docs/archive/reports/state_tracking_final_report.md` (replay).
 
 ## 4. How we know the values are right
 
@@ -419,7 +419,7 @@ After the fixes, every method file was frozen: a fingerprint of 204 files, taken
 runs refuse to start if any file changed. Then a smoke test ran 4 conversations, with 0 errors. The main runs refuse
 to start without a passing smoke test on the same freeze.
 
-Sources: `docs/planning/tracker_v3/p2.md`; `output/eval_v3/rule_table_*.json`; the frozen rule sets;
+Sources: `docs/archive/planning/tracker_v3/p2.md`; `output/eval_v3/rule_table_*.json`; the frozen rule sets;
 `output/eval_v4/cases_check_real.md`, `fix1/`, `fix2/`; `output/eval_v4/dev_check.md`; `dev_check_fail_notes.md`;
 `output/eval_v4/v4_freeze.json`.
 
@@ -473,7 +473,7 @@ The policy never asks for the last four. It was our own assumption, from how car
 checked against the data. That one line cost 8 of K2's 11 long-task losses. v4's code accepts the full id, the end of
 the id, or the last four digits.
 
-Sources: `docs/reports/tracker_v3_report.md`; `tracker_v3_full_report.md`; `docs/planning/tracker_v3/lessons_learned.md`;
+Sources: `docs/archive/reports/tracker_v3_report.md`; `tracker_v3_full_report.md`; `docs/archive/planning/tracker_v3/lessons_learned.md`;
 `knowledge_retention.md`; `reading_notes/tiny_questions.md`.
 
 ## 6. How we tested
@@ -1001,7 +1001,7 @@ So 27 are general, 1 is about this harness, and 3 carry task detail. "General" m
 does not mean it was found on other data: nearly all of v3's evidence came from these same tasks. That is part of the
 leak (section 8).
 
-Sources: `docs/planning/tracker_v3/lessons_learned.md`; `tracker_v3_full_report.md` §9; `docs/reports/criticism.md`.
+Sources: `docs/archive/planning/tracker_v3/lessons_learned.md`; `tracker_v3_full_report.md` §9; `docs/archive/reports/criticism.md`.
 
 ## Appendix E. Checklist for a new policy
 

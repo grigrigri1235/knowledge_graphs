@@ -1,0 +1,54 @@
+== kept code naming docs paths
+predicate_correctness/fork/schema.py:1:"""Eval v2 Part 3 (fork/schema.py): the fixed interface between the fork builders (docs/planning/tracker_eval_v2/orchestration.md).
+predicate_correctness/guard/direct_facts_v3.py:1:"""Tracker v3, part 13 step 1: the "Direct + facts" guard (docs/planning/tracker_v3/p13.md, overview Q13, Q14).
+predicate_correctness/guard/direct_facts_v4.py:4:(lesson L2.6, docs/planning/tracker_v3/lessons_learned.md §2.6; output/eval_v3/direct_facts_diagnosis.md §3):
+predicate_correctness/guard/feedback_v3.py:1:"""Tracker v3, part 10: the block message built from the rule (docs/planning/tracker_v3/p10.md). No LLM call.
+predicate_correctness/guard/run_online.py:2:Part 10 of the earlier plan, extended in eval v2 Part 2 (docs/planning/tracker_eval_v2/p2.md) for Stage A.
+predicate_correctness/guard/run_online_v3.py:1:"""Tracker v3, part 13 step 3: the online runner wrapper for the paid runs of p14 (docs/planning/tracker_v3/p13.md,
+predicate_correctness/guard/soft_stop.py:1:"""Eval v2: the $100 soft stop (docs/planning/tracker_eval_v2/overview.md, "Cost").
+predicate_correctness/guard/soft_stop_v3.py:1:"""Tracker v3: spend limits and stop rules for the paid runs (docs/planning/tracker_v3/p13.md step 2 and step 5).
+predicate_correctness/guard/tgr_tracker.py:55:# Frozen inputs (docs/planning/state_tracking_exp/overview.md). The guard refuses to start if one differs.
+predicate_correctness/guard/tgr_tracker_v3.py:1:"""Tracker v3, part 9: the v3 guard, with no judge (docs/planning/tracker_v3/p9.md).
+predicate_correctness/scoring/v3_audit.py:2:network (docs/planning/tracker_v3/p4.md; the blame rule is P4.0 in output/eval_v3/preregistration.md).
+predicate_correctness/scoring/v3_audit.py:35:docs/reports/figures/v3_audit_*.png (../docs from predicate_correctness/).
+predicate_correctness/scoring/v3_audit.py:1738:        w(f"![{alt}](../../../docs/reports/figures/{os.path.basename(p)})")
+predicate_correctness/scoring/v3_labels.py:2:network (docs/planning/tracker_v3/p11.md steps 1, 3, 9; pass marks P11.1-P11.7 in
+predicate_correctness/scoring/v3_offline_eval.py:2:no network (docs/planning/tracker_v3/p11.md steps 1-10; pass marks P11.1-P11.7 in
+predicate_correctness/scoring/v3_offline_eval.py:26:  docs/reports/figures/v3_offline_*.png.
+predicate_correctness/scoring/v3_online_interim.py:2:chat (docs/planning/tracker_v3/p13.md step 5, "stops"). $0, no LLM call, no network, writes nothing (stdout only).
+predicate_correctness/scoring/v3_online_metrics.py:1:"""Tracker v3, part 13 step 4: the metrics of the paid online run (docs/planning/tracker_v3/p13.md steps 4-5, p14.md).
+predicate_correctness/scoring/v3_p12_offline.py:4:Plan: docs/planning/tracker_v3/p12.md; pass marks P12.1 / P12.2 (= P11.1-P11.3, P11.5 with meaning = tiny) in
+predicate_correctness/scoring/v3_p6_agreement.py:1:"""Tracker v3, part 6 (docs/planning/tracker_v3/p6.md): the database, event and argument parts of the v3 facts,
+predicate_correctness/scoring/v3_p7_structure.py:3:docs/planning/tracker_v3/p7.md, step 4. Development data only (side "dev" of output/eval_v3/split.json); a hold-out
+predicate_correctness/scoring/v3_p8_dryrun.py:1:"""Tracker v3, part 8, step 3: the dry run of the tiny questions (docs/planning/tracker_v3/p8.md). $0.
+predicate_correctness/scoring/v4_report.py:12:What it writes (default: the repo's docs/reports/):
+predicate_correctness/scoring/v4_report.py:28:must be under output/eval_v4/dryrun/report/. The real docs/reports/ is refused in TEST mode, before anything is
+predicate_correctness/state_tracker/__init__.py:1:"""Our code for the state tracking experiment: state, lookups, replay (docs/planning/state_tracking_exp/).
+predicate_correctness/state_tracker/v3/__init__.py:1:"""Tracker v3 (docs/planning/tracker_v3/): facts as two-valued states set by code, no full LLM judge.
+predicate_correctness/state_tracker/v3/facts_format_v3.py:3:A fact file (state_tracker/v3/facts_v3_<domain>.json; docs/planning/tracker_v3/p5.md) defines every fact of the frozen
+predicate_correctness/state_tracker/v3/frozen.py:4:`<64 hex>  <path relative to predicate_correctness/>`, sorted by path. It lists (docs/planning/tracker_v3/p1.md, step 1):
+predicate_correctness/state_tracker/v3/info_classes.py:3:docs/planning/tracker_v3/p7.md, piece 3. One definition, used by the disclosure facts (message_view helpers
+predicate_correctness/state_tracker/v3/message_view.py:3:The view (docs/planning/tracker_v3/p7.md, piece 1) is built from the executed history the guard saw, never cut:
+== kept docs citing moved paths (counts)
+./codebase_structure.md
+./knowledge_retention.md
+./docs/reports/tracker_v4_report.md
+./docs/planning/cleanup_candidates.md
+./docs/planning/tracker_v4/overview.md
+./docs/planning/tracker_v4/preregistration_v4.md
+./docs/planning/tracker_v4/next_agent_prompt.md
+./docs/planning/tracker_v4/predicate_table.md
+./docs/planning/tracker_v4/reading_notes/metrics_costs.md
+./docs/planning/tracker_v4/reading_notes/v3_structure.md
+./docs/planning/tracker_v4/reading_notes/tiny_questions.md
+./docs/planning/cleanup_2026_11/plan.md
+./predicate_correctness/from_shieldagent/PROVENANCE.md
+./predicate_correctness/state_tracker/README.md
+./predicate_correctness/output/implementation_log.md
+./predicate_correctness/initial_brainstorming.md
+== drafts cited?
+./docs/reports/tracker_v3_full_report.md:6:(older versions in the same folder: tracker_v3_full_report_before_rewrite.md, _before_b3.md, _before_findings.md,
+./docs/planning/tracker_v4/report_flow_plan.md:59:## Part 4. Regenerate the contents, check every internal pointer, back up the old file as draft6
+./docs/planning/cleanup_2026_11/plan.md:31:| `docs/reports/tracker_v4_report.draft1.md` ... `draft13.md` | 13 | drafts of the final report |
+./docs/planning/cleanup_2026_11/plan.md:32:| `docs/reports/tracker_v4_parts/` | 6 | parts merged into the final report |
+./docs/planning/cleanup_2026_11/plan.md:33:| `final_presentation.before_rewrite.md` | 1 | old version of the presentation |

@@ -139,7 +139,7 @@ tiny answer).
 | OQR | `p12_other_questions_review.md` | dev review of K13, K1, K5, K4 |
 | TQA | `tiny_question_audit.md` | live B2 (val 99 + train 198 conv.) + B3 (49 conv.) per-question counts and losses |
 | B2V, B3D | `B2_val_diagnosis.md`, `B3_diagnosis.md` | lost-task diagnosis |
-| K2F | `docs/planning/tracker_v3/k2_fix.md`, `p12_k2fix.md` | K2 v2 rules and the quote fixes |
+| K2F | `docs/archive/planning/tracker_v3/k2_fix.md`, `p12_k2fix.md` | K2 v2 rules and the quote fixes |
 
 "Disagree" = the tiny fact value differs from the old judge's saved value. "Live answers" = unique answers about v3
 conversations in B2 + B3 (TQA). "Lost" = v3 failed, frozen passed, and the deciding block came from this question.

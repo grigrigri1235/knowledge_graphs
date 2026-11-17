@@ -1,0 +1,419 @@
+fork/__init__.py	used by scoring/v4_offline_eval.py
+fork/find_points.py	used by fork/rebuild_check.py
+fork/offline_v3.py	used by scoring/v4_offline_eval.py
+fork/points_tgr.py	used by scoring/v4_offline_eval.py
+fork/rebuild.py	used by fork/rebuild_check.py
+fork/rebuild_check.py	used by scoring/v4_offline_eval.py
+fork/rebuild_tasks.py	used by fork/rebuild_check.py
+fork/schema.py	used by fork/rebuild_check.py
+from_shieldagent/LICENSE	entry
+from_shieldagent/PROVENANCE.md	entry
+from_shieldagent/SHA256SUMS	entry
+from_shieldagent/code/repro_core/__init__.py	entry
+from_shieldagent/code/repro_core/ltlf.py	entry
+from_shieldagent/code/repro_core/taubench_steps.py	entry
+from_shieldagent/code/repro_runtime/__init__.py	entry
+from_shieldagent/code/repro_runtime/aspm.py	entry
+from_shieldagent/code/repro_runtime/mln.py	entry
+from_shieldagent/code/repro_runtime/verify.py	entry
+from_shieldagent/gold/__init__.py	entry
+from_shieldagent/gold/airline.py	entry
+from_shieldagent/gold/context.py	entry
+from_shieldagent/gold/retail.py	entry
+from_shieldagent/policies/airline_wiki.txt	entry
+from_shieldagent/policies/retail_wiki.txt	entry
+from_shieldagent/rules/airline/manifest.json	entry
+from_shieldagent/rules/airline/rule_set.json	entry
+from_shieldagent/rules/airline/rules.md	entry
+from_shieldagent/rules/retail/manifest.json	entry
+from_shieldagent/rules/retail/rule_set.json	entry
+from_shieldagent/rules/retail/rules.md	entry
+from_shieldagent/runner/exp_core/__init__.py	entry
+from_shieldagent/runner/exp_core/model_profiles.json	entry
+from_shieldagent/runner/exp_core/models.py	entry
+from_shieldagent/runner/exp_core/run_online.py	entry
+from_shieldagent/runner/method_tgr/__init__.py	entry
+from_shieldagent/runner/method_tgr/feedback.py	entry
+from_shieldagent/runner/method_tgr/llm.py	entry
+from_shieldagent/runner/method_tgr/policy_text.py	entry
+from_shieldagent/runner/method_tgr/prompts.py	entry
+from_shieldagent/runner/method_tgr/prompts/actions_free.md	entry
+from_shieldagent/runner/method_tgr/prompts/actions_tools.md	entry
+from_shieldagent/runner/method_tgr/prompts/dispositions.md	entry
+from_shieldagent/runner/method_tgr/prompts/example_general.md	entry
+from_shieldagent/runner/method_tgr/prompts/example_restriction.md	entry
+from_shieldagent/runner/method_tgr/prompts/form_general.md	entry
+from_shieldagent/runner/method_tgr/prompts/form_restriction.md	entry
+from_shieldagent/runner/method_tgr/prompts/judge.md	entry
+from_shieldagent/runner/method_tgr/prompts/no_dispositions.md	entry
+from_shieldagent/runner/method_tgr/prompts/predicates_grounded.md	entry
+from_shieldagent/runner/method_tgr/prompts/predicates_plain.md	entry
+from_shieldagent/runner/method_tgr/prompts/repair.md	entry
+from_shieldagent/runner/method_tgr/prompts/rules_system.md	entry
+from_shieldagent/runner/method_tgr/prompts/rules_user.md	entry
+from_shieldagent/runner/method_tgr/prompts/scope.md	entry
+from_shieldagent/runner/method_tgr/rules.py	entry
+from_shieldagent/runner/method_tgr/runtime.py	entry
+from_shieldagent/runner/policy_pipeline/__init__.py	entry
+from_shieldagent/runner/policy_pipeline/llm.py	entry
+from_shieldagent/runner/repro_core/__init__.py	entry
+from_shieldagent/runner/repro_core/config.json	entry
+from_shieldagent/runner/repro_core/llm.py	entry
+from_shieldagent/runner/repro_core/ltlf.py	entry
+from_shieldagent/runner/repro_core/taubench_run.py	entry
+from_shieldagent/runner/repro_core/taubench_steps.py	entry
+from_shieldagent/runner/repro_online/__init__.py	entry
+from_shieldagent/runner/repro_online/episode.py	entry
+from_shieldagent/runner/repro_online/guards.py	entry
+from_shieldagent/runner/repro_online/run.py	entry
+from_shieldagent/runner/repro_runtime/__init__.py	entry
+from_shieldagent/runner/repro_runtime/aspm.py	entry
+from_shieldagent/runner/repro_runtime/calls.py	entry
+from_shieldagent/runner/repro_runtime/direct.py	entry
+from_shieldagent/runner/repro_runtime/extract.py	entry
+from_shieldagent/runner/repro_runtime/mln.py	entry
+from_shieldagent/runner/repro_runtime/plan.py	entry
+from_shieldagent/runner/repro_runtime/prompts.py	entry
+from_shieldagent/runner/repro_runtime/prompts/binary_check.md	entry
+from_shieldagent/runner/repro_runtime/prompts/direct.md	entry
+from_shieldagent/runner/repro_runtime/prompts/explain.md	entry
+from_shieldagent/runner/repro_runtime/prompts/extract.md	entry
+from_shieldagent/runner/repro_runtime/prompts/planner_system.md	entry
+from_shieldagent/runner/repro_runtime/prompts/planner_user.md	entry
+from_shieldagent/runner/repro_runtime/prompts/relevance.md	entry
+from_shieldagent/runner/repro_runtime/prompts/search.md	entry
+from_shieldagent/runner/repro_runtime/prompts/vocab.md	entry
+from_shieldagent/runner/repro_runtime/shield.py	entry
+from_shieldagent/runner/repro_runtime/verify.py	entry
+from_shieldagent/runner/repro_runtime/vocab.py	entry
+from_shieldagent/runner/utility/utils.py	entry
+from_shieldagent/scoring/aspm/airline_aspm.json	entry
+from_shieldagent/scoring/aspm/retail_aspm.json	entry
+from_shieldagent/scoring/exp_core/model_profiles.json	entry
+from_shieldagent/scoring/policies/curated/airline_config.json	entry
+from_shieldagent/scoring/policies/curated/retail_config.json	entry
+from_shieldagent/scoring/policies/gold_v2/README.md	entry
+from_shieldagent/scoring/policies/gold_v2/checks.py	entry
+from_shieldagent/scoring/policies/predicates/airline_predicates.json	entry
+from_shieldagent/scoring/policies/predicates/retail_predicates.json	entry
+from_shieldagent/scoring/policies/tau_bench/airline_tools.json	entry
+from_shieldagent/scoring/policies/tau_bench/retail_tools.json	entry
+from_shieldagent/scoring/scripts/reproduction/gold_compare.py	entry
+from_shieldagent/scoring/scripts/reproduction/p6_gold_score.py	entry
+from_shieldagent/scoring/scripts/reproduction/p6_metrics.py	entry
+from_shieldagent/scoring/scripts/tgr/metrics.py	entry
+from_shieldagent/scoring/scripts/validate_aspm.py	entry
+from_shieldagent/splits/splits.json	entry
+from_shieldagent/tau_bench/LICENSE	entry
+from_shieldagent/tau_bench/tau_bench/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/data/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/data/flights.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/data/reservations.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/data/users.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/book_reservation.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/calculate.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/cancel_reservation.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/get_reservation_details.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/get_user_details.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/list_all_airports.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/search_direct_flight.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/search_onestop_flight.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/send_certificate.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/think.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/transfer_to_human_agents.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/update_reservation_baggages.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/update_reservation_flights.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/airline/tools/update_reservation_passengers.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/base.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/data/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/data/orders.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/data/products.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/data/readme.md	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/data/users.json	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/__init__.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/calculate.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/cancel_pending_order.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/exchange_delivered_order_items.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/find_user_id_by_email.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/find_user_id_by_name_zip.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/get_order_details.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/get_product_details.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/get_user_details.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/list_all_product_types.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/modify_pending_order_address.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/modify_pending_order_items.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/modify_pending_order_payment.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/modify_user_address.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/return_delivered_order_items.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/think.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/retail/tools/transfer_to_human_agents.py	entry
+from_shieldagent/tau_bench/tau_bench/envs/tool.py	entry
+guard/__init__.py	used by tests/test_v4_go_ahead.py
+guard/direct_facts_v3.py	used by guard/run_online_v3.py
+guard/direct_facts_v4.py	entry
+guard/feedback_v3.py	used by guard/direct_facts_v3.py
+guard/feedback_v4.py	entry
+guard/run_online.py	used by guard/run_online_v3.py
+guard/run_online_v3.py	used by scripts/v4_identity_check.sh
+guard/run_online_v4.py	entry
+guard/runner_path.py	used by guard/tgr_tracker_v3.py
+guard/soft_stop.py	used by guard/run_online_v3.py
+guard/soft_stop_v3.py	used by guard/run_online_v3.py
+guard/soft_stop_v4.py	entry
+guard/tgr_tracker.py	used by guard/tgr_tracker_v3.py
+guard/tgr_tracker_v3.py	used by scoring/v4_offline_eval.py
+guard/tgr_tracker_v4.py	entry
+guard/write_guard.py	used by scoring/v4_offline_eval.py
+output/eval/output/tgr/online/luna_train_v5/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_train_v5/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_train_v5/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_train_v5/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/luna_train_v5/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_train_v5/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_train_v5/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_train_v5/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/luna_val/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/luna_val/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/luna_val/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/nano_train/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/nano_train/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/nano_train/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/p10_luna_train/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_train/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_train/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/p10_luna_val/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_luna_val/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_luna_val/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/airline/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/airline/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/airline/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/airline/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/airline/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/airline/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/metrics.json	used by scoring/v4_online_metrics.py
+output/eval/output/tgr/online/p10_nano_train/retail/direct/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/retail/direct/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/retail/none/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/retail/none/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval/output/tgr/online/p10_nano_train/retail/tgr/episodes.jsonl	used by state_tracker/v3/frozen.py
+output/eval/output/tgr/online/p10_nano_train/retail/tgr/gold.jsonl	used by tests/test_v4_no_gold_import.py
+output/eval_v4/cases/K1.jsonl	entry
+output/eval_v4/cases/K10.jsonl	entry
+output/eval_v4/cases/K12.jsonl	entry
+output/eval_v4/cases/K13.jsonl	entry
+output/eval_v4/cases/K16.jsonl	entry
+output/eval_v4/cases/K17.jsonl	entry
+output/eval_v4/cases/K18.jsonl	entry
+output/eval_v4/cases/K3.jsonl	entry
+output/eval_v4/cases/K4.jsonl	entry
+output/eval_v4/cases/K6.jsonl	entry
+output/eval_v4/cases/K7.jsonl	entry
+output/eval_v4/cases/K8.jsonl	entry
+output/eval_v4/cases/SHA256SUMS	entry
+output/eval_v4/cases/answers.jsonl	entry
+output/eval_v4/cases_check_fake.json	entry
+output/eval_v4/cases_check_fake.md	entry
+output/eval_v4/cases_check_fake_results.jsonl	entry
+output/eval_v4/cases_check_real.json	entry
+output/eval_v4/cases_check_real.md	entry
+output/eval_v4/cases_check_real_results.jsonl	entry
+output/eval_v4/dev20_check.md	entry
+output/eval_v4/dev_check.json	entry
+output/eval_v4/dev_check.md	entry
+output/eval_v4/fix1/cases_check_real.json	entry
+output/eval_v4/fix1/cases_check_real.md	entry
+output/eval_v4/fix1/cases_check_real_results.jsonl	entry
+output/eval_v4/fix2/cases_check_real.json	entry
+output/eval_v4/fix2/cases_check_real.md	entry
+output/eval_v4/fix2/cases_check_real_results.jsonl	entry
+output/eval_v4/form_check.json	entry
+output/eval_v4/form_check.md	entry
+output/eval_v4/freeze_list.txt	entry
+output/eval_v4/message_check_v4.md	entry
+output/eval_v4/overlays/facts_A1_airline.json	entry
+output/eval_v4/overlays/facts_A1_retail.json	entry
+output/eval_v4/overlays/facts_A2_airline.json	entry
+output/eval_v4/overlays/facts_A2_retail.json	entry
+output/eval_v4/overlays/facts_A5_airline.json	entry
+output/eval_v4/overlays/facts_A5_retail.json	entry
+output/eval_v4/overlays/facts_F2_retail.json	entry
+output/eval_v4/overlays/questions_A4.json	entry
+output/eval_v4/questions_answers_v4.jsonl	entry
+output/eval_v4/runner_v4.md	entry
+output/eval_v4/v4_freeze.json	entry
+output/implementation_log.md	used by scoring/v3_offline_eval.py
+output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_diagnosis.json	entry
+output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.json	entry
+output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.log	entry
+output/logs/v4_B2v4_B2v4_20261024T084752Z_bc5a159d_metrics.md	entry
+output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_diagnosis.json	entry
+output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.json	entry
+output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.log	entry
+output/logs/v4_B3v4_B3v4_20261024T084809Z_7a13130e_metrics.md	entry
+output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_diagnosis.json	entry
+output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.json	entry
+output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.log	entry
+output/logs/v4_Hv4_Hv4_20261024T084820Z_e597371c_final_metrics.md	entry
+output/p10_metrics.json	used by fork/rebuild_check.py
+output/p2_counts.md	used by state_tracker/load_steps.py
+output/p3_agent_review.json	used by state_tracker/predicate_types.py
+output/p3_type_counts.md	used by state_tracker/type_counts.py
+output/p6_agreement.md	used by state_tracker/replay.py
+output/p6_disagreements.jsonl	used by state_tracker/replay.py
+output/p6_values.jsonl	used by state_tracker/replay.py
+output/p8_changes.jsonl	used by fork/rebuild_check.py
+output/predicate_types.json	entry
+output/predicate_types.md	used by state_tracker/predicate_types.py
+scoring/__init__.py	used by scoring/v4_report.py
+scoring/v3_audit.py	used by scoring/v4_offline_eval.py
+scoring/v3_labels.py	used by scoring/v4_offline_eval.py
+scoring/v3_offline_eval.py	used by scoring/v4_offline_eval.py
+scoring/v3_online_interim.py	used by scripts/v3_session/b3/tools/identity_check.sh
+scoring/v3_online_metrics.py	used by scripts/v3_session/b3/tools/identity_check.sh
+scoring/v3_p12_offline.py	used by scoring/v4_offline_eval.py
+scoring/v3_p6_agreement.py	used by scoring/v3_offline_eval.py
+scoring/v3_p7_structure.py	used by scoring/v3_p12_offline.py
+scoring/v3_p8_dryrun.py	used by scoring/v3_p12_offline.py
+scoring/v3_p9_run.py	used by scoring/v4_offline_eval.py
+scoring/v4_after_run.sh	entry
+scoring/v4_b1_summary.py	entry
+scoring/v4_cases.py	entry
+scoring/v4_dev_answers.py	entry
+scoring/v4_dev_check.py	entry
+scoring/v4_diagnosis.py	entry
+scoring/v4_form_check.py	entry
+scoring/v4_freeze.py	entry
+scoring/v4_interim.sh	entry
+scoring/v4_message_check.py	entry
+scoring/v4_offline_eval.py	entry
+scoring/v4_online_interim.py	entry
+scoring/v4_online_metrics.py	entry
+scoring/v4_report.py	entry
+scripts/__init__.py	package of scripts/v3_session/b3/tools/identity_check.sh
+scripts/build_questions_A4.py	entry
+scripts/v3_session/README.md	used by state_tracker/load_steps.py
+scripts/v3_session/SHA256SUMS	used by state_tracker/load_steps.py
+scripts/v3_session/b3/tools/identity_check.sh	used by scripts/v4_identity_check.sh
+scripts/v3_session/b3_interim.sh	used by scoring/v4_interim.sh
+scripts/v3_session/run_v3_tests_parallel.sh	used by scripts/v4_run_tests_parallel.sh
+scripts/v4_cases_gen/check_fewshot_overlap.py	entry
+scripts/v4_cases_gen/gen_a17.py	entry
+scripts/v4_cases_gen/gen_k1.py	entry
+scripts/v4_cases_gen/gen_k3.py	entry
+scripts/v4_cases_gen/gen_k4k6.py	entry
+scripts/v4_cases_gen/make_v4_A15.py	entry
+scripts/v4_dry_all.sh	entry
+scripts/v4_identity_check.sh	entry
+scripts/v4_identity_driver.py	entry
+scripts/v4_merge_overlays.py	entry
+scripts/v4_run_tests_parallel.sh	entry
+state_tracker/README.md	used by state_tracker/load_steps.py
+state_tracker/__init__.py	used by tests/test_v4_go_ahead.py
+state_tracker/load_steps.py	used by state_tracker/replay.py
+state_tracker/lookup_format.py	used by tests/test_v4_go_ahead.py
+state_tracker/lookups_airline.json	used by state_tracker/v3/frozen.py
+state_tracker/lookups_retail.json	used by state_tracker/v3/frozen.py
+state_tracker/paths.py	used by tests/test_v4_go_ahead.py
+state_tracker/predicate_types.py	used by state_tracker/replay.py
+state_tracker/replay.py	used by state_tracker/v3/facts_format_v3.py
+state_tracker/state.py	used by tests/test_v4_go_ahead.py
+state_tracker/tau_copy.py	used by state_tracker/v3/info_classes.py
+state_tracker/tool_table.json	used by state_tracker/v3/facts_format_v3.py
+state_tracker/type_counts.py	used by state_tracker/replay.py
+state_tracker/v3/__init__.py	used by tests/test_v4_go_ahead.py
+state_tracker/v3/code_helpers.py	used by guard/tgr_tracker_v3.py
+state_tracker/v3/facts_format_v3.py	used by tests/test_v4_go_ahead.py
+state_tracker/v3/facts_v3_airline.json	used by guard/tgr_tracker_v3.py
+state_tracker/v3/facts_v3_retail.json	used by guard/tgr_tracker_v3.py
+state_tracker/v3/frozen.py	used by state_tracker/v3/facts_format_v3.py
+state_tracker/v3/info_classes.py	used by state_tracker/v3/message_view.py
+state_tracker/v3/message_view.py	used by tests/test_v3_message_view.py
+state_tracker/v3/questions.py	used by state_tracker/v4/listing_v4.py
+state_tracker/v3/questions_v3.json	used by state_tracker/v3/questions.py
+state_tracker/v3/tool_check.py	used by scoring/v3_offline_eval.py
+state_tracker/v4/__init__.py	entry
+state_tracker/v4/facts_v4_airline.json	entry
+state_tracker/v4/facts_v4_retail.json	entry
+state_tracker/v4/helpers_go_ahead_v4.py	entry
+state_tracker/v4/helpers_v4.py	entry
+state_tracker/v4/listing_v4.py	entry
+state_tracker/v4/questions_v4.json	entry
+state_tracker/v4/questions_v4.py	entry
+tests/__init__.py	used by tests/test_v4_go_ahead.py
+tests/audit_v4_online_recompute.py	entry
+tests/fixtures_v4/build_questions_fixture_v4.py	entry
+tests/fixtures_v4/feedback/facts_patch_v4.json	entry
+tests/fixtures_v4/guard/facts_v4_airline.json	entry
+tests/fixtures_v4/guard/facts_v4_retail.json	entry
+tests/fixtures_v4/questions_v4_fixture.json	entry
+tests/test_no_gold_import.py	used by scripts/v3_session/run_v3_tests_parallel.sh
+tests/test_v3_message_view.py	used by tests/test_v4_go_ahead.py
+tests/test_v4_cases_window.py	entry
+tests/test_v4_code_facts.py	entry
+tests/test_v4_devcheck.py	entry
+tests/test_v4_direct_facts.py	entry
+tests/test_v4_feedback.py	entry
+tests/test_v4_fix2.py	entry
+tests/test_v4_form_check.py	entry
+tests/test_v4_freeze.py	entry
+tests/test_v4_go_ahead.py	entry
+tests/test_v4_guard.py	entry
+tests/test_v4_interim.py	entry
+tests/test_v4_listing.py	entry
+tests/test_v4_metrics.py	entry
+tests/test_v4_no_gold_import.py	entry
+tests/test_v4_question_texts.py	entry
+tests/test_v4_questions.py	entry
+tests/test_v4_recompute.py	entry
+tests/test_v4_report.py	entry
+tests/test_v4_run_online.py	entry
+tests/test_v4_unclear.py	entry

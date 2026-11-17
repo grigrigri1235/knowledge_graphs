@@ -1,6 +1,6 @@
 # state_tracker: our code
 
-Our code for the state tracking experiment (`docs/planning/state_tracking_exp/`). Standard library only. It reads
+Our code for the state tracking experiment (`docs/archive/planning/state_tracking_exp/`). Standard library only. It reads
 the copies in `../from_shieldagent/` and never imports gold code.
 
 | file | part | what it does |

@@ -25,7 +25,7 @@ start with `~` or `/`.
 
 Other files link here by number, so the numbers stay: section 1 = status, 4.2 / 4.3 = development checks and v3
 results, 7 = the method, 8 = rules and traps, 11 = the prompt. Lesson numbers L1.1-L5.7 are the same as in the master
-lessons file `docs/planning/tracker_v3/lessons_learned.md`.
+lessons file `docs/archive/planning/tracker_v3/lessons_learned.md`.
 
 ---
 
@@ -47,7 +47,7 @@ that decides by τ-bench's own code and tiny questions, with no big LLM judge, a
 - **Tracker v3 (2026-10-22/23).** The same 98 frozen TGR rules, but **no judge at all**: 38 facts are set by code alone,
   28 by code plus one tiny question (16 kinds, K1-K16). Block messages are built from the rule.
 
-**Headline results** (strong agent gpt-6-luna; numbers from `docs/reports/tracker_v3_full_report.md`):
+**Headline results** (strong agent gpt-6-luna; numbers from `docs/archive/reports/tracker_v3_full_report.md`):
 - **Main live test B2: a tie, PASS.** 99 hard tasks × 3 tries × 5 arms = 1,485 conversations. v3 − frozen TGR =
   −0.024 [−0.088, +0.040]; the pass mark was "lower end above −0.10".
 - **Cost win.** v3 is the cheapest guard: $0.0089 per conversation vs $0.0116 for frozen TGR (23 % less); its guard
@@ -180,7 +180,7 @@ from v3 on: the strong agent only.**
 **Main idea:** keep the frozen TGR rules, drop the judge. Every fact is set by code; where words must be understood,
 by one tiny yes/no question about a short text that code picks. The block message is built from the rule.
 
-The user's design decisions (2026-10-22/23; all of Q1-Q15 in `docs/planning/tracker_v3/overview.md`, the reasons in
+The user's design decisions (2026-10-22/23; all of Q1-Q15 in `docs/archive/planning/tracker_v3/overview.md`, the reasons in
 `brainstorm.md` section 11):
 | # | decision | why |
 |---|---|---|
@@ -279,8 +279,8 @@ Brackets [ ] are 95 % ranges (bootstrap by task, stratified by domain, 10,000 re
 ( ) on harm are 95 % ranges in percent. Costs are logged list price.
 
 ### 4.0 The claims, fixed before any paid call
-Source: `docs/planning/tracker_v3/preregistration_online.md` (frozen 12:30 UTC, sha256 `9b385a58…`). How to read each
-number: `docs/planning/tracker_v3/b2_reading_guide.md` (frozen 16:03 UTC, before any outcome was looked at).
+Source: `docs/archive/planning/tracker_v3/preregistration_online.md` (frozen 12:30 UTC, sha256 `9b385a58…`). How to read each
+number: `docs/archive/planning/tracker_v3/b2_reading_guide.md` (frozen 16:03 UTC, before any outcome was looked at).
 | claim | number | pass mark / verdict rule |
 |---|---|---|
 | **Main** | task success, v3 − frozen TGR, paired by task, all 99 tasks | pass: lower end of the range above −0.10 ("not clearly worse") |
@@ -303,9 +303,9 @@ number: `docs/planning/tracker_v3/b2_reading_guide.md` (frozen 16:03 UTC, before
 ### 4.1 Earlier results: the first tracker and eval v2
 | test (data) | what | result | source |
 |---|---|---|---|
-| first tracker, offline (396 saved train conversations, both agents) | tracker values vs the judge's | replay exact (2,891 of 2,891 tool outputs); in 216 reviewed differences the code was right in 213 (an agent reviewer, no person); blocks 576 → 537 | `docs/reports/state_tracking_final_report.md` |
+| first tracker, offline (396 saved train conversations, both agents) | tracker values vs the judge's | replay exact (2,891 of 2,891 tool outputs); in 216 reviewed differences the code was right in 213 (an agent reviewer, no person); blocks 576 → 537 | `docs/archive/reports/state_tracking_final_report.md` |
 | first tracker, online (495 conversations, train + val) | task success, TGR + tracker vs frozen TGR | val, strong agent: −0.020 [−0.10, +0.05], no measurable change; decisions changed in 77 of 5,774 checks (1.3 %) | same |
-| **eval v2, Stage A** (2,000 conversations) | task success, paired by task | strong 0.838 → 0.864, **+0.026** [0.000, +0.054]; weak 0.752 → 0.712, **−0.040** [−0.076, −0.004] | `docs/reports/tracker_eval_v2_report.md` |
+| **eval v2, Stage A** (2,000 conversations) | task success, paired by task | strong 0.838 → 0.864, **+0.026** [0.000, +0.054]; weak 0.752 → 0.712, **−0.040** [−0.076, −0.004] | `docs/archive/reports/tracker_eval_v2_report.md` |
 | eval v2, Stage A | GOOD task success (done and no rule broken, by the gold scorer; agent G1, not re-checked) | strong +0.024 [−0.002, +0.052]; weak −0.038 [−0.076, 0.000] | same |
 | eval v2, Stage A | τ-bench's expected actions all done, no unwanted change | strong +0.020 [−0.008, +0.050]; weak −0.026 [−0.060, +0.008] | same |
 | **eval v2, Stage B** (stopped at 619 of 1,750 tries) | effect of one changed decision | strong **+0.52** [+0.34, +0.68] (44 points); weak 0.00 [−0.05, +0.05] (118 points, about 1 try per side) | same |
@@ -353,7 +353,7 @@ for v3 with tiny questions (`tests/audit_v3_ref_counts.py`).
 
 **B2, the main live test: done.** Run `B2_20261023T155537Z_c842d895`, 15:56-16:54:53 UTC, 1,485 conversations, 0 error
 lines, 0 dropped groups, no stop fired; $15.76 of the $45 limit. The independent recompute gives the same point
-estimates. Report with every table: `docs/reports/tracker_v3_report.md`.
+estimates. Report with every table: `docs/archive/reports/tracker_v3_report.md`.
 | question | number | verdict | reading (reading guide) |
 |---|---|---|---|
 | **Main:** v3 − frozen TGR, all 99 | **−0.024** [−0.088, +0.040] | **PASS** | good enough: a tie within noise |
@@ -526,7 +526,7 @@ checks.
   exception: val retail, TGR 0.710 above no guard 0.667 (airline val: both 0.633).
 - So **a real harm test needs a weak agent, or simulated users who push for forbidden actions** (L3.5).
 
-**The leak concern** (the user, 20:01 UTC; `docs/planning/tracker_v3/next_steps_leak.md`). All fixes above were found by
+**The leak concern** (the user, 20:01 UTC; `docs/archive/planning/tracker_v3/next_steps_leak.md`). All fixes above were found by
 reading the test conversations (B2, B3), so testing a fixed v3 on the same tasks would be a leak, even for fixes that
 look general. **v3's results stay final as reported.** Any v4 must take its fix list from policy reasons, written
 before new data; be frozen with its pass marks first; be reported next to v3, never in its place; and be tested only
@@ -534,7 +534,7 @@ on unseen data. τ²-bench and τ³-bench retail / airline are not clean (mostly
 the v4 plan in section 1: banking is the unseen test; airline / retail are labelled "known tasks".
 
 ### 4.6 Cost and approvals
-Logged list price; the real bill is about 0.55× of it. Approvals and the cost log: `docs/planning/tracker_v3/approval_request.md`.
+Logged list price; the real bill is about 0.55× of it. Approvals and the cost log: `docs/archive/planning/tracker_v3/approval_request.md`.
 | step | calls | cost ($) | hard limit ($) | approved (UTC) |
 |---|---|---|---|---|
 | eval v2, all of it | | 40.38 | | 2026-10-22 |
@@ -562,7 +562,7 @@ read too little text, said "unclear" too often (and unclear blocks), and the blo
 missing, so the agent looped. On many-step tasks this added up to a clear loss. **Build the questions as carefully as
 the code, and test them before any real conversation.**
 
-The 18 lessons, condensed. The master file `docs/planning/tracker_v3/lessons_learned.md` (section 1) has the same
+The 18 lessons, condensed. The master file `docs/archive/planning/tracker_v3/lessons_learned.md` (section 1) has the same
 numbers and the source of every number.
 
 **L1.1 If code can compute it (database, tool code, event log), never ask an LLM.** *Seen:* 38 of 66 facts by code
@@ -680,7 +680,7 @@ the quote fix turned 24 failures into yeses for $0. *Do:* keep this design.
 ---
 
 ## 6. Lessons: facts and code, experiment design, paid runs, working fast
-Same numbers as `docs/planning/tracker_v3/lessons_learned.md` sections 2-5; earlier lessons E1-E7 at the end (6.5).
+Same numbers as `docs/archive/planning/tracker_v3/lessons_learned.md` sections 2-5; earlier lessons E1-E7 at the end (6.5).
 
 ### 6.1 Facts, rules and code
 - **L2.1 World facts come from the database through the tool's own code, never from "was it shown".** *Seen:* eval v2
@@ -976,7 +976,7 @@ source per part, a start value and an update rule. Three fixed rules:
 - **What live showed (EXPLORATORY):** the refund-method line is the one that failed most. People name the card by the
   end of its payment id, which never equals the last four in τ-bench (4.5). A new build accepts the id digits too.
 
-### 7.4 The allowed forms per argument kind (K2 version 2, from `docs/planning/tracker_v3/k2_fix.md`)
+### 7.4 The allowed forms per argument kind (K2 version 2, from `docs/archive/planning/tracker_v3/k2_fix.md`)
 | argument kind | counts as stated when the message has | not needed | what live showed (EXPLORATORY) |
 |---|---|---|---|
 | order id / reservation id | the id (an order id with or without `#`) | | too strict: only the same message counted (3 B3 losses, 40 order-id blocks); read a window (L1.5) |
@@ -1021,7 +1021,7 @@ source per part, a start value and an update rule. Three fixed rules:
 **Red lines** (no exception without the user's new, explicit words)
 1. **No paid LLM call and no network call** (pip, git clone, downloads, web) without the user's new, explicit approval
    for that exact step. An earlier approval, or approval of a plan, never counts. Stop just before it and write the
-   commands, the cost, the hard limit and the time (`docs/planning/tracker_v3/approval_request.md` style, with a
+   commands, the cost, the hard limit and the time (`docs/archive/planning/tracker_v3/approval_request.md` style, with a
    cost-log row after each run). **Paid runs start from the main chat**; subagents do only $0 work.
 2. **Never write under `~/ShieldAgent`, `~/opt` or `~/venvs`.** Read-only git there with `GIT_OPTIONAL_LOCKS=0`. A new
    Python env (τ³-bench needs Python 3.12-3.13) goes under `/home/azureuser/code_projects/`, and only after the user
@@ -1076,13 +1076,13 @@ All paths checked on 2026-10-23. From `/home/azureuser/code_projects/` unless th
 |---|---|
 | the user's policy | `CLAUDE.md` |
 | the prompt for the next agent (tracker v4) | `docs/planning/tracker_v4/next_agent_prompt.md` (and section 11) |
-| the master lessons file | `docs/planning/tracker_v3/lessons_learned.md` |
-| the full v3 report (easy read, with B2, B3, harm, diagnoses) | `docs/reports/tracker_v3_full_report.md` |
+| the master lessons file | `docs/archive/planning/tracker_v3/lessons_learned.md` |
+| the full v3 report (easy read, with B2, B3, harm, diagnoses) | `docs/archive/reports/tracker_v3_full_report.md` |
 | live status (its event list, newest last, is the newest record; some lines near its top still describe B2 running) | `predicate_correctness/output/eval_v3/progress.md` |
 | the log of every part | `predicate_correctness/output/implementation_log.md` |
 | the folder tree (from 2026-10-22) | `codebase_structure.md` |
 
-**The v3 plan** (`docs/planning/tracker_v3/`)
+**The v3 plan** (`docs/archive/planning/tracker_v3/`)
 | what | file |
 |---|---|
 | main idea, metrics, design questions Q1-Q15, the sha table | `overview.md` |
@@ -1105,7 +1105,7 @@ All paths checked on 2026-10-23. From `/home/azureuser/code_projects/` unless th
 | the freeze; the data split; the task lists | `v3_freeze.md`; `split.json`; `online_tasks.json` (99), `b3_tasks.json` (64) |
 | the tiny-answer store | `questions_answers.jsonl` |
 | B1 | `B1_B1_20261023T153359Z_77ce4c14_summary.md` |
-| B2 run, recompute, metrics | `B2/B2_20261023T155537Z_c842d895/`, `B2/recompute_B2_20261023T155537Z_c842d895.md`, `predicate_correctness/output/logs/v3_B2_B2_20261023T155537Z_c842d895_metrics.json`; numbers report `docs/reports/tracker_v3_report.md` |
+| B2 run, recompute, metrics | `B2/B2_20261023T155537Z_c842d895/`, `B2/recompute_B2_20261023T155537Z_c842d895.md`, `predicate_correctness/output/logs/v3_B2_B2_20261023T155537Z_c842d895_metrics.json`; numbers report `docs/archive/reports/tracker_v3_report.md` |
 | B3 run, recompute, metrics, build | `B3/B3_20261023T190740Z_9bf882c0/`, `B3/recompute_B3_20261023T190740Z_9bf882c0.md`, `predicate_correctness/output/logs/v3_B3_B3_20261023T190740Z_9bf882c0_metrics.json`; the build patch `b3_prep/` (backups `*.pre_b3` next to the 3 changed files) |
 | after the results ($0, EXPLORATORY) | `B2_val_diagnosis.md`, `B3_diagnosis.md`, `tiny_question_audit.md`, `direct_facts_diagnosis.md`, `harm_metric.md` (numbers in `harm/`); the card recount `predicate_correctness/output/logs/v3_ll_card_check.txt` |
 
@@ -1114,8 +1114,8 @@ All paths checked on 2026-10-23. From `/home/azureuser/code_projects/` unless th
 and `state_tracking_report.md` (full) for the first tracker; `poc_report.md`, `wiki_processing_report.md`,
 `wiki_full_fledged_aspm_report.md`, `criticism.md` (the first POC); figures in `figures/`.
 
-**Eval v2 and the first tracker:** plans `docs/planning/tracker_eval_v2/` (stopped; `idea_track_more_facts.md` is the
-idea behind the tiny questions) and `docs/planning/state_tracking_exp/`; outputs `predicate_correctness/output/eval_v2/`
+**Eval v2 and the first tracker:** plans `docs/archive/planning/tracker_eval_v2/` (stopped; `idea_track_more_facts.md` is the
+idea behind the tiny questions) and `docs/archive/planning/state_tracking_exp/`; outputs `predicate_correctness/output/eval_v2/`
 (its `README.md` lists every file); archived clutter `predicate_correctness/output/archive/`.
 
 **Code** (`predicate_correctness/`): `guard/`, `state_tracker/` (v3 in `state_tracker/v3/`), `fork/`, `scoring/` (eval
@@ -1136,9 +1136,9 @@ Their val parts are the hold-out.
 ## 10. History
 | when | what |
 |---|---|
-| first POC | `src/`: turned policies (the GitLab handbook, then τ-bench's retail policy) into rules with an LLM; 12 hand-written cases. A manual audit (`docs/reports/criticism.md`) found that 0 schema errors did not mean right rules (missed global rules, ignored inline definitions, data descriptions taken as rules, several rules packed into one). Lesson: check meaning, not only format |
+| first POC | `src/`: turned policies (the GitLab handbook, then τ-bench's retail policy) into rules with an LLM; 12 hand-written cases. A manual audit (`docs/archive/reports/criticism.md`) found that 0 schema errors did not mean right rules (missed global rules, ignored inline definitions, data descriptions taken as rules, several rules packed into one). Lesson: check meaning, not only format |
 | advanced POC | `~/ShieldAgent` (the partner's): three guards on full τ-bench conversations; TGR did best. Most of its remaining errors were wrong fact values, which led to the tracker |
-| first tracker | `docs/planning/state_tracking_exp/`: replay exact; online no measurable change (4.1) |
+| first tracker | `docs/archive/planning/state_tracking_exp/`: replay exact; online no measurable change (4.1) |
 | eval v2 (2026-10-22) | the first tracker at scale: $40.38; stopped by the user during Stage B (4.1, E1-E7) |
 | tracker v3 (2026-10-22 23:44 to 2026-10-23 20:16 UTC) | no full judge; built and bug-checked ($0); frozen 15:33; hold-out PASS; B1 PASS; B2 a tie (PASS, "possible leak"); B3 stopped by the harm rule; $0 audits found K2 the main cause; the leak concern keeps v3 final; $21.49 |
 | 2026-10-23 20:33-20:40 UTC | the user chose tracker v4 on τ³-bench (section 1); next-agent prompt and master lessons file written |
@@ -1157,7 +1157,7 @@ WHO YOU WORK FOR AND HOW
   what you understood from it. Short, simple words. Brainstorm in files, not in the chat. No Artifacts.
 - Plan → the user's explicit approval → many tiny parts. After each part say only "done with part i" and go on.
 - The user cares about SPEED. Tracker v3 took a whole day; this one must not. We learned the hard lessons already
-  (docs/planning/tracker_v3/lessons_learned.md). Plan in ONE shot, use many parallel subagents (the Agent tool;
+  (docs/archive/planning/tracker_v3/lessons_learned.md). Plan in ONE shot, use many parallel subagents (the Agent tool;
   the Workflow tool is capped here), and keep the number of stops small (see SPEED below).
 
 RED LINES (never cross them; no exception without the user's new, explicit words)
@@ -1195,7 +1195,7 @@ WHAT WE HAVE (tracker v3, done 2026-10-23; total $21.49)
   * Safety: 0 v3 allows that the database then refused.
   * What went wrong is known and fixable: one badly built tiny question, K2 ("the agent listed the details"),
     caused most lost tasks (its card line could never match the data), plus smaller K1, K5, K13 issues.
-    Details: docs/planning/tracker_v3/lessons_learned.md section 1, predicate_correctness/output/eval_v3/
+    Details: docs/archive/planning/tracker_v3/lessons_learned.md section 1, predicate_correctness/output/eval_v3/
     tiny_question_audit.md, B3_diagnosis.md.
 
 THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
@@ -1214,9 +1214,9 @@ THE GOAL: tracker v4 = the whole pipeline again, in one shot, on τ³-bench
 
 READ FIRST (in this order; skim long ones; every relative path in this prompt starts at /home/azureuser/code_projects/)
 1. /home/azureuser/code_projects/knowledge_retention.md (all of it).
-2. docs/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
-3. docs/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
-4. docs/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,
+2. docs/archive/planning/tracker_v3/lessons_learned.md (all of it: the most important file).
+3. docs/archive/reports/tracker_v3_full_report.md (the results, harm, tiny-question problems, next steps).
+4. docs/archive/planning/tracker_v3/overview.md (how v3 was planned: parts p1-p14, the sha table), k2_fix.md,
    preregistration_online.md, b2_reading_guide.md, next_steps_leak.md, approval_request.md (cost log).
 5. predicate_correctness/output/eval_v3/tiny_question_audit.md, B3_diagnosis.md, B2_val_diagnosis.md,
    direct_facts_diagnosis.md, harm_metric.md.

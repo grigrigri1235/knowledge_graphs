@@ -58,7 +58,7 @@ $30 (was $80). Details: §5, §9, §11 and the pre-registration change log.
 - **Why it is not a fit to the answers** (the user's argument, which this plan adopts):
   - What we learned is **how to ask a tiny question in general**: accept the forms people really use, read
     the right messages, give defaults, name the missing detail. These lessons are written in
-    `docs/planning/tracker_v3/lessons_learned.md` §1-2, before any v4 data.
+    `docs/archive/planning/tracker_v3/lessons_learned.md` §1-2, before any v4 data.
   - We learned **nothing about which action is right or wrong** in any task.
   - The rules and predicates are not touched, so no decision logic was fitted to these tasks.
 - **Rules that keep it small:**
@@ -314,7 +314,7 @@ with this plan.
 ---
 
 ## Reference
-- Inputs: `docs/planning/tracker_v3/lessons_learned.md`; `reading_notes/tiny_questions.md`, `facts_rules.md`,
+- Inputs: `docs/archive/planning/tracker_v3/lessons_learned.md`; `reading_notes/tiny_questions.md`, `facts_rules.md`,
   `metrics_costs.md`, `v3_structure.md`, `port_map.md` (v3 parts), `tgr_build_method.md` (pipeline facts);
   `session1_process_log.md`.
 - Plan files: `predicate_table.md` (one row per predicate, value assignment only); `code_change_map.md`.

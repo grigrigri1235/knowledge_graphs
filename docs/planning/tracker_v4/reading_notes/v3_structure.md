@@ -1,6 +1,6 @@
 # Reading notes: how tracker v3 was planned and run, and where the time went
 
-Written 2026-10-23 for the tracker v4 plan. $0, read-only. Sources: `docs/planning/tracker_v3/overview.md`, `p1.md`-`p14.md`,
+Written 2026-10-23 for the tracker v4 plan. $0, read-only. Sources: `docs/archive/planning/tracker_v3/overview.md`, `p1.md`-`p14.md`,
 `brainstorm.md` §11, `next_agent_prompt.md`, `lessons_learned.md` §2-6, `predicate_correctness/output/eval_v3/progress.md`,
 `v3_freeze.md`, `p1_freeze.md`, `p13_audit_{A,B,C}.md`, `p13_verify_fixes.md`, `predicate_correctness/output/implementation_log.md`
 (v3 part, lines 1581-2652), the v3 session scratchpad scripts (`b2_finish.sh`, `b2_auto.sh`, `b3_interim.sh`,
@@ -43,7 +43,7 @@ Times are wall clock (start of first agent → part declared done). "Crit" = on 
 | p14 B1 smoke | 2 tasks × 5 arms | freeze | B1 run folder, `B1_*_summary.md` | approved 13:16; ran 15:34:50-15:39 (5 min) | paid | waited for the freeze |
 | p14 B2 main | 99 tasks × 3 tries × 5 arms = 1,485 conv., 4 shards × 8 workers | freeze, B1 | `output/eval_v3/B2/<run_id>/`, metrics json, recompute, `tracker_v3_report.md` | approved 15:55; 15:56-16:54:53 (59 min); after-run chain 16:55:09 (16 s) | paid | — |
 | p14 B3 extra | 64 Stage A many-write tasks × 1 try × 5 arms; needed a $0 runner build first | B2 | B3 run, `b3_prep/b3.patch`, `b3_tasks.json`, `tests/audit_v3_b3_recompute.py` | build ready 17:19, request 17:25, **approved 19:06**, run 19:08-19:24:47 (17 min; harm stop fired) | paid | — |
-| after-results | val, B3, Direct+facts diagnoses; tiny-question audit; harm metric; report and KR rewrites; lessons; v4 prompt | runs | `B2_val_diagnosis.md`, `B3_diagnosis.md`, `direct_facts_diagnosis.md`, `tiny_question_audit.md`, `harm_metric.md`, `scoring/v3_harm_metric.py`, `docs/reports/tracker_v3_full_report.md`, `lessons_learned.md` | 16:58-20:57 (about 4 h, mixed with the B3 wait) | no | 3-4 agents at a time |
+| after-results | val, B3, Direct+facts diagnoses; tiny-question audit; harm metric; report and KR rewrites; lessons; v4 prompt | runs | `B2_val_diagnosis.md`, `B3_diagnosis.md`, `direct_facts_diagnosis.md`, `tiny_question_audit.md`, `harm_metric.md`, `scoring/v3_harm_metric.py`, `docs/archive/reports/tracker_v3_full_report.md`, `lessons_learned.md` | 16:58-20:57 (about 4 h, mixed with the B3 wait) | no | 3-4 agents at a time |
 
 Critical path in v3: p5 → (p6 ∥ p7 ∥ p8) → merge → (p9 ∥ p10) → p11 → RC11 → **stop** → p12 prep → p12a → dev check →
 K2 loop → freeze → (p12b ∥ B1) → B2 → B3 request → **wait** → B3.
@@ -79,7 +79,7 @@ effects).
 - The runner writes `run.json` with the command, the approval quote and the sha256 of every guard input; later shards
   with other inputs are refused.
 
-**Layer 3: the online pre-registration** `docs/planning/tracker_v3/preregistration_online.md`, frozen by sha before
+**Layer 3: the online pre-registration** `docs/archive/planning/tracker_v3/preregistration_online.md`, frozen by sha before
 any paid call (12:30). It lists the shas of 5 code files + the task list. Later code-sha changes (audit fixes, B3
 build) go in its change log: `| time (UTC) | change | why | result seen? |`. The dev pre-registration
 `output/eval_v3/preregistration.md` had the same change-log pattern (parts 1-2 logged before p4 / p5 outputs).

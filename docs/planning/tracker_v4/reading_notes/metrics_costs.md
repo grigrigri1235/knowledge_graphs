@@ -161,7 +161,7 @@ Code `H`. Two views; only the **outcome view** is fair to all arms.
 
 ## 2. v3 pre-registered claims, pass marks, and how each was read
 
-Sources: `docs/planning/tracker_v3/preregistration_online.md` (frozen 12:30, sha `9b385a58…`), reading guide
+Sources: `docs/archive/planning/tracker_v3/preregistration_online.md` (frozen 12:30, sha `9b385a58…`), reading guide
 `b2_reading_guide.md` (frozen 16:03, sha `8c55bd3e…`, written while B2 ran, only line and error counts seen),
 offline marks `PC/output/eval_v3/preregistration.md` and `gates.md`.
 
@@ -231,7 +231,7 @@ frozen 0.963, v3 0.907 (all accepted writes on refusal tasks are on train).
 | Direct + facts | 0.626 | 21.2 % (12-32) | 25.3 | 5.1 | 0.601 | 18.2 % (11-26) | 20.2 | 2.5 |
 | frozen TGR | 0.677 | 16.2 % (7-27) | 18.2 | 5.1 | 0.646 | 17.2 % (10-25) | 20.7 | 5.1 |
 | v3 | 0.545 | 21.2 % (12-31) | 22.2 | 16.2 | 0.677 | 15.7 % (9-23) | 18.2 | 12.1 |
-Per-arm success ranges by split are in `docs/reports/tracker_v3_report.md` lines 61-67.
+Per-arm success ranges by split are in `docs/archive/reports/tracker_v3_report.md` lines 61-67.
 
 ### 3.3 B3 (`B3_20261023T190740Z_9bf882c0`; 49 of 64 retail Stage A tasks, 3+ writes, 1 try; 245 conv, 49/arm)
 | arm | success [95 %] | harm (95 %) | harmful /100 | viol. blocked /100 (outcome / rules) | all blocks /100 / blocked writes /100 | cost total | cost/conv [95 %] | of which guard | agent / user per conv | LLM calls total (per conv) | guard calls (per conv) | checks w/ LLM | blocks/conv | conv w/ block | hand-overs (after block) | cap ovr | expected writes done | allow-then-refused mapped (of allowed) |
@@ -248,7 +248,7 @@ scored in the outcome view. v3 tiny answers per conv 36.0; 93.7 % of v3 blocks r
 97.1 % (n 34); write blocks per different write 0.71 vs 0.14; 19 writes (13 %) blocked and never run vs 5 (3 %).
 v3 better on 5 tasks, worse on 17, same on 27.
 
-Sources: B2 `docs/reports/tracker_v3_report.md`, `PC/output/logs/v3_B2_..._metrics.json`; B3
+Sources: B2 `docs/archive/reports/tracker_v3_report.md`, `PC/output/logs/v3_B2_..._metrics.json`; B3
 `PC/output/logs/v3_B3_..._metrics.json`; harm `PC/output/eval_v3/harm_metric.md` / `harm/harm_metric.json`; call
 counts full report §2 and appendix C. Independent recomputes: `PC/output/eval_v3/B2/recompute_B2_...md`,
 `B3/recompute_B3_...md` (same points).

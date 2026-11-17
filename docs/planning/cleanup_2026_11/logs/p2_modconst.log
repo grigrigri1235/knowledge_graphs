@@ -1,0 +1,11 @@
+guard/tgr_tracker_v4.py:101:FEEDBACK_MODULE = "guard.feedback_v4"
+guard/tgr_tracker_v4.py:102:FREEZE_MODULE = "scoring.v4_freeze"          # P1b's freeze check (loaded in build() only)
+guard/tgr_tracker_v3.py:121:FEEDBACK_MODULE = "guard.feedback_v3"
+guard/run_online_v4.py:185:V3_RUNNER_MODULE = "guard.run_online_v3"                          # its make_answers_hook / build_arm (import only)
+guard/run_online_v4.py:187:V4_MODULE = "guard.tgr_tracker_v4"                                # TrackerTGRv4 (other agents; imported lazily)
+guard/run_online_v4.py:188:DF4_MODULE = "guard.direct_facts_v4"                              # Direct + facts v4 (another agent; lazily)
+guard/run_online_v4.py:189:QV4_MODULE = "state_tracker.v4.questions_v4"                     # QuestionsV4, RealBackendV4 (agent A3; lazily)
+guard/run_online_v4.py:190:FREEZE_MODULE = "scoring.v4_freeze"                               # the freeze check (P1b; lazily)
+guard/run_online_v4.py:191:B1_SUMMARY_MODULE = "scoring.v4_b1_summary"                       # section 13's B1 pass mark (read only; lazily)
+guard/run_online_v4.py:260:INTERIM_MODULE = "scoring.v4_online_interim"
+scoring/v4_freeze.py:53:RUNNER_MODULE = "guard.run_online_v4"           # its freeze_required_files(): what a real run needs in the manifest

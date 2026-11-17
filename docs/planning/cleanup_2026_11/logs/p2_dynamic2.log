@@ -1,0 +1,63 @@
+== rule_table refs in kept v3 code
+guard/tgr_tracker_v3.py:22:                    rule_table, rule_set) (p10); facts = {name: the evaluator's result dict, plus "v3_source" (the
+guard/tgr_tracker_v3.py:122:RULE_TABLE_REL = "output/eval_v3/rule_table_{}.json"
+guard/tgr_tracker_v3.py:143:    "output/eval_v3/rule_table_retail.json": "1d288c284351337e2316926d6ca0c68b5980fd5af2a6bdb22215202cb817cd3f",
+guard/tgr_tracker_v3.py:144:    "output/eval_v3/rule_table_airline.json": "ea2f654a6b5e7d5f1e99bf76e24c08aef4199e4516e1ce2074e5fc27ddbd0c69",
+guard/tgr_tracker_v3.py:355:                 facts_doc: Optional[dict] = None, rule_table: Optional[dict] = None):
+guard/tgr_tracker_v3.py:362:        self.rule_table = rule_table
+guard/tgr_tracker_v3.py:364:            if facts_doc is None or rule_table is None:
+guard/tgr_tracker_v3.py:365:                raise ValueError("facts = v3 needs the fact file (facts_doc) and the rule table (rule_table)")
+guard/tgr_tracker_v3.py:369:        self._rt_rules = {str(r["id"]): r for r in (rule_table or {}).get("rules", [])}
+guard/tgr_tracker_v3.py:444:                                         d["view"], self.rule_table, self.rule_set)
+guard/tgr_tracker_v3.py:690:def load_rule_table(domain: str) -> dict:
+guard/tgr_tracker_v3.py:738:        rt = load_rule_table(domain)
+guard/tgr_tracker_v3.py:741:                       meaning=meaning, messages=messages, lazy=lazy, answers=answers, facts_doc=doc, rule_table=rt)
+guard/run_online_v3.py:531:    out |= {"output/eval_v3/rule_table_retail.json", "output/eval_v3/rule_table_airline.json",
+state_tracker/v3/facts_format_v3.py:852:def rule_table_path(domain: str) -> str:
+state_tracker/v3/facts_format_v3.py:853:    return os.path.join(RULE_TABLE_DIR, f"rule_table_{domain}.json")
+state_tracker/v3/facts_format_v3.py:870:def fact_rules(rule_table: dict) -> Dict[str, dict]:
+state_tracker/v3/facts_format_v3.py:873:    for r in rule_table["rules"]:
+state_tracker/v3/facts_format_v3.py:1087:def validate(doc: Any, domain: str, *, rule_set: Optional[dict] = None, rule_table: Optional[dict] = None,
+state_tracker/v3/facts_format_v3.py:1090:    (output/eval_v3/rule_table_<domain>.json) and the domain's kinds (tool_table.json). partial=True: a part of a split
+== importlib / import_module / subprocess -m in kept code
+fork/find_points.py:43:  python -B -m fork.find_points --source saved_tgr,online_tracker --out output/eval_v2/fork_points_saved.jsonl \\
+fork/rebuild_check.py:25:CLI: python -B -m fork.rebuild_check --points <jsonl> [--md <md>]   (checks a points file; writes only the md)
+guard/run_online.py:75:  ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail --tasks train --trials 3 \
+guard/run_online.py:80:      setsid nohup ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail \
+guard/run_online.py:85:  ~/venvs/tau-bench/bin/python -B -m guard.run_online --profile luna-dev --env retail --tasks tau_retail_train \
+guard/run_online_v3.py:89:  python -B -m guard.run_online_v3 tasks-file [--check]          write (or check) output/eval_v3/online_tasks.json
+guard/run_online_v3.py:90:  python -B -m guard.run_online_v3 b3-tasks-file [--check]       write (or check) output/eval_v3/b3_tasks.json
+guard/run_online_v3.py:91:  python -B -m guard.run_online_v3 new-id --step B2              print a fresh run id
+guard/run_online_v3.py:92:  python -B -m guard.run_online_v3 run --step B2 --run-id <id> --shard <i>/4 --workers 6 --approval "<words>"
+guard/run_online_v3.py:93:  python -B -m guard.run_online_v3 b1-check --run-id <id>                  B1's pass check ($0, reads files only)
+guard/run_online_v4.py:90:  python -B -m guard.run_online_v4 tasks-file                    check output/eval_v3/online_tasks.json (never written)
+guard/run_online_v4.py:91:  python -B -m guard.run_online_v4 b3-tasks-file                 check output/eval_v3/b3_tasks.json (never written)
+guard/run_online_v4.py:92:  python -B -m guard.run_online_v4 new-id --step B2v4            print a fresh run id
+guard/run_online_v4.py:93:  python -B -m guard.run_online_v4 run --step B2v4 --run-id <id> --shard <i>/6 --workers 6 --approved "<words>" \
+guard/run_online_v4.py:95:  python -B -m guard.run_online_v4 b1-check --run-id <id>                  B1v4's pass check ($0, reads files only)
+guard/run_online_v4.py:116:import importlib
+guard/run_online_v4.py:1028:    return importlib.import_module(V4_MODULE)
+guard/run_online_v4.py:1033:    return importlib.import_module(DF4_MODULE)
+guard/run_online_v4.py:1039:    return importlib.import_module(QV4_MODULE)
+guard/run_online_v4.py:1044:    return importlib.import_module(FREEZE_MODULE)
+guard/run_online_v4.py:1287:    return importlib.import_module(V3_RUNNER_MODULE)
+guard/run_online_v4.py:1459:    return importlib.import_module(INTERIM_MODULE)
+guard/run_online_v4.py:1970:    return importlib.import_module(B1_SUMMARY_MODULE)
+guard/run_online_v4.py:2457:                                                      "$0 check: python -B -m guard.run_online_v4 baseline-check "
+guard/tgr_tracker_v3.py:76:import importlib
+guard/tgr_tracker_v3.py:442:                mod = importlib.import_module(FEEDBACK_MODULE)
+guard/tgr_tracker_v4.py:67:import importlib
+guard/tgr_tracker_v4.py:552:    mod = module if module is not None else importlib.import_module(FREEZE_MODULE)
+scoring/v3_audit.py:38:    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_audit \\
+scoring/v3_audit.py:1750:    w("PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_audit "
+scoring/v3_offline_eval.py:32:    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_offline_eval \\
+scoring/v3_offline_eval.py:660:    ap = argparse.ArgumentParser(prog="python -B -m scoring.v3_offline_eval", description=__doc__.split("\n")[0])
+scoring/v3_offline_eval.py:1941:    w("PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_offline_eval "
+scoring/v3_offline_eval.py:1944:    w("PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_offline_eval "
+scoring/v3_online_interim.py:21:  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_interim --run-dir output/eval_v3/B2/<run_id> \
+scoring/v3_online_metrics.py:68:  /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_online_metrics partner-train \
+scoring/v3_p12_offline.py:60:    PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ~/venvs/tau-bench/bin/python -B -m scoring.v3_p12_offline \\
+scoring/v3_p12_offline.py:1172:      "-B -m scoring.v3_p12_offline --workers 2 > output/logs/v3_p12_04_devcheck.log 2>&1`")
+scoring/v3_p12_offline.py:1319:    ap = argparse.ArgumentParser(prog="python -B -m scoring.v3_p12_offline", description=__doc__.split("\n")[0])
+scoring/v3_p6_agreement.py:28:    PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 /home/azureuser/miniconda3/bin/python3 -B -m scoring.v3_p6_agreement \
+xargs: grep: terminated by signal 13

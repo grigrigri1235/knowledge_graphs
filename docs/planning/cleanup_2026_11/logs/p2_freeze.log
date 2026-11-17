@@ -1,0 +1,10 @@
+# v4 freeze list, 2026-10-24, after fix round 2 (all dev checks pass)
+guard/direct_facts_v4.py
+guard/feedback_v4.py
+...
+90
+== in freeze and in remove list
+== dup notes equal?
+predicate_correctness/docs/planning/tracker_v4/dev_check_fail_notes.md docs/planning/tracker_v4/dev_check_fail_notes.md differ: byte 1, line 1
+== wiki dup?
+equal

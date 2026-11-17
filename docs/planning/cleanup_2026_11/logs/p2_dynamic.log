@@ -1,0 +1,47 @@
+== v3_harm_metric
+scoring/v4_online_metrics.py:4:(statistics, loading, complete groups, test-66 refusal unchanged) with the outcome-view harm of scoring/v3_harm_metric.py
+scoring/v4_online_metrics.py:97:Harmful got through (outcome view, the logic of scoring/v3_harm_metric.py)
+scoring/v4_online_metrics.py:1039:    expected actions (v3_harm_metric's task_expected). A task with none is left out (not scored). report() passes ALL
+== v3_message_check
+scoring/v4_message_check.py:1:"""Tracker v4: the checks of the block messages. A COPY of scoring/v3_message_check.py (tracker v3, part 10); the diff
+== merge_overlays
+scripts/v4_merge_overlays.py:3:From the v3 session's merge_overlays.py (scripts/v3_session/merge_overlays.py). Plan: docs/planning/tracker_v4/
+== tqa_dump
+tests/test_v4_no_gold_import.py:324:                 "scripts/v3_session/tqa_dump.py"]
+== rule_table
+guard/feedback_v4.py:54:    text = FB.build_message(domain, tool, args, violated_rules, facts, state, view, rule_table, rule_set)   # rule
+guard/feedback_v4.py:55:    text = FB.build_simple(domain, tool, args, violated_rules, facts, state, view, rule_table, rule_set)    # simple
+guard/feedback_v4.py:61:(state_tracker/state.py); view = the message view (state_tracker/v3/message_view.py build_view); rule_table and
+guard/feedback_v4.py:227:def _table_index(rule_table: dict) -> Dict[str, dict]:
+guard/feedback_v4.py:236:    return _cached("table", rule_table, make)
+guard/feedback_v4.py:1367:                  rule_table: Any, rule_set: Any) -> List[str]:
+guard/feedback_v4.py:1376:    if not isinstance(rule_table, dict) or not isinstance(rule_table.get("rules"), list):
+guard/feedback_v4.py:1377:        raise MessageInputError("rule_table must be a rule table (a dict with 'rules')")
+== gold_loader
+tests/test_v4_no_gold_import.py:57:    "gold.jsonl", "gold_v2", "gold_loader", "scoring.p7_results", "scoring/",
+tests/test_v4_no_gold_import.py:268:        self.assertTrue(text_hits("see scoring/gold_loader.py"))
+tests/test_v4_no_gold_import.py:276:        self.assertTrue(import_hits("import scoring.gold_loader"))
+tests/test_v4_no_gold_import.py:284:        self.assertTrue(import_hits("import scoring.gold_loader", **allow))
+tests/test_v4_no_gold_import.py:288:        self.assertTrue(import_hits("from .gold_loader import x", package="scoring", **allow))
+tests/test_v4_no_gold_import.py:312:        self.assertEqual(module_string_hits("M = 'scoring.gold_loader'"), ["scoring.gold_loader"])
+tests/test_v4_no_gold_import.py:323:        other = ["scoring/gold_loader.py", "scoring/v3_x.py", "state_tracker/v3/questions.py", "tests/test_v3_x.py",
+tests/test_v4_no_gold_import.py:363:        self.assertNotIn("scoring/gold_loader.py", rels)
+== check_copies
+== replay_check
+== tgr_to_aspm
+== decide_again
+== run_lookups
+== offline
+guard/direct_facts_v4.py:273:    """The two attributes TrackerTGRv3._state_view reads (online: no offline state source)."""
+guard/tgr_tracker_v4.py:57:register() adds the offline variants v4 / v4_rule / v4_full to fork/offline_v3.py's registry (called by drivers,
+guard/tgr_tracker_v4.py:58:not at import). Note for an offline driver: the escape needs ONE Conversation per conversation, passed to every
+guard/tgr_tracker_v4.py:611:# ----------------------------------------------------------------------------------------------- offline registry
+guard/tgr_tracker_v4.py:621:    """Add the offline variants to fork/offline_v3.py's registry (once per process). Called by drivers only."""
+guard/tgr_tracker_v4.py:634:    """Register (or replace) an offline variant with meaning = tiny and this answers hook (fake answers)."""
+scoring/v4_dev_check.py:279:             "(A7) on the message plan of each block, run inside the offline run.")
+scoring/v4_message_check.py:30:offline stand-in; lazy, as p9 runs it) through the offline base (fork/offline_v3.py run_guard), with the saved judge
+== run_all
+== judge_seed
+== branch_env
+== v3_p3_labels
+== v3_p12_holdout_labels

@@ -1,0 +1,57 @@
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p1_commit.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/tracker_v4/dev_check_fail_notes.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/import_graph.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/keep_code.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_dynamic.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_dynamic2.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_freeze.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_graph.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_graph_r2.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_keep_reasons.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p2_notes.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p3_groupA.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p4_groupB.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p5_move.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/logs/p5_refs.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/part2_import_graph.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/planning/cleanup_2026_11/remove_code.txt', LF will be replaced by CRLF the next time Git touches it
+ knowledge_retention.md                             |   54 +-
+ model_call_example/example.py                      |   24 -
+ model_call_example/requirements.txt                |    2 -
+ output/extracted_ltl_rules.json                    |  483 ---
+ output/extracted_policies.json                     |  117 -
+ output/wiki_action_circuits.json                   | 1496 ---------
+ output/wiki_extracted_ltl_rules.json               |  703 ----
+ output/wiki_extracted_policies.json                |  258 --
+ output/wiki_guardrail_demo_results.json            |  378 ---
+ output/wiki_ltl_review.md                          |   42 -
+ output/wiki_policy_review.md                       |   29 -
+ output/wiki_quality_and_domain_review.md           |   54 -
+ output/wiki_vr_refined_rules.json                  |  813 -----
+ .../planning/tracker_v4/dev_check_fail_notes.md    |   34 -
+ .../guard/run_online_v3.py.pre_b3                  | 1576 ---------
+ .../scoring/v3_online_interim.py.pre_b3            |  149 -
+ .../scoring/v3_online_metrics.py.pre_b3            | 1105 -------
+ predicate_correctness/state_tracker/README.md      |    2 +-
+ src/circuit_builder.py                             |  383 ---
+ src/extractor.py                                   |  184 --
+ src/refiner_vr.py                                  |  142 -
+ src/rule_extractor.py                              |  102 -
+ src/test_trajectories.py                           |  257 --
+ src/verifier.py                                    |  434 ---
+ 167 files changed, 1439 insertions(+), 36107 deletions(-)
+docs/planning:
+cleanup_2026_11
+rules_determinism
+tracker_v4
+
+docs/reports:
+figures
+tracker_v4_report.md
+
+docs/reports/figures:
+make_v4_figures.py
+v4_cost.png
+v4_harm.png
+v4_success.png
+exit=0

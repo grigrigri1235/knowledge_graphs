@@ -1,0 +1,26 @@
+files before: 800
+files after (staged): 588
+size before KB: 50520
+size after KB: 33203
+     33 A
+    245 D
+     12 M
+     73 R
+== per top folder, removed
+78 predicate_correctness/output
+44 predicate_correctness/tests
+35 predicate_correctness/scoring
+22 docs/reports
+18 predicate_correctness/scripts
+10 output
+9 docs/file_formats
+7 files_given
+6 src
+6 predicate_correctness/fork
+3 docs/planning
+2 model_call_example
+1 predicate_correctness/initial_brainstorming.md
+1 predicate_correctness/guard
+1 predicate_correctness/docs
+1 handbook_files_to_focus.md
+1 final_presentation.before_rewrite.md
