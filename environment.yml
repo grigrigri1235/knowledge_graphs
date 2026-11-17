@@ -1,9 +1,19 @@
-name: shieldagent-poc
+# Environment for the v4 code (predicate_correctness/) and the report figures.
+# Python 3.12 matches the venv the v4 runs used (~/venvs/tau-bench on the original machine).
+# Package list: every non-standard import in the kept code (docs/planning/env_2026_11/logs/imports.log).
+# Note: paid runs call the model through Azure managed identity, which works only on the original VM.
+name: k-graph
 channels:
   - defaults
 dependencies:
-  - python=3.10
+  - python=3.12
   - pip
+  - numpy          # scoring/v3_online_metrics.py
+  - matplotlib     # docs/reports/figures/make_v4_figures.py, scoring/v3_audit.py
+  - networkx       # from_shieldagent/runner/utility/utils.py
+  - sympy          # from_shieldagent/scoring/scripts/validate_aspm.py
   - pip:
-      - openai
-      - azure-identity
+      - openai           # tiny questions and the partner's runner
+      - azure-identity   # model login (managed identity)
+      - anthropic        # imported by the partner's runner utils
+      - urllib3          # guard/run_online_v4.py

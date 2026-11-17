@@ -1,0 +1,45 @@
+[cleanup 5ec6c23] Move paths from the original machine to this one
+ 84 files changed, 2085 insertions(+), 99 deletions(-)
+ create mode 100644 docs/planning/cleanup_2026_11/logs/p9_commit.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p0_start.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p1_dry.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p2_apply.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_after.json
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_before.json
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_code_diff.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_end.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_extra.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_fix2.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_fix2_src.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_peek.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_restore.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3_side_effects.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3a_grep.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3b_check.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3c_bash_n.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p3c_crlf.log
+ create mode 100644 docs/planning/paths_2026_11/logs/p4_stage.log
+ create mode 100644 docs/planning/paths_2026_11/logs/s1_survey.log
+ create mode 100644 docs/planning/paths_2026_11/logs/s2_files.log
+ create mode 100644 docs/planning/paths_2026_11/part3_check.md
+ create mode 100644 docs/planning/paths_2026_11/paths_fix.py
+ create mode 100644 docs/planning/paths_2026_11/plan.html
+ create mode 100644 docs/planning/paths_2026_11/plan.md
+ create mode 100644 docs/planning/paths_2026_11/planned_changes.txt
+ create mode 100644 docs/planning/paths_2026_11/progress.md
+ create mode 100644 docs/planning/paths_2026_11/status.log
+commit_exit=0
+5ec6c23c9e62e8c2c2465ccf2575d7ccb47495eb
+Move paths from the original machine to this one
+
+/home/azureuser/code_projects -> /home/grigrigri1235/knowledge_graphs, other /home/azureuser -> /home/grigrigri1235, in code and docs. Run records in predicate_correctness/output and from_shieldagent are unchanged. Plan and checks: docs/planning/paths_2026_11/.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ predicate_correctness/tests/test_v4_run_online.py  |   2 +-
+ 84 files changed, 2085 insertions(+), 99 deletions(-)
+ M docs/planning/paths_2026_11/logs/p4_stage.log
+ M environment.yml
+?? condaenv.gxu7tndp.requirements.txt
+?? docs/planning/env_2026_11/
+?? docs/planning/paths_2026_11/logs/p4_commit.log

@@ -1,0 +1,26 @@
+== autocrlf
+input
+== branch/head
+5ec6c23 Move paths from the original machine to this one
+== status
+ M docs/planning/paths_2026_11/progress.md
+ M docs/planning/paths_2026_11/status.log
+ M environment.yml
+?? docs/planning/env_2026_11/
+?? docs/planning/paths_2026_11/DONE
+?? docs/planning/paths_2026_11/logs/p4_commit.log
+?? docs/planning/paths_2026_11/logs/p4_done.log
+?? docs/planning/paths_2026_11/logs/p4_verify.log
+?? docs/planning/paths_2026_11/result.md
+== env file
+name: k-graph
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - openai
+      - azure-identity
+== CR in a .sh?
+0
